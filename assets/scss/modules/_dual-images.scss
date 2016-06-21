@@ -1,0 +1,59 @@
+
+.dual-images-container{
+  margin: 0 auto;
+  position: relative;
+
+  @include breakpoint(tablet){
+    max-width: 840px;
+    margin-bottom: 147px;
+  }
+
+  img{
+    margin: 0 auto;
+    -webkit-box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.5);
+    box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.5);
+    @include breakpoint(tablet){
+      margin: 0;
+      max-width: 470px;
+    }
+  }
+
+  .image-1 {
+    z-index: $above-content;
+    position: relative;
+  }
+
+  .image-2 {
+    @include breakpoint(tablet){
+      z-index: $below-content;
+      position: absolute;
+      top:50%;
+      right:0;
+    }
+  }
+
+  .sidebar-content & {
+    margin-bottom: 0;
+    @include breakpoint(laptop){
+      margin-bottom: 147px;
+    }
+
+    img {
+      max-width: 100%;
+      @include breakpoint(laptop){
+        max-width: 470px;
+      }
+    }
+
+    .image-2 {
+      position: relative;
+      @include breakpoint(laptop){
+        z-index: $below-content;
+        position: absolute;
+        top:50%;
+        right:0;
+      }
+    }
+  }
+}

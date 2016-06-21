@@ -1,0 +1,278 @@
+@mixin background-opacity($color, $opacity: 0.3) {
+  background: $color; /* The Fallback */
+  background: rgba($color, $opacity);
+}
+
+.blog-article, .blog-article-p1 {
+
+  @include breakpoint(tablet){
+    @include even(){
+      padding-left:0px;
+      padding-right:15px;
+    }
+    @include odd(){
+      padding-left:15px;
+      padding-right:0px;
+      clear:both;
+    }
+  }
+  margin-bottom: 2.4rem;
+
+  .article {
+    position: relative;
+    z-index: $content;
+  }
+
+  .article-title{
+    @include font-size(2.4);
+    text-align: center;
+    margin: 2.4rem auto 0;
+    line-height: 36px;
+    line-height: 3.6rem;
+    padding:0;
+  }
+
+  .article-image{
+    @include transition(all .1s ease-out );
+    overflow: hidden;
+    img{
+      @include transition(opacity .3s);
+      width: 100%;
+      margin: 0 auto;
+      opacity: 0;
+    }
+
+    &:hover{
+      -webkit-box-shadow: 0px 18px 54px -2px rgba(0,0,0,0.38);
+      -moz-box-shadow: 0px 18px 54px -2px rgba(0,0,0,0.38);
+      box-shadow: 0px 18px 54px -2px rgba(0,0,0,0.38);
+    }
+    @include breakpoint(tablet){
+      max-height: 223px;
+    }
+    @include breakpoint(tablet){
+      max-height: 363px;
+    }
+  }
+
+  .entry-date{
+    text-align: center;
+    display: block;
+    @include font-size(1.4);
+    color:$grey;
+    margin-bottom: 1rem;
+  }
+
+  .article-content{
+    text-align: center;
+  }
+
+  .moretag{
+    display: table;
+    text-align: center;
+    border-color: $primary-color !important;
+    margin: 2.4rem auto 0;
+    &:hover{
+      background: $primary-color !important;
+      color: $white !important;
+    }
+  }
+
+  .article-latest {
+    display: none;
+  }
+
+}
+
+// special settings for first page of articles
+.blog-article-p1 {
+  @include breakpoint(tablet){
+    @include even(){
+      clear:both;
+      padding-left:0px;
+      padding-right:15px;
+    }
+    @include odd(){
+      padding-left:15px;
+      padding-right:0px;
+      clear:none;
+    }
+  }
+}
+
+.primary {
+  background-size: 0px;
+
+  @include breakpoint(tablet){
+      width: 100%;
+      clear:both;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 3rem;
+      padding:0 !important;
+      min-height:  500px;
+      background-size: cover;
+      -webkit-box-shadow: 0px 18px 54px -2px rgba(0,0,0,0.38);
+      -moz-box-shadow: 0px 18px 54px -2px rgba(0,0,0,0.38);
+      box-shadow: 0px 18px 54px -2px rgba(0,0,0,0.38);
+      opacity: 0;
+    }
+
+  img{
+    @include breakpoint(tablet) {
+      position: absolute;
+      top:50%;
+      @include transform(translateY(-50%));
+      left:0;
+      width:100%;
+      opacity: 0 !important;
+    }
+  }
+
+  .article-wrapper{
+    @include breakpoint(tablet) {
+      @include background-opacity($black, 0.5);
+      position: relative;
+      min-height: 500px;
+      padding: 4rem;
+    }
+    @include breakpoint(laptop){
+      padding: 4rem;
+    }
+  }
+
+  .article {
+    @include breakpoint(tablet) {
+      position: relative;
+      color: $white;
+    }
+  }
+
+  .entry-date {
+    @include breakpoint(tablet){
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: $white;
+      text-align: left;
+    }
+  }
+
+  .article-title{
+    @include breakpoint(tablet){
+      text-align: left;
+      margin: 0 0 1rem 0;
+      @include font-size(4.2);
+      font-weight: 600;
+      line-height: 56px;
+      line-height: 5.6rem;
+      max-width: 600px;
+      a{
+        color: $white !important;
+      }
+    }
+
+    @include breakpoint(laptop){
+      line-height: 62px;
+      line-height: 6.2rem;
+      @include font-size(6.2);
+    }
+  }
+
+  .article-content {
+    @include breakpoint(tablet){
+      text-align: left;
+      max-width: 600px;
+      @include font-size(1.8);
+      line-height: 26px;
+    }
+  }
+
+  .article-image {
+    @include breakpoint(tablet){
+      z-index: $below-content;
+      max-height: none;
+    }
+  }
+
+  .moretag {
+    @include breakpoint(tablet){
+      display: table;
+      clear: both;
+      margin: 4rem 0 0;
+      border-color: $white !important;
+      color:$white !important;
+      &:hover{
+        color: $black !important;
+        background: $white!important;
+      }
+    }
+  }
+
+  .article-latest{
+    display: none;
+
+    @include breakpoint(tablet){
+      font-weight: 900;
+      display: inline-block;
+      @include font-size(1.4);
+      margin-bottom: 2.4rem;
+    }
+
+  }
+
+}
+
+.posts-navigation {
+  padding: 0;
+  margin: 2.4rem 0;
+
+  .nav-previous, .nav-next {
+    display: inline-block;
+  }
+
+  .nav-next {
+    float: right;
+  }
+}
+
+.search-container {
+
+  .blog-article {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid lighten($grey, 40%);
+
+    @include even() {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    @include odd() {
+      padding-left: 0;
+      padding-right: 0;
+      clear: both;
+    }
+
+    .article-title {
+      text-align: left;
+      margin:0 auto;
+    }
+
+    .entry-date {
+      text-align: left;
+    }
+
+    .article-content {
+      text-align: left;
+
+      p{
+        padding: 0;
+      }
+    }
+
+    .moretag {
+      margin: 2.4rem 0 0;
+    }
+
+  }
+}

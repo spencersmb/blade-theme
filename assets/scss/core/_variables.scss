@@ -1,0 +1,93 @@
+/* ----------------------------------------------------------------------------
+ * Variables
+ * ------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------
+ * Modular TypeScale
+ *
+ *
+ * ------------------------------------------------------------------------- */
+$base--spacing: 1.8rem; //was 2.2rem
+$base--fontsize: 15px; //was 16
+$base--line: 24px; //was 24
+
+/* ----------------------------------------------------------------------------
+ * Colors
+ * ------------------------------------------------------------------------- */
+// Standard
+$b: #333;
+$g: #777;
+
+// B&W
+$white: #fff;
+$black: #222228;
+$dark-grey: #545454;
+$grey: #727272;
+$light-grey: #95989A;
+$lightest-grey: #E0E0E0;
+$white-grey: #F4F7F8;
+
+// BRAND COLOR
+$light-green: #AED687;
+$green: #7ED321;
+$dark-green: #6dab3c;
+$dark-blue: #35373D;
+$dark-blue-grey: #646576;
+$orange: #FD6813;
+
+$primary-color: $green;
+$secondary-color: $orange;
+$shadow-color: rgba($black, .2);
+$shadow-m: rgba(0, 0, 0, .6);
+
+//Hover base colors
+$lighter-grey-hover: #d4d4d4;
+$dark-grey-hover: #b5b5b5;
+
+//** Global text color on `<body>`.
+$text-color: $dark-grey !default;
+
+//** Global textual link color.
+$link-color: $primary-color !default;
+
+//** Link hover color set via `darken()` function.
+$link-hover-color: darken($link-color, 15%) !default;
+
+// ==========================================================================
+// Global Config
+// ==========================================================================
+
+// Font Stacks
+$font-url--ubuntu: 'http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,400italic';
+$ubuntu: 'Ubuntu', sans-serif;
+$courier: Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+$courier-new: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+$heading-font: $ubuntu;
+
+
+// Font Weights
+$font-weight--thin: 100;
+$font-weight--light: 300;
+$font-weight--medium: 400;
+$font-weight--bold: 700;
+$letter-space: 1px;
+
+//SCREEN SIZES
+$desktop:                 75em !default; //1200px
+$laptop:                  62em !default; //992px
+$tablet:                  48em !default; //768px
+$mobile:                  34em !default; //544px
+
+// So media queries don't overlap when required, provide a maximum
+$mobile-max:              ($tablet - 1) !default;
+$tablet-max:              ($laptop - 1) !default;
+$laptop-max:              ($desktop - 1) !default;
+
+//Z-Index categories
+$below-content: 1;
+$content: 2;
+$above-content: 3;
+
+//Header Sizes
+$header-s: 60px;
+$header-l: 130px;

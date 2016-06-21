@@ -1,0 +1,57 @@
+/*!
+Theme Name: Neat-Mod
+Theme URI: http://everytuesdayshop.com/neat/
+Text Domain: neat
+Author: Spencer Bigum
+Author URI: http://www.spencerbigum.com
+Description: A Landscaper and outdoor yard service WordPress Theme
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: one-column, two-columns, custom-header, custom-menu, full-width-template, featured-images, custom-colors, theme-options, rtl-language-support, sticky-post, translation-ready
+*/
+
+/* ----------------------------------------------------------------------------
+ * Mixins & Variables
+ * ------------------------------------------------------------------------- */
+@import 'vendor/vendorpackages';
+@import 'core/functions';
+@import 'core/mixins';
+@import 'core/variables';
+
+
+/* ----------------------------------------------------------------------------
+ * Structure
+ * ------------------------------------------------------------------------- */
+@import 'core/structure';
+@import 'core/buttons';
+@import 'core/helpers';
+
+/* WPCore */
+@import 'core/wpcore';
+
+/* ----------------------------------------------------------------------------
+ * Layout
+ * ------------------------------------------------------------------------- */
+@import 'layout/layout';
+@import 'layout/blog-home';
+@import 'layout/single';
+@import 'layout/smoothState';
+@import 'layout/page';
+
+/* ----------------------------------------------------------------------------
+ * Modules
+ * ------------------------------------------------------------------------- */
+@import 'modules/navigation';
+@import 'modules/search';
+@import 'modules/footer';
+@import 'modules/widgets';
+@import 'modules/comments';
+@import 'modules/hero-header';
+@import 'modules/service-sidebar';
+@import 'modules/dual-images';
+@import 'modules/feature-tabs';
+@import 'modules/team-feature';
+@import 'modules/process';
+@import 'modules/desc-o';
+@import 'modules/faq';

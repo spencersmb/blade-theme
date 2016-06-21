@@ -1,0 +1,135 @@
+.rounded-btn{
+  // Todo: add to customizer header color options
+  @include transition(all .3s);
+  border: 2px solid $primary-color;
+  color: $primary-color;
+  background: transparent;
+  padding:7px 25px 7px 25px;
+  border-radius: 50px;
+  position: relative;
+  text-transform: uppercase;
+  @include font-size(1.2);
+  font-weight:600;
+  display: inline-block;
+
+  &.down-arrow{
+    padding: 6px 47px 6px 25px;
+  }
+
+  &:hover{
+    color:$white;
+    background: $primary-color;
+    &:hover{
+      -webkit-box-shadow: 0px 12px 45px -6px rgba(0,0,0,0.48);
+      -moz-box-shadow: 0px 12px 45px -6px rgba(0,0,0,0.48);
+      box-shadow: 0px 12px 45px -6px rgba(0,0,0,0.48);
+    }
+    &::after, &::before {
+      background:$white;
+    }
+  }
+}
+
+.white-btn{
+  border: 2px solid $white !important;
+
+  &:hover{
+    background: $white !important;
+    color: $black !important;
+  }
+}
+
+a.rounded-btn {
+
+  &.down-arrow{
+    padding: 10px 47px 10px 25px;
+  }
+}
+
+.down-arrow{
+
+  &::after, &::before {
+    @include transition(all .3s);
+    content: '';
+    margin-top: -1px;
+    height: 2px;
+    width: 6px;
+    position: absolute;
+    background: $primary-color;
+    top: 50%;
+    @include transform(translateX(-50%));
+    @include backface-visibility(hidden);
+    right: 0;
+  }
+
+  &::before {
+    right: 24px;
+    @include transform(rotate(45deg));
+  }
+
+  &::after {
+    right: 20px;
+    @include transform(rotate(-45deg));
+  }
+}
+
+.filled{
+  color: $white;
+  background: $primary-color;
+
+
+  &::after, &::before {
+    background:$white;
+  }
+
+  &:hover{
+    -webkit-box-shadow: 0px 12px 45px -6px rgba(0,0,0,0.48);
+    -moz-box-shadow: 0px 12px 45px -6px rgba(0,0,0,0.48);
+    box-shadow: 0px 12px 45px -6px rgba(0,0,0,0.48);
+  }
+}
+
+.orange-btn{
+  color:$secondary-color;
+  border-color:$secondary-color;
+
+  &:hover{
+    background: $secondary-color;
+  }
+}
+
+.tag-btn{
+    border: 1px solid $primary-color;
+    font-size: 11px !important;
+    font-size: 1.1rem !important;
+    border-radius: 25px;
+    padding: .5rem 1.5rem .6rem;
+    line-height: 12px;
+    line-height: 1.2rem;
+    display: inline-block;
+    color:$grey;
+    margin-right:.5rem;
+    margin-bottom: .75rem;
+    font-weight: 600;
+    &:hover{
+      color: $white;
+      background: $primary-color;
+    }
+}
+
+.et-vc-button {
+  font-weight: 600 !important;
+  button {
+    text-transform: uppercase !important;
+    color: $primary-color !important;
+    border-color: $primary-color !important;
+    &:hover {
+      color: $white !important;
+      background-color: $primary-color !important;
+    }
+  }
+}
+
+.vc_icon_element.vc_icon_element-outer .vc_icon_element-inner{
+  height: 3rem !important;
+}

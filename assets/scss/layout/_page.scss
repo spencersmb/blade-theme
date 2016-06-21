@@ -1,0 +1,35 @@
+.et-page-wrapper {
+
+  .row{
+    &.container{
+      margin:0 auto !important;
+    }
+  }
+
+  // Structure
+  h3{
+    font-weight: 900;
+  }
+
+}
+
+.col-third{
+  @include breakpoint(tablet){
+    max-width: 320px;
+    margin-left: 15px;
+  }
+  @include breakpoint(laptop) {
+    margin-left: 0;
+  }
+  @include breakpoint(desktop){
+    margin-right: 0;
+    float: right !important;
+  }
+}
+.col-middle {
+  @include breakpoint(desktop){
+    max-width: 580px;
+    margin: 0 auto;
+    padding-right: 15px;
+  }
+}
