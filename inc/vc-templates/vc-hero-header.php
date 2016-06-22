@@ -56,6 +56,7 @@ function neat_hero_header()
                 "admin_label" => true,
                 "heading" => esc_html__("Background Color", "neat"),
                 "param_name" => "bg_color",
+                "value" => "#7ED321"
             ),
 
             array(

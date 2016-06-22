@@ -41,6 +41,7 @@ body {
   min-height: 100%;
   font-weight: 400;
   z-index: 544;
+  overflow-x: hidden; // Isotope fix on gallery page
 
   @include breakpoint(tablet){
     z-index: 768;

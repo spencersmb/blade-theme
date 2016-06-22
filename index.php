@@ -32,19 +32,12 @@ get_header();
 						 * @package Neat
 						 */
 
-
-						$cat = false;
-						$cat_name = get_the_category(); //$cat_name[0]->name
-						if( !empty($cat_name) ){
-							$cat = true;
-							$cat_id = $cat_name[0]->cat_ID;
-							$cat_link = get_category_link( $cat_id );
-						}
-
 						$featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
 
 						?>
+
 						<?php if($count === 1 && $current_page === 1):
+							// Check if we are on the first page or not
 							$post_classes = array(
 							'post-thumb',
 							'blog-article',

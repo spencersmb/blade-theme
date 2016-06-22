@@ -11,10 +11,12 @@ import SvgHeader from "./partials/header-svg";
 import ImageLoader from "./partials/imageLoader";
 import StickySidebar from "./partials/sticky-sidebar";
 import ProcessMap from "./partials/processAnimation";
+import IsotopeGallery from "./partials/gallery-isotope";
 // import StickySidebar from "./partials/service-sidebar";
 const $ = jQuery;
 declare var ScrollMagic: any;
 // declare var revapi1: any;
+
 (function () {
   class App {
 
@@ -26,6 +28,7 @@ declare var ScrollMagic: any;
       Search.init();
       StickySidebar.init();
       ProcessMap.init();
+
     }
   }
 
@@ -36,6 +39,12 @@ declare var ScrollMagic: any;
     bootstrap.init();
     ImageLoader.init();
     // SmoothState.init("");
+  });
+
+  // Bind events to the imagesLoaded plugin here
+  $(document).on("imgLoaded", function(e){
+    console.log("image loaded custom event");
+    IsotopeGallery.init();
   });
 
   // Global window function
@@ -74,8 +83,6 @@ declare var ScrollMagic: any;
     }
   };
 
-  
-  
 
   // $(window).on("load", function () {
   //   // modify the "revapi1" part with your slider"s API name listed here:

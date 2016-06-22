@@ -30,8 +30,11 @@
   }
 }
 
+
+
 .white-btn{
   border: 2px solid $white !important;
+  color: $white !important;
 
   &:hover{
     background: $white !important;
@@ -132,4 +135,9 @@ a.rounded-btn {
 
 .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner{
   height: 3rem !important;
+}
+
+.btn-sm {
+  @include font-size(1);
+  padding: 7px 15px;
 }
