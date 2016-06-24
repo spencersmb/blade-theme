@@ -7,14 +7,17 @@ class GalleryComponent {
   gallery_grid: number;
   gallery_wrapper_width: number;
   $fullGrid: JQuery;
+  $galleryContainer: JQuery;
   $grid: any;
   currentHeight: string;
   currentHeightPX: number;
   reIsoTimeOut: number;
+  isContained: boolean;
 
   constructor() {
     this.gridId = $(".inner-content-module").children("div").attr("id");
     this.$fullGrid = $("#" + this.gridId);
+    this.$galleryContainer = $(".gallery-container");
   }
 
   setupIsotope() {
@@ -32,16 +35,25 @@ class GalleryComponent {
 
   galleryIsotopeWrapper() {
     let windowWidthRef = $(window).innerWidth(); // for scroll bar fix currently
+
+    // Is container or full width?
+    if ( this.$galleryContainer.hasClass("container") ) {
+      this.isContained = true;
+    }
+
     //
-    if ( windowWidthRef > 1600 ) {
+    if ( windowWidthRef > 1600 && this.isContained === false ) {
+      console.log("grid 5");
       this.gallery_grid = 5;
     } else if ( windowWidthRef <= 600 ) {
       this.gallery_grid = 1;
     } else if ( windowWidthRef <= 991 ) {
       this.gallery_grid = 2;
     } else if ( windowWidthRef <= 1199 ) {
+      console.log("grid 3");
       this.gallery_grid = 3;
     } else {
+      console.log("grid 4");
       this.gallery_grid = 4;
     }
 
@@ -54,12 +66,10 @@ class GalleryComponent {
     }
 
     this.gallery_wrapper_width = $(".gallery-container").width();
-    console.log("grid ",this.gallery_grid);
 
     if ( this.gallery_wrapper_width % this.gallery_grid > 0 ) {
       this.gallery_wrapper_width = this.gallery_wrapper_width + ( this.gallery_grid - this.gallery_wrapper_width % this.gallery_grid);
     }
-    console.log("new container width() ",this.gallery_wrapper_width);
     $(".gallery-isotope").css("width", this.gallery_wrapper_width);
 
     return this.gallery_grid;
@@ -71,7 +81,7 @@ class GalleryComponent {
   }
 
   setMinHeight() {
-    console.log("Set min height");
+
     // Set min height depending one what content was filtered
     this.currentHeight = $(".gallery-item.width1").css("padding-bottom");
     let heightStr = this.currentHeight.toString();
@@ -79,12 +89,11 @@ class GalleryComponent {
 
     if ( this.currentHeightPX !== 0 ) {
 
-      $(".gallery-isotope").css("min-height", this.currentHeightPX);
+      $(".gallery-isotope").css("min-height", Math.round(this.currentHeightPX));
     } else {
-
       this.currentHeightPX = $(".gallery-item.width1").height();
 
-      $(".gallery-isotope").css("min-height", this.currentHeightPX);
+      $(".gallery-isotope").css("min-height", Math.round(this.currentHeightPX));
     }
   }
 
@@ -99,8 +108,6 @@ class GalleryComponent {
 
   loadImagesIn() {
     this.$grid.isotope("once", "arrangeComplete", function () {
-
-      console.log("load once - arrange complete");
 
       // fade in
       $(".gallery-item").addClass("active");
@@ -126,18 +133,30 @@ class GalleryComponent {
     }
   }
 
+  onFilterClick( el, el2 ) {
+    let $this = $(el2.toElement);
+
+    $this.parent().children("li").each(function () {
+      $(this).removeClass("selected");
+    });
+
+    $this.addClass("selected");
+
+    let filterValue = $this.attr("data-filter");
+
+    this.reFilter(filterValue);
+  }
+
+  reFilter( item ) {
+    this.$grid.isotope({
+      filter: item
+    });
+  }
+
   // Get grid to assign dynamically
 
   init() {
     console.log("Isotope Init");
-
-    let reIso,
-      $grid,
-      $gallery_grid,
-      $gallery_wrapper_width;
-
-    console.log("$window.width() ",$(window).width());
-    console.log("$window.innerWidth() ",$(window).innerWidth());
 
     // Add transition to animate image in gracefully
     this.addImageTransition();
@@ -145,7 +164,6 @@ class GalleryComponent {
     // Setup Isotope for the first time
     this.setupIsotope();
 
-    console.log("container width() ",$(".gallery-container").innerWidth());
     // Create perfect grid
     this.galleryIsotopeWrapper();
 
@@ -154,6 +172,10 @@ class GalleryComponent {
 
     // Animate Images in onLoad
     this.loadImagesIn();
+
+    // Add filter on Click
+    let $this = this;
+    $(".filter-group").on("click", "li", this.onFilterClick.bind(this, $this));
 
     $(window).on("resize", this.onResize.bind(this));
   }

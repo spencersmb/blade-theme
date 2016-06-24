@@ -13,7 +13,6 @@ class StickySidebarComponent {
   sidebarWrapper: JQuery;
   windowHeight: number;
   sidebarHeight: number;
-  footerOffset: number;
   footerHeight: number;
   scrollingDown: boolean;
   lastScrollTop: number;
@@ -23,7 +22,7 @@ class StickySidebarComponent {
     this.contentWrapper = $(".sidebar-content");
     this.aside = $(".service-sidebar-wrapper");
     this.windowHeight = $(window).height();
-    this.sidebarHeight = this.aside.outerHeight();
+    this.sidebarHeight = this.aside.height();
     this.sidebarWrapper = $(".service-sidebar");
   }
 
@@ -33,7 +32,7 @@ class StickySidebarComponent {
       this.isAnimating = true;
       (!window.requestAnimationFrame) ? setTimeout(this.updateSidebarPosition.bind(this), 300) : window.requestAnimationFrame(this.updateSidebarPosition.bind(this));
     } else {
-      // this.resetSideBar();
+
     }
   }
 
@@ -47,13 +46,21 @@ class StickySidebarComponent {
 
     this.checkScrollDirection();
 
-    // get distance from top of content
-    this.contentOffsetTop = this.contentWrapper.offset().top - 5;
-
+    // get distance from top of content 10 + 40 = 50 padding top
+    this.contentOffsetTop = this.contentWrapper.offset().top - 10;
+    this.sidebarHeight = this.aside.height();
     this.contentWrapperHeight = this.contentWrapper.outerHeight(); // include padding and margin
+
 
     // get where top of window is
     this.scrollTop = $(window).scrollTop();
+    // console.log("Content Wrapper Height", this.contentWrapperHeight);
+    // console.log("Content Offset", this.contentOffsetTop);
+    // console.log("Sidebar Height", this.sidebarHeight);
+    // console.log("Window Height", this.windowHeight);
+    // console.log("offset Top", this.contentOffsetTop);
+    // console.log("ScrollTop", this.scrollTop);
+    // console.log("Sidebaroffset", this.scrollTop);
 
     // If the window V position is less than the content V position make sidebar normal
     if ( this.scrollTop < this.contentOffsetTop ) {
@@ -62,7 +69,7 @@ class StickySidebarComponent {
 
       // if window V position is greater than content - add sticky
       // 2nd checks the offset of the top of the window to the top of the content && the position of the content in relation to the position of the window
-    } else if ( this.scrollTop >= this.contentOffsetTop && this.scrollTop < this.contentWrapperHeight + this.sidebarHeight + this.contentOffsetTop - this.windowHeight ) {
+    } else if ( this.scrollTop >= this.contentOffsetTop && this.scrollTop < this.contentWrapperHeight - this.sidebarHeight + this.contentOffsetTop - 40 ) {
       this.aside.addClass("sticky").attr("style", "");
 
       if ( this.scrollingDown === true ) {
@@ -75,7 +82,7 @@ class StickySidebarComponent {
       // let articlePaddingTop = Number(articles.eq(1).css("padding-top").replace("px", ""));
       if ( this.aside.hasClass("sticky") ) {
         this.aside.attr("style", "");
-        this.aside.removeClass("sticky").css("top", this.contentWrapperHeight + this.sidebarHeight + 45 - this.windowHeight + "px");
+        this.aside.removeClass("sticky").css("top", this.contentWrapperHeight - this.sidebarHeight + "px");
       }
 
     }
@@ -112,7 +119,7 @@ class StickySidebarComponent {
       opacity: 0,
       z: .001,
       ease: Cubic.easeOut,
-      delay: .5
+      delay: .9
     });
   }
 

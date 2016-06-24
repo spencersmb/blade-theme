@@ -35,20 +35,20 @@
 
   .sidebar-content & {
     margin-bottom: 0;
-    @include breakpoint(laptop){
+    @include breakpoint(tablet){
       margin-bottom: 147px;
     }
 
     img {
       max-width: 100%;
-      @include breakpoint(laptop){
+      @include breakpoint(tablet){
         max-width: 470px;
       }
     }
 
     .image-2 {
       position: relative;
-      @include breakpoint(laptop){
+      @include breakpoint(tablet){
         z-index: $below-content;
         position: absolute;
         top:50%;

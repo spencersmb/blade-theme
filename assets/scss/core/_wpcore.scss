@@ -273,3 +273,12 @@ a img.aligncenter {
   height: auto;
   max-width: 100%;
 }
+
+.breadcrumbs{
+  span {
+    @include font-size(1.2);
+    font-weight: 600;
+    padding-right: 7px;
+    text-transform: uppercase;
+  }
+}

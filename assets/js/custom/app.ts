@@ -42,9 +42,12 @@ declare var ScrollMagic: any;
   });
 
   // Bind events to the imagesLoaded plugin here
-  $(document).on("imgLoaded", function(e){
+  $(document).on("imgLoaded", function ( e ) {
     console.log("image loaded custom event");
-    IsotopeGallery.init();
+    // check if page has gallery
+    if ( $(".gallery-container").length > 0 ) {
+      IsotopeGallery.init();
+    }
   });
 
   // Global window function

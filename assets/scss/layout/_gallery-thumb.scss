@@ -1,10 +1,12 @@
-.gallery-container {
-  //width: 100%;
-}
+//.gallery-container {
+//
+//}
+
 .full-width-container {
   margin: 0 auto;
   padding:0;
 }
+
 .gallery-isotope {
   height: 850px;
   @include transition(transform .8s, height .2s .1s);
@@ -37,17 +39,19 @@
       position: absolute;
       min-height: 100%;
       z-index: 2;
+      @include transform(translateY(0%));
+      @include transition(all .3s);
     }
     h5 {
       position: absolute;
-      bottom: 15px;
+      bottom: 0;
       left: 20px;
       margin: 0;
       font-size: 24px;
       font-weight: 600;
       line-height: 32px;
       color: $white;
-      z-index: 4;
+      z-index: 5;
       @include transition(all .3s);
       @include transform(translateY(0));
     }
@@ -58,11 +62,21 @@
       font-size: 16px;
       font-weight: 400;
       color: $white;
-      z-index: 4;
+      z-index: 5;
       line-height: 22px;
       padding-right: 20px;
-      @include transition(all .3s .1s);
+      @include transition(all .3s);
       @include transform(translateY(100px));
+    }
+    i{
+      position: absolute;
+      bottom:20px;
+      right: 20px;
+      color: $white;
+      z-index: 6;
+      @include transform(translateX(-20px));
+      @include transition(all .3s $ease-in-out-circ);
+      opacity: 0;
     }
     .overlay {
       position: absolute;
@@ -72,36 +86,133 @@
       left: 0;
       background-color: $black;
       opacity: 0;
-      z-index: 3;
+      z-index: 4;
       border-radius: 50%;
-      @include transform(scale(.1));
+      //@include transform(scale(.1));
+      @include transform(translateY(100%));
+      @include transition(all .3s .2s $ease-in-out-circ);
+    }
+    .overlay2{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      background-color: $primary-color;
+      z-index: 3;
+      //@include transform(scale(.1));
+      @include transform(translateY(100%));
       @include transition(all .3s $ease-in-out-circ);
     }
     img {
       width: 100%;
     }
     a {
-      &:hover {
-        h5 {
-          @include transform(translateY(-36px));
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top:0;
+      left: 0;
+      cursor: pointer;
+      @include breakpoint(laptop){
+        &:hover{
+          h5 {
+            @include transform( scale(.5) translateY(-36px) translateX(-80px));
+          }
+          i {
+            @include transform(translateX(0));
+            opacity: 1;
+          }
         }
-        .overlay {
-          @include transform(scale(1));
-          opacity: .7;
-          border-radius: 0;
+      }
+    }
+  }
+
+  .gallery-item{
+    @include breakpoint(laptop){
+      &.width1{
+        a{
+          &:hover {
+
+            .overlay {
+              @include transform(scale(1));
+              opacity: 1;
+              border-radius: 0;
+              @include transform(translateY(60%));
+            }
+            .overlay2 {
+              @include transform(scale(1));
+              opacity: .7;
+              border-radius: 0;
+              @include transform(translateY(50%));
+            }
+            .subtext {
+              @include transform(translateY(0));
+            }
+          }
         }
-        .subtext {
-          @include transform(translateY(0));
+      }
+      &.width2:not(.height2){
+        a{
+          &:hover {
+            .overlay {
+              @include transform(scale(1));
+              opacity: 1;
+              border-radius: 0;
+              @include transform(translateY(65%));
+            }
+            .overlay2 {
+              @include transform(scale(1));
+              opacity: .7;
+              border-radius: 0;
+              @include transform(translateY(55%));
+            }
+            .subtext {
+              @include transform(translateY(0));
+            }
+          }
+        }
+      }
+      &.width2, &.height2{
+        a{
+          &:hover {
+
+            .overlay {
+              @include transform(scale(1));
+              opacity: 1;
+              border-radius: 0;
+              @include transform(translateY(80%));
+            }
+            .overlay2 {
+              @include transform(scale(1));
+              opacity: .7;
+              border-radius: 0;
+              @include transform(translateY(75%));
+            }
+            .subtext {
+              @include transform(translateY(0));
+            }
+          }
         }
       }
     }
   }
 }
+
+.gallery-filter-container {
+  display: table;
+  margin-bottom: 40px;
+  text-align: center;
+  width: 100%;
+}
+
 .filter-group {
   margin: 0 auto;
   text-align: center;
   padding-top: 40px;
   .filter-item {
+    position: relative;
     display: inline-block;
     text-align: center;
     padding: 0 15px;
@@ -109,16 +220,34 @@
     text-transform: uppercase;
     font-size: 14px;
     font-weight: bold;
+    transition: color .3s;
+
+    span {
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: $primary-color;
+      transition: all .3s;
+    }
+
     &:hover {
       color: $primary-color;
+      span {
+        width: 100%;
+      }
     }
     &.selected {
       color: $primary-color;
-      border-bottom: 3px solid $primary-color;
+      span {
+        width: 100%;
+      }
+      //border-bottom: 3px solid $primary-color;
     }
   }
 }
-.full-width-gallery {
+.full-width-gallery, .width-contained {
   .gallery-item {
     float: none;
     overflow: hidden;
@@ -198,7 +327,7 @@
     }
   }
 
-  .full-width-gallery {
+  .full-width-gallery, .width-contained {
     .gallery-item {
       float: left;
       overflow: hidden;
@@ -234,25 +363,19 @@
 
 // Displays greater than 992px
 @include breakpoint(laptop) {
-  .full-width-gallery {
-    .gallery-item {
-      float: left;
-      overflow: hidden;
-      img {
-        width: 100%;
-      }
-    }
+  .full-width-gallery, .width-contained {
     .grid-sizer {
-      width: 33.3333333333%;
+      width: 33.333333333333%;
     }
     .gallery-item {
-      width: 33.3333333333%;
-      padding-bottom: 33.3333333333%;
+      width: 33.333333333333%;
+      padding-bottom: 33.333333333333%;
+
       &.width2 {
-        width: 66.6666666666%;
+        width: 66.666666666666%;
       }
       &.height2 {
-        padding-bottom: 66.6666666666%;
+        padding-bottom: 66.666666666666%;
       }
     }
   }
@@ -274,6 +397,24 @@
       }
     }
   }
+
+  .width-contained {
+
+    .grid-sizer {
+      width: 33.333333333333%;
+    }
+    .gallery-item {
+      width: 33.333333333333%;
+      padding-bottom: 33.333333333333%;
+
+      &.width2 {
+        width: 66.666666666666%;
+      }
+      &.height2 {
+        padding-bottom: 66.666666666666%;
+      }
+    }
+  }
 }
 
 // Displays greater than 1200px
@@ -284,14 +425,7 @@
     }
   }
 
-  .full-width-gallery {
-    .gallery-item {
-      float: left;
-      overflow: hidden;
-      img {
-        width: 100%;
-      }
-    }
+  .full-width-gallery, .width-contained {
     .grid-sizer {
       width: 25%;
     }
@@ -328,13 +462,7 @@
 // Displays greater than 1600px
 @include breakpoint(desktopXL) {
   .full-width-gallery {
-    .gallery-item {
-      float: left;
-      overflow: hidden;
-      img {
-        width: 100%;
-      }
-    }
+
     .grid-sizer {
       width: 20%;
     }

@@ -79,9 +79,6 @@ function neat_scripts()
         wp_register_script('neat_customJs', get_template_directory_uri() . '/assets/js/custom/neat-custom.js', array('jquery', 'gsap'), '1.1', true); // Custom scripts
         wp_enqueue_script('neat_customJs'); // Enqueue it!
 
-        wp_register_script('gallery-iso', get_template_directory_uri() . '/assets/js/shave-gallery-iso.js', array('jquery', 'isotope-neat'), '0.7.2', true);
-//        wp_enqueue_script('gallery-iso'); // Enqueue it!
-
         /**
          *
          * Separate Vendor scripts

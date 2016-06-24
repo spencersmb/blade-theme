@@ -23,7 +23,7 @@
     opacity: 1;
     position: relative;
 
-  @include breakpoint(tablet){
+  @include breakpoint(laptop){
     display: block;
     width: auto;
     margin-left:0 !important;

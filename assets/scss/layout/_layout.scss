@@ -21,3 +21,24 @@
   margin:0 auto;
   position: relative;
 }
+
+.col-third{
+  @include breakpoint(tablet){
+    margin-left: 0;
+  }
+  @include breakpoint(laptop) {
+    max-width: 320px;
+    margin-left: 0;
+  }
+  @include breakpoint(desktop){
+    margin-right: 0;
+    float: right !important;
+  }
+}
+.col-middle {
+  @include breakpoint(desktop){
+    max-width: 580px;
+    margin: 0 auto;
+    padding-right: 15px;
+  }
+}

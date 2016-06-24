@@ -14,6 +14,15 @@ $gallery_type = get_field('gallery_type');
 
 $filter_terms = get_terms( 'gallery_filter', array('fields' => 'names') );
 
+$page_layout = get_redux_options('main_page_layout');
+$page_layout_css = '';
+
+if($page_layout === "1"){
+    $page_layout_css = 'full-width-gallery';
+} else {
+    $page_layout_css = 'width-contained';
+}
+
 get_header();
 ?>
 <div class="container-fluid no-padding">
@@ -23,13 +32,48 @@ get_header();
         <?php the_content(); ?>
 
     <?php endwhile; // end of the loop. ?>
+
+
+        <?php if($has_filter): ?>
+            <!--
+#################################
+           - Filter -
+#################################
+-->
+            <div class="gallery-filter-container">
+            <!-- gallery filter -->
+            <?php if(!is_wp_error( $filter_terms )): ?>
+                <div class="col-xs-12 gallery-filters">
+                    <ul class="filter-group">
+
+                            <li class="filter-item" data-filter="*">Show All<span></span></li>
+                        
+                            <?php foreach($filter_terms as $filter): ?>
+
+                            <li class="filter-item"
+                                data-filter=".<?php echo strtolower(esc_attr($filter)); ?>">
+                                <?php echo wp_kses($filter, 'shave') ?><span></span></li>
+
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <!-- end filter -->
+
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
+
 <!--
 #################################
            - Gallery -
 #################################
 -->
-<!-- gallery -->
-<div class="section white-bg gallery-container container">
+    <?php if($page_layout === "1"): ?>
+        <div class="gallery-container container-fluid no-padding">
+    <?php else: ?>
+        <div class="gallery-container container no-padding">
+    <?php endif; ?>
+
     <div class="inner-content-module full-width-container">
         <?php
         $gallery_id='';
@@ -38,7 +82,7 @@ get_header();
             case 'masonry':
 
                 echo'
-                <div id="masonry-gallery" class="col-xs-12 full-width-gallery no-padding gallery-isotope">
+                <div id="masonry-gallery" class="col-xs-12 width-contained no-padding gallery-isotope">
                 ';
 
                 break;
@@ -126,7 +170,6 @@ get_header();
             switch ($gallery_type) {
 
                 case 'masonry':
-//                    $item_size = get_field('gallery_thumbnail_size');
                     $item_size_css ='';
 
                     //image size css name
@@ -163,6 +206,8 @@ get_header();
                 <a href="'. get_permalink() .'">
                     <h5>'. get_the_title() .'</h5>
                     <div class="subtext">'. esc_attr($tags) .'</div>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <div class="overlay2"></div>
                     <div class="overlay"></div>';
 
             //display img or background image

@@ -102,7 +102,7 @@ a.rounded-btn {
 }
 
 .tag-btn{
-    border: 1px solid $primary-color;
+    border: 2px solid $primary-color;
     font-size: 11px !important;
     font-size: 1.1rem !important;
     border-radius: 25px;
@@ -114,12 +114,14 @@ a.rounded-btn {
     margin-right:.5rem;
     margin-bottom: .75rem;
     font-weight: 600;
+    text-transform: uppercase;
     &:hover{
       color: $white;
       background: $primary-color;
     }
 }
 
+// Is this class being used?
 .et-vc-button {
   font-weight: 600 !important;
   button {
@@ -135,6 +137,14 @@ a.rounded-btn {
 
 .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner{
   height: 3rem !important;
+}
+
+// VC outline button override
+.blade-vc-outline {
+  button {
+    border-width: 3px !important;
+    font-weight: 600 !important;
+  }
 }
 
 .btn-sm {

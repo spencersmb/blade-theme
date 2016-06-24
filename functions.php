@@ -155,6 +155,7 @@ if ( file_exists(get_template_directory() . '/inc/functions/neat_widgets.php') )
  */
 if ( file_exists(get_template_directory() . '/inc/functions/neat_extras.php') ) {
 	require_once( get_template_directory() . '/inc/functions/neat_extras.php' );
+	require_once( get_template_directory() . '/inc/functions/neat_breadcrumbs.php' );
 }
 
 
