@@ -12,6 +12,7 @@ import ImageLoader from "./partials/imageLoader";
 import StickySidebar from "./partials/sticky-sidebar";
 import ProcessMap from "./partials/processAnimation";
 import IsotopeGallery from "./partials/gallery-isotope";
+import HeaderSlider from "./partials/header-slider";
 // import StickySidebar from "./partials/service-sidebar";
 const $ = jQuery;
 declare var ScrollMagic: any;
@@ -48,6 +49,8 @@ declare var ScrollMagic: any;
     if ( $(".gallery-container").length > 0 ) {
       IsotopeGallery.init();
     }
+    HeaderSlider.init();
+    
   });
 
   // Global window function

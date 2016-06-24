@@ -1,4 +1,47 @@
 <?php
+function neat_build_header_cats($color){
+    $output = '';
+    if(!strlen($color) > 0){
+        $color = '';
+    }
+    $post_id = get_the_ID();
+    // build categories
+    $get_categories = get_the_category($post_id);
+    $cat_arr = array();
+
+    foreach ($get_categories as $category){
+        $temp = array();
+        $temp['name'] = $category->name;
+        $temp['url'] = get_category_link( $category->cat_ID );
+        array_push($cat_arr, $temp);
+
+        $output .= '<a class="tag-btn" style="color:'.esc_attr($color).'; border-color:'.esc_attr($color).'" href="'.get_category_link( $category->cat_ID ).'">'.$category->name.'</a>';
+    }
+
+    return $output;
+
+
+}
+
+function neat_build_image_list($image_ids){
+    $output = '';
+    $image_urls = array();
+    $count = 0;
+    $string_images = explode(',', $image_ids, 20);
+    if ( count($string_images) > 0 ) {
+        foreach ($string_images as $image){
+            if($count === 0){
+                $output .= '<li class="selected"><img src="'.wp_get_attachment_url($image).'" alt=""></li>';
+            }else{
+                $output .= '<li><img src="'.wp_get_attachment_url($image).'" alt=""></li>';
+            }
+            $count++;
+        }
+    }
+
+    return $output;
+}
+
 add_action( 'vc_before_init', 'neat_header_slider_func' );
 function neat_header_slider_func() {
     vc_map( array(
@@ -113,55 +156,27 @@ function neat_header_slider_shortcode($params = array(), $content = null) {
 
     $post_title='';
 
-    $image_urls = array();
-    $string_images = explode(',', $images, 20);
-    if ( count($string_images) > 0 ) {
-        foreach ($string_images as $image){
-            array_push($image_urls, wp_get_attachment_url($image));
-        }
-    }
-
     $post_id = get_the_ID();
     // build categories
     $get_categories = get_the_category($post_id);
     $cat_arr = array();
 
-
-
-    function build_header_cats($color){
-        $output = '';
-        if(!strlen($color) > 0){
-            $color = '';
-        }
-        $post_id = get_the_ID();
-        // build categories
-        $get_categories = get_the_category($post_id);
-        $cat_arr = array();
-
-        foreach ($get_categories as $category){
-            $temp = array();
-            $temp['name'] = $category->name;
-            $temp['url'] = get_category_link( $category->cat_ID );
-            array_push($cat_arr, $temp);
-
-            $output .= '<a class="tag-btn" style="color:'.esc_attr($color).'; border-color:'.esc_attr($color).'" href="'.get_category_link( $category->cat_ID ).'">'.$category->name.'</a>';
-        }
-
-        return $output;
-
-
-    }
-
     $neat_header_slider = '
     <!-- hero section -->
-	<section class="header-slider-container no-padding m-header scene_element scene_element--fadein" style="background-color:'. esc_attr($bg_color) .'">
-        <div class="container no-padding header-slider-inner" style="background-color:'. esc_attr($layout_bg_color) .'">
+	<section class="header-slider-container no-padding" style="background-color:'. esc_attr($bg_color) .'">
+        <div class="header-slider-inner" style="background-color:'. esc_attr($layout_bg_color) .'">
             <div class="header-slider-wrapper">
+            
                 <ul class="header-slider-gallery">
-                    <li class="selected">
-                        <img src="'. esc_url($image_urls[0]) .'" alt="">
-                    </li>
+                    '.neat_build_image_list($images).'
                 </ul>
+                
+                <ul class="header-slider-navigation">
+                    <li><a href="#" class="slider-navigation-prev">Prev</a></li>
+                    <li><a href="#" class="slider-navigation-next">Next</a></li>
+			    </ul>
+			    
+                <a href="#" class="et-close header-slider-close">Close</a>
             </div>
             <div class="header-slider-desc">
                 
@@ -175,7 +190,7 @@ function neat_header_slider_shortcode($params = array(), $content = null) {
                 
             </div>
             <div class="header-slider-meta">
-                '.wp_kses_post(build_header_cats($cat_color), 'neat').'
+                '.wp_kses_post(neat_build_header_cats($cat_color), 'neat').'
             </div>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="65" viewBox="0 0 1212.4 64.6" class="divider-svg">

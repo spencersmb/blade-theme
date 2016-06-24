@@ -165,7 +165,7 @@
 
 			<nav id="et-dropdown-trigger" class="et-dropdown">
 				<h2><?php bloginfo('name'); ?></h2>
-				<a href="#" class="et-close">Close</a>
+				<a id="nav-close" href="#" class="et-close">Close</a>
 				<div id="nav-xfer">
 
 					<?php

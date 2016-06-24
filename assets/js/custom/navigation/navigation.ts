@@ -102,9 +102,9 @@ class NavComponent {
   navClose( init: boolean ): void {
 
     if ( init ) {
-      $(".et-close").on("click", this.closeNav.bind(this));
+      $("#nav-close").on("click", this.closeNav.bind(this));
     } else {
-      $(".et-close").off();
+      $("#nav-close").off();
     }
 
   }

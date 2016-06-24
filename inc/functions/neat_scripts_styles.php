@@ -29,11 +29,11 @@ function neat_scripts()
 //        wp_register_script('jReady', get_template_directory_uri() . '/assets/js/vendor/readyFn.js', array('jquery'), '1.1', true);
 //        wp_enqueue_script('jReady'); // Enqueue it!
 
-        wp_register_script('imagesLoaded', get_template_directory_uri() . '/assets/js/vendor/imagesloaded.pkgd.min.js', array('jquery'), '1.1', true);
+//        wp_register_script('imagesLoaded', get_template_directory_uri() . '/assets/js/vendor/imagesloaded.pkgd.min.js', array('jquery'), '1.1', true);
 //        wp_enqueue_script('imagesLoaded'); // Enqueue it!
 
 //        wp_register_script('isotope', 'https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.js', array('jquery'), '1.1', true);
-        wp_register_script('isotope-neat', get_template_directory_uri() . '/assets/js/vendor/isotope.min.js', array('jquery'), '1.1', true);
+//        wp_register_script('isotope-neat', get_template_directory_uri() . '/assets/js/vendor/isotope.min.js', array('jquery'), '1.1', true);
 //        wp_enqueue_script('isotope-neat'); // Enqueue it!
 
         wp_register_script('fontawesome', 'https://use.fontawesome.com/c1013b11d0.js', '', '4', true);
@@ -58,6 +58,9 @@ function neat_scripts()
 
         wp_register_script('scrollmagic-gsap', get_template_directory_uri() . '/assets/js/vendor/scrollmagic/plugins/animation.gsap.min.js', array('jquery'), '0.7.2', true);
         wp_enqueue_script('scrollmagic-gsap'); // Enqueue it!
+
+        wp_register_script('modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr.js', '', '2.8.3');
+        wp_enqueue_script('modernizr'); // Enqueue it!
 
         //wp_deregister_script('jquery'); // Deregister WordPress jQuery
         //wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', array(), '1.11.2');
@@ -123,8 +126,8 @@ function neat_styles()
     wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap/bootstrap.min.css', '3.6', 'all' );
 
 
-    wp_register_style('animsition-css', get_template_directory_uri() . '/assets/css/animsition/animsition.css', '', '1.2.3', true);
-    wp_enqueue_style('animsition-css'); // Enqueue it!
+//    wp_register_style('animsition-css', get_template_directory_uri() . '/assets/css/animsition/animsition.css', '', '1.2.3', true);
+//    wp_enqueue_style('animsition-css'); // Enqueue it!
 
     /**
      *
