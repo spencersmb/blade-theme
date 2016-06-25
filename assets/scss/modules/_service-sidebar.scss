@@ -1,5 +1,12 @@
 .service-wrapper {
   background: $black;
+
+  @include breakpoint(laptop){
+    margin-left:15px;
+  }
+  @include breakpoint(desktop){
+    margin-left:0;
+  }
   aside {
 
     @include last(1){

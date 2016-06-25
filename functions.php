@@ -62,11 +62,12 @@ function neat_setup() {
 	// blog thumb gets used on Index page - replace with gallery thumb?
 	add_image_size( 'neat-blog-thumb', 858, 572, true );
 
+	// Square for Isotop gallery
 	add_image_size( 'neat-square', 1024, 1024, true );
 
 	// replace this with a scalled version of 'neat-gallery-thumb-sm' with responsive image src
 //	add_image_size( 'neat-slider-nav-thumb', 292, 195, true );
-	add_image_size( 'neat-gallery-slider', 732, 578, true );
+	add_image_size( 'neat-gallery-slider', 1920, 1280, true );
 
 	//basic image dimension - horizontal - based off of a 2560x1600 ratio
 	add_image_size( 'neat-gallery-thumb-sm', 1024, 640, true );

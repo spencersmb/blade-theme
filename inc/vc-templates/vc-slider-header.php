@@ -30,10 +30,29 @@ function neat_build_image_list($image_ids){
     $string_images = explode(',', $image_ids, 20);
     if ( count($string_images) > 0 ) {
         foreach ($string_images as $image){
+
+            $image_srcset = wp_get_attachment_image_srcset( $image, 'neat-gallery-slider' );
+            $image_src = wp_get_attachment_image( $image, 'neat-gallery-slider' );
             if($count === 0){
-                $output .= '<li class="selected"><img src="'.wp_get_attachment_url($image).'" alt=""></li>';
+                $output .= '<li class="selected">
+                    <img 
+                        class="img-responsive" 
+                        src="'.wp_get_attachment_url($image).'" 
+                        srcset="'. esc_attr($image_srcset) .'"
+                        sizes="(max-width: 1920px) 100vw, 1920px"
+                        alt="">
+                    
+                    </li>';
             }else{
-                $output .= '<li><img src="'.wp_get_attachment_url($image).'" alt=""></li>';
+                $output .= '<li>
+                    <img 
+                        class="img-responsive" 
+                        src="'.wp_get_attachment_url($image).'" 
+                        srcset="'. esc_attr($image_srcset) .'"
+                        sizes="(max-width: 1920px) 100vw, 1920px"
+                        alt="">
+                    
+                    </li>';
             }
             $count++;
         }
@@ -164,38 +183,44 @@ function neat_header_slider_shortcode($params = array(), $content = null) {
     $neat_header_slider = '
     <!-- hero section -->
 	<section class="header-slider-container no-padding" style="background-color:'. esc_attr($bg_color) .'">
-        <div class="header-slider-inner" style="background-color:'. esc_attr($layout_bg_color) .'">
-            <div class="header-slider-wrapper">
-            
-                <ul class="header-slider-gallery">
-                    '.neat_build_image_list($images).'
-                </ul>
+        <div class="header-slider-inner">
+            <div class="header-slider-content m-page scene_element scene_element--fadein" style="background-color:'. esc_attr($layout_bg_color) .'">
+                <div class="header-slider-wrapper">
                 
-                <ul class="header-slider-navigation">
-                    <li><a href="#" class="slider-navigation-prev">Prev</a></li>
-                    <li><a href="#" class="slider-navigation-next">Next</a></li>
-			    </ul>
-			    
-                <a href="#" class="et-close header-slider-close">Close</a>
-            </div>
-            <div class="header-slider-desc">
-                
-                <div class="header-slider-breadcrumb">
-                    '.wp_kses_post(neat_breadcrumbs(array('color'=> $bread_color))).'
+                    <ul class="header-slider-gallery">
+                        '.neat_build_image_list($images).'
+                    </ul>
+                    
+                    <ul class="header-slider-navigation">
+                        <li><a href="#" class="slider-navigation-prev">Prev</a></li>
+                        <li><a href="#" class="slider-navigation-next">Next</a></li>
+                    </ul>
+                    
+                    <div class="count"><span class="current">1</span> / <span class="total"></span></span></div>
+                    
+                    <a href="#" class="et-close header-slider-close">Close</a>
                 </div>
-                
-                <h2 style="color:'.esc_attr($title_color).'">' . get_the_title() . '</h2>
-                
-                <p style="color:'.esc_attr($subtitle_color).'">' . wp_kses($subtext, 'neat') . '</p>
-                
-            </div>
-            <div class="header-slider-meta">
-                '.wp_kses_post(neat_build_header_cats($cat_color), 'neat').'
+                <div class="header-slider-desc">
+                    
+                    <div class="header-slider-breadcrumb">
+                        '.wp_kses_post(neat_breadcrumbs(array('color'=> $bread_color))).'
+                    </div>
+                    
+                    <h2 style="color:'.esc_attr($title_color).'">' . get_the_title() . '</h2>
+                    
+                    <p style="color:'.esc_attr($subtitle_color).'">' . wp_kses($subtext, 'neat') . '</p>
+                    
+                </div>
+                <div class="header-slider-meta">
+                    '.wp_kses_post(neat_build_header_cats($cat_color), 'neat').'
+                </div>
             </div>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="65" viewBox="0 0 1212.4 64.6" class="divider-svg">
-			<polygon points="606.2 40.9 0 0 0 64.6 595.2 64.6 617.2 64.6 1212.4 64.6 1212.4 0 " fill="'.esc_attr($divider_color).'" class="divider-path"/>
-		</svg>
+        <div class="m-page scene_element scene_element--fadeinup">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="65" viewBox="0 0 1212.4 64.6" class="divider-svg">
+                <polygon points="606.2 40.9 0 0 0 64.6 595.2 64.6 617.2 64.6 1212.4 64.6 1212.4 0 " fill="'.esc_attr($divider_color).'" class="divider-path"/>
+            </svg>
+		</div>
 	</section>
 	<!-- end hero section -->
 	';

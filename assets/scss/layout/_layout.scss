@@ -29,16 +29,20 @@
   @include breakpoint(laptop) {
     max-width: 320px;
     margin-left: 0;
+    padding-right:15px !important;
   }
   @include breakpoint(desktop){
     margin-right: 0;
     float: right !important;
+    padding-right:0 !important;
   }
 }
 .col-middle {
+  @include breakpoint(laptop){
+    padding-right: 15px !important;
+  }
   @include breakpoint(desktop){
     max-width: 580px;
     margin: 0 auto;
-    padding-right: 15px;
   }
 }

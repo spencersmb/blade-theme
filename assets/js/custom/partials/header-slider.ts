@@ -1,4 +1,5 @@
 const $ = jQuery;
+import Utils from "./utils";
 
 class SliderComponent {
   gallery: JQuery;
@@ -7,6 +8,12 @@ class SliderComponent {
   nextBtn: JQuery;
   prevBtn: JQuery;
   index: number;
+  currentSlide: number;
+  totalSlide: number;
+  countTotal: JQuery;
+  currentCount: JQuery;
+  sliderOpen: boolean;
+  resizeTimer: number;
 
   constructor( el ) {
     this.container = $(el);
@@ -14,21 +21,55 @@ class SliderComponent {
     this.closeBtn = this.container.find(".header-slider-close");
     this.nextBtn = this.container.find(".slider-navigation-next");
     this.prevBtn = this.container.find(".slider-navigation-prev");
+    this.countTotal = this.container.find(".total");
+    this.currentCount = this.container.find(".current");
     this.index = 0;
+    this.currentSlide = this.index + 1;
+    this.sliderOpen = false;
   }
 
   getCurrentSlide(): JQuery {
     return this.gallery.find(".selected");
   }
 
-  updateNav( index: number, selected: JQuery ) {
-    this.prevBtn.toggleClass("hidden", selected.is(":first-child"));
-    this.nextBtn.toggleClass("hidden", selected.is(":last-child"));
+  getTotalSlides(): number {
+    let count = this.gallery.children("li").length;
+    return count;
   }
 
-  nextSlide( e ) {
-    console.log("next slide");
-    e.preventDefault();
+  getCurrentSlideCount(): number {
+    return this.currentSlide;
+  }
+
+  updateCurrentSlide( event ) {
+
+    if ( event === "next" ) {
+      this.index++;
+      this.currentSlide++;
+    } else {
+      this.index--;
+      this.currentSlide--;
+    }
+
+  }
+
+  setNumber( count: number ): string {
+    let total = count;
+    return total.toString();
+  }
+
+  updateNav( index: number, selected: JQuery ) {
+
+    // update numbers
+    this.currentCount.html(this.setNumber(this.getCurrentSlideCount()));
+
+    // Enable/Disable arrow btns
+    this.prevBtn.parent("li").toggleClass("slider-hidden", selected.is(":first-child"));
+    this.nextBtn.parent("li").toggleClass("slider-hidden", selected.is(":last-child"));
+  }
+
+  next() {
+    event.preventDefault();
     let currentSlide = this.getCurrentSlide();
 
     // remove currently selected class, then move left
@@ -36,16 +77,14 @@ class SliderComponent {
     currentSlide.next().addClass("selected");
 
     // update index
-    this.index++;
+    this.updateCurrentSlide("next");
 
     // update Navigation
     this.updateNav(this.index, this.getCurrentSlide());
-
   }
 
-  prevSlide( e ){
-    console.log("prev slide");
-    e.preventDefault();
+  prev() {
+    event.preventDefault();
     let currentSlide = this.getCurrentSlide();
 
     // remove currently selected class, then move left
@@ -53,26 +92,72 @@ class SliderComponent {
     currentSlide.prev().addClass("selected").removeClass("left");
 
     // update index
-    this.index--;
+    this.updateCurrentSlide("prev");
 
     // update Navigation
     this.updateNav(this.index, this.getCurrentSlide());
   }
 
-  sliderClick( el, event ) {
+  getImageHeight() {
+    let height = this.gallery.find(".selected").height();
+
+    return this.gallery.find(".selected").children("img").height();
+  }
+
+  setGalleryHeight( imageHeight: number ) {
+    this.gallery.css("height", imageHeight);
+  }
+
+  arrowHandler( event ) {
+
+    if ( event.data.keys === "right" && this.currentSlide !== this.getTotalSlides() ) {
+
+      if ( Utils.breakpoint >= Utils.bps.laptop && this.sliderOpen ) {
+        this.next();
+      } else if ( Utils.breakpoint <= Utils.bps.tablet ) {
+        this.next();
+      }
+
+    } else if ( event.data.keys === "left" && this.currentSlide !== 1 ) {
+
+      if ( Utils.breakpoint >= Utils.bps.laptop && this.sliderOpen ) {
+        this.prev();
+      } else if ( Utils.breakpoint <= Utils.bps.tablet ) {
+        this.prev();
+      }
+
+    }
+
+  }
+
+  openSlider( el, event ) {
     // el = this
     // el2 is event
     if ( !this.container.hasClass("is-active") && $(event.currentTarget).is(this.gallery) ) {
+
+      this.sliderOpen = true;
+
       this.container.addClass("is-active").one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", () => {
         $("body,html").animate({ "scrollTop": this.container.offset().top }, 200);
+
+        // Close Btn animate in
+        let closeBtnAnimation = TweenMax.to(this.closeBtn, .3, {
+          opacity: 1,
+          z: .001,
+          x: -30,
+          ease: Cubic.easeOut,
+          delay: .3
+        });
+
       });
     }
   }
 
-  close( e ) {
+  closeSlider( e ) {
     e.preventDefault();
-    console.log("close");
     this.container.removeClass("is-active");
+
+    this.sliderOpen = false;
 
     TweenLite
       .to($(window), .5,
@@ -81,19 +166,64 @@ class SliderComponent {
           delay: .5
         }
       );
+
+    let closeBtnAnimation = TweenMax.to(this.closeBtn, .3, {
+      opacity: 0,
+      z: .001,
+      ease: Cubic.easeOut,
+      onComplete: () => {
+        TweenMax.to(this.closeBtn, .3, {
+          x: 50
+        });
+      }
+    });
+  }
+
+  checkSize() {
+
+
+    clearTimeout(this.resizeTimer);
+    this.resizeTimer = setTimeout(() => {
+
+      let $this = this;
+      if ( Utils.breakpoint >= Utils.bps.laptop ) {
+        this.gallery.on("click", this.openSlider.bind(this, $this));
+        this.closeBtn.on("click", this.closeSlider.bind(this));
+      } else {
+        this.gallery.off();
+        this.closeBtn.off();
+      }
+
+      console.log(this.getImageHeight());
+      // set height
+      // this.setGalleryHeight(this.getImageHeight());
+
+    }, 400);
+
   }
 
   init() {
-    let $this = this;
 
     // Create Binding Events
-    this.gallery.on("click", this.sliderClick.bind(this, $this));
-    this.closeBtn.on("click", this.close.bind(this));
-    this.nextBtn.on("click", this.nextSlide.bind(this));
-    this.prevBtn.on("click", this.prevSlide.bind(this));
+    this.checkSize();
+
+    $(window).on("resize", this.checkSize.bind(this));
+
+    // Left and right events
+    this.nextBtn.on("click", { keys: "right" }, this.arrowHandler.bind(this));
+    this.prevBtn.on("click", { keys: "left" }, this.arrowHandler.bind(this));
+
+    // Jquery keys plugin
+    $(document)
+      .bind("keydown", "left", this.arrowHandler.bind(this))
+      .bind("keydown", "esc", this.closeSlider.bind(this))
+      .bind("keydown", "right", this.arrowHandler.bind(this));
 
     // update nav on first load
     this.updateNav(this.index, this.getCurrentSlide());
+
+    // total slides
+    this.countTotal.html(this.setNumber(this.getTotalSlides()));
   }
 }
 
