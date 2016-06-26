@@ -9,7 +9,7 @@ function neat_hero_header()
         "description" => esc_html__("Place Header", "neat"),
         "base" => "hero",
         "class" => "",
-        "icon" => "icon-box",
+        "icon" => "hero_icon",
 
         "params" => array(
 

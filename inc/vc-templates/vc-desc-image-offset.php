@@ -73,7 +73,7 @@ function desc_offset_vc_func() {
     vc_map( array(
         "name"      => esc_html__( "Description Image Offset", "neat" ),
         "base"      => "desc_offset",
-        'icon'        => 'text-output',
+        'icon'        => 'desc_offset_icon',
         "as_parent" => array('only' => 'vc_column_text'), // Use only|except attributes to limit child shortcodes (separate multiple values with comma)
         "is_container" => true,
         "js_view" => 'VcColumnView',

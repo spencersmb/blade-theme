@@ -75,7 +75,7 @@ function process_vc_func() {
     vc_map( array(
         "name"      => esc_html__( "Process Map", "neat" ),
         "base"      => "process",
-        'icon'        => 'text-output',
+        'icon'        => 'process_icon',
         "as_parent" => array('only' => 'process_item, vc_single_image'), // Use only|except attributes to limit child shortcodes (separate multiple values with comma)
         "is_container" => true,
         "js_view" => 'VcColumnView',
@@ -105,7 +105,8 @@ function process_vc_func() {
     vc_map( array(
         "name"      => esc_html__( "Process Item", "neat" ),
         "base"      => "process_item",
-        'icon'        => 'text-output',
+        'icon'        => 'process_item_icon',
+        "as_child" => array('only' => 'process'),
         'description' => esc_html__( 'Add an item to the process Map.', 'neat' ),
         "wrapper_class" => "clearfix",
         "category" => esc_html__( 'Content', 'neat' ),

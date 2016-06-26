@@ -9,8 +9,8 @@ function neat_dual_images()
         "category" => esc_html__("Content", "neat"),
         "description" => esc_html__("Place Two Overlapping Images", "neat"),
         "base" => "dual_images",
-        "class" => "",
-        "icon" => "icon-dual",
+        "class" => "et-dual-image",
+        "icon" => "dual_images",
 
         "params" => array(
 

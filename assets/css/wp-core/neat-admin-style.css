@@ -126,3 +126,43 @@
 #icon-dropdown li.selected i{
     color: #000;
 }
+
+/*
+Custom VC Admin Icons
+*/
+.dual_images.vc_element-icon {
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 0;
+}
+.process_icon.vc_element-icon {
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -32px !important;
+}
+.process_item_icon.vc_element-icon {
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -64px;
+}
+.team_icon.vc_element-icon {
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -96px !important;
+}
+.header_slider_icon.vc_element-icon {
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -128px !important;
+}
+.faq_icon.vc_element-icon {
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -160px !important;
+}
+.faq_item_icon.vc_element-icon {
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -192px;
+}
+.hero_icon.vc_element-icon {
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -224px;
+}
+.desc_offset_icon.vc_element-icon {
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -256px !important;
+}

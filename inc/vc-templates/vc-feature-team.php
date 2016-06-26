@@ -143,9 +143,9 @@ function team_func( $atts, $content = null ) { // New function parameter $conten
 add_action( 'vc_before_init', 'team_vc_func' );
 function team_vc_func() {
     vc_map( array(
-        "name"      => esc_html__( "Team Neat", "neat" ),
+        "name"      => esc_html__( "Team Members", "neat" ),
         "base"      => "team",
-        'icon'        => 'text-output',
+        'icon'        => 'team_icon',
         "as_parent" => array('only' => 'vc_custom_heading, vc_row'), // Use only|except attributes to limit child shortcodes (separate multiple values with comma)
         "is_container" => true,
         "js_view" => 'VcColumnView',

@@ -28,7 +28,7 @@ class SliderComponent {
     this.sliderOpen = false;
   }
 
-  getCurrentSlide(): JQuery {
+  getCurrentSlideElement(): JQuery {
     return this.gallery.find(".selected");
   }
 
@@ -43,7 +43,7 @@ class SliderComponent {
 
   updateCurrentSlide( event ) {
 
-    if ( event === "next" ) {
+    if ( event === "right" ) {
       this.index++;
       this.currentSlide++;
     } else {
@@ -54,13 +54,14 @@ class SliderComponent {
   }
 
   setNumber( count: number ): string {
+    // conver number to string
     let total = count;
     return total.toString();
   }
 
   updateNav( index: number, selected: JQuery ) {
 
-    // update numbers
+    // update numbers on screen
     this.currentCount.html(this.setNumber(this.getCurrentSlideCount()));
 
     // Enable/Disable arrow btns
@@ -68,62 +69,44 @@ class SliderComponent {
     this.nextBtn.parent("li").toggleClass("slider-hidden", selected.is(":last-child"));
   }
 
-  next() {
+  updateSlide(direction) {
     event.preventDefault();
-    let currentSlide = this.getCurrentSlide();
+    let currentSlide = this.getCurrentSlideElement();
 
-    // remove currently selected class, then move left
-    currentSlide.removeClass("selected").addClass("left");
-    currentSlide.next().addClass("selected");
+    if( direction === "right" ){
+      // remove currently selected class, then move left
+      currentSlide.removeClass("selected").addClass("left");
+      currentSlide.next().addClass("selected");
+    } else {
+      // remove currently selected class, then move left
+      currentSlide.removeClass("selected");
+      currentSlide.prev().addClass("selected").removeClass("left");
+    }
 
     // update index
-    this.updateCurrentSlide("next");
+    this.updateCurrentSlide(direction);
 
     // update Navigation
-    this.updateNav(this.index, this.getCurrentSlide());
-  }
-
-  prev() {
-    event.preventDefault();
-    let currentSlide = this.getCurrentSlide();
-
-    // remove currently selected class, then move left
-    currentSlide.removeClass("selected");
-    currentSlide.prev().addClass("selected").removeClass("left");
-
-    // update index
-    this.updateCurrentSlide("prev");
-
-    // update Navigation
-    this.updateNav(this.index, this.getCurrentSlide());
-  }
-
-  getImageHeight() {
-    let height = this.gallery.find(".selected").height();
-
-    return this.gallery.find(".selected").children("img").height();
-  }
-
-  setGalleryHeight( imageHeight: number ) {
-    this.gallery.css("height", imageHeight);
+    this.updateNav(this.index, this.getCurrentSlideElement());
   }
 
   arrowHandler( event ) {
 
+    // check which key was pressed and make sure the slide isn't the beginning or the last one
     if ( event.data.keys === "right" && this.currentSlide !== this.getTotalSlides() ) {
 
       if ( Utils.breakpoint >= Utils.bps.laptop && this.sliderOpen ) {
-        this.next();
+        this.updateSlide("right");
       } else if ( Utils.breakpoint <= Utils.bps.tablet ) {
-        this.next();
+        this.updateSlide("right");
       }
 
     } else if ( event.data.keys === "left" && this.currentSlide !== 1 ) {
 
       if ( Utils.breakpoint >= Utils.bps.laptop && this.sliderOpen ) {
-        this.prev();
+        this.updateSlide("left");
       } else if ( Utils.breakpoint <= Utils.bps.tablet ) {
-        this.prev();
+        this.updateSlide("left");
       }
 
     }
@@ -181,7 +164,7 @@ class SliderComponent {
 
   checkSize() {
 
-
+    // On resize end - check to enable clicks for desktop or remove them
     clearTimeout(this.resizeTimer);
     this.resizeTimer = setTimeout(() => {
 
@@ -193,10 +176,6 @@ class SliderComponent {
         this.gallery.off();
         this.closeBtn.off();
       }
-
-      console.log(this.getImageHeight());
-      // set height
-      // this.setGalleryHeight(this.getImageHeight());
 
     }, 400);
 
@@ -220,13 +199,14 @@ class SliderComponent {
       .bind("keydown", "right", this.arrowHandler.bind(this));
 
     // update nav on first load
-    this.updateNav(this.index, this.getCurrentSlide());
+    this.updateNav(this.index, this.getCurrentSlideElement());
 
-    // total slides
+    // set total slides number
     this.countTotal.html(this.setNumber(this.getTotalSlides()));
   }
 }
 
+// loop through each header slider object on the page
 class HeaderSliderComponent {
 
   itemInfoWrapper: JQuery;
@@ -239,6 +219,8 @@ class HeaderSliderComponent {
     console.log("Header Slider init");
 
     this.itemInfoWrapper.each(( index, el ) => {
+
+      // Pass "this" to each new Header slider component
       let slider = new SliderComponent(el);
       slider.init();
     });

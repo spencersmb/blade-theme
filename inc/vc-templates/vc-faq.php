@@ -13,7 +13,7 @@ function neat_faq()
         "js_view" => 'VcColumnView',
         "base" => "faq",
         "class" => "",
-        "icon" => "icon-dual",
+        "icon" => "faq_icon",
 
         "params" => array(
 
@@ -38,7 +38,8 @@ function neat_faq()
     vc_map( array(
         "name"      => esc_html__( "FAQ Item", "neat" ),
         "base"      => "faq_item",
-        'icon'        => 'text-output',
+        'icon'        => 'faq_item_icon',
+        "as_child" => array('only' => 'faq'),
         'description' => esc_html__( 'Add an item to the FAQ list.', 'neat' ),
         "wrapper_class" => "clearfix",
         "category" => esc_html__( 'Content', 'neat' ),

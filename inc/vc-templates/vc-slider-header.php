@@ -66,7 +66,7 @@ function neat_header_slider_func() {
     vc_map( array(
         "name"      => esc_html__( "Header Slider", "neat" ),
         "base"      => "neat_header_slider",
-        'icon'        => 'text-output',
+        'icon'        => 'header_slider_icon',
         'description' => esc_html__( 'Create a Header Slider', 'neat' ),
         "wrapper_class" => "clearfix",
         "category" => esc_html__( 'Content', 'neat' ),
