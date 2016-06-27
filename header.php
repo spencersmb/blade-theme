@@ -50,7 +50,7 @@
 
 <div id="content" class="m-scene">
 	
-	<header id="header" class="<?php echo esc_attr( neat_admin_class_checks() ); ?>">
+	<header id="header" class="m-mobile-nav scene_element scene_element--fadein <?php echo esc_attr( neat_admin_class_checks() ); ?>">
 
 		<!-- Dropdown Nav -->
 		<?php if(has_nav_menu( 'primary' )): ?>

@@ -3,7 +3,6 @@ function neat_get_feature_posts($total, $category) {
     
     // Initialize
     $sticky = get_option( 'sticky_posts' );
-    $sticky_ids = array();
 
     // extract ids from this and redo arrays the add ids instead of posts
     $args = array( 'post__in' => $sticky );
@@ -16,8 +15,6 @@ function neat_get_feature_posts($total, $category) {
     // Get sticky posts
     $posts = get_posts( $args );
 
-    $sticky_ids = $sticky;
-    
     // Are there enough posts?
     if ( count( $posts ) < $total ) {
         
@@ -35,20 +32,7 @@ function neat_get_feature_posts($total, $category) {
         // Merge array of data
         $posts = array_merge( $posts, get_posts( $args ) );
 
-        $nonStickyPosts = array();
-        // Merge array of ids
-        foreach ($posts as $post){
-            array_push($nonStickyPosts, $post->ID);
-        }
-
-//        return $nonStickyPosts;
-
     }
-
-//    else {
-//
-//        return $sticky_ids;
-//    }
 
     return $posts;
 
@@ -88,7 +72,7 @@ function build_featured_posts($args){
 
 
             $output .= '
-            <div class="blog-stories-container">';
+            <div class="blog-stories-container m-right-panel m-page scene_element scene_element--fadeinright">';
                     $output .= '
                 <div class="blog-feature-cap">
                     '.esc_html__('top stories', 'neat').'
@@ -211,9 +195,10 @@ function neat_blog_shortcode( $atts, $content = null ) { // New function paramet
     }
 
     $output = '
-    <div class="blog-container">
+    <div class="blog-container et-contain no-padding m-page scene_element scene_element--fadeinup">
     ';
 
+    // Pass through args to inner html
     $args = array(
         'bg_color' => $bg_color,
         'blog_home_page' => $blog_home_page,

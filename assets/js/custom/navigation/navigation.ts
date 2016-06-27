@@ -26,7 +26,7 @@ class NavComponent {
 
     this.$navTrigger = document.getElementById("nav-trigger");
     this.$navDropdown = document.getElementById("et-dropdown-trigger");
-    this.$lowerContainer = $(".lowercontainer");
+    // this.$lowerContainer = $(".lowercontainer");
     this.$upperContainer = $(".uppercontainer");
     this.$navMeta = $(".et-nav-meta");
     this.$dropDownWrapper = $(".et-dropdown-wrapper");
@@ -51,7 +51,7 @@ class NavComponent {
 
     this.$navTrigger = document.getElementById("nav-trigger");
     this.$navDropdown = document.getElementById("et-dropdown-trigger");
-    this.$lowerContainer = $(".lowercontainer");
+    // this.$lowerContainer = $(".lowercontainer");
     this.$upperContainer = $(".uppercontainer");
     this.$navMeta = $(".et-nav-meta");
     this.$dropDownWrapper = $(".et-dropdown-wrapper");
@@ -143,9 +143,9 @@ class NavComponent {
 
     this.$search.detach();
     this.$navMeta.detach();
-    this.$lowerContainer.detach();
+    // this.$lowerContainer.detach();
     this.$dropDownWrapper.detach();
-    this.$lowerContainer.insertAfter(this.$upperContainer);
+    // this.$lowerContainer.insertAfter(this.$upperContainer);
     this.$navMeta.insertBefore(this.$upperContainer);
     this.$upperContainer.append(this.$dropDownWrapper);
     this.$navMeta.append(this.$search);
@@ -155,9 +155,9 @@ class NavComponent {
     // console.log("move navigation tablet");
 
     this.$search.detach();
-    this.$lowerContainer.detach();
+    // this.$lowerContainer.detach();
     this.$upperContainer.append(this.$navMeta);
-    this.$upperContainer.append(this.$lowerContainer);
+    // this.$upperContainer.append(this.$lowerContainer);
     this.$dropDownWrapper.insertAfter(this.$upperContainer);
     this.$dropDownWrapper.prepend(this.$search);
   }
@@ -181,7 +181,7 @@ class NavComponent {
   }
 
   enableMobileNav() {
-    // console.log("Nav turned on");
+    console.log("Nav turned on");
     this.navOpenInit(true);
     this.navClose(true);
     this.navItemClick(true);

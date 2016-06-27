@@ -48,13 +48,18 @@
 }
 
 .inner-page-wrapper {
-  padding: 0 20px;
 
+}
+
+.et-contain{
+  margin: 0 auto;
   @include breakpoint(tablet){
-   padding:0 5px;
+      max-width: 750px;
   }
-
   @include breakpoint(laptop){
-    padding:0;
+    max-width: 970px;
+  }
+  @include breakpoint(laptop){
+    max-width: 1170px;
   }
 }

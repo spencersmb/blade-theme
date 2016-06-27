@@ -102,8 +102,17 @@ get_header();
 										</h2>
 										<span class="entry-date"><?php echo get_the_date(); ?></span>
 										<div class="article-content">
-
-											<?php the_excerpt(); ?>
+											<?php
+												// Check to do custom excerpt length
+												if(has_excerpt()):
+													$excerpt = get_the_excerpt();
+													$excerpt_trim = wp_trim_words( $excerpt , '25' );?>
+													<p><?php echo wp_kses($excerpt_trim, 'neat'); ?></p>
+													<a class="moretag rounded-btn white-btn" href="<?php the_permalink() ?>">Read More</a>
+												<?php else:
+													the_excerpt();
+												endif;
+											?>
 											<?php
 											//paginated links inside post
 											wp_link_pages( array(

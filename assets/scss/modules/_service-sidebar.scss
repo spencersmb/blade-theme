@@ -1,12 +1,6 @@
 .service-wrapper {
   background: $black;
 
-  @include breakpoint(laptop){
-    margin-left:15px;
-  }
-  @include breakpoint(desktop){
-    margin-left:0;
-  }
   aside {
 
     @include last(1){
@@ -23,15 +17,16 @@
 }
 
 .service-sidebar-wrapper{
-    display: none;
+    display: block;
     @include transform(translateZ(0));
     top: 0;
     transform: translate3d(0, 0, 0);
     opacity: 1;
     position: relative;
 
+
   @include breakpoint(laptop){
-    display: block;
+    max-width: 270px;
     width: auto;
     margin-left:0 !important;
     // properties for non-scroll magic
@@ -100,8 +95,11 @@
     padding-bottom: 0;
   }
 
-  @include breakpoint(tablet){
-    max-width: 270px;
+  @include breakpoint(laptop){
+    width: calc(.25 * 970px);
+  }
+  @include breakpoint(desktop){
+    width: calc(.25 * 1170px);
   }
 
 }

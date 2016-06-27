@@ -32,7 +32,7 @@ class StickySidebarComponent {
       this.isAnimating = true;
       (!window.requestAnimationFrame) ? setTimeout(this.updateSidebarPosition.bind(this), 300) : window.requestAnimationFrame(this.updateSidebarPosition.bind(this));
     } else {
-
+      this.resetSideBar();
     }
   }
 
@@ -112,15 +112,20 @@ class StickySidebarComponent {
   }
 
   animateSidebarIn() {
+    
     this.aside.removeClass("intro");
 
-    let sidebarIntro = TweenMax.from(this.aside, .3, {
-      x: -100,
-      opacity: 0,
-      z: .001,
-      ease: Cubic.easeOut,
-      delay: .9
-    });
+    if ( Utils.breakpoint >= Utils.bps.tablet ) {
+
+      let sidebarIntro = TweenMax.from(this.aside, .3, {
+        x: -100,
+        opacity: 0,
+        z: .001,
+        ease: Cubic.easeOut,
+        delay: .9
+      });
+    }
+
   }
 
   init() {

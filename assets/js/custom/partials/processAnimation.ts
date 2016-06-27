@@ -1,14 +1,19 @@
 declare var ScrollMagic: any;
 const $ = jQuery;
-
-class ProcessComponent {
+import Utils from "./utils";
+class AnimationComponent {
 
   container: JQuery;
   item: JQuery;
+  mScene: JQuery;
+  serviceSideBar: JQuery;
+
 
   constructor() {
     this.container = $(".process-container");
     this.item = $(".process-item-container");
+    this.mScene = $(".m-scene");
+    this.serviceSideBar = $(".service-sidebar-wrapper");
   }
 
   desc_o_animate() {
@@ -48,7 +53,7 @@ class ProcessComponent {
     }
   }
 
-  animateIn() {
+  processAnimateIn() {
     let container = this.container;
     let item = this.item;
     let controller = new ScrollMagic.Controller();
@@ -66,12 +71,115 @@ class ProcessComponent {
       .addTo(controller);
   }
 
+  animateWindowTop() {
+    console.log("animate Top");
+    TweenLite
+      .to($(window), .3,
+        {
+          scrollTo: {
+            y: 0
+          },
+          ease: Power2.easeOut
+        }
+      );
+  }
+
+  animateServiceSidebarOut(){
+      TweenLite.to(this.serviceSideBar, .3, {
+        x: "-100",
+        z: ".001",
+        delay: 0,
+        opacity: 0,
+        ease: "Linear.easeNone",
+        onComplete: ()=>{
+          // remove sidebar html element so it doesnt show up again when scrolling up
+          this.serviceSideBar.remove();
+        }
+      });
+  }
+
+  loadUrl( url ) {
+    document.location.href = url;
+  }
+
+  mainContentAnimationOut( callback ) {
+
+    // Load in animations here
+    this.animateServiceSidebarOut();
+
+
+    this.mScene.addClass("is-exiting")
+      // If has webkitAnimationEnd - it gets called twice
+      .one("oanimationend msAnimationEnd animationend", () => {
+
+        // Load in animations here that need to occur after main ones
+        this.animateWindowTop();
+
+      });
+
+    if ( typeof(callback) === "function" ) {
+      callback();
+    }
+
+  }
+
+  checkUrl( url ): boolean {
+    if ( url === "#" || url === "" ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  globalClickCheck( event? ) {
+
+    // Get url from the a tag
+    let newUrl = $(event.currentTarget).attr("href");
+
+    // check for window size to perform animations
+    if ( Utils.breakpoint > Utils.bps.tablet && this.checkUrl(newUrl) ) {
+
+      // When main controller animate is done -> load new url
+      this.mainContentAnimationOut(() => {
+        this.loadUrl(newUrl);
+      });
+
+    } else if ( this.checkUrl(newUrl) ) {
+
+      console.log(this.checkUrl(newUrl));
+      // check if nav item is clicked on mobile
+      if($(event.currentTarget).parent("li").hasClass("menu-item-has-children")){
+        console.log("mobile menu is active and parent clicked");
+      }else{
+        this.loadUrl(newUrl);
+      }
+
+    }
+  }
+
   init() {
-    this.animateIn();
+    this.processAnimateIn();
     this.desc_o_animate();
+
+    // Click event to control window Loading
+    $("a").on("click", ( e ) => {
+      event.preventDefault();
+      this.globalClickCheck(e);
+    });
+
+    // Custom event example
+    // $(document).on("test", {}, ( event, arg1, arg2 ) => {
+    //
+    //   if ( Utils.breakpoint > Utils.bps.tablet ) {
+    //     console.log(event);
+    //     console.log(arg1);
+    //     console.log(arg2);
+    //   }
+    //
+    // }).bind(this);
   }
 }
 
-let ProcessMap = new ProcessComponent();
+let AnimationController = new AnimationComponent();
 
-export default ProcessMap;
+export default AnimationController;

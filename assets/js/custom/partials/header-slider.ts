@@ -69,11 +69,11 @@ class SliderComponent {
     this.nextBtn.parent("li").toggleClass("slider-hidden", selected.is(":last-child"));
   }
 
-  updateSlide(direction) {
+  updateSlide( direction ) {
     event.preventDefault();
     let currentSlide = this.getCurrentSlideElement();
 
-    if( direction === "right" ){
+    if ( direction === "right" ) {
       // remove currently selected class, then move left
       currentSlide.removeClass("selected").addClass("left");
       currentSlide.next().addClass("selected");

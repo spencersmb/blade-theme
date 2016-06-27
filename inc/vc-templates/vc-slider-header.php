@@ -181,10 +181,10 @@ function neat_header_slider_shortcode($params = array(), $content = null) {
     $cat_arr = array();
 
     $neat_header_slider = '
-    <!-- hero section -->
+    <!-- slider section -->
 	<section class="header-slider-container no-padding" style="background-color:'. esc_attr($bg_color) .'">
         <div class="header-slider-inner">
-            <div class="header-slider-content m-page scene_element scene_element--fadein" style="background-color:'. esc_attr($layout_bg_color) .'">
+            <div class="header-slider-content" style="background-color:'. esc_attr($layout_bg_color) .'">
                 <div class="header-slider-wrapper">
                 
                     <ul class="header-slider-gallery">
@@ -222,10 +222,9 @@ function neat_header_slider_shortcode($params = array(), $content = null) {
             </svg>
 		</div>
 	</section>
-	<!-- end hero section -->
+	<!-- end slider section -->
 	';
 
-    $neat_header_slider .= '</div>';
 
     return $neat_header_slider;
 }
