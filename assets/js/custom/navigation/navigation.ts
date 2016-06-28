@@ -33,7 +33,9 @@ class NavComponent {
     this.$search = $("#nav-xfer");
     this.$dropDownContent = $(".et-dropdown-content");
 
-
+    /*
+     Nav State Object
+     */
     this.state = {
       navEnabled: false,
       mobile: false,
@@ -43,10 +45,8 @@ class NavComponent {
     };
   }
 
-  /*
-   Mobile Nav functionality
-   */
 
+  // Not used
   reload() {
 
     this.$navTrigger = document.getElementById("nav-trigger");
@@ -69,6 +69,10 @@ class NavComponent {
     this.init();
   }
 
+
+  /*
+   Mobile Nav functionality
+   */
   openNav( event: Event ): void {
     event.preventDefault();
 
@@ -177,6 +181,19 @@ class NavComponent {
     this.navItemClick(false);
     this.goback(false);
     this.state.navEnabled = false;
+
+    /*
+     Remove Styles from element & reset dropdown
+     */
+    this.$navDropdown.setAttribute("style", "");
+    this.$dropDownContent.removeClass("move-out");
+    let dropdown = this.$dropDownContent.find(".et-secondary-dropdown");
+
+    dropdown.each((index, elem)=>{
+      if ( !$(elem).hasClass("is-hidden") ) {
+        $(elem).addClass("is-hidden");
+      }
+    });
 
   }
 

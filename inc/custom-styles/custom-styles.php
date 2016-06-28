@@ -295,9 +295,7 @@ function neat_custom_styles() {
         #header .et-dropdown-content ul a{
             background: <?php echo esc_html($neat_theme_options['main_color']); ?>;
         }
-        #header .et-dropdown-content ul li{
-            background-color: black;
-        }
+        
 
 
         #header .et-dropdown-content ul a:hover{
@@ -368,7 +366,7 @@ function neat_custom_styles() {
         $headerHeight = $upperContainerHeight + $spacing_below_logo;
 
         //tablet nav height
-        $tablet_height = $upperContainerHeight - $spacing_below_logo + $spacing_above_logo + 10;
+        $tablet_height = $upperContainerHeight - $spacing_below_logo + $spacing_above_logo + 15;
     ?>
 
     @media only screen and (min-width: 48em) {

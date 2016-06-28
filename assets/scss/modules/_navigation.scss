@@ -164,7 +164,7 @@
     }
 
     @include breakpoint(laptop) {
-      top: 70px;
+      top: 75px;
       left: 50%;
       @include transform(translateX(-50%));
       max-width: 1200px;
@@ -222,8 +222,8 @@
 
       @include breakpoint(laptop) {
         @include transform(translateX(0));
-        @include transform(translateY(30%));
-        @include transition(all .25s);
+        //@include transform(translateY(30%));
+        //@include transition(all .25s);
         opacity: 0;
         visibility: hidden;
 
@@ -243,8 +243,10 @@
     a, ul, ul a {
       @include transform(translateZ(0));
       @include backface-visibility(hidden);
-      @include transition(all .3s);
       opacity: 1;
+      @media only screen and (max-width: 991px) {
+        @include transition(all .3s cubic-bezier(0.755, 0.050, 0.855, 0.060));
+      }
     }
 
     a, ul a {
@@ -383,9 +385,6 @@
       margin-left:15px;
       margin-right:15px;
       background: $white;
-      -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-      -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-      box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
 
       //.menu-hover {
       //  background: #efefef;
@@ -396,26 +395,25 @@
 
       // Submenu item for desktop
       ul{
-        display: block;
+        display: table;
         left:0;
         position: absolute;
         top:100%;
         padding:0;
         min-width: 240px;
         overflow: visible;
+        //@include transition(all 0s);
 
         li{
           display: block;
-          background: $primary-color;
           -webkit-box-shadow: 0px 28px 74px -16px rgba(0,0,0,0.38);
           -moz-box-shadow: 0px 28px 74px -16px rgba(0,0,0,0.38);
           box-shadow: 0px 28px 74px -16px rgba(0,0,0,0.38);
-
         }
 
         a{
           padding:12px 20px;
-          @include transition(all .3s);
+          //@include transition(all .3s);
           color:$white;
           border-bottom: 2px solid rgba(60, 118, 61, 0.08);
           &:hover{
@@ -435,7 +433,7 @@
 
           //background: $primary-color;
           ul.is-hidden{
-            @include transform(translateY(0));
+            //@include transform(translateY(0));
             visibility: visible;
             opacity: 1;
           }
