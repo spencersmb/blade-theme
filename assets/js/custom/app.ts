@@ -28,7 +28,7 @@ declare var ScrollMagic: any;
       Nav.init();
       Search.init();
       StickySidebar.init();
-      AnimationController.init();
+      AnimationController.init(); // Global window anim and click control
 
     }
   }
@@ -53,110 +53,4 @@ declare var ScrollMagic: any;
 
   });
 
-  // Global window function
-  
-  let prevUrl = "";
-
-  // $("a").on("click", ( e ) => {
-  //   e.preventDefault();
-  //
-  //   // Get url to nav to
-  //   let newUrl = $(e.currentTarget).attr("href");
-  //
-  //   // Check to see if its a true url
-  //   if ( newUrl === "#" || newUrl === "" ) {
-  //
-  //     return;
-  //
-  //   } else {
-  //
-  //     if ( Utils.breakpoint >= Utils.bps.tablet ) {
-  //       $(".m-scene").addClass("is-exiting").one("webkitAnimationEnd oanimationend msAnimationEnd animationend", function () {
-  //         TweenLite
-  //           .to($(window), .5,
-  //             {
-  //               scrollTo: {
-  //                 y: 0
-  //               },
-  //               ease: Power2.easeOut,
-  //               onComplete: () => {
-  //
-  //               }
-  //             }
-  //           );
-  //         // document.location.href = newUrl;
-  //       });
-  //     } else {
-  //       document.location.href = newUrl;
-  //     }
-  //   }
-  //
-  //
-  // });
-  
-  // window.onbeforeunload = function ( e ) {
-  //   console.log("window change");
-  //
-  //   if ( Utils.breakpoint >= Utils.bps.tablet ) {
-  //     $(".m-scene").addClass("is-exiting");
-  //
-  //     TweenLite
-  //       .to($(window), .5,
-  //         {
-  //           scrollTo: {
-  //             y: 0
-  //           },
-  //           ease: Power2.easeOut,
-  //           delay: 1.5
-  //         }
-  //       );
-  //
-  //     // animate SVG out
-  //     TweenLite.to(sideBar, .3, {
-  //       x: "-100",
-  //       z: ".001",
-  //       delay: 0,
-  //       opacity: 0,
-  //       ease: "Linear.easeNone"
-  //     });
-  //
-  //     // animate sidebar out
-  //     if ( sideBar.length > 0 ) {
-  //       TweenLite.to($(".divider-svg"), .3, {
-  //         y: "30",
-  //         z: ".001",
-  //         delay: 0,
-  //         ease: "Linear.easeNone"
-  //       });
-  //     }
-  //   }
-  //
-  // };
-
-
-  // $(window).on("load", function () {
-  //   // modify the "revapi1" part with your slider"s API name listed here:
-  //   // https://www.themepunch.com/revslider-doc/api/
-  //   if ( typeof revapi1 !== "undefined" ) {
-  //     console.log("rev start");
-  //     revapi1.revstart();
-  //   }
-  //
-  // });
-
 })();
-
-// declare var Isotope: any;
-// class iso {
-//     constructor() {
-//     }
-//     init():any{
-//         var elem = document.querySelector(".grid");
-//         var isot = new Isotope( elem, {
-//             // options
-//             itemSelector: ".grid-item",
-//             layoutMode: "fitRows"
-//         });
-//         console.log($(".grid"));
-//     }
-// }

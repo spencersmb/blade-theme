@@ -25,7 +25,7 @@ if($page_layout === "1"){
 
 get_header();
 ?>
-<div class="container-fluid no-padding">
+    <main class="container-fluid no-padding">
 
     <?php while ( have_posts() ) : the_post(); ?>
 
@@ -40,7 +40,7 @@ get_header();
            - Filter -
 #################################
 -->
-            <div class="gallery-filter-container">
+            <section class="gallery-filter-container m-page scene_element scene_element--fadeinup">
             <!-- gallery filter -->
             <?php if(!is_wp_error( $filter_terms )): ?>
                 <div class="col-xs-12 gallery-filters">
@@ -60,7 +60,8 @@ get_header();
                 <!-- end filter -->
 
             <?php endif; ?>
-        </div>
+            </section>
+
         <?php endif; ?>
 
 <!--
@@ -69,207 +70,206 @@ get_header();
 #################################
 -->
     <?php if($page_layout === "1"): ?>
-        <div class="gallery-container container-fluid no-padding">
+        <section class="gallery-container container-fluid no-padding m-page scene_element scene_element--fadein">
     <?php else: ?>
-        <div class="gallery-container container no-padding">
+        <section class="gallery-container container no-padding m-page scene_element scene_element--fadein">
     <?php endif; ?>
 
-    <div class="inner-content-module full-width-container">
-        <?php
-        $gallery_id='';
-        switch ($gallery_type) {
+            <div class="inner-content-module full-width-container">
+                <?php
+                $gallery_id='';
+                switch ($gallery_type) {
 
-            case 'masonry':
+                    case 'masonry':
 
-                echo'
-                <div id="masonry-gallery" class="col-xs-12 width-contained no-padding gallery-isotope">
-                ';
+                        echo'
+                        <div id="masonry-gallery" class="col-xs-12 width-contained no-padding gallery-isotope">
+                        ';
 
-                break;
+                        break;
 
-            case '3col':
-                echo'
-                <div id="gallery-3" class="col-xs-12 gallery-3-grid no-padding gallery-isotope">
-                ';
-                break;
+                    case '3col':
+                        echo'
+                        <div id="gallery-3" class="col-xs-12 gallery-3-grid no-padding gallery-isotope">
+                        ';
+                        break;
 
-            case '4col':
-                echo'
-                <div id="gallery-4" class="col-xs-12 gallery-4-grid no-padding gallery-isotope">
-                ';
-                break;
+                    case '4col':
+                        echo'
+                        <div id="gallery-4" class="col-xs-12 gallery-4-grid no-padding gallery-isotope">
+                        ';
+                        break;
 
-            case '5col':
-                echo'
-                <div id="gallery-5" class="col-xs-12 gallery-5-grid no-padding gallery-isotope">
-                ';
-                break;
-        }
-
-        ?>
-
-        <div class="grid-sizer"></div>
-        <?php
-        /////////////////////
-        //Build loop
-        /////////////////////
-        $args = array(
-            'posts_per_page'  => -1,
-            'post_type' => 'gallery',
-            'orderby'=> 'menu_order',
-            'order'=>'ASC'
-        );
-
-        //pass args to new WP_Query
-        $the_query = new WP_Query( $args );
-
-        if( have_posts()): while( $the_query->have_posts() ): $the_query->the_post();
-
-            // Set Image object
-            $image = get_field('gallery_square_image');
-            $image_wide_preview = get_field('gallery_wide_image');
-
-            // Set image sizes
-            $image_small = $image['sizes']['neat-gallery-thumb-sm'];
-            $image_wide = $image_wide_preview['url'];
-            $image_large = $image['url'];
-
-            // Is image square or wide
-            $masonry_size = get_field('gallery_thumbnail_size');
-
-
-            //get taxonomy filter names
-            $filter_tax = wp_get_post_terms( $post->ID, 'gallery_filter' );
-            $filter_arr = array();
-            $css_filter_names = '';
-
-            foreach($filter_tax as $filter){
-                $filter_arr[] = $filter->slug;
-            }
-
-            $css_filter_names = join(' ', $filter_arr ) ;
-
-            //Get tags
-            $get_tags = get_the_tags(); //$tag_name[0]->name
-            $tags_arr = array();
-            $tags = '';
-
-            //safety check for empty tag value
-            if( $get_tags != "" ){
-                foreach($get_tags as $tag){
-                    $tags_arr[] = $tag->name;
+                    case '5col':
+                        echo'
+                        <div id="gallery-5" class="col-xs-12 gallery-5-grid no-padding gallery-isotope">
+                        ';
+                        break;
                 }
 
-                $tags = join(', ', $tags_arr );
+                ?>
 
-            }else{
+                <div class="grid-sizer"></div>
+                <?php
+                /////////////////////
+                //Build loop
+                /////////////////////
+                $args = array(
+                    'posts_per_page'  => -1,
+                    'post_type' => 'gallery',
+                    'orderby'=> 'menu_order',
+                    'order'=>'ASC'
+                );
 
-            }
+                //pass args to new WP_Query
+                $the_query = new WP_Query( $args );
 
-            //Add css names for gallery sizing
-            switch ($gallery_type) {
+                if( have_posts()): while( $the_query->have_posts() ): $the_query->the_post();
 
-                case 'masonry':
-                    $item_size_css ='';
+                    // Set Image object
+                    $image = get_field('gallery_square_image');
+                    $image_wide_preview = get_field('gallery_wide_image');
 
-                    //image size css name
-                    switch ($masonry_size) {
+                    // Set image sizes
+                    $image_small = $image['sizes']['neat-gallery-thumb-sm'];
+                    $image_wide = $image_wide_preview['url'];
+                    $image_large = $image['url'];
 
-                        case 'wide':
-                            $item_size_css = 'width2';
-                            break;
+                    // Is image square or wide
+                    $masonry_size = get_field('gallery_thumbnail_size');
 
-                        case 'large':
-                            $item_size_css = 'height2 width2';
+
+                    //get taxonomy filter names
+                    $filter_tax = wp_get_post_terms( $post->ID, 'gallery_filter' );
+                    $filter_arr = array();
+                    $css_filter_names = '';
+
+                    foreach($filter_tax as $filter){
+                        $filter_arr[] = $filter->slug;
+                    }
+
+                    $css_filter_names = join(' ', $filter_arr ) ;
+
+                    //Get tags
+                    $get_tags = get_the_tags(); //$tag_name[0]->name
+                    $tags_arr = array();
+                    $tags = '';
+
+                    //safety check for empty tag value
+                    if( $get_tags != "" ){
+                        foreach($get_tags as $tag){
+                            $tags_arr[] = $tag->name;
+                        }
+
+                        $tags = join(', ', $tags_arr );
+
+                    }else{
+
+                    }
+
+                    //Add css names for gallery sizing
+                    switch ($gallery_type) {
+
+                        case 'masonry':
+                            $item_size_css ='';
+
+                            //image size css name
+                            switch ($masonry_size) {
+
+                                case 'wide':
+                                    $item_size_css = 'width2';
+                                    break;
+
+                                case 'large':
+                                    $item_size_css = 'height2 width2';
+                                    break;
+
+                                default:
+                                    $item_size_css = 'width1';
+
+                            }
+
+                            echo'
+                                <div class="gallery-item '. esc_attr($item_size_css) . ' ' . esc_attr($css_filter_names) .'">
+                                ';
+
                             break;
 
                         default:
-                            $item_size_css = 'width1';
+
+                            echo'
+                                <div class="gallery-item width1 ' . esc_attr($css_filter_names) .'">
+                                ';
 
                     }
 
                     echo'
-                        <div class="gallery-item '. esc_attr($item_size_css) . ' ' . esc_attr($css_filter_names) .'">
-                        ';
+                        <a href="'. get_permalink() .'">
+                            <h5>'. get_the_title() .'</h5>
+                            <div class="subtext">'. esc_attr($tags) .'</div>
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            <div class="overlay2"></div>
+                            <div class="overlay"></div>';
 
-                    break;
+                    //display img or background image
+                    switch ($gallery_type) {
 
-                default:
+                        case 'masonry':
 
-                    echo'
-                        <div class="gallery-item width1 ' . esc_attr($css_filter_names) .'">
-                        ';
+                            switch( $masonry_size ){
 
-            }
+                                case 'wide':
+                                    echo '<span style="background-image: url('. esc_url($image_wide) .');"></span>';
+                                    break;
 
-            echo'
-                <a href="'. get_permalink() .'">
-                    <h5>'. get_the_title() .'</h5>
-                    <div class="subtext">'. esc_attr($tags) .'</div>
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    <div class="overlay2"></div>
-                    <div class="overlay"></div>';
+                                case 'large':
+                                    echo '<span style="background-image: url('. esc_url($image_large) .');"></span>';
+                                    break;
 
-            //display img or background image
-            switch ($gallery_type) {
-
-                case 'masonry':
-
-                    switch( $masonry_size ){
-
-                        case 'wide':
-                            echo '<span style="background-image: url('. esc_url($image_wide) .');"></span>';
-                            break;
-
-                        case 'large':
-                            echo '<span style="background-image: url('. esc_url($image_large) .');"></span>';
-                            break;
-
-                        default:
-                            echo '<span style="background-image: url('. esc_url($image_small) .');"></span>';
-                    }
-
-                    break;
-
-                default:
-                    $image_alt = $image['alt'];
-
-                    //Safety check for wide images in case the user has not set all images to square
-                    switch ($masonry_size) {
-
-                        case 'wide':
-                            $img_wide_preview = $image_wide_preview['sizes']['neat-gallery-thumb-sm'];
-                            echo'
-                        <img
-                            class="img-responsive"
-                            src="'. esc_url($img_wide_preview) .'"
-                            alt="'. wp_kses($image_alt, 'shave') .'" />
-                        ';
+                                default:
+                                    echo '<span style="background-image: url('. esc_url($image_small) .');"></span>';
+                            }
 
                             break;
 
                         default:
-                            echo'
-                            <img class="img-responsive" src="'. esc_url($image_small) .'" alt="'. wp_kses($image_alt, 'shave') .'" />
-                            ';
+                            $image_alt = $image['alt'];
+
+                            //Safety check for wide images in case the user has not set all images to square
+                            switch ($masonry_size) {
+
+                                case 'wide':
+                                    $img_wide_preview = $image_wide_preview['sizes']['neat-gallery-thumb-sm'];
+                                    echo'
+                                <img
+                                    class="img-responsive"
+                                    src="'. esc_url($img_wide_preview) .'"
+                                    alt="'. wp_kses($image_alt, 'shave') .'" />
+                                ';
+
+                                    break;
+
+                                default:
+                                    echo'
+                                    <img class="img-responsive" src="'. esc_url($image_small) .'" alt="'. wp_kses($image_alt, 'shave') .'" />
+                                    ';
+
+                            }
 
                     }
+                    echo '
+                        </a>
+                    </div>
+                    ';
 
-            }
-            echo '
-                </a>
+                endwhile; endif;
+
+                ?>
+
             </div>
-            ';
+            <!-- end isotope inner wrapper -->
 
-        endwhile; endif;
-
-        ?>
-
-    </div>
-    <!-- end isotope wrapper -->
-</div>
-<!-- end container -->
-</div>
-<!-- end gallery section -->
-</div>
+        </section>
+        <!-- end gallery section -->
+    </main>
 <?php get_footer(); ?>

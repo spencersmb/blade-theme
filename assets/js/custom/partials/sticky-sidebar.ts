@@ -28,7 +28,7 @@ class StickySidebarComponent {
 
   checkSidebar(): void {
     // Check if the sidebar is fixed or not
-    if ( !this.isAnimating && Utils.breakpoint >= Utils.bps.tablet ) {
+    if ( !this.isAnimating && Utils.breakpoint >= Utils.bps.laptop ) {
       this.isAnimating = true;
       (!window.requestAnimationFrame) ? setTimeout(this.updateSidebarPosition.bind(this), 300) : window.requestAnimationFrame(this.updateSidebarPosition.bind(this));
     } else {
@@ -64,8 +64,11 @@ class StickySidebarComponent {
 
     // If the window V position is less than the content V position make sidebar normal
     if ( this.scrollTop < this.contentOffsetTop ) {
+      let cssProps = {
+        "transition": "top .3s"
+      };
       this.aside.removeClass("sticky");
-      this.aside.css("transition", "top .3s");
+      this.aside.css(cssProps);
 
       // if window V position is greater than content - add sticky
       // 2nd checks the offset of the top of the window to the top of the content && the position of the content in relation to the position of the window
@@ -112,17 +115,21 @@ class StickySidebarComponent {
   }
 
   animateSidebarIn() {
-    
+
     this.aside.removeClass("intro");
 
-    if ( Utils.breakpoint >= Utils.bps.tablet ) {
+    if ( Utils.breakpoint >= Utils.bps.laptop ) {
 
-      let sidebarIntro = TweenMax.from(this.aside, .3, {
-        x: -100,
-        opacity: 0,
+      let sidebarIntro = TweenMax.to(this.aside, .3, {
+        x: 0,
+        opacity: 1,
         z: .001,
         ease: Cubic.easeOut,
-        delay: .9
+        delay: .9,
+        onComplete: () => {
+          // make sidebar permanently visible
+          this.aside.addClass("visible");
+        }
       });
     }
 

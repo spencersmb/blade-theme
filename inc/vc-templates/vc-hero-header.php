@@ -97,26 +97,28 @@ function hero_header($params = array(), $content = null) {
 	<div class="hero m-header scene_element scene_element--fadein" style="background-color:'. esc_attr($bg_color) .'">
 
 		<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="65" viewBox="0 0 1212.4 64.6" class="divider-svg">
-			<polygon points="606.2 40.9 0 0 0 64.6 595.2 64.6 617.2 64.6 1212.4 64.6 1212.4 0 " class="divider-path"/>
+			<polygon points="606.2 40.9 0 0 0 64.6 595.2 64.6 617.2 64.6 1212.4 64.6 1212.4 0" class="divider-path"/>
 		</svg>
-
-		<div class="hero-background" style="background-image:url('.esc_url($bg_image).')"></div>
-
+        <!-- end svg -->
+        
+		<div class="hero-background img-loader-bg delay-5" style="background-image:url('.esc_url($bg_image).')"></div>
+        <!-- end background-image -->
+        
 		<div class="hero-wrapper">
 			<div class="hero-content">
 				<div class="hero-content-inner">
 					<h2 class="hero-title" style="color:'.esc_attr($title_color).' !important">'.wp_kses($title, 'neat').'</h2>
 					<h4 class="hero-subtitle" style="color:'.esc_attr($subtitle_color).' !important">'.wp_kses($subtitle, 'neat').'</h4>
 				</div>
+				<!-- end hero-content-inner -->
 			</div>
+			<!-- end hero-content -->
 		</div>
 		<!-- end hero wrapper -->
 		
 	</div>
 	<!-- end hero section -->
 	';
-
-    $hero_header .= '</div>';
 
     return $hero_header;
 }

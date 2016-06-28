@@ -11,7 +11,7 @@ $page_layout = get_redux_options('main_page_layout');
 	<?php the_content(); ?>
 
 <?php else: ?>
-<article class="aa_page">
+<article class="et_page">
 
 	<div class="inner-page-wrapper">
 

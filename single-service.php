@@ -14,28 +14,28 @@ get_header();
 $page_layout = get_redux_options('main_page_layout');
 
 ?>
-    <div class="container-fluid">
+    <main class="container-fluid">
 
-        <?php // Rearragne container class to allow for full width header ?>
+        <section>
+            <div class="row">
 
-        <div class="row">
+                <!-- user chooses block layout - needs to be moved inside page-content layout -->
+                <div class="et-page-wrapper">
 
-            <!-- user chooses block layout - needs to be moved inside page-content layout -->
-            <div class="et-page-wrapper">
+                    <?php while ( have_posts() ) : the_post(); ?>
 
-                <?php while ( have_posts() ) : the_post(); ?>
+                        <?php get_template_part( 'assets/views/content', 'page' ); ?>
 
-                    <?php get_template_part( 'assets/views/content', 'page' ); ?>
+                    <?php endwhile; // end of the loop. ?>
 
-                <?php endwhile; // end of the loop. ?>
+                </div>
+                <!-- /.et-page-wrapper -->
 
             </div>
-            <!-- /.et-page-wrapper -->
+            <!-- /.row -->
+        </section>
 
-        </div>
-        <!-- /.row -->
-
-    </div>
+    </main>
     <!-- /.container -->
 
 <?php get_footer(); ?>

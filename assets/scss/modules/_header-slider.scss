@@ -17,10 +17,16 @@
     border-radius: 50px;
     padding: 3px 15px;
     width: 33px;
-    @include transform(translateX(50px));
+    display: none;
+    right: 50px;
+    //@include transform(translateX(50px));
 
     &::before, &::after {
       height: 20px;
+    }
+
+    @include breakpoint(laptop){
+      display: block;
     }
   }
 

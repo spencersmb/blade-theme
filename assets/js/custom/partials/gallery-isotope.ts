@@ -29,7 +29,7 @@ class GalleryComponent {
       masonry: {
         "columnWidth": ".grid-sizer"
       },
-      transitionDuration: ".6s"
+      transitionDuration: ".3s"
     });
   }
 

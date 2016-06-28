@@ -29,6 +29,8 @@
     margin: 0;
     padding-left: 0;
     padding-right: 0;
+    will-change: width;
+
     span {
       display: block;
       background-size: cover;
@@ -42,6 +44,7 @@
       @include transform(translateY(0%));
       @include transition(all .3s);
     }
+
     h5 {
       position: absolute;
       bottom: 0;
@@ -55,6 +58,7 @@
       @include transition(all .3s);
       @include transform(translateY(0));
     }
+
     .subtext {
       position: absolute;
       bottom: 20px;
@@ -68,6 +72,7 @@
       @include transition(all .3s);
       @include transform(translateY(100px));
     }
+
     i{
       position: absolute;
       bottom:20px;
@@ -78,6 +83,7 @@
       @include transition(all .3s $ease-in-out-circ);
       opacity: 0;
     }
+
     .overlay {
       position: absolute;
       height: 100%;
@@ -92,6 +98,7 @@
       @include transform(translateY(100%));
       @include transition(all .3s .2s $ease-in-out-circ);
     }
+
     .overlay2{
       position: absolute;
       height: 100%;
@@ -105,9 +112,11 @@
       @include transform(translateY(100%));
       @include transition(all .3s $ease-in-out-circ);
     }
+
     img {
       width: 100%;
     }
+
     a {
       width: 100%;
       height: 100%;
@@ -115,6 +124,7 @@
       top:0;
       left: 0;
       cursor: pointer;
+
       @include breakpoint(laptop){
         &:hover{
           h5 {

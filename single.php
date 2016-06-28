@@ -7,7 +7,7 @@
 
 get_header(); ?>
 
-		<div class="container-fluid no-padding">
+		<main class="container-fluid no-padding">
 
 			<?php while ( have_posts() ) : the_post(); ?>
 

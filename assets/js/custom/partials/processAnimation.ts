@@ -84,18 +84,18 @@ class AnimationComponent {
       );
   }
 
-  animateServiceSidebarOut(){
-      TweenLite.to(this.serviceSideBar, .3, {
-        x: "-100",
-        z: ".001",
-        delay: 0,
-        opacity: 0,
-        ease: "Linear.easeNone",
-        onComplete: ()=>{
-          // remove sidebar html element so it doesnt show up again when scrolling up
-          this.serviceSideBar.remove();
-        }
-      });
+  animateServiceSidebarOut() {
+    TweenLite.to(this.serviceSideBar, .3, {
+      x: "-100",
+      z: ".001",
+      delay: 0,
+      opacity: 0,
+      ease: "Linear.easeNone",
+      onComplete: () => {
+        // remove sidebar html element so it doesnt show up again when scrolling up
+        this.serviceSideBar.remove();
+      }
+    });
   }
 
   loadUrl( url ) {
@@ -135,26 +135,26 @@ class AnimationComponent {
 
     // Get url from the a tag
     let newUrl = $(event.currentTarget).attr("href");
+    let hasChildren = $(event.currentTarget).parent("li").hasClass("menu-item-has-children");
 
-    // check for window size to perform animations
-    if ( Utils.breakpoint > Utils.bps.tablet && this.checkUrl(newUrl) ) {
-
-      // When main controller animate is done -> load new url
+    if ( Utils.breakpoint > Utils.bps.tablet &&
+      this.checkUrl(newUrl) &&
+      Utils.browser === "ipad" && hasChildren ) {
+      event.preventDefault();
+      // console.log('Tablet Nav click');
+      return;
+    } else if ( Utils.breakpoint > Utils.bps.tablet && this.checkUrl(newUrl) ) {
+      // laptop or large no ipad
+      // console.log("laptop or larger");
       this.mainContentAnimationOut(() => {
         this.loadUrl(newUrl);
       });
-
-    } else if ( this.checkUrl(newUrl) ) {
-
-      console.log(this.checkUrl(newUrl));
-      // check if nav item is clicked on mobile
-      if($(event.currentTarget).parent("li").hasClass("menu-item-has-children")){
-        console.log("mobile menu is active and parent clicked");
-      }else{
-        this.loadUrl(newUrl);
-      }
-
+    } else if ( this.checkUrl(newUrl) && hasChildren ) {
+      // console.log("mobile menu is active and parent clicked");
+    } else {
+      this.loadUrl(newUrl);
     }
+
   }
 
   init() {

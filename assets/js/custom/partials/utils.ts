@@ -11,6 +11,7 @@ class UtilityComponent {
   breakpoint: number;
   breakpoints: number[];
   bps: BpsInterface;
+  browser: string;
 
   private _setBreakpoints = ( bps: BpsInterface ) => {
     let arr = [];
@@ -45,6 +46,20 @@ class UtilityComponent {
     this.windowWidth = window.innerWidth;
   };
 
+  whichBrowser() {
+    if ( (navigator.userAgent.toLowerCase().indexOf("safari") > -1) && !(
+      navigator.userAgent.toLowerCase().indexOf("chrome") > -1) && (navigator.appName ===
+      "Netscape") ) {
+
+      if ( navigator.userAgent.match(/iPad/i) !== null ) {
+        return "ipad";
+
+      } else {
+        return "safari";
+      }
+    }
+  }
+
   constructor() {
     this.windowWidth = 0;
     this.breakpoint = 320;
@@ -56,6 +71,7 @@ class UtilityComponent {
       desktop: 1200,
       desktop_xl: 1600
     };
+    this.browser = this.whichBrowser();
   }
 
   init(): void {

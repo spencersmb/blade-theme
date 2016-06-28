@@ -1,13 +1,26 @@
 /* ----------------------------------------------------------------------------
  * Layout
  * ------------------------------------------------------------------------- */
-
-.et-container-primary {
-  margin-top: 24px;
-  margin-top: 2.4rem;
+.et-blocked-container{
+  max-width: 1200px;
+  padding: 0 15px;
+  display: table;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
   @include breakpoint(tablet){
-    margin-top: 120px;
-    margin-top: 12rem;
+    padding: 0 35px;
+  }
+  @include breakpoint(laptop){
+    padding: 0 15px;
+  }
+}
+.et-container-primary {
+  margin-top: 35px;
+  margin-top: 3.5rem;
+  @include breakpoint(tablet){
+    margin-top: 70px;
+    margin-top: 7rem;
   }
 }
 

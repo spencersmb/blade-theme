@@ -128,6 +128,7 @@ class SliderComponent {
           opacity: 1,
           z: .001,
           x: -30,
+          right: 0,
           ease: Cubic.easeOut,
           delay: .3
         });
@@ -156,7 +157,7 @@ class SliderComponent {
       ease: Cubic.easeOut,
       onComplete: () => {
         TweenMax.to(this.closeBtn, .3, {
-          x: 50
+          right: 50
         });
       }
     });

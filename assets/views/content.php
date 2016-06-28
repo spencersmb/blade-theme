@@ -26,7 +26,7 @@ $has_excerpt = has_excerpt();
 ?>
 
 <article id="post-<?php the_ID(); ?>" class="<?php echo implode(' ', $post_classes) ?>">
-	<div class="post-thumb-img" style="background-image: url(<?php echo esc_url($featured_image[0]); ?>)"></div>
+	<div class="post-thumb-img img-loader-bg" style="background-image: url(<?php echo esc_url($featured_image[0]); ?>)"></div>
 
 	<?php if($has_excerpt):
 

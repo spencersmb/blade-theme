@@ -6,6 +6,8 @@ class ImageLoaderComponent {
   content: JQuery;
   hero: JQuery;
   hasHero: number;
+  bgImage: JQuery;
+  hasBgImage: number;
 
   constructor() {
     this.arr = [];
@@ -13,6 +15,8 @@ class ImageLoaderComponent {
     this.content = $("#content");
     this.hero = $(".hero");
     this.hasHero = this.hero.length;
+    this.bgImage = $(".img-loader-bg");
+    this.hasBgImage = this.bgImage.length;
   }
 
   animateBlogPrimary(): void {
@@ -33,27 +37,28 @@ class ImageLoaderComponent {
     }
   }
 
-  animateHeroHeader(): void {
-    let b = this.hero.find(".hero-background").css("background-image");
-
-    if ( b !== "none" ) {
-      setTimeout(() => {
-
-        this.hero.addClass("loaded");
-
-        TweenLite
-          .to(this.hero, .4,
-            {
-              opacity: 1,
-            }
-          );
-      }, 300);
-    } else {
-
-      this.hero.addClass("loaded");
-
-    }
-  }
+  // Remove
+  // animateHeroHeader(): void {
+  //   let b = this.hero.find(".hero-background").css("background-image");
+  //
+  //   if ( b !== "none" ) {
+  //     setTimeout(() => {
+  //
+  //       this.hero.addClass("loaded");
+  //
+  //       TweenLite
+  //         .to(this.hero, .4,
+  //           {
+  //             opacity: 1,
+  //           }
+  //         );
+  //     }, 300);
+  //   } else {
+  //
+  //     this.hero.addClass("loaded");
+  //
+  //   }
+  // }
 
   animateBlogArticles(): void {
     let animate = new TimelineMax();
@@ -72,7 +77,8 @@ class ImageLoaderComponent {
         this.body.hasClass("blog") ? this.animateBlogPrimary() : "";
 
         // Hero header intro
-        this.hasHero > 0 ? this.animateHeroHeader() : "";
+        // this.hasHero > 0 ? this.animateHeroHeader() : "";
+        this.hasBgImage > 0 ? this.bgImage.addClass("loaded") : "";
 
       })
       .always(function ( instance ) {

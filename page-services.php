@@ -5,7 +5,7 @@
 
 get_header();
 ?>
-<div class="container-fluid no-padding">
+<main class="container-fluid no-padding">
 
     <?php while ( have_posts() ) : the_post(); ?>
 
@@ -14,7 +14,7 @@ get_header();
     <?php endwhile; // end of the loop. ?>
 
     <!-- start list of services -->
-    <div class="container et-container-single">
+    <section class="container et-container-single">
 
         <div class="row">
 
@@ -61,9 +61,9 @@ get_header();
             <!-- /.col main content-->
         </div>
         <!-- /.row -->
-    </div>
+    </section>
     <!-- /.container -->
-</div>
+</main>
 <!-- /.container-fluid -->
 
 

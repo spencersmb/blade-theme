@@ -67,7 +67,6 @@
         color: $primary-color !important;
       }
     }
-
     @include breakpoint(laptop) {
 
       &.has-excerpt{

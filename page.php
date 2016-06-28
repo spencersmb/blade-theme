@@ -48,10 +48,9 @@ if (is_front_page()):?>
 //else this is a regular page
 else: ?>
 
-<div class="container-fluid">
+<main class="container-fluid">
 
-		<?php // Rearragne container class to allow for full width header ?>
-
+	<section>
 		<div class="row">
 
 			<!-- user chooses block layout - needs to be moved inside page-content layout -->
@@ -77,9 +76,10 @@ else: ?>
 
 		</div>
 		<!-- /.row -->
+	</section>
 
-	</div>
-	<!-- /.container -->
+</main>
+<!-- /.container-fluid -->
 
 <?php endif; //end check for front page?>
 
