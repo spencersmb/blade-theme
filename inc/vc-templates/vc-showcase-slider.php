@@ -15,44 +15,104 @@ function showcase_item_func( $atts, $content = null ) { // New function paramete
         'post__in' => array($service_id)
     );
 
-    $the_query = new WP_Query($args);
+    $the_query1 = new WP_Query($args);
 
-    while ( $the_query->have_posts() ) {
-        $the_query->the_post();
-
-        //Build vars
-        $postId = get_post_thumbnail_id();
-        $featured_image = wp_get_attachment_image_url( $postId, 'neat-blog-thumb' );
-        $thumb_image = wp_get_attachment_image_url( $postId, 'thumbnail' );
-        $excerpt = get_the_excerpt();
-        $excerpt_trim = wp_trim_words( $excerpt , '25' );
-        $img_alt = get_post_meta( $postId, '_wp_attachment_image_alt', 'true');
-
-        // Build Output
-        $output = '
-        <div class="showcase__item '. esc_attr($class) .' ">';
-
-            $output .= '
-            <div class="showcase__slider__image">
-                <img src="'.esc_url($featured_image).'" alt="'.esc_attr($img_alt).'" data-thumb="'.esc_url($thumb_image).'">
-            </div>
-            <!-- end showcase__slider__image -->
-            
-            <div class="showcase__desc">
-                <span class="cats">
-                    <a href="">tag1</a>
-                </span>
-                <h2>Modern Garden Revival</h2>
-                <p>Watering your lawn and is the key to preserving its lushness and healthy lawn. Compacted soils reduce drainage, increase runoff</p>
-                <a href="" class="btn">View Project</a>
-            </div>
-            <!-- end showcase__desc -->
-            
-        </div>
-        <!-- end showcase__item -->
+    // Build Output
+    $output = '
+        <div class="showcase__item '. esc_attr($class) .' ">
+            <div class="showcase__slider--wrapper">
+                <ul class="showcase__slider--gallery">
         ';
 
+    // First loop to build images
+    while ( $the_query1->have_posts() ) {
+        $the_query1->the_post();
+
+        //Build vars
+        $postIndex = $the_query1->current_post;
+        $postId = get_post_thumbnail_id();
+        $featured_image = wp_get_attachment_image_url($postId, 'neat-blog-thumb');
+        $thumb_image = wp_get_attachment_image_url($postId, 'thumbnail');
+        $img_alt = get_post_meta($postId, '_wp_attachment_image_alt', 'true');
+
+        if( $postIndex === 0 ){
+            $output .= '
+                <li class="selected">
+                    <img data-index="'. esc_attr($postIndex) .'" src="' . esc_url($featured_image) . '" alt="' . esc_attr($img_alt) . '" data-thumb="' . esc_url($thumb_image) . '">
+                </li>
+            ';
+        }else {
+            $output .= '
+                <li>
+                    <img data-index="'. esc_attr($postIndex) .'" src="' . esc_url($featured_image) . '" alt="' . esc_attr($img_alt) . '" data-thumb="' . esc_url($thumb_image) . '">
+                </li>
+            ';
+        }
     }
+
+    // Close up image container
+    $output.= '
+            </ul>
+            <ul class="showcase__nav">
+                <li><a href="#" class="showcase__nav--prev">Prev</a></li>
+                <li><a href="#" class="showcase__nav--next">Next</a></li>
+            </ul>
+            <!-- end showcase nav -->
+            
+        </div>
+        <!-- end showcase__slider__wrapper -->
+    ';
+
+    wp_reset_postdata();
+    // END FIRST LOOP
+
+    //Wrapper for desc items
+    $output .= '<div class="showcase__desc">';
+
+    $the_query2 = new WP_Query($args);
+
+    // 2nd loop to build desc
+    while ( $the_query2->have_posts() ) {
+
+        $the_query2->the_post();
+
+        // Build vars
+        $postIndex2 = $the_query2->current_post;
+        $excerpt = get_the_excerpt();
+        $excerpt_trim = wp_trim_words($excerpt, '15');
+
+        $has_categories = has_category();
+        $categories = get_the_category(get_the_ID());
+
+        $output .= '
+        <div class="showcase__desc--item selected" data-index="'. esc_attr($postIndex2) .'">';
+
+        if ($has_categories) {
+            $output .= '<span class="cats">';
+
+            foreach ($categories as $category) {
+                $output .= '<a href="' . esc_url(get_category_link($category->cat_ID)) . '">' . wp_kses($category->name, 'neat') . '</a>';
+            }
+
+            $output .= '</span>';
+
+        }
+
+        $output .= '<h2>' . get_the_title() . '</h2>
+                <p>' . wp_kses($excerpt_trim, 'neat') . '</p>
+                <a href="' . esc_url(get_the_permalink()) . '" class="rounded-btn">' . esc_html__('View Project', 'neat') . '</a>
+            </div>
+            <!-- end showcase__desc -->
+        ';
+    }
+    //END SECOND LOOP
+
+    $output .= '    
+        </div>
+        <!-- end showcase__desc -->
+    </div>
+    <!-- end showcase__item -->
+    ';
 
     return $output;
 }
@@ -90,16 +150,11 @@ function neat_showcase_func( $atts, $content = null ) { // New function paramete
                         <!-- end thumbs -->
                         
                         <div class="showcase__items--container">
+                        
                             '.$content.'
+
                         </div>
                         <!-- end all showcase items container -->
-                        
-                        <div class="showcase__nav">
-                            <ul>
-                                <li></li>
-                            </ul>
-                        </div>
-                        <!-- end showcase nav -->
                 
                     </div>
                     <!-- end showcase slider -->

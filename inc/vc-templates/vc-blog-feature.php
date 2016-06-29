@@ -65,9 +65,9 @@ function build_featured_posts($args){
                                 </a>
                             </h2>
                             <div class="excerpt">
-                                ' . $excerpt_trim . '
+                                ' . wp_kses($excerpt_trim, 'neat') . '
                             </div>
-                            <a class="moretag rounded-btn white-btn" href="'.get_the_permalink($post->ID).'">'.esc_html__("Read More", 'neat').'</a>
+                            <a class="moretag rounded-btn white-btn" href="'.esc_url(get_the_permalink($post->ID)).'">'.esc_html__("Read More", 'neat').'</a>
                          </article>';
 
 
@@ -87,11 +87,11 @@ function build_featured_posts($args){
 
                     $output .= '
                     <article class="blog-feature-article">
-                        <a href="'.get_the_permalink($postInner->ID).'">
+                        <a href="'.esc_url(get_the_permalink($postInner->ID)).'">
                         <span class="blog-feature-meta">
                             <span class="blog-meta-time">
                                 <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                '.get_the_date('', $postInner->ID).'
+                                '.wp_kses(get_the_date('', $postInner->ID), 'neat').'
                             </span>';
 
                     // If comments exist add
@@ -111,7 +111,7 @@ function build_featured_posts($args){
 
                         $output .='
                             </span>
-                            <h2 class="article-title">' . get_the_title($postInner->ID) . '</h2>
+                            <h2 class="article-title">' . wp_kses(get_the_title($postInner->ID), 'neat') . '</h2>
                         </a>
                     </article>
                 ';

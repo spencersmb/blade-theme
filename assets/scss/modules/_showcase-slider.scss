@@ -1,0 +1,95 @@
+
+.showcase__inner{
+  padding: 60px 0;
+}
+
+.showcase__thumbs {
+  display: none;
+}
+
+.showcase__slider--gallery {
+
+}
+
+.showcase__nav {
+
+  li {
+    left: 0;
+
+    @include last(1) {
+      right: 0;
+      left: auto;
+    }
+
+  }
+
+  a {
+    background: url("./assets/images/slider-arrow.png")no-repeat;
+    background-position: center;
+    @include transform(rotate(180deg));
+    position: relative;
+    display: block;
+    height: 75px;
+    width: 50px;
+    text-indent: 100%;
+    overflow: hidden;
+  }
+
+}
+
+.showcase__slider--wrapper{
+  position: relative;
+  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
+  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
+  box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
+}
+
+.showcase__desc {
+  position: relative;
+  z-index: $content;
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.showcase__desc--item{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $content;
+  height: 100%;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  @include transform(translateX(100%)translateZ(0));
+  @include transition( transform .3s cubic-bezier(0.860, 0.000, 0.070, 1.000));
+
+  &.selected {
+    position: relative;
+    z-index: 2;
+    @include transform(translateX(0)translateZ(0));
+  }
+
+  &.left{
+    @include transform(translateX(-100%)translateZ(0));
+  }
+
+  h2{
+    @include font-size(2.4);
+    line-height: 32px;
+    line-height: 3.2rem;
+    padding-bottom: 10px;
+  }
+
+  .cats{
+    a {
+      color: $primary-color;
+      padding: 0 5px;
+      text-transform: uppercase;
+      @include font-size(1.2);
+      font-weight: 600;
+    }
+  }
+
+}

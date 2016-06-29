@@ -93,6 +93,18 @@ function get_redux_options($param1, $param2 = null){
 
 }
 
-function neat_escapeJavaScriptText($string) {
-    return str_replace('"', '', $string);
+/**
+ * Adds filter to pull in custom post types to the archive page.
+ *
+ * @param array WP Query object.
+ * @return new WP Query Object
+ */
+function neat_add_custom_types( $query ) {
+    if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+        $query->set( 'post_type', array(
+            'post', 'nav_menu_item', 'service', 'gallery'
+        ));
+        return $query;
+    }
 }
+add_filter( 'pre_get_posts', 'neat_add_custom_types' );
