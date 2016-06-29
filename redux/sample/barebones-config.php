@@ -369,30 +369,6 @@
 
     ) );
 
-/*
-     *
-     * ---> SLIDER SECTION
-     *
-     */
-
-    Redux::setSection( $opt_name, array(
-    'title'      => wp_kses( 'Slider', 'neat' ),
-    'subsection' => true,
-    'fields'     => array(
-
-        array (
-            'title' => wp_kses('Revolution Slider', 'neat'),
-            'subtitle' => wp_kses('<em>Enable / Disable the slider.</em>', 'neat'),
-            'id' => 'slider_show',
-            'on' => wp_kses('Enabled', 'neat'),
-            'off' => wp_kses('Disabled', 'neat'),
-            'type' => 'switch',
-            'default' => 1,
-        ),
-    )
-
-) );
-
     /*
      *
      * ---> HEADER SECTION
@@ -854,11 +830,11 @@
      */
     Redux::setSection( $opt_name, array(
     'icon'   => 'fa fa-paint-brush',
-    'title'  => wp_kses( 'Styling', 'neat' ),
+    'title'  => esc_html__( 'Styling', 'neat' ),
     'fields' => array(
 
         array (
-            'title' => wp_kses('Body Texts Color', 'neat'),
+            'title' => esc_html__('Body Texts Color', 'neat'),
             'subtitle' => wp_kses('<em>Body Texts Color of the site.</em>', 'neat'),
             'id' => 'body_color',
             'type' => 'color',
@@ -876,7 +852,7 @@
         ),
 
         array (
-            'title' => wp_kses('Main Theme Color', 'neat'),
+            'title' => esc_html__('Main Theme Color', 'neat'),
             'subtitle' => wp_kses('<em>The main color of the site.</em>', 'neat'),
             'id' => 'main_color',
             'type' => 'color',
@@ -884,11 +860,20 @@
             'default' => '#EC7A5C',
         ),
 
+        array (
+            'title' => esc_html__('Nav Item Hover Color', 'neat'),
+            'subtitle' => wp_kses('<em>The color when a cursor hovers over a dropdown item from the nav.</em>', 'neat'),
+            'id' => 'nav_hover_color',
+            'type' => 'color',
+            'transparent' => false,
+            'default' => '#53950C',
+        ),
+
         array(
             'id'            => 'main_background',
             'type'          => 'background',
-            'title'         => "Body Background",
-            'subtitle'      => "<em>Body background with image, color, etc.</em>",
+            'title'         => esc_html__("Body Background", 'neat'),
+            'subtitle'      => wp_kses("<em>Body background with image, color, etc.</em>", 'neat'),
             'default'  => array(
                 'background-color' => '#fff',
             ),

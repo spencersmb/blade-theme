@@ -190,6 +190,7 @@
   @include breakpoint(laptop){
     @include transition(background .3s);
     .article-title{
+      @include transition(all .3s);
       @include font-size(2.8);
       line-height: 32px;
       line-height: 3.2rem;
@@ -201,6 +202,9 @@
     }
     &:hover{
       background: $lighter-grey-hover;
+      .article-title {
+        color: $dark-green;
+      }
     }
   }
 }

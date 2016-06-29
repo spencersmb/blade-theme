@@ -189,7 +189,7 @@ class NavComponent {
     this.$dropDownContent.removeClass("move-out");
     let dropdown = this.$dropDownContent.find(".et-secondary-dropdown");
 
-    dropdown.each((index, elem)=>{
+    dropdown.each( (index, elem) => {
       if ( !$(elem).hasClass("is-hidden") ) {
         $(elem).addClass("is-hidden");
       }

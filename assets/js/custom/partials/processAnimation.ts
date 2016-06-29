@@ -124,7 +124,7 @@ class AnimationComponent {
   }
 
   checkUrl( url ): boolean {
-    if ( url === "#" || url === "" ) {
+    if ( url.match(/^#/) !== null || url === "" ) {
       return false;
     } else {
       return true;
@@ -137,21 +137,52 @@ class AnimationComponent {
     let newUrl = $(event.currentTarget).attr("href");
     let hasChildren = $(event.currentTarget).parent("li").hasClass("menu-item-has-children");
 
+    /*
+     * First Validation: Is the url valid
+     */
+    if ( !this.checkUrl(newUrl) ) {
+      event.preventDefault();
+      return;
+    }
+
+    /*
+     * If first validation fails, the url is real and continue validating
+     */
+    /*
+     * Check if its horizontal tablet
+     */
     if ( Utils.breakpoint > Utils.bps.tablet &&
       this.checkUrl(newUrl) &&
       Utils.browser === "ipad" && hasChildren ) {
+
       event.preventDefault();
       // console.log('Tablet Nav click');
       return;
+
     } else if ( Utils.breakpoint > Utils.bps.tablet && this.checkUrl(newUrl) ) {
-      // laptop or large no ipad
+
+      /*
+       * Check if its larger than tablet but not an ipad
+       */
+
       // console.log("laptop or larger");
-      this.mainContentAnimationOut(() => {
+      this.mainContentAnimationOut( () => {
         this.loadUrl(newUrl);
       });
+
     } else if ( this.checkUrl(newUrl) && hasChildren ) {
+
+      /*
+       * Check if its mobile nav menu that has children
+       */
+
       // console.log("mobile menu is active and parent clicked");
     } else {
+
+      /*
+       * Passed the checks Load it!
+       */
+
       this.loadUrl(newUrl);
     }
 

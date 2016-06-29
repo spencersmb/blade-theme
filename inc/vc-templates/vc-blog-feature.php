@@ -154,7 +154,7 @@ function build_featured_posts($args){
 
 }
 
-function getAllPages(){
+function getAllPages($type){
     // return assoc array with Name and post ID
     global $post;
 
@@ -162,12 +162,12 @@ function getAllPages(){
 
     $page_array = array();
     $string_names = '';
-    $listings->query('post_type=page');
+    $listings->query('post_type=' . $type);
 
     while ( $listings->have_posts() ) {
         $listings->the_post();
 
-            $page_title = get_the_title($post->ID);
+            $page_title = html_entity_decode(get_the_title($post->ID));
             $page_array[$page_title] = $post->ID;
     }
 
@@ -242,7 +242,7 @@ function neat_blog_vc_func() {
                 'heading'     => esc_html__( 'Select Blog Page', 'neat' ),
                 'description' => esc_html__( 'Use dropdown to select custom blog url', 'neat' ),
                 'type'        => 'dropdown',
-                "value"			=> getAllPages()
+                "value"			=> getAllPages('post')
             ),
             array(
                 'param_name'  => 'blog_meta_data',

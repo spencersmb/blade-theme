@@ -1,58 +1,48 @@
-  // Buttons
-  .vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab.vc_active>a {
-    color: $white !important;
-    background-color: $primary-color !important;
-    font-weight: 900;
-  }
-
-  .vc_tta.vc_tta-style-classic .vc_tta-tab>a {
-    border-width: 0px!important;
-  }
-
-  .vc_tta.vc_general .vc_tta-tab>a {
-    font-weight: 600;
-    @include font-size(1.4);
-    padding: 1rem 4rem !important;
-  }
-
-  //.blade-tabs-buttons {
-  //  margin-bottom: -2px !important;
-  //}
-  //
-  //.vc_tta-panel-body{
-  //  padding-bottom: 0 !important;
-  //}
-  //
-  //.vc_tta-container{
-  //  margin-bottom: 0 !important;
-  //}
-  .vc_tta-tabs-container {
-    margin-bottom: 40px !important;
-  }
-
-  .vc_tta-tabs-list {
-    -webkit-box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
-    -moz-box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
-    box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
-    width: auto;
-    display: inline-block !important;
-    border-radius: 40%;
-  }
-
-  //Mobile
-  .vc_tta-color-grey.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading {
-    border-width: 0px !important;
-    background-color: $lightest-grey !important;
-    border-radius: 0 !important;
-  }
-  .vc_tta-panel-title {
-    padding: 1rem 0;
-  }
-  .vc_tta-panel.vc_active.blade-tabs-buttons{
-    .vc_tta-panel-heading {
-      background-color: $primary-color !important;
-    }
-    a{
+  .blade-feature-tabs{
+    .vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab.vc_active>a {
       color: $white !important;
+      background-color: $primary-color !important;
+      font-weight: 900;
+    }
+
+    .vc_tta.vc_tta-style-classic .vc_tta-tab>a {
+      border-width: 0px!important;
+    }
+
+    .vc_tta.vc_general .vc_tta-tab>a {
+      font-weight: 600;
+      @include font-size(1.4);
+      padding: 1rem 4rem !important;
+    }
+
+    .vc_tta-tabs-container {
+      margin-bottom: 40px !important;
+    }
+
+    .vc_tta-tabs-list {
+      -webkit-box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
+      -moz-box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
+      box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
+      width: auto;
+      display: inline-block !important;
+      border-radius: 40%;
+    }
+
+    //Mobile
+    .vc_tta-color-grey.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading {
+      border-width: 0px !important;
+      background-color: $lightest-grey !important;
+      border-radius: 0 !important;
+    }
+    .vc_tta-panel-title {
+      padding: 1rem 0;
+    }
+    .vc_tta-panel.vc_active.blade-tabs-buttons{
+      .vc_tta-panel-heading {
+        background-color: $primary-color !important;
+      }
+      a{
+        color: $white !important;
+      }
     }
   }

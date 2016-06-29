@@ -295,11 +295,11 @@ function neat_custom_styles() {
         #header .et-dropdown-content ul a{
             background: <?php echo esc_html($neat_theme_options['main_color']); ?>;
         }
-        
+
 
 
         #header .et-dropdown-content ul a:hover{
-        background: rgba(<?php echo neat_hex2rgb($neat_theme_options['main_color']); ?>,0.7);
+            background: <?php echo esc_attr($neat_theme_options['nav_hover_color']); ?>;
         }
     }
 

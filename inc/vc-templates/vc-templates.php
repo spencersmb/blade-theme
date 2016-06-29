@@ -16,6 +16,7 @@ require get_template_directory() . '/inc/vc-templates/vc-desc-image-offset.php';
 require get_template_directory() . '/inc/vc-templates/vc-faq.php';
 require get_template_directory() . '/inc/vc-templates/vc-slider-header.php';
 require get_template_directory() . '/inc/vc-templates/vc-blog-feature.php';
+require get_template_directory() . '/inc/vc-templates/vc-showcase-slider.php';
 require get_template_directory() . '/inc/vc-templates/vc-removed.php';
 
 if(function_exists('get_field')){
