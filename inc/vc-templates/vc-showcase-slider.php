@@ -148,10 +148,16 @@ function neat_showcase_func( $atts, $content = null ) { // New function paramete
                     <div class="showcase__slider--content">
                     
                         <div class="showcase__thumbs">
-                            <ul>
-                                <li><a href="#" style="background-image: url('.esc_url($temp_thumb_image).')"></a></li>
-                                <li class="selected"><a href="#" style="background-image: url('.esc_url($temp_thumb_image).')"></a></li>
-                                <li><a href="#" style="background-image: url('.esc_url($temp_thumb_image).')"></a></li>
+                            <div class="showcase__thumbs--inner">
+                                <ul class="showcase__thumbs--images">
+                                    <li><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"><span>Patio</span></a></li>
+                                    <li class="selected"><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"><span>Patio</span></a></li>
+                                    <li><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"><span>Patio</span></a></li>
+                                </ul>
+                            </div>
+                            <ul class="showcase__thumbsnav">
+                                <li><a href="#" class="showcase__thumbsnav--prev"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="showcase__thumbsnav--next"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                         <!-- end thumbs -->
