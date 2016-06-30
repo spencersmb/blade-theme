@@ -127,6 +127,11 @@ function neat_showcase_func( $atts, $content = null ) { // New function paramete
 
     ), $atts ) );
 
+    if (is_numeric($bg_image)) {
+        $feature_bg_image = wp_get_attachment_url($bg_image);
+        $temp_thumb_image = wp_get_attachment_url($bg_image, 'thumbnail');
+    }
+
     //Inner content
     $content = do_shortcode($content);
 
@@ -134,17 +139,19 @@ function neat_showcase_func( $atts, $content = null ) { // New function paramete
     $output = '
     <div class="showcase">
     
-        <div class="showcase__outer--bgimage" style="background-image: url()">
+        <div class="showcase__outer--bgimage" style="background-image: url('.esc_url($feature_bg_image).')">
         
-            <div class="showcase__outer--bgcolor" style="background-color:">
+            <div class="showcase__outer--bgcolor" style="background-color:'.esc_attr($bg_color).'">
             
                 <div class="showcase__inner">
             
-                    <div class="showcase__slider">
+                    <div class="showcase__slider--content">
                     
                         <div class="showcase__thumbs">
                             <ul>
-                                <li></li>
+                                <li><a href="#" style="background-image: url('.esc_url($temp_thumb_image).')"></a></li>
+                                <li class="selected"><a href="#" style="background-image: url('.esc_url($temp_thumb_image).')"></a></li>
+                                <li><a href="#" style="background-image: url('.esc_url($temp_thumb_image).')"></a></li>
                             </ul>
                         </div>
                         <!-- end thumbs -->
