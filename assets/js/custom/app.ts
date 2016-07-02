@@ -13,6 +13,7 @@ import StickySidebar from "./partials/sticky-sidebar";
 import AnimationController from "./partials/processAnimation";
 import IsotopeGallery from "./partials/gallery-isotope";
 import HeaderSlider from "./partials/header-slider";
+import ShowcaseSlider from "./partials/showcase-slider";
 // import StickySidebar from "./partials/service-sidebar";
 const $ = jQuery;
 declare var ScrollMagic: any;
@@ -22,7 +23,7 @@ declare var ScrollMagic: any;
   class App {
 
     init(): void {
-      console.log("Neat loaded");
+      console.log("App loaded");
       SvgHeader.init();
       Utils.init();
       Nav.init();
@@ -50,6 +51,7 @@ declare var ScrollMagic: any;
       IsotopeGallery.init();
     }
     HeaderSlider.init();
+    ShowcaseSlider.init();
 
   });
 

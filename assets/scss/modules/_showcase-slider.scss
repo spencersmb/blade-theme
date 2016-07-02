@@ -1,5 +1,6 @@
 .showcase {
   background: #424242;
+  margin-bottom: -1px;
   @include breakpoint(laptop){
     padding: 8rem 6rem;
   }
@@ -77,11 +78,12 @@
       @include font-size(1.2);
     }
   }
-  
+
 }
 
 .showcase__slider--content{
   padding-top: 30px;
+  @include transition(all .3s);
 
   @include breakpoint(laptop){
     position: relative;
@@ -294,7 +296,7 @@
   -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
   box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
   cursor: default;
-  
+
   @include breakpoint(tablet){
     max-width: 400px;
     margin: 0 auto;
@@ -339,10 +341,17 @@
 }
 
 .showcase__items--container {
+  @include transition(all .3s);
   @include breakpoint(laptop){
     padding: 75px 30px 15px;
     z-index: $below-content;
   }
+}
+
+.showcase__item {
+  @include transition(all .3s);
+  display: table;
+  width: 100%;
 }
 
 .showcase__slider--wrapper{
@@ -362,9 +371,11 @@
   list-style: none;
   margin: 0;
   padding: 15px 0 0;
-  
+  height: 269px; //initial mobile height
+  @include transition(all .3s);
+
   @include breakpoint(tablet){
-      padding: 0;
+    padding: 0;
   }
 }
 
@@ -372,16 +383,16 @@
   position: absolute;
   top: 0;
   left: 0;
+  opacity: 0;
   z-index: $content;
-  height: 100%;
   width: 100%;
   padding: 20px 0;
   text-align: center;
-  @include transform(translateX(100%)translateZ(0));
-  @include transition( transform .3s cubic-bezier(0.860, 0.000, 0.070, 1.000));
+  @include transform(translateY(100%)translateZ(0));
+  @include transition( all .3s cubic-bezier(0.860, 0.000, 0.070, 1.000));
 
   @include breakpoint(tablet){
-   padding: 40px 20px 30px;
+    padding: 40px 20px 30px;
   }
 
   @include breakpoint(laptop){
@@ -393,11 +404,12 @@
   &.selected {
     position: relative;
     z-index: 2;
-    @include transform(translateX(0)translateZ(0));
+    opacity: 1;
+    @include transform(translateY(0)translateZ(0));
   }
 
   &.left{
-    @include transform(translateX(-100%)translateZ(0));
+    @include transform(translateY(-100%)translateZ(0));
   }
 
   h2{
@@ -409,9 +421,9 @@
     color: $dark-blue-grey;
 
     @include breakpoint(tablet){
-        @include font-size(3.6);
-        padding-bottom: 20px;
-        font-weight: 600;
+      @include font-size(3.6);
+      padding-bottom: 20px;
+      font-weight: 600;
     }
   }
 

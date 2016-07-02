@@ -1,4 +1,88 @@
 <?php
+function getPosts($services){
+
+    // convert string ids to Num
+    $string_services = explode(',', $services, 20);
+    foreach ($string_services as $key => $value){
+        $string_services[$key] = (int)($value);
+    }
+
+    //create loop args
+    $args = array(
+        'post_type' => 'service',
+        'post__in' => $string_services
+    );
+
+
+    // Get sticky posts
+    $posts = get_posts( $args );
+
+    return $posts;
+}
+
+function build_showcase_images($posts){
+    $output ='';
+    $postCount = 0;
+
+    foreach ($posts as $post){
+
+        $postId = get_post_thumbnail_id($post->ID);
+        $featured_image = wp_get_attachment_image_url( $postId, 'neat-gallery-thumb-sm' );
+        $thumb_image = wp_get_attachment_image_url($postId, 'thumbnail');
+
+        if($postCount === 0){
+            $output .= '<li 
+                            data-index="'. esc_attr($postCount) .'" 
+                            data-thumb="'. esc_url($thumb_image) .'" 
+                            class="selected">
+                                <img src="'. esc_url($featured_image) .'">
+                            </li>';
+        }else{
+            $output .= '<li 
+                            data-index="'. esc_attr($postCount) .'" 
+                            data-thumb="'. esc_url($thumb_image) .'">
+                                <img src="'. esc_url($featured_image) .'">
+                            </li>';
+        }
+
+        $postCount++;
+
+    }
+
+    return $output;
+}
+
+function build_showcase_desc($posts){
+    $output ='';
+    $postCount = 0;
+
+    foreach ($posts as $post){
+
+        $excerpt = get_the_excerpt($post->ID);
+        $excerpt_trim = wp_trim_words( $excerpt , '25' );
+
+        if($postCount === 0){
+            $output .= '<div class="showcase__desc--item selected" data-index="'. esc_attr($postCount) .'">
+                            <h2>'. get_the_title($post->ID) .'</h2>
+                            <p>'.wp_kses($excerpt_trim, 'neat').'</p>
+                            <a href="'.esc_url(get_the_permalink($post->ID)).'" class="rounded-btn">'.esc_html__("View Project", 'neat').'</a>
+                        </div>
+                        <!-- end showcase__desc--item -->';
+        }else{
+            $output .= '<div class="showcase__desc--item" data-index="'. esc_attr($postCount) .'">
+                            <h2>'. get_the_title($post->ID) .'</h2>
+                            <p>'.wp_kses($excerpt_trim, 'neat').'</p>
+                            <a href="'.esc_url(get_the_permalink($post->ID)).'" class="rounded-btn">'.esc_html__("View Project", 'neat').'</a>
+                        </div>
+                        <!-- end showcase__desc--item -->';
+        }
+
+        $postCount++;
+
+    }
+
+    return $output;
+}
 
 // [showcase_item]
 add_shortcode( 'showcase_item', 'showcase_item_func' );
@@ -122,6 +206,7 @@ add_shortcode( 'showcase', 'neat_showcase_func' );
 function neat_showcase_func( $atts, $content = null ) { // New function parameter $content is added!
     extract( shortcode_atts( array(
         'class' => '',
+        'selected_services' => '',
         'bg_image' => '',
         'bg_color' => ''
 
@@ -132,8 +217,10 @@ function neat_showcase_func( $atts, $content = null ) { // New function paramete
         $temp_thumb_image = wp_get_attachment_url($bg_image, 'thumbnail');
     }
 
+    $posts = getPosts($selected_services);
+
     //Inner content
-    $content = do_shortcode($content);
+//    $content = do_shortcode($content);
 
     // Build Output
     $output = '
@@ -150,8 +237,8 @@ function neat_showcase_func( $atts, $content = null ) { // New function paramete
                         <div class="showcase__thumbs">
                             <div class="showcase__thumbs--inner">
                                 <ul class="showcase__thumbs--images">
-                                    <li><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"><span>Patio</span></a></li>
                                     <li class="selected"><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"><span>Patio</span></a></li>
+                                    <li><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"><span>Patio</span></a></li>
                                     <li><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"><span>Patio</span></a></li>
                                 </ul>
                             </div>
@@ -163,9 +250,36 @@ function neat_showcase_func( $atts, $content = null ) { // New function paramete
                         <!-- end thumbs -->
                         
                         <div class="showcase__items--container">
-                        
-                            '.$content.'
 
+                            <div class="showcase__item">
+                            
+                                <div class="showcase__slider--wrapper">
+                                
+                                    <ul class="showcase__slider--gallery">
+                                    
+                                    '.build_showcase_images($posts).'
+                                    
+                                    </ul>
+                                    
+                                    <ul class="showcase__nav">
+                                        <li><a href="#" class="showcase__nav--prev">Prev</a></li>
+                                        <li><a href="#" class="showcase__nav--next">Next</a></li>
+                                    </ul>
+                                    <!-- end showcase nav -->
+                                    
+                                </div>
+                                <!-- end showcase__slider--wrapper -->
+                                
+                                <div class="showcase__desc">
+                                
+                                    '.build_showcase_desc($posts).'
+                                    
+                                </div>
+                                <!-- end showcase__desc -->
+                                
+                            </div>
+                            <!-- end showcase__item -->
+                            
                         </div>
                         <!-- end all showcase items container -->
                 
@@ -194,9 +308,6 @@ function neat_showcase_vc_func() {
         "name"      => esc_html__( "Showcase Slider", "neat" ),
         "base"      => "showcase",
         'icon'        => 'showcase_icon',
-        "as_parent" => array('only' => 'showcase_item'), // Use only|except attributes to limit child shortcodes (separate multiple values with comma)
-        "is_container" => true,
-        "js_view" => 'VcColumnView',
         'description' => esc_html__( 'Create a showcase slider', 'neat' ),
         "wrapper_class" => "clearfix",
         "category" => esc_html__( 'Content', 'neat' ),
@@ -221,40 +332,11 @@ function neat_showcase_vc_func() {
                 "param_name" => "bg_image",
             ),
             array(
-                'param_name'  => 'class',
-                'heading'     => esc_html__( 'Class', 'neat' ),
-                'description' => esc_html__( '(Optional) Enter a unique class name.', 'neat' ),
-                'type'        => 'textfield',
-                'holder'      => 'div'
-            )
-        )
-    ) );
-    vc_map( array(
-        "name"      => esc_html__( "Showcase Item", "neat" ),
-        "base"      => "showcase_item",
-        'icon'        => 'showcase_item_icon',
-        "as_child" => array('only' => 'showcase'),
-        'description' => esc_html__( 'Add an item to the showcase slider.', 'neat' ),
-        "wrapper_class" => "clearfix",
-        "category" => esc_html__( 'Content', 'neat' ),
-        "params"    => array(
-
-            array(
-                "type" => "textfield",
-                "holder" => "div",
-                "class" => "",
-                "heading" => esc_html__( "Thumbnail title", "neat" ),
-                "param_name" => "showcase_thumb_text",
-                "value" => '',
-                "description" => esc_html__( "Add a thumbnail title, keep it short and sweet.", "neat" )
-            ),
-            array(
-                "type" => "dropdown",
-                "class" => "",
-                "heading" => esc_html__( "Select Service", "neat" ),
-                "param_name" => "service_id",
-                "value" => getAllPages('service'),
-                "description" => esc_html__( "Select a service", "neat" )
+                'param_name'  => 'selected_services',
+                'heading'     => esc_html__( 'Select Services', 'neat' ),
+                'description' => esc_html__( 'Choose services to add to slider', 'neat' ),
+                'type'        => 'checkbox',
+                "value"			=> getAllPages('service')
             ),
             array(
                 'param_name'  => 'class',
@@ -265,9 +347,4 @@ function neat_showcase_vc_func() {
             )
         )
     ) );
-
-    if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
-        class WPBakeryShortCode_Showcase extends WPBakeryShortCodesContainer {
-        }
-    }
 };

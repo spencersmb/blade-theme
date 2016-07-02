@@ -216,6 +216,7 @@
 .header-slider-navigation, .showcase__nav {
   padding: 0;
   margin: 0;
+  z-index: $above-content;
   overflow: hidden;
   display: block;
   position: absolute;
