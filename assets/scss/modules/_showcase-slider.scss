@@ -97,6 +97,9 @@
     display: block;
     position: absolute;
     right: 25px;
+    left: 0;
+    width:100%;
+    height:76px;
     top: 25px;
     z-index:$content;
   }
@@ -105,7 +108,35 @@
     height: 100%;
     width: 150px;
     top: 50%;
+    left: auto;
     @include transform(translateY(-50%));
+  }
+
+
+  .showcase__thumbs--inner{
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+    z-index:$above-content;
+
+    @include breakpoint(tablet){
+      display: block;
+      height: 76px;
+      width: 225px;
+      right: 25px;
+      position: absolute;
+    }
+
+    @include breakpoint(laptop){
+      right: 0;
+      //height: 475px;
+      height: 375px;
+      width: 150px;
+      margin: auto 0;
+      padding: 20px 0;
+      top: 50%;
+      @include transform(translateY(-50%));
+    }
   }
 
   // element wrapper
@@ -116,9 +147,13 @@
     @include transition( all .3s);
     @include transform(translateX(0));
 
+    @include breakpoint(tablet){
+      left: 75px;
+    }
+
     @include breakpoint(laptop){
       left: 0;
-      @include transform(translateY(0));
+      top: 150px;
     }
 
     // each item
@@ -129,15 +164,21 @@
       @include transition(.3s);
       opacity: .7;
 
+      @include breakpoint(tablet){
+          display: table-cell;
+          padding-right: 5px;
+      }
+
       @include breakpoint(laptop){
         display: block;
-        padding-bottom: 40px;
+        padding-right: 0;
+        padding-bottom: 20px;
       }
 
       @include first(1){
         padding-left: 0;
         @include breakpoint(laptop){
-          padding-bottom: 45px;
+          padding-bottom: 20px;
         }
       }
 
@@ -204,26 +245,6 @@
 
 }
 
-.showcase__thumbs--inner{
-  overflow: hidden;
-  margin: 0 auto;
-  text-align: center;
-  z-index:$above-content;
-
-  @include breakpoint(tablet){
-    display: block;
-  }
-
-  @include breakpoint(laptop){
-    height: 450px;
-    width: 150px;
-    margin: auto 0;
-    position: absolute;
-    top: 50%;
-    @include transform(translateY(-50%));
-  }
-}
-
 .showcase__thumbsnav{
   display: none;
 
@@ -238,12 +259,16 @@
     z-index: $content;
     top: 0;
 
+
     li{
+      opacity: 1;
+      display: none;
       position: absolute;
       top: -22px;
       left: 50%;
       @include transform(translateX(-50%));
       list-style: none;
+      visibility: visible;
 
       @include last(1){
         bottom: -20px;
@@ -272,7 +297,7 @@
       -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
       -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
       box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
-      @include transition(all .3s);
+      @include transition(box-shadow .3s);
 
       &:hover{
         -webkit-box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.38);
@@ -292,10 +317,10 @@
 }
 
 .showcase__slider--gallery {
+  cursor: default;
   -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
   -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
   box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
-  cursor: default;
 
   @include breakpoint(tablet){
     max-width: 400px;
@@ -311,6 +336,16 @@
 
     }
   }
+
+  li {
+    opacity: 0;
+
+    &.selected{
+      opacity: 1;
+    }
+  }
+
+
 
 }
 

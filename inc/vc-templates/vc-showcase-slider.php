@@ -237,9 +237,10 @@ function neat_showcase_func( $atts, $content = null ) { // New function paramete
                         <div class="showcase__thumbs">
                             <div class="showcase__thumbs--inner">
                                 <ul class="showcase__thumbs--images">
-                                    <li class="selected"><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"><span>Patio</span></a></li>
-                                    <li><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"><span>Patio</span></a></li>
-                                    <li><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"><span>Patio</span></a></li>
+                                    <li class="selected" data-index="0" ><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"></a></li>
+                                    <li data-index="1" ><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"></a></li>
+                                    <li data-index="2" ><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"></a></li>
+                                    <li data-index="3" ><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"></a></li>
                                 </ul>
                             </div>
                             <ul class="showcase__thumbsnav">
