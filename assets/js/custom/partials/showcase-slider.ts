@@ -20,11 +20,14 @@ class ShowcaseComponent {
   thumbsContainer: JQuery;
   thumbsClick: JQuery;
   closeBtn: JQuery;
+  countTotal: JQuery;
+  currentCountItem: JQuery;
+  showCaseThumbs: JQuery;
   thumbsPosition: ShowcaseSliderInterface;
   thumbScaleTop: number;
   thumbScaleLeft: number;
 
-  constructor( el ) {
+  constructor( el: Object ) {
     this.container = $(el);
     this.prevBtnMobile = $(".showcase__nav--prev");
     this.nextBtnMobile = $(".showcase__nav--next");
@@ -33,9 +36,11 @@ class ShowcaseComponent {
     this.currentSlide = 1;
     this.gallery = $(".showcase__slider--gallery");
     this.desc = $(".showcase__desc");
+    this.countTotal = $(".total");
+    this.currentCountItem = $(".current");
     this.index = 0;
     this.thumbsContainer = $(".showcase__thumbs--images");
-    this.thumbsClick = this.thumbsContainer.find("a");
+    this.showCaseThumbs = $(".showcase__thumbs");
     this.thumbScaleTop = 130;
     this.thumbScaleLeft = 75;
     this.thumbsPosition = {
@@ -50,11 +55,11 @@ class ShowcaseComponent {
   }
 
   getCurrentSlideElement(): JQuery {
-    return this.thumbsContainer.find(".selected");
+    return this.gallery.find(".selected");
   }
 
   getCurrentNavElement(): JQuery {
-    return this.gallery.find(".selected");
+    return this.thumbsContainer.find(".selected");
   }
 
   getCurrentDescElement(): JQuery {
@@ -74,7 +79,7 @@ class ShowcaseComponent {
 
   }
 
-  updateCurrentSlide( event ) {
+  updateCurrentSlide( event: string ) {
 
     if ( event === "right" ) {
       this.index++;
@@ -86,8 +91,12 @@ class ShowcaseComponent {
 
   }
 
-  updateSlide( direction ) {
-    event.preventDefault();
+  getCurrentSlideCount(): number {
+    return this.currentSlide;
+  }
+
+  updateSlide( direction: string ) {
+
     let currentSlide = this.getCurrentSlideElement();
 
     if ( direction === "right" ) {
@@ -107,39 +116,67 @@ class ShowcaseComponent {
     this.updateMobileNav(this.index, this.getCurrentSlideElement());
   }
 
-  updateDesc( direction ) {
+  updateDescHeight( direction?: string, selected?: JQuery ) {
+
+    // direction
+    if ( direction ) {
+
+      let height = selected.outerHeight();
+      TweenMax.to(this.desc, .3, {
+          height: height,
+          ease: Cubic.easeOut
+        }
+      );
+
+    } else {
+
+      // get current slide
+      let currentSlide = this.getCurrentDescElement();
+      let height = currentSlide.outerHeight();
+      this.desc.height(height);
+
+    }
+
+  }
+
+  updateDesc( direction: string ) {
     let currentSlide = this.getCurrentDescElement();
 
     if ( direction === "right" ) {
+
       // remove currently selected class, then move left
       let next = currentSlide.next();
 
       currentSlide.addClass("left").removeClass("selected");
       currentSlide.next().addClass("selected");
 
-      let height = next.outerHeight();
-      $(".showcase__desc").height(height);
+      this.updateDescHeight("right", next);
+
 
     } else {
 
+      let prev = currentSlide.prev();
       // remove currently selected class, then move left
       currentSlide.removeClass("selected");
-      currentSlide.prev().addClass("selected").removeClass("left");
-      let prev = currentSlide.prev();
-      let height = prev.outerHeight();
-      $(".showcase__desc").height(height);
+      prev.addClass("selected").removeClass("left");
+
+      this.updateDescHeight("left", prev);
 
     }
 
   }
 
-  updateThumbsnav( direction ) {
+  updateThumbsnav( direction: string ) {
 
     let currentSlide = this.getCurrentNavElement();
 
     if ( Utils.breakpoint < Utils.bps.laptop ) {
 
-      if(direction === "right"){
+      /*
+       * TABLET THUMB SELECT
+       */
+
+      if ( direction === "right" ) {
 
         currentSlide.removeClass("selected");
         currentSlide.next().addClass("selected");
@@ -147,85 +184,120 @@ class ShowcaseComponent {
         // update the position controller
         this.thumbsPosition.tabletPos = this.thumbsPosition.tabletPos - this.thumbScaleLeft;
         // update html element
-        this.thumbsContainer.css("left", this.thumbsPosition.tabletPos + "px");
+        TweenMax.to(this.thumbsContainer, .1, {
+          z: .001,
+          x: this.thumbsPosition.tabletPos,
+          ease: Cubic.easeIn
+        });
 
         // update the desktop version
         this.thumbsPosition.desktopPos = this.thumbsPosition.desktopPos - this.thumbScaleTop;
 
-      }else {
+      } else {
 
         currentSlide.removeClass("selected");
         currentSlide.prev().addClass("selected");
 
         this.thumbsPosition.tabletPos = this.thumbsPosition.tabletPos + this.thumbScaleLeft;
-        this.thumbsContainer.css("left", this.thumbsPosition.tabletPos + "px");
+        TweenMax.to(this.thumbsContainer, .1, {
+          z: .001,
+          x: this.thumbsPosition.tabletPos,
+          ease: Cubic.easeIn
+        });
 
         // update the desktop version
         this.thumbsPosition.desktopPos = this.thumbsPosition.desktopPos + this.thumbScaleTop;
 
       }
-
 
 
     } else {
 
-
-      if(direction === "right"){
+      /*
+       * DESKTOP THUMB SELECT
+       */
+      if ( direction === "right" ) {
 
         currentSlide.removeClass("selected");
         currentSlide.next().addClass("selected");
 
         // update the position controller
         this.thumbsPosition.desktopPos = this.thumbsPosition.desktopPos - this.thumbScaleTop;
+
         // update html element
-        this.thumbsContainer.css("top", this.thumbsPosition.desktopPos + "px");
+        TweenMax.to(this.thumbsContainer, .1, {
+            z: .001,
+            y: this.thumbsPosition.desktopPos,
+            ease: Cubic.easeIn
+          }
+        );
 
         // update tablet version position
         this.thumbsPosition.tabletPos = this.thumbsPosition.tabletPos - this.thumbScaleLeft;
 
-      }else {
+      } else {
 
         currentSlide.removeClass("selected");
         currentSlide.prev().addClass("selected");
 
         this.thumbsPosition.desktopPos = this.thumbsPosition.desktopPos + this.thumbScaleTop;
-        this.thumbsContainer.css("top", this.thumbsPosition.desktopPos + "px");
+        TweenMax.to(this.thumbsContainer, .1, {
+            z: .001,
+            y: this.thumbsPosition.desktopPos,
+            ease: Cubic.easeIn
+          }
+        );
 
         // update tablet version position
         this.thumbsPosition.tabletPos = this.thumbsPosition.tabletPos + this.thumbScaleLeft;
 
       }
-
 
     }
 
   }
 
-  checkThumbsNav( size ) {
+  checkThumbsNav( size: string ) {
 
     if ( size === "mobile" ) {
 
-      this.thumbsContainer.css("left", this.thumbsPosition.tabletPos + "px");
-      this.thumbsContainer.css("top", "0px");
+      TweenMax.to(this.thumbsContainer, .1, {
+          z: .001,
+          y: 0,
+          x: this.thumbsPosition.tabletPos,
+          ease: Cubic.easeOut
+        }
+      );
 
     } else {
 
-      this.thumbsContainer.css("top", this.thumbsPosition.desktopPos + "px");
-      this.thumbsContainer.css("left", "0px");
+      TweenMax.to(this.thumbsContainer, .1, {
+          z: .001,
+          y: this.thumbsPosition.desktopPos,
+          x: 0,
+          ease: Cubic.easeOut
+        }
+      );
 
     }
 
   }
 
-  arrowHandler( event ) {
+  arrowHandler( event: any ) {
+    event.preventDefault();
+
+    let $el = $(event.currentTarget); // a tag
+    let thumbIndex = $el.parent("li").data("index");
+    let prevEl = this.thumbsContainer.find(".selected");
+    let prevIndex = prevEl.data("index");
 
     // Slider can move right because current slide is not the last slide
     if ( event.data.keys === "right" && this.currentSlide !== this.getTotalSlides() ) {
 
-
       this.updateSlide("right");
       this.updateDesc("right");
       this.updateThumbsnav("right");
+      this.animateShadowInOut();
 
 
     } else if ( event.data.keys === "left" && this.currentSlide !== 1 ) {
@@ -233,40 +305,32 @@ class ShowcaseComponent {
       this.updateSlide("left");
       this.updateDesc("left");
       this.updateThumbsnav("left");
+      this.animateShadowInOut();
 
     }
-
-
-  }
-
-  thumbsHandler( event ) {
-    let $el = $(event.currentTarget); // a tag
-    event.preventDefault();
-    let thumbIndex = $el.parent("li").data("index");
-
-    // update selected thumb icon
-    // Extract out to function
-    // function that gets the
-    let prevEl = this.thumbsContainer.find(".selected");
-    let prevIndex = prevEl.data("index");
-    // prevEl.removeClass("selected");
-    // $el.parent("li").addClass("selected");
-
-    // move thumbs up and down
-    // Move down - ie right
-    if ( prevIndex < thumbIndex && thumbIndex + 1 !== this.getTotalSlides ) {
-
+    else if ( event.data.keys === "thumbnail" &&
+      prevIndex < thumbIndex &&
+      thumbIndex + 1 !== this.getTotalSlides
+    ) {
       // update thumbs nav
       this.updateThumbsnav("right");
       this.updateSlide("right");
       this.updateDesc("right");
+      this.animateShadowInOut();
 
-    } else if ( prevIndex > thumbIndex ) {
-      // Move up -  ie left
+    }
+    else if ( event.data.keys === "thumbnail" && prevIndex > thumbIndex
+    ) {
+      // update thumbs nav
       this.updateThumbsnav("left");
       this.updateSlide("left");
       this.updateDesc("left");
+      this.animateShadowInOut();
+
     }
+
+    // update counter
+    this.currentCountItem.html(Utils.setNumber(this.getCurrentSlideCount()));
 
   }
 
@@ -279,22 +343,10 @@ class ShowcaseComponent {
       // if Tablet or smaller - bind mobile nav arrows
       if ( Utils.breakpoint < Utils.bps.laptop ) {
 
-        this.prevBtnMobile.on("click", { keys: "left" }, this.arrowHandler.bind(this));
-        this.nextBtnMobile.on("click", { keys: "right" }, this.arrowHandler.bind(this));
-
-        // this.prevBtn.off();
-        // this.nextBtn.off();
-
+        // adjust css sizing for thumbs nav on position resize
         this.checkThumbsNav("mobile");
 
       } else {
-
-        // unBindMobile arrows
-        this.prevBtnMobile.off();
-        this.nextBtnMobile.off();
-
-        // this.prevBtn.on("click", { keys: "left" }, this.arrowHandler.bind(this));
-        // this.nextBtn.on("click", { keys: "right" }, this.arrowHandler.bind(this));
 
         this.checkThumbsNav("desktop");
 
@@ -304,26 +356,97 @@ class ShowcaseComponent {
 
   }
 
+  animateShadowInOut() {
+
+    // remove dropshadow
+    TweenMax.to(this.gallery, 0, {
+      boxShadow: "0px 18px 94px -16px rgba(0,0,0,0.0)"
+    });
+
+
+    TweenMax.to(this.gallery, .1, {
+      boxShadow: "0px 18px 94px -16px rgba(0,0,0,0.68)",
+      delay: .3
+    });
+
+
+  }
+
+  buildThumbs() {
+
+    let fragment = $(document.createDocumentFragment());
+    // build loop for images
+    this.gallery.find("li").each( ( index: number, el: Object ) => {
+
+      // create html elements
+      let itemIndex = Utils.setNumber(index),
+        imageThumbUrl = $(el).data("thumb"),
+        imageElement = document.createElement("img"),
+        linkElement = document.createElement("a"),
+        element = document.createElement("li");
+
+      // add src and attr to image
+      imageElement.setAttribute("src", imageThumbUrl);
+      linkElement.setAttribute("href", "#");
+      linkElement.appendChild(imageElement);
+      element.appendChild(linkElement);
+      element.setAttribute("data-index", itemIndex);
+
+      // set first image to selected
+      index === 0 ? element.className = "selected" : "";
+
+      // append to fragment
+      fragment.append(element);
+
+    });
+
+    // insert html element to the dom after loop finishes
+    this.thumbsContainer.append(fragment);
+
+    // Add array of html object to attach click events to later
+    this.thumbsClick = this.thumbsContainer.find("a");
+
+  }
+
+  buildThumbsClickHandler( callback ) {
+    // Click handler for preview thumbs on desktop, needs to work on tablet -> desktop
+    this.thumbsClick.each(( index, el ) => {
+      console.log(el);
+      $(el).on("click", { keys: "thumbnail" }, this.arrowHandler.bind(this));
+    });
+
+    callback();
+  }
+
+  animateInThumbs() {
+    TweenMax.to(this.showCaseThumbs, .3, {
+      opacity: 1,
+      delay: .7
+    });
+  }
 
   init() {
 
-    // this.setFirstSlideElement();
+    // Build thumbnails
+    this.buildThumbs();
 
     // Init correct nav depending on viewport size
     this.checkSize();
+    this.updateDescHeight();
+    this.prevBtnMobile.on("click", { keys: "left" }, this.arrowHandler.bind(this));
+    this.nextBtnMobile.on("click", { keys: "right" }, this.arrowHandler.bind(this));
 
     $(window).on("resize", this.checkSize.bind(this));
-
-    console.log(this.getTotalSlides());
 
     // Set Current Slide, which is always the first slide to selected - onLoad
     this.updateMobileNav(this.index, this.getCurrentSlideElement());
 
-    // Click handler for preview thumbs on desktop, needs to work on tablet -> desktop
-    this.thumbsClick.each(( index, el ) => {
-      let $this = this;
-      $(el).on("click", this.thumbsHandler.bind(this));
-    });
+    // set total slides number
+    this.countTotal.html(Utils.setNumber(this.getTotalSlides()));
+
+    // add click events to thumbnail images
+    this.buildThumbsClickHandler(this.animateInThumbs.bind(this));
+
 
   }
 }
@@ -340,8 +463,9 @@ class ShowCaseSLider {
   init() {
     console.log("Showcase Slider init");
 
-    this.itemInfoWrapper.each(( index, el ) => {
+    this.itemInfoWrapper.each(( index: number, el: Object ) => {
 
+      console.log(typeof el);
       // Pass "this" to each new Header slider component
       let slider = new ShowcaseComponent(el);
       slider.init();

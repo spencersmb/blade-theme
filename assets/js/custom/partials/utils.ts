@@ -46,6 +46,12 @@ class UtilityComponent {
     this.windowWidth = window.innerWidth;
   };
 
+  setNumber( count: number ): string {
+    // conver number to string
+    let total = count;
+    return total.toString();
+  }
+
   whichBrowser() {
     if ( (navigator.userAgent.toLowerCase().indexOf("safari") > -1) && !(
       navigator.userAgent.toLowerCase().indexOf("chrome") > -1) && (navigator.appName ===

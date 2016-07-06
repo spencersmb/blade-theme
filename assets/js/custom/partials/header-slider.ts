@@ -53,16 +53,10 @@ class SliderComponent {
 
   }
 
-  setNumber( count: number ): string {
-    // conver number to string
-    let total = count;
-    return total.toString();
-  }
-
   updateNav( index: number, selected: JQuery ) {
 
     // update numbers on screen
-    this.currentCount.html(this.setNumber(this.getCurrentSlideCount()));
+    this.currentCount.html(Utils.setNumber(this.getCurrentSlideCount()));
 
     // Enable/Disable arrow btns
     this.prevBtn.parent("li").toggleClass("slider-hidden", selected.is(":first-child"));
@@ -203,7 +197,7 @@ class SliderComponent {
     this.updateNav(this.index, this.getCurrentSlideElement());
 
     // set total slides number
-    this.countTotal.html(this.setNumber(this.getTotalSlides()));
+    this.countTotal.html(Utils.setNumber(this.getTotalSlides()));
   }
 }
 

@@ -187,6 +187,7 @@
     z-index: $content;
     height: 100%;
     width: 100%;
+    will-change: transform;
     @include transform(translateX(100%)translateZ(0));
     @include transition( transform .3s cubic-bezier(0.860, 0.000, 0.070, 1.000));
     &.selected {

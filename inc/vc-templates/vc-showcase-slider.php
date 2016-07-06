@@ -59,7 +59,7 @@ function build_showcase_desc($posts){
     foreach ($posts as $post){
 
         $excerpt = get_the_excerpt($post->ID);
-        $excerpt_trim = wp_trim_words( $excerpt , '25' );
+        $excerpt_trim = wp_trim_words( $excerpt , '17' );
 
         if($postCount === 0){
             $output .= '<div class="showcase__desc--item selected" data-index="'. esc_attr($postCount) .'">
@@ -233,14 +233,13 @@ function neat_showcase_func( $atts, $content = null ) { // New function paramete
                 <div class="showcase__inner">
             
                     <div class="showcase__slider--content">
-                    
+                        <div class="count">
+                            <span class="current">'. esc_html__("1", "neat") .'</span> '. esc_html__("/", "neat") .' <span class="total"></span></span>
+                        </div>
                         <div class="showcase__thumbs">
                             <div class="showcase__thumbs--inner">
                                 <ul class="showcase__thumbs--images">
-                                    <li class="selected" data-index="0" ><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"></a></li>
-                                    <li data-index="1" ><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"></a></li>
-                                    <li data-index="2" ><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"></a></li>
-                                    <li data-index="3" ><a href="#"><img src="//localhost:3000/wp-content/uploads/2016/06/touchit-150x150.jpg"></a></li>
+                                   
                                 </ul>
                             </div>
                             <ul class="showcase__thumbsnav">
