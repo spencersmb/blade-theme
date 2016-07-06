@@ -1259,6 +1259,7 @@ interface JQuery {
     smoothState(arg: Object): JQuery;
     imagesLoaded(arg?: Object, func?: any): any;
     isotope(arg?: Object, func?: any): any;
+    carousel(arg?: Object, func?: any): any;
     /**
      * Adds the specified class(es) to each of the set of matched elements.
      *
