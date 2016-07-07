@@ -166,3 +166,8 @@ Custom VC Admin Icons
     background-image: url("../../images/theme_options/icons/neat_icons.png");
     background-position: 0 -256px !important;
 }
+
+.showcase_icon.vc_element-icon{
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -288px;
+}

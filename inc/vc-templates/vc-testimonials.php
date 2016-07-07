@@ -14,13 +14,22 @@ function neat_testimonials_vc_func() {
         "category" => esc_html__( 'Content', 'neat' ),
         "params"    => array(
             array(
-                "type" => "colorpicker",
-                "holder" => "div",
-                "heading" => esc_html__( "Overlay color", "neat" ),
-                "param_name" => "overlay_color",
-                "class" => "hide_in_vc_editor",
-                "value" => '#8ED72B', //Default P color
-                "description" => esc_html__( "Choose overlay fade color", "neat" )
+                'param_name'  => 'has_timer',
+                'heading'     => esc_html__( 'Add Autoplay', 'neat' ),
+                'description' => esc_html__( 'Check to add autoplay rotation to the slider', 'neat' ),
+                'type'        => 'checkbox',
+                "value"			=> ''
+            ),
+            array(
+                'param_name'  => 'speed',
+                'dependency' => array(
+                    'element' => 'has_timer',
+                    'value' => array('true')
+                ),
+                "heading" => esc_html__( "Cycle Speed", "neat" ),
+                "description" => esc_html__( "Set the rotation speed. 1 sec = 1000. If you want a 6 sec delay type 6000 in the box", "neat" ),
+                "type" => "textfield",
+                "value" => '6000',
             ),
             array(
                 'param_name'  => 'class',
@@ -50,6 +59,15 @@ function neat_testimonials_vc_func() {
                 "description" => esc_html__( "Add a quote here.", "neat" )
             ),
             array(
+                "type" => "colorpicker",
+                "holder" => "div",
+                "heading" => esc_html__( "Quote Text Color", "neat" ),
+                "param_name" => "quote_text_color",
+                "class" => "hide_in_vc_editor",
+                "value" => '#fff', //Default P color
+                "description" => esc_html__( "Choose a text color.", "neat" )
+            ),
+            array(
                 "type" => "textfield",
                 "holder" => "div",
                 "class" => "",
@@ -59,12 +77,30 @@ function neat_testimonials_vc_func() {
                 "description" => esc_html__( "Add an author.", "neat" )
             ),
             array(
+                "type" => "colorpicker",
+                "holder" => "div",
+                "heading" => esc_html__( "Author text color", "neat" ),
+                "param_name" => "author_text_color",
+                "class" => "hide_in_vc_editor",
+                "value" => '#222228', //Default P color
+                "description" => esc_html__( "Choose a text color.", "neat" )
+            ),
+            array(
                 "type" => "attach_image",
                 "holder" => "div",
                 "class" => "hide_in_vc_editor",
                 "admin_label" => true,
                 "heading" => "Background Image",
                 "param_name" => "bg_image",
+            ),
+            array(
+                "type" => "colorpicker",
+                "holder" => "div",
+                "heading" => esc_html__( "Overlay color", "neat" ),
+                "param_name" => "overlay_color",
+                "class" => "hide_in_vc_editor",
+                "value" => '#8ED72B', //Default P color
+                "description" => esc_html__( "Choose overlay fade color", "neat" )
             ),
             array(
                 'param_name'  => 'class',
@@ -87,43 +123,45 @@ function neat_testimonials_vc_func() {
 add_shortcode( 'testimonials', 'neat_testimonials_shortcode' );
 function neat_testimonials_shortcode( $atts, $content = null ) { // New function parameter $content is added!
     extract( shortcode_atts( array(
-        'class' => '',
-        'overlay_color' => '',
+        'speed' => '',
+        'has_timer' => '',
+        'class' => ''
 
     ), $atts ) );
 
-    // Default Color
-    if($overlay_color === ''){
-        $overlay_color = '#8ED72B';
-    }
-
     $content = do_shortcode($content);
+
+    // Default Speed
+    if($has_timer === 'true'){
+        $speed = '6000';
+    }else{
+        $speed = 'false';
+    }
 
     $output = '
     
-        <div id="" class="testimonials carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#carousel-testimonial" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-testimonial" data-slide-to="1" ></li>
-          </ol>
-        
+        <div id="" class="testimonials carousel slide '. esc_attr($class) .'" data-ride="carousel" data-interval="'.esc_attr($speed).'">
+         
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
-            
+          
             '.$content.'
             
           </div>
         
           <!-- Controls -->
-          <a class="left carousel-control" href="#carousel-testimonial" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">'.esc_html__('Previous', 'neat').'</span>
-          </a>
-          <a class="right carousel-control" href="#carousel-testimonial" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">'.esc_html__('Next', 'neat').'</span>
-          </a>
+          <div class="control-wrapper">
+              <div class="control-inner">
+                  <a class="left carousel-control" href="#carousel-testimonial" role="button" data-slide="prev">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    <span class="sr-only">'.esc_html__('Previous', 'neat').'</span>
+                  </a>
+                  <a class="right carousel-control" href="#carousel-testimonial" role="button" data-slide="next">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <span class="sr-only">'.esc_html__('Next', 'neat').'</span>
+                  </a>
+              </div>
+          </div>
         </div>
     ';
 
@@ -137,16 +175,33 @@ function neat_testimonials_item_func( $atts, $content = null ) { // New function
         'class' => '',
         'quote' => '',
         'bg_image' => '',
+        'overlay_color' => '',
+        'quote_text_color' => '#fff',
+        'author_text_color' => '#222228',
         'author' => ''
 
     ), $atts ) );
 
+    // Default Color
+    if($overlay_color === ''){
+        $overlay_color = '#8ED72B';
+    }
+
+    // Image Check
+    if (is_numeric($bg_image)) {
+        $bg_image = wp_get_attachment_url($bg_image);
+    }
+
     // Build Output
     $output = '
-        <div class="item">
-            Item 1
-          <div class="carousel-caption">
-          </div>
+        <div class="item testimonial-item '. esc_attr($class) .'" style="background-image: url('. esc_url($bg_image). ');">
+            
+            <blockquote style="color:'. esc_attr($quote_text_color) .'">
+                <q>'. wp_kses($quote, 'shave') .'</q>
+                <cite style="color:'. esc_attr($author_text_color) .'">-'. wp_kses($author, 'shave') .'</cite>
+            </blockquote>
+            
+            <div class="testimonial-color-block" style="background-color: '. esc_attr($overlay_color). ';"></div>
         </div>
     ';
 
