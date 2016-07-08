@@ -18,6 +18,7 @@ require get_template_directory() . '/inc/vc-templates/vc-slider-header.php';
 require get_template_directory() . '/inc/vc-templates/vc-blog-feature.php';
 require get_template_directory() . '/inc/vc-templates/vc-showcase-slider.php';
 require get_template_directory() . '/inc/vc-templates/vc-testimonials.php';
+require get_template_directory() . '/inc/vc-templates/vc-custom-quote.php';
 require get_template_directory() . '/inc/vc-templates/vc-removed.php';
 
 if(function_exists('get_field')){

@@ -169,5 +169,4 @@ function icon_select_shortcode($params = array(), $content = null) {
 
     return $output;
 }
-
 add_shortcode('icon_select', 'icon_select_shortcode');

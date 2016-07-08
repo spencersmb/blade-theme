@@ -4,6 +4,8 @@ import Utils from "./utils";
 interface ShowcaseSliderInterface {
   desktopPos: number;
   tabletPos: number;
+  indexSelected: number;
+  currentSlide: number;
 }
 
 class ShowcaseComponent {
@@ -13,17 +15,17 @@ class ShowcaseComponent {
   prevBtnMobile: JQuery;
   nextBtn: JQuery;
   prevBtn: JQuery;
-  currentSlide: number;
   index: number;
   gallery: JQuery;
   desc: JQuery;
   thumbsContainer: JQuery;
+  gradients: JQuery;
   thumbsClick: JQuery;
   closeBtn: JQuery;
   countTotal: JQuery;
   currentCountItem: JQuery;
   showCaseThumbs: JQuery;
-  thumbsPosition: ShowcaseSliderInterface;
+  statePosition: ShowcaseSliderInterface;
   thumbScaleTop: number;
   thumbScaleLeft: number;
 
@@ -33,25 +35,46 @@ class ShowcaseComponent {
     this.nextBtnMobile = $(".showcase__nav--next");
     this.prevBtn = $(".showcase__thumbsnav--prev");
     this.nextBtn = $(".showcase__thumbsnav--next");
-    this.currentSlide = 1;
     this.gallery = $(".showcase__slider--gallery");
     this.desc = $(".showcase__desc");
+    this.gradients = $(".showcase__fade");
     this.countTotal = $(".total");
     this.currentCountItem = $(".current");
-    this.index = 0;
+    this.index = 0; // set to 2nd slide
     this.thumbsContainer = $(".showcase__thumbs--images");
     this.showCaseThumbs = $(".showcase__thumbs");
     this.thumbScaleTop = 130;
     this.thumbScaleLeft = 75;
-    this.thumbsPosition = {
-      desktopPos: 118,
-      tabletPos: this.thumbScaleLeft
+    this.statePosition = {
+      desktopPos: 0,
+      tabletPos: 75,
+      indexSelected: this.index,
+      currentSlide: this.index + 1
     };
 
   }
 
-  setFirstSlideElement(): void {
-    $(".showcase__items--container").children(".showcase__item").first().addClass("selected");
+  setFirstSlide() {
+
+    // loop through images and set active element
+    let firstImage = this.gallery.find("li[data-index=" + this.statePosition.indexSelected + "]");
+    firstImage.addClass("selected");
+
+    this.animateGalleryIn();
+
+    // loop through desc and set active element
+    let firstDesc = this.desc.find(".showcase__desc--item[data-index=" + this.statePosition.indexSelected + "]");
+    firstDesc.addClass("selected");
+
+    // Build thumbnails
+    this.buildThumbs();
+
+    // Set Current Slide, which is always the first slide to selected - onLoad
+    this.updateMobileNav(this.getCurrentSlideElement());
+
+    // add click events to thumbnail images, then when finished animate in with callback
+    this.buildThumbsClickHandler(this.animateInThumbs.bind(this));
+
   }
 
   getCurrentSlideElement(): JQuery {
@@ -71,7 +94,7 @@ class ShowcaseComponent {
     return count;
   }
 
-  updateMobileNav( index: number, selected: JQuery ) {
+  updateMobileNav( selected: JQuery ) {
 
     // Enable/Disable arrow btns
     this.prevBtnMobile.parent("li").toggleClass("slider-hidden", selected.is(":first-child"));
@@ -79,41 +102,39 @@ class ShowcaseComponent {
 
   }
 
-  updateCurrentSlide( event: string ) {
+  updateState( index: number ) {
 
-    if ( event === "right" ) {
-      this.index++;
-      this.currentSlide++;
-    } else {
-      this.index--;
-      this.currentSlide--;
-    }
+    this.statePosition.indexSelected = index;
+    this.statePosition.currentSlide = index + 1;
 
   }
 
   getCurrentSlideCount(): number {
-    return this.currentSlide;
+    return this.statePosition.currentSlide;
   }
 
   updateSlide( direction: string ) {
 
+    // get current selected and find the match to the next el
     let currentSlide = this.getCurrentSlideElement();
+    let nextSlide = this.gallery.find("li[data-index=" + this.statePosition.indexSelected + "]");
 
     if ( direction === "right" ) {
-      // remove currently selected class, then move left
-      currentSlide.removeClass("selected").addClass("left");
-      currentSlide.next().addClass("selected");
-    } else {
-      // remove currently selected class, then move left
+      // add left to all slides prev, in-case you skipped over one
       currentSlide.removeClass("selected");
-      currentSlide.prev().addClass("selected").removeClass("left");
+      nextSlide.addClass("selected");
+      nextSlide.prevAll().addClass("left");
+      nextSlide.nextAll().removeClass("left");
+    } else {
+      // add left to all slides prev, in-case you skipped over one
+      currentSlide.removeClass("selected");
+      nextSlide.addClass("selected").removeClass("left");
+      nextSlide.prevAll().addClass("left");
+      nextSlide.nextAll().removeClass("left");
     }
 
-    // update index
-    this.updateCurrentSlide(direction);
-
-    // update Navigation
-    this.updateMobileNav(this.index, this.getCurrentSlideElement());
+    // update Navigation check
+    this.updateMobileNav(this.getCurrentSlideElement());
   }
 
   updateDescHeight( direction?: string, selected?: JQuery ) {
@@ -141,26 +162,27 @@ class ShowcaseComponent {
 
   updateDesc( direction: string ) {
     let currentSlide = this.getCurrentDescElement();
+    let nextSlide = this.desc.find(".showcase__desc--item[data-index=" + this.statePosition.indexSelected + "]");
 
     if ( direction === "right" ) {
 
-      // remove currently selected class, then move left
-      let next = currentSlide.next();
+      // add left to all slides prev, in-case you skipped over one
+      currentSlide.removeClass("selected");
+      nextSlide.addClass("selected");
+      nextSlide.prevAll().addClass("left");
+      nextSlide.nextAll().removeClass("left");
 
-      currentSlide.addClass("left").removeClass("selected");
-      currentSlide.next().addClass("selected");
-
-      this.updateDescHeight("right", next);
-
+      this.updateDescHeight("right", nextSlide);
 
     } else {
 
-      let prev = currentSlide.prev();
-      // remove currently selected class, then move left
+      // add left to all slides prev, in-case you skipped over one
       currentSlide.removeClass("selected");
-      prev.addClass("selected").removeClass("left");
+      nextSlide.addClass("selected").removeClass("left");
+      nextSlide.prevAll().addClass("left");
+      nextSlide.nextAll().removeClass("left");
 
-      this.updateDescHeight("left", prev);
+      this.updateDescHeight("left", nextSlide);
 
     }
 
@@ -169,6 +191,8 @@ class ShowcaseComponent {
   updateThumbsnav( direction: string ) {
 
     let currentSlide = this.getCurrentNavElement();
+    let nextSlide = this.thumbsContainer.find("li[data-index=" + this.statePosition.indexSelected + "]");
+
 
     if ( Utils.breakpoint < Utils.bps.laptop ) {
 
@@ -177,36 +201,36 @@ class ShowcaseComponent {
        */
 
       if ( direction === "right" ) {
-
         currentSlide.removeClass("selected");
-        currentSlide.next().addClass("selected");
+        nextSlide.addClass("selected");
 
-        // update the position controller
-        this.thumbsPosition.tabletPos = this.thumbsPosition.tabletPos - this.thumbScaleLeft;
+        this.statePosition.tabletPos = this.statePosition.tabletPos - this.thumbScaleLeft;
+
         // update html element
         TweenMax.to(this.thumbsContainer, .1, {
           z: .001,
-          x: this.thumbsPosition.tabletPos,
+          x: this.statePosition.tabletPos,
           ease: Cubic.easeIn
         });
 
-        // update the desktop version
-        this.thumbsPosition.desktopPos = this.thumbsPosition.desktopPos - this.thumbScaleTop;
+
+        // update the state
+        this.statePosition.desktopPos = this.statePosition.desktopPos - this.thumbScaleTop;
 
       } else {
-
+        console.log("left");
         currentSlide.removeClass("selected");
-        currentSlide.prev().addClass("selected");
+        nextSlide.addClass("selected");
 
-        this.thumbsPosition.tabletPos = this.thumbsPosition.tabletPos + this.thumbScaleLeft;
+        this.statePosition.tabletPos = this.statePosition.tabletPos + this.thumbScaleLeft;
         TweenMax.to(this.thumbsContainer, .1, {
           z: .001,
-          x: this.thumbsPosition.tabletPos,
+          x: this.statePosition.tabletPos,
           ease: Cubic.easeIn
         });
 
-        // update the desktop version
-        this.thumbsPosition.desktopPos = this.thumbsPosition.desktopPos + this.thumbScaleTop;
+        // update the state
+        this.statePosition.desktopPos = this.statePosition.desktopPos + this.thumbScaleTop;
 
       }
 
@@ -219,37 +243,52 @@ class ShowcaseComponent {
       if ( direction === "right" ) {
 
         currentSlide.removeClass("selected");
-        currentSlide.next().addClass("selected");
+        nextSlide.addClass("selected");
 
-        // update the position controller
-        this.thumbsPosition.desktopPos = this.thumbsPosition.desktopPos - this.thumbScaleTop;
+        // target every thrid item
+        console.log(this.statePosition.indexSelected % 3 === 0);
+        console.log(this.getTotalSlides());
+        console.log(this.statePosition.currentSlide);
 
-        // update html element
-        TweenMax.to(this.thumbsContainer, .1, {
-            z: .001,
-            y: this.thumbsPosition.desktopPos,
-            ease: Cubic.easeIn
-          }
-        );
+        if ( this.statePosition.currentSlide >= 4 && this.statePosition.currentSlide < this.getTotalSlides() ) {
+          // update the position controller
+          this.statePosition.desktopPos = this.statePosition.desktopPos - this.thumbScaleTop;
 
-        // update tablet version position
-        this.thumbsPosition.tabletPos = this.thumbsPosition.tabletPos - this.thumbScaleLeft;
+          // update the state for tablet as well
+          this.statePosition.tabletPos = this.statePosition.tabletPos - this.thumbScaleLeft;
+
+          // move slider
+          TweenMax.to(this.thumbsContainer, .1, {
+              z: .001,
+              y: this.statePosition.desktopPos,
+              ease: Cubic.easeIn
+            }
+          );
+
+        }
 
       } else {
 
         currentSlide.removeClass("selected");
-        currentSlide.prev().addClass("selected");
+        nextSlide.addClass("selected");
 
-        this.thumbsPosition.desktopPos = this.thumbsPosition.desktopPos + this.thumbScaleTop;
-        TweenMax.to(this.thumbsContainer, .1, {
-            z: .001,
-            y: this.thumbsPosition.desktopPos,
-            ease: Cubic.easeIn
-          }
-        );
+        if ( this.statePosition.desktopPos !== 0 &&
+          this.statePosition.currentSlide !== 1 ) {
+          this.statePosition.desktopPos = this.statePosition.desktopPos + this.thumbScaleTop;
+          TweenMax.to(this.thumbsContainer, .1, {
+              z: .001,
+              y: this.statePosition.desktopPos,
+              ease: Cubic.easeIn
+            }
+          );
 
-        // update tablet version position
-        this.thumbsPosition.tabletPos = this.thumbsPosition.tabletPos + this.thumbScaleLeft;
+          // update the state
+          this.statePosition.tabletPos = this.statePosition.tabletPos + this.thumbScaleLeft;
+
+        } else {
+
+        }
+
 
       }
 
@@ -264,7 +303,7 @@ class ShowcaseComponent {
       TweenMax.to(this.thumbsContainer, .1, {
           z: .001,
           y: 0,
-          x: this.thumbsPosition.tabletPos,
+          x: this.statePosition.tabletPos,
           ease: Cubic.easeOut
         }
       );
@@ -273,7 +312,7 @@ class ShowcaseComponent {
 
       TweenMax.to(this.thumbsContainer, .1, {
           z: .001,
-          y: this.thumbsPosition.desktopPos,
+          y: this.statePosition.desktopPos,
           x: 0,
           ease: Cubic.easeOut
         }
@@ -291,8 +330,12 @@ class ShowcaseComponent {
     let prevEl = this.thumbsContainer.find(".selected");
     let prevIndex = prevEl.data("index");
 
+
     // Slider can move right because current slide is not the last slide
-    if ( event.data.keys === "right" && this.currentSlide !== this.getTotalSlides() ) {
+    if ( event.data.keys === "right" && this.statePosition.currentSlide <= this.getTotalSlides() ) {
+
+      // update state on arrow click
+      this.updateState(this.statePosition.indexSelected + 1);
 
       this.updateSlide("right");
       this.updateDesc("right");
@@ -300,7 +343,11 @@ class ShowcaseComponent {
       this.animateShadowInOut();
 
 
-    } else if ( event.data.keys === "left" && this.currentSlide !== 1 ) {
+    } else if ( event.data.keys === "left" && this.statePosition.currentSlide !== 1 ) {
+
+      // update state on arrow click
+      this.updateState(this.statePosition.indexSelected - 1);
+
       // Else if its not the first slide - move left
       this.updateSlide("left");
       this.updateDesc("left");
@@ -312,6 +359,10 @@ class ShowcaseComponent {
       prevIndex < thumbIndex &&
       thumbIndex + 1 !== this.getTotalSlides
     ) {
+      // compare item selected index with new item selected and determine which direction to move
+      // update State
+      this.updateState(thumbIndex);
+
       // update thumbs nav
       this.updateThumbsnav("right");
       this.updateSlide("right");
@@ -321,11 +372,18 @@ class ShowcaseComponent {
     }
     else if ( event.data.keys === "thumbnail" && prevIndex > thumbIndex
     ) {
+      // update State
+      this.updateState(thumbIndex);
+
       // update thumbs nav
       this.updateThumbsnav("left");
       this.updateSlide("left");
       this.updateDesc("left");
       this.animateShadowInOut();
+
+    } else if ( event.data.keys === "gradients" ) {
+      let gradientIndex = $el.data("index");
+      console.log(gradientIndex);
 
     }
 
@@ -372,11 +430,18 @@ class ShowcaseComponent {
 
   }
 
+  animateShadowIn(){
+    TweenMax.to(this.gallery, .3, {
+      boxShadow: "0px 18px 94px -16px rgba(0,0,0,0.68)",
+      delay: .1
+    });
+  }
+
   buildThumbs() {
 
     let fragment = $(document.createDocumentFragment());
     // build loop for images
-    this.gallery.find("li").each( ( index: number, el: Object ) => {
+    this.gallery.find("li").each(( index: number, el: Object ) => {
 
       // create html elements
       let itemIndex = Utils.setNumber(index),
@@ -393,7 +458,7 @@ class ShowcaseComponent {
       element.setAttribute("data-index", itemIndex);
 
       // set first image to selected
-      index === 0 ? element.className = "selected" : "";
+      index === this.statePosition.indexSelected ? element.className = "selected" : "";
 
       // append to fragment
       fragment.append(element);
@@ -403,16 +468,22 @@ class ShowcaseComponent {
     // insert html element to the dom after loop finishes
     this.thumbsContainer.append(fragment);
 
-    // Add array of html object to attach click events to later
-    this.thumbsClick = this.thumbsContainer.find("a");
-
   }
 
   buildThumbsClickHandler( callback ) {
+
+    // Add array of html object to attach click events to later
+    this.thumbsClick = this.thumbsContainer.find("a");
+
     // Click handler for preview thumbs on desktop, needs to work on tablet -> desktop
     this.thumbsClick.each(( index, el ) => {
-      console.log(el);
       $(el).on("click", { keys: "thumbnail" }, this.arrowHandler.bind(this));
+    });
+
+    // add click events to gradients
+    // let parent = this.thumbsContainer.parent(".showcase__thumbs--inner");
+    this.gradients.each(( index, el ) => {
+      $(el).on("click", { keys: "gradients" }, this.arrowHandler.bind(this));
     });
 
     callback();
@@ -421,14 +492,23 @@ class ShowcaseComponent {
   animateInThumbs() {
     TweenMax.to(this.showCaseThumbs, .3, {
       opacity: 1,
-      delay: .7
+      delay: 1
+    });
+  }
+
+  animateGalleryIn() {
+    TweenMax.to($(".showcase__outer--bgimage"), .3, {
+      opacity: 1,
+      delay: .7,
+      onComplete: () => {
+        this.animateShadowIn();
+      }
     });
   }
 
   init() {
 
-    // Build thumbnails
-    this.buildThumbs();
+    this.setFirstSlide();
 
     // Init correct nav depending on viewport size
     this.checkSize();
@@ -438,15 +518,12 @@ class ShowcaseComponent {
 
     $(window).on("resize", this.checkSize.bind(this));
 
-    // Set Current Slide, which is always the first slide to selected - onLoad
-    this.updateMobileNav(this.index, this.getCurrentSlideElement());
 
     // set total slides number
     this.countTotal.html(Utils.setNumber(this.getTotalSlides()));
 
-    // add click events to thumbnail images
-    this.buildThumbsClickHandler(this.animateInThumbs.bind(this));
-
+    // update counter
+    this.currentCountItem.html(Utils.setNumber(this.getCurrentSlideCount()));
 
   }
 }

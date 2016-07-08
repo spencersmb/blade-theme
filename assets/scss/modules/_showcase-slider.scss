@@ -8,6 +8,7 @@
 
 .showcase__outer--bgimage {
   background-size: 0;
+  opacity: 0;
 
   @include breakpoint(tablet){
     background-size: cover;
@@ -131,7 +132,34 @@
     @include transform(translateY(-50%));
   }
 
+  .gradient-top, .gradient-bottom{
 
+    @include breakpoint(laptop){
+      height: 30px;
+      width: 100%;
+      position: absolute;
+      left: auto;
+      right: 0;
+      z-index: $content;
+    }
+
+  }
+
+  .gradient-top {
+    @include breakpoint(laptop){
+      top: -1px;
+      background-image: linear-gradient( #fff 0, rgba(255, 255, 255, 0) 100%);
+    }
+
+  }
+
+  .gradient-bottom{
+    @include breakpoint(laptop){
+      background-image: linear-gradient( to top, #fff 0, rgba(255, 255, 255, 0) 100%);
+      bottom: -1px;
+    }
+
+  }
   .showcase__thumbs--inner{
     overflow: hidden;
     margin: 0 auto;
@@ -149,7 +177,8 @@
     @include breakpoint(laptop){
       right: 0;
       //height: 475px;
-      height: 375px;
+      //height: 375px;
+      height: 540px;
       width: 150px;
       margin: auto 0;
       padding: 20px 0;
@@ -336,9 +365,9 @@
 
 .showcase__slider--gallery {
   cursor: default;
-  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
-  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
-  box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
+  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
+  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
+  box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
 
   @include breakpoint(tablet){
     max-width: 400px;
@@ -346,6 +375,7 @@
   }
 
   @include breakpoint(laptop){
+    min-height: 281.25px;
     max-width: 450px;
     margin: 0;
     &:before, &:after{

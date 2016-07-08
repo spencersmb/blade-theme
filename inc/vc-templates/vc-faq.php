@@ -1,6 +1,5 @@
 <?php
 add_action( 'vc_before_init', 'neat_faq' );
-
 function neat_faq()
 {
 

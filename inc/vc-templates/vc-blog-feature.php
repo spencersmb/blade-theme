@@ -242,7 +242,7 @@ function neat_blog_vc_func() {
                 'heading'     => esc_html__( 'Select Blog Page', 'neat' ),
                 'description' => esc_html__( 'Use dropdown to select custom blog url', 'neat' ),
                 'type'        => 'dropdown',
-                "value"			=> getAllPages('post')
+                "value"			=> getAllPages('page')
             ),
             array(
                 'param_name'  => 'blog_meta_data',

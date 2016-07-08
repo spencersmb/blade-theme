@@ -171,3 +171,18 @@ Custom VC Admin Icons
     background-image: url("../../images/theme_options/icons/neat_icons.png");
     background-position: 0 -288px;
 }
+
+.testimonials_icon.vc_element-icon{
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -320px !important;
+}
+
+.testimonials_item_icon.vc_element-icon{
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -352px !important;
+}
+
+.blog_icon.vc_element-icon{
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -384px;
+}
