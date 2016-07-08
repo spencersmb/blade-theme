@@ -24,6 +24,7 @@
     left: 50%;
     @include transform(translateX(-50%)translateY(-90%));
     width: 120px;
+    z-index: $above-content;
 
     @include breakpoint(laptop){
         width: 70px;
@@ -43,11 +44,12 @@
   .carousel-control{
     background-image: none;
     position: relative;
-    display: inline-block;
+    display: block;
+    float: left;
     width: 50%;
     height: 28px;
     opacity: 1;
-    padding-top: 5px;
+    padding-top: 3px;
     text-shadow: none;
     cursor: pointer;
 
@@ -101,9 +103,7 @@
 
     &::before{
       height: 100%;
-      width: 67%;
       left: auto;
-      right: -67%;
       background-image: linear-gradient(to right,rgba(142, 215, 43,1) 0,rgba(142, 215, 43,.0001) 100%);
     }
   }

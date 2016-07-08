@@ -216,7 +216,7 @@ function neat_header_slider_shortcode($params = array(), $content = null) {
                 </div>
             </div>
         </div>
-        <div class="m-page scene_element scene_element--fadeinup">
+        <div class="header-slider-divider m-page scene_element scene_element--fadeinup">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="65" viewBox="0 0 1212.4 64.6" class="divider-svg">
                 <polygon points="606.2 40.9 0 0 0 64.6 595.2 64.6 617.2 64.6 1212.4 64.6 1212.4 0 " fill="'.esc_attr($divider_color).'" class="divider-path"/>
             </svg>

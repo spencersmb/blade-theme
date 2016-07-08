@@ -169,7 +169,7 @@
     @include breakpoint(tablet){
       display: block;
       height: 76px;
-      width: 225px;
+      width: 300px;
       right: 25px;
       position: absolute;
     }
@@ -368,6 +368,7 @@
   -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
   -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
   box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
+  @include transform("");
 
   @include breakpoint(tablet){
     max-width: 400px;
@@ -439,6 +440,10 @@
 
 .showcase__slider--wrapper{
   position: relative;
+  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,.68);
+  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,.68);
+  box-shadow: 0px 18px 94px -16px rgba(0,0,0,.68);
+  overflow: hidden;
 
   @include breakpoint(laptop){
     display: inline-block;

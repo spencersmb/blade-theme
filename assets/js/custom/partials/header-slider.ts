@@ -64,7 +64,7 @@ class SliderComponent {
   }
 
   updateSlide( direction ) {
-    event.preventDefault();
+    
     let currentSlide = this.getCurrentSlideElement();
 
     if ( direction === "right" ) {

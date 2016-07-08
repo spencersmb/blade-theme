@@ -31,23 +31,22 @@ class ShowcaseComponent {
 
   constructor( el: Object ) {
     this.container = $(el);
-    this.prevBtnMobile = $(".showcase__nav--prev");
-    this.nextBtnMobile = $(".showcase__nav--next");
-    this.prevBtn = $(".showcase__thumbsnav--prev");
-    this.nextBtn = $(".showcase__thumbsnav--next");
-    this.gallery = $(".showcase__slider--gallery");
-    this.desc = $(".showcase__desc");
-    this.gradients = $(".showcase__fade");
-    this.countTotal = $(".total");
-    this.currentCountItem = $(".current");
+    this.prevBtnMobile = this.container.find(".showcase__nav--prev");
+    this.nextBtnMobile = this.container.find(".showcase__nav--next");
+    this.prevBtn = this.container.find(".showcase__thumbsnav--prev");
+    this.nextBtn = this.container.find(".showcase__thumbsnav--next");
+    this.gallery = this.container.find(".showcase__slider--gallery");
+    this.desc = this.container.find(".showcase__desc");
+    this.countTotal = this.container.find(".total");
+    this.currentCountItem = this.container.find(".current");
     this.index = 0; // set to 2nd slide
-    this.thumbsContainer = $(".showcase__thumbs--images");
-    this.showCaseThumbs = $(".showcase__thumbs");
+    this.thumbsContainer = this.container.find(".showcase__thumbs--images");
+    this.showCaseThumbs = this.container.find(".showcase__thumbs");
     this.thumbScaleTop = 130;
     this.thumbScaleLeft = 75;
     this.statePosition = {
       desktopPos: 0,
-      tabletPos: 75,
+      tabletPos: 0,
       indexSelected: this.index,
       currentSlide: this.index + 1
     };
@@ -204,36 +203,44 @@ class ShowcaseComponent {
         currentSlide.removeClass("selected");
         nextSlide.addClass("selected");
 
-        this.statePosition.tabletPos = this.statePosition.tabletPos - this.thumbScaleLeft;
+        if ( this.statePosition.currentSlide >= 4 && this.statePosition.currentSlide < this.getTotalSlides() ) {
+          // update the state
+          this.statePosition.tabletPos = this.statePosition.tabletPos - this.thumbScaleLeft;
+          this.statePosition.desktopPos = this.statePosition.desktopPos - this.thumbScaleTop;
 
-        // update html element
-        TweenMax.to(this.thumbsContainer, .1, {
-          z: .001,
-          x: this.statePosition.tabletPos,
-          ease: Cubic.easeIn
-        });
+          // update html element
+          TweenMax.to(this.thumbsContainer, .1, {
+            z: .001,
+            x: this.statePosition.tabletPos,
+            ease: Cubic.easeIn
+          });
 
+        }
 
-        // update the state
-        this.statePosition.desktopPos = this.statePosition.desktopPos - this.thumbScaleTop;
 
       } else {
         console.log("left");
         currentSlide.removeClass("selected");
         nextSlide.addClass("selected");
 
-        this.statePosition.tabletPos = this.statePosition.tabletPos + this.thumbScaleLeft;
-        TweenMax.to(this.thumbsContainer, .1, {
-          z: .001,
-          x: this.statePosition.tabletPos,
-          ease: Cubic.easeIn
-        });
 
-        // update the state
-        this.statePosition.desktopPos = this.statePosition.desktopPos + this.thumbScaleTop;
+        if ( this.statePosition.tabletPos !== 0 && this.statePosition.currentSlide !== 1 ) {
+
+          this.statePosition.tabletPos = this.statePosition.tabletPos + this.thumbScaleLeft;
+          TweenMax.to(this.thumbsContainer, .1, {
+            z: .001,
+            x: this.statePosition.tabletPos,
+            ease: Cubic.easeIn
+          });
+
+        }
+
+        if ( this.statePosition.desktopPos !== 0 && this.statePosition.currentSlide !== 1 ) {
+          // update the state
+          this.statePosition.desktopPos = this.statePosition.desktopPos + this.thumbScaleTop;
+        }
 
       }
-
 
     } else {
 
@@ -245,16 +252,10 @@ class ShowcaseComponent {
         currentSlide.removeClass("selected");
         nextSlide.addClass("selected");
 
-        // target every thrid item
-        console.log(this.statePosition.indexSelected % 3 === 0);
-        console.log(this.getTotalSlides());
-        console.log(this.statePosition.currentSlide);
-
+        // detecting if slide should move or not
         if ( this.statePosition.currentSlide >= 4 && this.statePosition.currentSlide < this.getTotalSlides() ) {
           // update the position controller
           this.statePosition.desktopPos = this.statePosition.desktopPos - this.thumbScaleTop;
-
-          // update the state for tablet as well
           this.statePosition.tabletPos = this.statePosition.tabletPos - this.thumbScaleLeft;
 
           // move slider
@@ -272,8 +273,8 @@ class ShowcaseComponent {
         currentSlide.removeClass("selected");
         nextSlide.addClass("selected");
 
-        if ( this.statePosition.desktopPos !== 0 &&
-          this.statePosition.currentSlide !== 1 ) {
+        if ( this.statePosition.desktopPos !== 0 && this.statePosition.currentSlide !== 1 ) {
+
           this.statePosition.desktopPos = this.statePosition.desktopPos + this.thumbScaleTop;
           TweenMax.to(this.thumbsContainer, .1, {
               z: .001,
@@ -282,13 +283,14 @@ class ShowcaseComponent {
             }
           );
 
-          // update the state
-          this.statePosition.tabletPos = this.statePosition.tabletPos + this.thumbScaleLeft;
-
-        } else {
-
         }
 
+        // seperate tablet looking at should it update tablet state
+        if ( this.statePosition.tabletPos !== 0 && this.statePosition.currentSlide !== 1 ) {
+
+          this.statePosition.tabletPos = this.statePosition.tabletPos + this.thumbScaleLeft;
+
+        }
 
       }
 
@@ -381,10 +383,6 @@ class ShowcaseComponent {
       this.updateDesc("left");
       this.animateShadowInOut();
 
-    } else if ( event.data.keys === "gradients" ) {
-      let gradientIndex = $el.data("index");
-      console.log(gradientIndex);
-
     }
 
     // update counter
@@ -430,7 +428,7 @@ class ShowcaseComponent {
 
   }
 
-  animateShadowIn(){
+  animateShadowIn() {
     TweenMax.to(this.gallery, .3, {
       boxShadow: "0px 18px 94px -16px rgba(0,0,0,0.68)",
       delay: .1
@@ -480,12 +478,6 @@ class ShowcaseComponent {
       $(el).on("click", { keys: "thumbnail" }, this.arrowHandler.bind(this));
     });
 
-    // add click events to gradients
-    // let parent = this.thumbsContainer.parent(".showcase__thumbs--inner");
-    this.gradients.each(( index, el ) => {
-      $(el).on("click", { keys: "gradients" }, this.arrowHandler.bind(this));
-    });
-
     callback();
   }
 
@@ -497,7 +489,7 @@ class ShowcaseComponent {
   }
 
   animateGalleryIn() {
-    TweenMax.to($(".showcase__outer--bgimage"), .3, {
+    TweenMax.to(this.container.find(".showcase__outer--bgimage"), .3, {
       opacity: 1,
       delay: .7,
       onComplete: () => {
@@ -542,7 +534,6 @@ class ShowCaseSLider {
 
     this.itemInfoWrapper.each(( index: number, el: Object ) => {
 
-      console.log(typeof el);
       // Pass "this" to each new Header slider component
       let slider = new ShowcaseComponent(el);
       slider.init();

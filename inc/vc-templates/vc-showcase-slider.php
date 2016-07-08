@@ -203,6 +203,7 @@ function neat_showcase_vc_func() {
                 'heading'     => esc_html__( 'Select Services', 'neat' ),
                 'description' => esc_html__( 'Choose services to add to slider', 'neat' ),
                 'type'        => 'checkbox',
+                "class" => "neat-service-checkbox",
                 "value"			=> getAllPages('service')
             ),
             array(

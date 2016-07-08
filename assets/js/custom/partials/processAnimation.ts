@@ -194,7 +194,7 @@ class AnimationComponent {
 
     // Click event to control window Loading
     $("a").on("click", ( e ) => {
-      event.preventDefault();
+      e.preventDefault();
       this.globalClickCheck(e);
     });
 

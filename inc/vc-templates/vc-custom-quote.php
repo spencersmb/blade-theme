@@ -19,42 +19,75 @@ function neat_quote()
         "params" => array(
 
             array(
-                'type' => 'textfield',
+                'type' => 'textarea',
                 'heading' => esc_html__( 'Header Text', 'neat' ),
                 'description' => esc_html__( 'Enter header title text.', 'neat' ),
-                "value" => 'Build your custom quote', //Default White
+                "value" => '',
                 "admin_label" => true,
-                'param_name' => 'el_class',
+                'param_name' => 'header_text',
             ),
             array(
                 "type" => "colorpicker",
                 "holder" => "div",
                 "heading" => esc_html__("Header Text Color", "neat"),
-                "value" => '#3A3B3D', //Default White
+                "value" => '#424242',
                 "class" => "hide_in_vc_editor",
                 "param_name" => "header_text_color",
             ),
             array(
                 'type' => 'textarea',
-                'heading' => esc_html__( 'Paragraph Text', 'neat' ),
+                'heading' => esc_html__( 'SubText', 'neat' ),
                 'description' => esc_html__( 'Enter text.', 'neat' ),
-                "value" => 'The kit consists of more than a hundred ready-to-use elements that you can combine to get the exact prototype you want.', //Default White
-                "admin_label" => false,
-                'param_name' => 'text_content',
+                'param_name' => 'subtext',
+                "class" => "hide_in_vc_editor",
+                "holder" => "div",
             ),
             array(
                 "type" => "colorpicker",
                 "holder" => "div",
-                "heading" => esc_html__("Paragraph Text Color", "neat"),
-                "value" => '#3A3B3D', //Default White
+                "heading" => esc_html__("Header Text Color", "neat"),
+                "value" => '#424242',
                 "class" => "hide_in_vc_editor",
-                "param_name" => "text_content_color",
+                "param_name" => "subtext_color",
+            ),
+            array(
+                'type' => 'textarea',
+                'heading' => esc_html__( 'Contact Subtext', 'neat' ),
+                'description' => esc_html__( 'Enter text.', 'neat' ),
+                'param_name' => 'contact_text',
+                "holder" => "div",
+                "class" => "hide_in_vc_editor",
+            ),
+            array(
+                "type" => "colorpicker",
+                "holder" => "div",
+                "heading" => esc_html__("Contact Subtext Color", "neat"),
+                "value" => '#424242',
+                "class" => "hide_in_vc_editor",
+                "param_name" => "contact_text_color",
+            ),
+            array(
+                'type' => 'textfield',
+                'heading' => esc_html__( 'Link Text', 'neat' ),
+                'description' => esc_html__( 'Enter text.', 'neat' ),
+                'param_name' => 'link_text',
+                "holder" => "div",
+                "class" => "hide_in_vc_editor",
+            ),
+            array(
+                "type" => "colorpicker",
+                "holder" => "div",
+                "heading" => esc_html__("Link Text Color", "neat"),
+                "value" => '#5F9F18',
+                "class" => "hide_in_vc_editor",
+                "param_name" => "link_text_color",
             ),
             array(
                 'type' => 'dropdown',
                 'heading' => esc_html__( 'Contact page link', 'neat' ),
                 'description' => esc_html__( 'Select a page link for contact.', 'neat' ),
                 "admin_label" => true,
+                "class" => "hide_in_vc_editor",
                 'param_name' => 'custom_link',
                 "value" => getAllPages('page')
             ),
@@ -64,7 +97,13 @@ function neat_quote()
                 'description' => esc_html__( '(Optional) Enter a unique class name.', 'neat' ),
                 'type'        => 'textfield',
                 'holder'      => 'div'
-            )
+            ),
+            array(
+                'type' => 'css_editor',
+                'heading' => __( 'Css', 'neat' ),
+                'param_name' => 'css',
+                'group' => esc_html__( 'Design options', 'neat' ),
+            ),
 
         )
 
@@ -202,20 +241,68 @@ function neat_quote()
 }
 
 // [quote]
-function neat_quote_shortcode($params = array(), $content = null) {
+function neat_quote_shortcode($params = array(), $content = null, $content_html) {
     extract(shortcode_atts(array(
         'class' => '',
-        'bg_color' => ''
+        'header_text' => '',
+        'header_text_color' => '#424242',
+        'subtext' => '',
+        'subtext_color' => '#424242',
+        'contact_text' => '',
+        'contact_text_color' => '#424242',
+        'link_text' => '',
+        'link_text_color' => '#5F9F18',
+        'custom_link' => '',
+        'css' => '',
     ), $params));
 
-    $content = do_shortcode($content);
+$css_class = apply_filters(
+    VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG,
+    vc_shortcode_custom_css_class( $css, ' ' )
+);
 
-    $quote_output = '
+$h2_array = array(
+    'h2' => array(
+        'br' => array()
+    ),
+    'br' => array()
+);
+
+$content = do_shortcode($content);
+
+$quote_output = '
     <!-- quote container -->
-    <div class="quote">
-    
+    <div class="quote '. esc_attr( $css_class ) .'">
         <div class="quote__form--select active'. esc_attr($class).'">
-            '.$content.'
+        
+            <div class="container-fluid">
+                <div class="col-xs-12 col-md-5">
+                
+                    <h2 class="bold" style="color:'.esc_attr($header_text_color).'">'.wp_kses($header_text, $h2_array, 'neat' ).'</h2>
+                
+                    <div class="quote__select--btn">
+                       
+                        <p class="fieldset">
+                            <input type="radio" class="quote__input" name="duration-1" value="residential" id="residential-1" checked>
+                            <label for="residential-1" class="selected">Residential</label>
+                            <input type="radio" class="quote__input" name="duration-1" value="commercial" id="commercial-1">
+                            <label for="commercial-1">Commercial</label>
+                            <span class="quote__switch"></span>
+                        </p>
+                    
+                    </div>
+                    
+                    <p style="color:'.esc_attr($subtext_color).'">'.wp_kses($subtext, 'neat').'</p>
+                    
+                    <span style="color:'.esc_attr($contact_text_color).'">'.wp_kses($contact_text, 'neat').'<a href="'.esc_url(get_permalink($custom_link)).'" style="color:'.esc_attr($link_text_color).'">'.wp_kses($link_text, 'neat').'</a></span>
+                    
+                </div> 
+                
+                <div class="col-xs-12 col-md-7">
+                    '.$content.'
+                </div>
+            </div>
+            
         </div>
         <!-- end quote form select -->
         

@@ -44,6 +44,7 @@ class TestimonailComponent {
         // Set height for first item
         let height = blockItem.outerHeight();
 
+        // if they aren't equal, change them
         if ( this.currentHeight !== height ) {
           $inner.css("height", height);
           this.currentHeight = height;
@@ -90,7 +91,7 @@ class TestimonailComponent {
         let height = blockItem.outerHeight();
         this.currentHeight = height;
         currentSlide.parent(".carousel-inner").css("height", height);
-        
+
       });
     });
 

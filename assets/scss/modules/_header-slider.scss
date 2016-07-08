@@ -19,6 +19,7 @@
     width: 33px;
     display: none;
     right: 50px;
+    overflow: visible;
     //@include transform(translateX(50px));
 
     &::before, &::after {
@@ -70,11 +71,15 @@
     }
   }
 }
+.header-slider-divider{
+  position: relative;
+  z-index: 0;
+}
 .header-slider-inner{
-  z-index: $content;
   @include transform(translateZ(0));
   @include transition(all .3s);
   position: relative;
+  z-index: $above-content;
 
   @include breakpoint(tablet){
     max-width: 970px;
@@ -121,12 +126,10 @@
 .header-slider-gallery, .showcase__slider--gallery {
   position: relative;
   z-index: $content;
-  overflow: hidden;
   list-style: none;
   margin: 0;
   padding: 0;
 
-  @include transform(translateZ(0));
   //@include transition(height .4s .3s);
 
   @include breakpoint(laptop){
@@ -199,6 +202,11 @@
       @include transform(translateX(-100%)translateZ(0));
     }
   }
+}
+
+.header-slider-gallery {
+  overflow: hidden;
+  @include transform(translateZ(0));
 }
 
 .count{

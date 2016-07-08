@@ -15,6 +15,7 @@ import IsotopeGallery from "./partials/gallery-isotope";
 import HeaderSlider from "./partials/header-slider";
 import ShowcaseSlider from "./partials/showcase-slider";
 import Testimonials from "./partials/testimonials";
+import QuoteBuilder from "./partials/quote-builder";
 // import StickySidebar from "./partials/service-sidebar";
 const $ = jQuery;
 declare var ScrollMagic: any;
@@ -31,6 +32,7 @@ declare var ScrollMagic: any;
       Search.init();
       StickySidebar.init();
       Testimonials.init();
+      QuoteBuilder.init();
       AnimationController.init(); // Global window anim and click control
 
     }

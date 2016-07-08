@@ -127,6 +127,26 @@
     color: #000;
 }
 
+div[data-vc-shortcode="showcase"] .vc_checkbox-label{
+    display: block;
+    float: left;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+
+div[data-vc-shortcode="showcase"] .vc_checkbox-label:nth-child(4){
+    clear: both;
+}
+
+div[data-vc-shortcode="showcase"] .vc_checkbox-label input:focus {
+    box-shadow: none;
+    border-color: #b4b9be;
+}
+
+div[data-vc-shortcode="showcase"] .vc_checkbox-label input:checked {
+    border-color: #03a9f4;
+}
+
 /*
 Custom VC Admin Icons
 */

@@ -1,0 +1,66 @@
+.quote {
+
+}
+
+.quote__select--btn {
+  text-align: center;
+  min-width: 186px;
+  display: table;
+  clear: both;
+  margin-bottom: 65px;
+  margin-top: 33px;
+
+
+  .fieldset {
+    display: inline-block;
+    float: left;
+    position: relative;
+    padding: 5px;
+    border-radius: 5rem;
+    border: 1px solid $grey;
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+  }
+
+  label {
+    position: relative;
+    z-index: $below-content;
+    display: inline-block;
+    float: left;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    margin: 0;
+    @include font-size(1.4);
+    @include transition( color .4s);
+
+    &.selected {
+      color: $white;
+    }
+  }
+
+  input[type="radio"]:checked + label + .quote__switch,
+  input[type="radio"]:checked + label:nth-of-type(n) + .quote__switch {
+    /* use label:nth-of-type(n) to fix a bug on safari with multiple adjacent-sibling selectors*/
+    @include transform(translateX(90px));
+  }
+}
+
+.quote__switch {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  height: 40px;
+  width: 90px;
+  background-color: $primary-color;
+  border-radius: 5rem;
+  @include transition( all .4s cubic-bezier(0.860, 0.000, 0.070, 1.000));
+  -webkit-box-shadow: 0px 18px 44px -12px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0px 18px 44px -12px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 18px 44px -12px rgba(0, 0, 0, 0.6);
+}
