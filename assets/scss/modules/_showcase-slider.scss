@@ -39,6 +39,7 @@
 .showcase__inner{
   background: $white;
   padding: 60px 20px 20px;
+  overflow: hidden;
 
   @include breakpoint(tablet){
     padding: 130px 20px 15px;
@@ -51,6 +52,7 @@
 
   @include breakpoint(laptop){
     padding: 0;
+    overflow: visible;
   }
 
   // Small icon
@@ -122,6 +124,7 @@
     z-index:$content;
     opacity: 0;
     will-change: opacity;
+    z-index: $above-content;
   }
 
   @include breakpoint(laptop){
@@ -376,6 +379,7 @@
   }
 
   @include breakpoint(laptop){
+    //overflow: hidden;
     min-height: 281.25px;
     max-width: 450px;
     margin: 0;
@@ -388,6 +392,7 @@
 
   li {
     opacity: 0;
+    @include transition(all .3s cubic-bezier(0.86, 0, 0.07, 1));
 
     &.selected{
       opacity: 1;
@@ -440,10 +445,6 @@
 
 .showcase__slider--wrapper{
   position: relative;
-  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,.68);
-  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,.68);
-  box-shadow: 0px 18px 94px -16px rgba(0,0,0,.68);
-  overflow: hidden;
 
   @include breakpoint(laptop){
     display: inline-block;

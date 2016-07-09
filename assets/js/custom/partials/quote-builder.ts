@@ -1,24 +1,39 @@
 const $ = jQuery;
 import Utils from "./utils";
 
+
 interface QuoteStateInterface {
   selected: string;
   isFormActive: boolean;
+}
+
+interface QuoteSelectedObject {
+  title: string;
+  price: string;
+  description: string;
+  bullets: Object;
+  imgSrc: string;
 }
 
 class QuoteComponent {
 
   selectBtn: JQuery;
   switchBtn: JQuery;
+  formBuilder: JQuery;
+  quoteChooser: JQuery;
   inputs: JQuery;
   quoteItemsArray: JQuery;
   selectConainer: JQuery;
   state: QuoteStateInterface;
+  quoteContainer: JQuery;
+  selectedItem: QuoteSelectedObject;
 
   constructor() {
+    this.quoteContainer = $(".quote");
     this.selectBtn = $(".quote__select--btn");
-
     this.quoteItemsArray = $(".quote__item");
+    this.formBuilder = $(".quote__form--input");
+    this.quoteChooser = $(".quote__form--select");
     this.selectConainer = this.selectBtn.find(".fieldset");
     this.state = {
       selected: '',
@@ -102,6 +117,24 @@ class QuoteComponent {
     });
   }
 
+  buildCardEventHandlers() {
+
+    // Main Cards
+    this.quoteItemsArray.each(( index, el ) => {
+
+      let $this = $(el),
+        button = $this.find(".card__item--btn");
+
+      button.on("click", this.openForm.bind(this));
+
+    });
+
+    // Back button for tablet
+    let button = this.formBuilder.find(".tablet").find(".go-back");
+    button.on("click", this.closeForm.bind(this));
+
+  }
+
   fadeIn( el: JQuery ) {
 
     TweenMax.to(el, .3, {
@@ -162,14 +195,14 @@ class QuoteComponent {
   toggleCards() {
 
     // based on state, add selected to the card's id matching the state
-    this.quoteItemsArray.each((index, el) => {
+    this.quoteItemsArray.each(( index, el ) => {
 
       let $this = $(el),
-          id = $this.attr("id");
+        id = $this.attr("id");
 
       $this.removeClass("selected");
 
-      if( id === this.state.selected){
+      if ( id === this.state.selected ) {
 
         $this.addClass("selected");
 
@@ -177,6 +210,152 @@ class QuoteComponent {
 
     });
 
+  }
+  
+  setActivePlan() {
+
+    let id = this.state.selected;
+    let selectedCard = this.quoteItemsArray.filter( (item) => {
+      return $(this.quoteItemsArray[item]).attr("id") === id;
+    });
+
+    let button = '<a class="rounded-btn white-btn go-back" href="#">Go Back</a>';
+
+    let modifiedElement = selectedCard.clone();
+
+    modifiedElement.find(".card__item--btn").remove();
+
+    // modifiedElement.insertBefore(this.formBuilder.find(".go-back"));
+    let cardWrapper = this.formBuilder.find(".quote__form--card-wrapper");
+
+    cardWrapper.append(modifiedElement).append(button);
+
+    // Back button inside wrapper
+    let buttonDom = cardWrapper.find(".go-back");
+    buttonDom.on("click", this.closeForm.bind(this));
+
+
+  }
+
+  closeForm(e) {
+    e.preventDefault();
+    this.state.isFormActive = false;
+
+    // remove current card
+    let card = this.formBuilder.find(".card__item");
+    let backBtn = this.formBuilder.find(".quote__form--card-wrapper").find(".go-back");
+    TweenMax.to(card, .2, {
+      opacity: 0,
+      y: 15,
+      onComplete: () => {
+        setTimeout(()=>{
+          // set form to active
+          this.formBuilder.removeClass("active");
+
+          // set body back to scrollable
+          $("body").css("overflow-y", "auto");
+        }, 300)
+      }
+    });
+    
+    if( Utils.breakpoint >= Utils.bps.laptop ) {
+      this.formBuilder.find(".quote__form--vc").one('otransitionend oTransitionEnd msTransitionEnd transitionend',
+        (e) => {
+
+          // remove visibility once animation completes
+          this.formBuilder.css("visibility", "hidden");
+          this.quoteChooser.css("opacity", "1");
+
+          // remove current card html
+          card.remove();
+          backBtn.remove();
+
+        });
+    } else {
+
+      console.log("close");
+
+      // remove visibility once animation completes
+      this.formBuilder.css("visibility", "hidden");
+      this.quoteChooser.css("opacity", "1");
+
+      // remove current card html
+      card.remove();
+      backBtn.remove();
+    }
+
+
+    //fade out first display
+    this.quoteChooser.addClass("active");
+  }
+
+  openForm(e) {
+    e.preventDefault();
+
+    let $this = $(e.currentTarget);
+    let parentConatiner = $this.parent("div").parent("div");
+
+    if( !parentConatiner.hasClass("selected") ) {
+      return;
+    }
+
+    this.state.isFormActive = true;
+    
+    // set content plan HTML in new form area
+    this.setActivePlan();
+
+    // fade out cards
+    this.quoteChooser.css("opacity", "0");
+
+    // set form to active
+    this.formBuilder.addClass("active");
+    
+    // add visibility immediately
+    this.formBuilder.css("visibility", "visible");
+
+    //fade out first display
+    this.quoteChooser.removeClass("active");
+
+    if(Utils.breakpoint >= Utils.bps.laptop ){
+
+      // scroll top of div on open for graceful UX
+      $("body,html").animate({ "scrollTop": this.quoteContainer.offset().top -35 }, 200);
+
+    }
+    
+    let card = this.formBuilder.find(".quote__form--card");
+
+    if( Utils.breakpoint >= Utils.bps.laptop ){
+      card.one('otransitionend oTransitionEnd msTransitionEnd transitionend',
+        (e) => {
+
+          // Set body to not scroll
+          $("body").css("overflow-y", "hidden");
+
+          // fade card in once data is set & the card bg is finished animating
+          TweenMax.to(card.find(".card__item"), .3, {
+            opacity: 1,
+            delay: .2
+          });
+          TweenMax.to(card.find(".card__item"), .2, {
+            y: 0,
+          });
+
+        });
+    } else {
+      // Set body to not scroll
+      $("body").css("overflow-y", "hidden");
+
+      // fade card in once data is set & the card bg is finished animating
+      TweenMax.to(card.find(".card__item"), .3, {
+        opacity: 1,
+        delay: .2
+      });
+      TweenMax.to(card.find(".card__item"), .2, {
+        y: 0,
+      });
+    }
+    
   }
 
   init() {
@@ -192,6 +371,10 @@ class QuoteComponent {
 
     // select card
     this.toggleCards();
+
+    // add click events to cards buttons
+    this.buildCardEventHandlers();
+
 
   }
 }

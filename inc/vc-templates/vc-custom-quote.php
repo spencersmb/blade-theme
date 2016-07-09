@@ -276,12 +276,15 @@ $h2_array = array(
     'br' => array()
 );
 
+    $text = "VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content VC content ";
+
 $content = do_shortcode($content);
 
 $quote_output = '
     <!-- quote container -->
     <div class="quote'. esc_attr( $css_class ).' '. esc_attr( $class ) .'">
-        <div class="quote__form--select active'. esc_attr($class).'">
+    
+        <div class="quote__form--select active">
         
             <div class="container-fluid no-padding">
                 <div class="col-xs-12 col-md-4 col-lg-5">
@@ -318,13 +321,37 @@ $quote_output = '
         </div>
         <!-- end quote form select -->
         
-        <div class="quote__form--input hidden">
-            <!-- place quote form inside here -->
-        </div>
-        <!-- end quote form input -->
         
-    </div>
-    <!-- end quote container -->
+        
+        <div class="quote__form--input">
+            <!-- place quote form inside here -->
+            
+            <div class="quote__form--card">
+                <div class="tablet visible-xs visible-sm">
+                    <div class="tablet__card--header">
+                        <span>Selected</span>
+                        <h2>Residential</h2>
+                        <a class="rounded-btn white-btn go-back" href="#">Go Back</a>
+                    </div>
+                    
+                </div>
+                <div class="quote__form--card-wrapper">
+                
+                   
+                
+                    
+                    
+                </div><!-- end quote__form--card-wrapper -->
+                
+            </div><!-- end quote__form--card -->
+            
+            <div class="quote__form--vc">
+                <p>'. $text .'</p>
+            </div>
+            
+        </div><!-- end quote form input -->
+        
+    </div><!-- end quote container -->
 	';
 
     return $quote_output;
@@ -367,7 +394,7 @@ function neat_quote_item_func( $atts, $content = null ) { // New function parame
                     '.$content.'
                 </ul>
                 
-                <a class="rounded-btn filled" href="#">'. wp_kses($button_text, 'neat') .'</a>
+                <a class="card__item--btn rounded-btn filled" href="#">'. wp_kses($button_text, 'neat') .'</a>
                 
             </div>
             <div class="card__image">
@@ -375,7 +402,7 @@ function neat_quote_item_func( $atts, $content = null ) { // New function parame
             </div>
             <!-- quote item form temp -->
             <div class="quote__form--item temp">
-            
+                
             </div>
         </div>
     ';
