@@ -211,12 +211,12 @@ class QuoteComponent {
     });
 
   }
-  
+
   setActivePlan() {
 
     let id = this.state.selected;
-    let selectedCard = this.quoteItemsArray.filter( (item) => {
-      return $(this.quoteItemsArray[item]).attr("id") === id;
+    let selectedCard = this.quoteItemsArray.filter(( item ) => {
+      return $(this.quoteItemsArray[ item ]).attr("id") === id;
     });
 
     let button = '<a class="rounded-btn white-btn go-back" href="#">Go Back</a>';
@@ -237,7 +237,7 @@ class QuoteComponent {
 
   }
 
-  closeForm(e) {
+  closeForm( e ) {
     e.preventDefault();
     this.state.isFormActive = false;
 
@@ -248,19 +248,19 @@ class QuoteComponent {
       opacity: 0,
       y: 15,
       onComplete: () => {
-        setTimeout(()=>{
+        setTimeout( () => {
           // set form to active
           this.formBuilder.removeClass("active");
 
           // set body back to scrollable
           $("body").css("overflow-y", "auto");
-        }, 300)
+        }, 300);
       }
     });
-    
-    if( Utils.breakpoint >= Utils.bps.laptop ) {
+
+    if ( Utils.breakpoint >= Utils.bps.laptop ) {
       this.formBuilder.find(".quote__form--vc").one('otransitionend oTransitionEnd msTransitionEnd transitionend',
-        (e) => {
+        ( e ) => {
 
           // remove visibility once animation completes
           this.formBuilder.css("visibility", "hidden");
@@ -285,22 +285,22 @@ class QuoteComponent {
     }
 
 
-    //fade out first display
+    // fade out first display
     this.quoteChooser.addClass("active");
   }
 
-  openForm(e) {
+  openForm( e ) {
     e.preventDefault();
 
     let $this = $(e.currentTarget);
     let parentConatiner = $this.parent("div").parent("div");
 
-    if( !parentConatiner.hasClass("selected") ) {
+    if ( !parentConatiner.hasClass("selected") ) {
       return;
     }
 
     this.state.isFormActive = true;
-    
+
     // set content plan HTML in new form area
     this.setActivePlan();
 
@@ -309,25 +309,25 @@ class QuoteComponent {
 
     // set form to active
     this.formBuilder.addClass("active");
-    
+
     // add visibility immediately
     this.formBuilder.css("visibility", "visible");
 
-    //fade out first display
+    // fade out first display
     this.quoteChooser.removeClass("active");
 
-    if(Utils.breakpoint >= Utils.bps.laptop ){
+    if ( Utils.breakpoint >= Utils.bps.laptop ) {
 
       // scroll top of div on open for graceful UX
-      $("body,html").animate({ "scrollTop": this.quoteContainer.offset().top -35 }, 200);
+      $("body,html").animate({ "scrollTop": this.quoteContainer.offset().top - 35 }, 200);
 
     }
-    
+
     let card = this.formBuilder.find(".quote__form--card");
 
-    if( Utils.breakpoint >= Utils.bps.laptop ){
+    if ( Utils.breakpoint >= Utils.bps.laptop ) {
       card.one('otransitionend oTransitionEnd msTransitionEnd transitionend',
-        (e) => {
+        ( e ) => {
 
           // Set body to not scroll
           $("body").css("overflow-y", "hidden");
@@ -355,7 +355,7 @@ class QuoteComponent {
         y: 0,
       });
     }
-    
+
   }
 
   init() {

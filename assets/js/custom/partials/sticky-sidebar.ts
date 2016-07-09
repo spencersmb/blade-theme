@@ -32,7 +32,7 @@ class StickySidebarComponent {
       this.isAnimating = true;
       (!window.requestAnimationFrame) ? setTimeout(this.updateSidebarPosition.bind(this), 300) : window.requestAnimationFrame(this.updateSidebarPosition.bind(this));
     } else {
-      this.resetSideBar();
+      // this.resetSideBar();
     }
   }
 
