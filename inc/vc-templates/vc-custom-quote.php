@@ -36,7 +36,7 @@ function neat_quote()
             ),
             array(
                 'type' => 'textarea',
-                'heading' => esc_html__( 'SubText', 'neat' ),
+                'heading' => esc_html__( 'Subtext', 'neat' ),
                 'description' => esc_html__( 'Enter text.', 'neat' ),
                 'param_name' => 'subtext',
                 "class" => "hide_in_vc_editor",
@@ -45,7 +45,7 @@ function neat_quote()
             array(
                 "type" => "colorpicker",
                 "holder" => "div",
-                "heading" => esc_html__("Header Text Color", "neat"),
+                "heading" => esc_html__("Subtext Color", "neat"),
                 "value" => '#424242',
                 "class" => "hide_in_vc_editor",
                 "param_name" => "subtext_color",
@@ -166,12 +166,20 @@ function neat_quote()
                 'description' => esc_html__( 'Add text for the button.', 'neat' ),
             ),
             array(
-                "type" => "colorpicker",
+                'type' => 'textfield',
+                'heading' => esc_html__( 'Form Shortcode', 'neat' ),
+                'param_name' => 'form_builder_shortcode',
+                "admin_label" => false,
+                'description' => esc_html__( 'Add your form shortcode here.', 'neat' ),
+            ),
+            array(
+                "type" => "attach_image",
                 "holder" => "div",
                 "class" => "hide_in_vc_editor",
-                "heading" => esc_html__("Button Color", "neat"),
-                "value" => '#7ED321',
-                "param_name" => "button_color",
+                "admin_label" => true,
+                "heading" => esc_html__( 'Background Image', 'neat' ),
+                'description' => esc_html__( 'Place an image at the bottom of selected card.', 'neat' ),
+                "param_name" => "bg_image",
             ),
             array(
                 'param_name'  => 'class',
@@ -199,7 +207,7 @@ function neat_quote()
                 'description' => esc_html__( 'Enter item text.', 'neat' ),
                 "value" => '',
                 "admin_label" => true,
-                'param_name' => 'el_class',
+                'param_name' => 'bullet_text',
             ),
             array(
                 "type" 			=> "icon",
@@ -216,7 +224,7 @@ function neat_quote()
                 "heading" => esc_html__("Icon Color", "neat"),
                 "value" => '#3A3B3D',
                 "class" => "hide_in_vc_editor",
-                "param_name" => "header_text_color",
+                "param_name" => "icon_color",
             ),
             array(
                 'param_name'  => 'class',
@@ -272,34 +280,38 @@ $content = do_shortcode($content);
 
 $quote_output = '
     <!-- quote container -->
-    <div class="quote '. esc_attr( $css_class ) .'">
+    <div class="quote'. esc_attr( $css_class ).' '. esc_attr( $class ) .'">
         <div class="quote__form--select active'. esc_attr($class).'">
         
-            <div class="container-fluid">
-                <div class="col-xs-12 col-md-5">
+            <div class="container-fluid no-padding">
+                <div class="col-xs-12 col-md-4 col-lg-5">
                 
-                    <h2 class="bold" style="color:'.esc_attr($header_text_color).'">'.wp_kses($header_text, $h2_array, 'neat' ).'</h2>
-                
-                    <div class="quote__select--btn">
-                       
-                        <p class="fieldset">
-                            <input type="radio" class="quote__input" name="duration-1" value="residential" id="residential-1" checked>
-                            <label for="residential-1" class="selected">Residential</label>
-                            <input type="radio" class="quote__input" name="duration-1" value="commercial" id="commercial-1">
-                            <label for="commercial-1">Commercial</label>
-                            <span class="quote__switch"></span>
-                        </p>
+                    <div class="quote__chooser">
                     
+                        <h2 class="bold" style="color:'.esc_attr($header_text_color).'">'.wp_kses($header_text, $h2_array, 'neat' ).'</h2>
+                
+                        <div class="quote__select--btn">
+                           
+                            <p class="fieldset">
+                                
+                            </p>
+                        
+                        </div>
+                        
+                        <div class="quote__chooser--desc hidden-xs">
+                            <p style="color:'.esc_attr($subtext_color).'">'.wp_kses($subtext, 'neat').'</p>
+                            
+                            <span style="color:'.esc_attr($contact_text_color).'">'.wp_kses($contact_text, 'neat').'<a href="'.esc_url(get_permalink($custom_link)).'" style="color:'.esc_attr($link_text_color).'">'.wp_kses($link_text, 'neat').'</a></span>
+                        </div>
+                        
                     </div>
-                    
-                    <p style="color:'.esc_attr($subtext_color).'">'.wp_kses($subtext, 'neat').'</p>
-                    
-                    <span style="color:'.esc_attr($contact_text_color).'">'.wp_kses($contact_text, 'neat').'<a href="'.esc_url(get_permalink($custom_link)).'" style="color:'.esc_attr($link_text_color).'">'.wp_kses($link_text, 'neat').'</a></span>
                     
                 </div> 
                 
-                <div class="col-xs-12 col-md-7">
-                    '.$content.'
+                <div class="col-xs-12 col-md-8 col-lg-7">
+                    <div class="card__item--wrapper">
+                        '.$content.'
+                    </div>
                 </div>
             </div>
             
@@ -324,29 +336,47 @@ add_shortcode( 'quote_item', 'neat_quote_item_func' );
 function neat_quote_item_func( $atts, $content = null ) { // New function parameter $content is added!
     extract( shortcode_atts( array(
         'class' => '',
-        'answer_color' => '',
-        'answer' => '',
-        'question_color' => '',
-        'question' => '',
-        'icon_color' => ''
+        'title' => '',
+        'title_color' => '',
+        'cost' => '',
+        'desc' => '',
+        'desc_color' => '',
+        'button_text' => '',
+        'button_color' => '',
+        'bg_image' => '',
 
     ), $atts ) );
 
     // Bullet Content
     $content = do_shortcode($content);
 
+    if (is_numeric($bg_image)) {
+        $bg_image = wp_get_attachment_url($bg_image);
+    }
+
     // Build Output
     $output = '
         <!-- quote item select -->
-        <div class="quote__item">
-            item
-            <ul class="quote__list">
-                '.$content.'
-            </ul>
-        </div>
-        
-        <!-- quote item form temp -->
-        <div class="quote__form--item temp">
+        <div class="card__item quote__item">
+            <div class="card__item--content">
+            
+                <h2 style="color:'.esc_attr($title_color).'" >'. wp_kses($title, 'neat') .'</h2>
+                <span class="rounded-btn black-btn price black">'. wp_kses($cost, 'neat') .'</span>
+                <h3 class="desc">'. wp_kses($desc, 'neat') .'</h3>
+                <ul class="card__list">
+                    '.$content.'
+                </ul>
+                
+                <a class="rounded-btn filled" href="#">'. wp_kses($button_text, 'neat') .'</a>
+                
+            </div>
+            <div class="card__image">
+                <img src="'.esc_url($bg_image).'" alt="">
+            </div>
+            <!-- quote item form temp -->
+            <div class="quote__form--item temp">
+            
+            </div>
         </div>
     ';
 
@@ -358,10 +388,8 @@ add_shortcode( 'quote_bullet', 'neat_quote_bullet_func' );
 function neat_quote_bullet_func( $atts, $content = null ) { // New function parameter $content is added!
     extract( shortcode_atts( array(
         'class' => '',
-        'answer_color' => '',
-        'answer' => '',
-        'question_color' => '',
-        'question' => '',
+        'bullet_text' => '',
+        'fa_icon' => '',
         'icon_color' => ''
 
     ), $atts ) );
@@ -369,7 +397,7 @@ function neat_quote_bullet_func( $atts, $content = null ) { // New function para
     // Build Output
     $output = '
         <li>
-            bullet item
+            <i class="fa '.esc_attr($fa_icon).'" style="color:'.esc_attr($icon_color).'"></i>'.wp_kses($bullet_text, 'neat').'
         </li>
     ';
 

@@ -66,6 +66,20 @@ class UtilityComponent {
     }
   }
 
+  buildHtml( type: string, attrs?: Object, html?: string ) {
+    
+    // http://marcgrabanski.com/building-html-in-jquery-and-javascript/
+    
+    let h = '<' + type;
+
+    for ( let attr in attrs ) {
+      if ( attrs[ attr ] === false ) continue;
+      h += ' ' + attr + '="' + attrs[ attr ] + '"';
+    }
+
+    return h += html ? ">" + html + "</" + type + ">" : "/>";
+  }
+
   constructor() {
     this.windowWidth = 0;
     this.breakpoint = 320;

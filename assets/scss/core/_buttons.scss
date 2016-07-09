@@ -101,6 +101,17 @@ a.rounded-btn {
   }
 }
 
+.black-btn{
+  color:$black !important;
+  border-color:$grey !important;
+
+  &:hover{
+    color:$white !important;
+    background: $black !important;
+    border-color:$black !important;
+  }
+}
+
 .tag-btn{
     border: 2px solid $primary-color;
     font-size: 11px !important;
