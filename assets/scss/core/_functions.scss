@@ -1,13 +1,12 @@
-/* ----------------------------------------------------------------------------
- * Functions
- * ------------------------------------------------------------------------- */
+/*------------------------------------*\
+    FUNCTIONS
+\*------------------------------------*/
 
 // Import if Google Fonts URL is defined
 @if variable-exists(font-url--ubuntu){
   @import url($font-url--ubuntu);
 }
 
-// Functions and Directives
 //$context: $base__font-size = basefont size is defualt if no context
 @function em($target, $context: $base--fontsize) {
   @return ($target / $context) * 1em;

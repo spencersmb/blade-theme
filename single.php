@@ -4,7 +4,7 @@
  *
  * @package Neat
  */
-
+$blog_layout = get_redux_options('main_blog_layout');
 get_header(); ?>
 
 		<main class="container-fluid no-padding">
@@ -17,6 +17,7 @@ get_header(); ?>
 					'et-single'
 				);
 
+				// Setup Images
 				$thumbnail_id = get_post_thumbnail_id( $post->ID );
 				$thumbnail_url = wp_get_attachment_url( $thumbnail_id );
 				$thumbnail_alt = get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', 'true');
@@ -24,7 +25,7 @@ get_header(); ?>
 
 				?>
 
-				<!-- hero section -->
+			<!-- hero section if no image select correct header-->
 			<?php if(strlen($thumbnail_url) > 0): ?>
 			<div class="hero m-header scene_element scene_element--fadein">
 			<?php else: ?>
@@ -35,6 +36,7 @@ get_header(); ?>
 					<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="65" viewBox="0 0 1212.4 64.6" class="divider-svg">
 						<polygon points="606.2 40.9 0 0 0 64.6 595.2 64.6 617.2 64.6 1212.4 64.6 1212.4 0 " class="divider-path"/>
 					</svg>
+					
 					<?php if(strlen($thumbnail_url) > 0): ?>
 						<div class="hero-background" style="background-image: url(<?php echo esc_url($thumbnail_url);?>)"></div>
 					<?php else: ?>
@@ -48,6 +50,7 @@ get_header(); ?>
 
 								<div class="hero-meta">
 									<?php
+										// META CONTENT
 										$comments_count = wp_count_comments( $post->ID );
 										$total_comments = $comments_count->total_comments;
 									?>
@@ -66,7 +69,13 @@ get_header(); ?>
 
 				<div class="container et-container-single">
 
-					<div class="col-xs-12 col-md-8 col-lg-9 m-page scene_element scene_element--fadeinup">
+					<?php if($blog_layout === "1"): ?>
+						<div class="col-xs-12 col-md-8 col-lg-9 m-page scene_element scene_element--fadeinup">
+					<?php else: ?>
+						<div class="col-xs-12 m-page scene_element scene_element--fadeinup">
+					<?php endif; ?>
+
+
 						<article id="post-<?php the_ID(); ?>" <?php post_class($css_array); ?> >
 						<?php get_template_part( 'assets/views/content', 'single' ); ?>
 
@@ -84,9 +93,11 @@ get_header(); ?>
 				<!-- /et-single -->
 				<?php endwhile; // end of the loop. ?>
 
-				<div class="col-xs-12 col-md-4 col-lg-3">
-					<?php get_sidebar(); ?>
-				</div><!-- /sidebar - container -->
+					<?php if($blog_layout === "1"): ?>
+					<div class="col-xs-12 col-md-3">
+						<?php get_sidebar(); ?>
+					</div><!-- /sidebar - container -->
+					<?php endif; ?>
 					
 			</div><!-- /primary - container -->
 

@@ -11,18 +11,18 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, custom-header, custom-menu, full-width-template, featured-images, custom-colors, theme-options, rtl-language-support, sticky-post, translation-ready
 */
 
-/* ----------------------------------------------------------------------------
- * Mixins & Variables
- * ------------------------------------------------------------------------- */
+/*------------------------------------*\
+    MIXINS & VARIABLES
+\*------------------------------------*/
 @import 'vendor/vendorpackages';
 @import 'core/functions';
 @import 'core/mixins';
 @import 'core/variables';
 
 
-/* ----------------------------------------------------------------------------
- * Structure
- * ------------------------------------------------------------------------- */
+/*------------------------------------*\
+    STRUCTURE
+\*------------------------------------*/
 @import 'core/structure';
 @import 'core/buttons';
 @import 'core/helpers';
@@ -30,9 +30,9 @@ Tags: one-column, two-columns, custom-header, custom-menu, full-width-template, 
 /* WPCore */
 @import 'core/wpcore';
 
-/* ----------------------------------------------------------------------------
- * Layout
- * ------------------------------------------------------------------------- */
+/*------------------------------------*\
+    LAYOUT
+\*------------------------------------*/
 @import 'layout/layout';
 @import 'layout/blog-home';
 @import 'layout/single';
@@ -41,9 +41,9 @@ Tags: one-column, two-columns, custom-header, custom-menu, full-width-template, 
 @import 'layout/post-thumb';
 @import 'layout/gallery-thumb';
 
-/* ----------------------------------------------------------------------------
- * Modules
- * ------------------------------------------------------------------------- */
+/*------------------------------------*\
+    MODULES
+\*------------------------------------*/
 @import 'modules/navigation';
 @import 'modules/search';
 @import 'modules/footer';

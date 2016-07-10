@@ -6,9 +6,6 @@ if ( ! function_exists( 'neat_breadcrumbs' ) ) {
         if ( is_front_page() ) {
             return;
         }
-        if ( get_theme_mod( 'ct_ignite_show_breadcrumbs_setting' ) == 'no' ) {
-            return;
-        }
 
         global $post;
         $defaults  = array(
@@ -82,12 +79,14 @@ if ( ! function_exists( 'neat_breadcrumbs' ) ) {
             $post_type_archive = get_post_type_archive_link( $post_type );
 
             //Build link
-            $custom_post_link = get_home_url() .'/'. $post_type_object->labels->name;
+//            $custom_post_link = get_home_url() .'/'. $post_type_object->labels->name;
 
-            if( !strlen($post_type_archive) > 0 ){
-                $post_type_archive = get_home_url() .'/'. strtolower($post_type_object->labels->name);
-            }
+//            if( !strlen($post_type_archive) > 0 ){
+//                $post_type_archive = get_home_url() .'/'. strtolower($post_type_object->labels->name);
+//            }
+            $post_type_archive = get_home_url() .'/'. strtolower($post_type_object->labels->name);
 
+            // header
             $html .= '<span class="item-cat item-custom-post-type-' . esc_attr( $post_type ) . '"><a class="bread-cat bread-custom-post-type-' . esc_attr( $post_type ) . '" style="color:'.esc_attr($color).'" href="' . esc_url( $post_type_archive ) . '" title="' . esc_attr( $post_type_object->labels->name ) . '">' . esc_attr( $post_type_object->labels->name ) . '</a></span>';
             $html .= $separator;
             $html .= '<span class="item-current item-' . $post->ID . '"><span class="bread-current bread-' . $post->ID . '" style="color:'.esc_attr($color).'" title="' . $post->post_title . '">' . $post->post_title . '</span></span>';

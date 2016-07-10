@@ -12,8 +12,7 @@ get_header();
 	$blog_layout = get_redux_options('main_blog_layout');
 	$current_page = max(1, get_query_var('paged'));
 	?>
-	<!-- Main Container: Blocked -->
-<!--	<main class="container no-padding">-->
+
 	<main class="et-blocked-container">
 		<section class="et-container-primary">
 			<div class="row">
@@ -23,7 +22,6 @@ get_header();
 						<?php $count = 0; ?>
 						<?php if ( have_posts() ) :  while ( have_posts() ) : the_post(); ?>
 							<?php $count++ ?>
-							<?php //get_template_part( 'assets/views/content' ) ?>
 
 							<?php
 							/**

@@ -1,5 +1,8 @@
+/*------------------------------------*\
+    HEADER-SLIDER COMPONENT
+\*------------------------------------*/
+
 .rounded-btn{
-  // Todo: add to customizer header color options
   @include transition(all .3s);
   border: 2px solid $primary-color;
   color: $primary-color;

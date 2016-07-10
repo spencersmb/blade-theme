@@ -29,13 +29,6 @@ function neat_scripts()
 //        wp_register_script('jReady', get_template_directory_uri() . '/assets/js/vendor/readyFn.js', array('jquery'), '1.1', true);
 //        wp_enqueue_script('jReady'); // Enqueue it!
 
-//        wp_register_script('imagesLoaded', get_template_directory_uri() . '/assets/js/vendor/imagesloaded.pkgd.min.js', array('jquery'), '1.1', true);
-//        wp_enqueue_script('imagesLoaded'); // Enqueue it!
-
-//        wp_register_script('isotope', 'https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.js', array('jquery'), '1.1', true);
-//        wp_register_script('isotope-neat', get_template_directory_uri() . '/assets/js/vendor/isotope.min.js', array('jquery'), '1.1', true);
-//        wp_enqueue_script('isotope-neat'); // Enqueue it!
-
         wp_register_script('fontawesome', 'https://use.fontawesome.com/c1013b11d0.js', '', '4', true);
         wp_enqueue_script('fontawesome'); // Enqueue it!
 
@@ -129,9 +122,6 @@ function neat_styles()
     wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap/bootstrap.min.css', '3.6', 'all' );
 
 
-//    wp_register_style('animsition-css', get_template_directory_uri() . '/assets/css/animsition/animsition.css', '', '1.2.3', true);
-//    wp_enqueue_style('animsition-css'); // Enqueue it!
-
     /**
      *
      * Minified and Concatenated styles
@@ -143,22 +133,11 @@ function neat_styles()
 
     /**
      *
-     * IE9 Styles
-     *
-     */
-    // Internet Explorer specific stylesheet
-    wp_enqueue_style( 'neat_ie9', get_stylesheet_directory_uri() . "/ie9-styles.css", array( 'neat_style' )  );
-    wp_style_add_data( 'neat_ie9', 'conditional', 'lte IE 9' );
-
-
-    /**
-     *
      * Google fonts
      * Must be included this way to avoid Firefox issues - included in styles.css
      *
      */
-    // wp_register_style('neat_gfonts', 'http://fonts.googleapis.com/css?family=Open+Sans:300,800,400', array(), '1.0', 'all');
-    // wp_enqueue_style('neat_gfonts'); // Enqueue it!
+
 
 
     /**
@@ -166,11 +145,6 @@ function neat_styles()
      * Non-minified or non-concatenated styles
      *
      */
-
-    // wp_register_style('neat_xyz_css', get_template_directory_uri() . '/assets/css/vendor/xyz.css', array(), '1.0', 'all');
-    // wp_enqueue_style('neat_xyz_css'); // Enqueue it!
-
-
 
 }
 

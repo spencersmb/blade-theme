@@ -30,10 +30,29 @@ class StickySidebarComponent {
     // Check if the sidebar is fixed or not
     if ( !this.isAnimating && Utils.breakpoint >= Utils.bps.laptop ) {
       this.isAnimating = true;
-      (!window.requestAnimationFrame) ? setTimeout(this.updateSidebarPosition.bind(this), 300) : window.requestAnimationFrame(this.updateSidebarPosition.bind(this));
-    } else {
-      // this.resetSideBar();
+      (!window.requestAnimationFrame) ?
+        setTimeout(this.updateSidebarPosition.bind(this), 300) :
+        window.requestAnimationFrame(this.updateSidebarPosition.bind(this));
+    } else if ( Utils.breakpoint < Utils.bps.laptop ) {
+      this.resetSideBar();
     }
+  }
+
+  checkSidebarVisibility() {
+
+    if ( Utils.breakpoint >= Utils.bps.laptop ) {
+
+      // does sidebar haveclass visibility
+      let isVisible = this.aside.hasClass('visible');
+
+      if ( !isVisible ) {
+
+        this.animateSidebarIn();
+
+      }
+
+    }
+
   }
 
   resetSideBar() {
@@ -45,6 +64,8 @@ class StickySidebarComponent {
   updateSidebarPosition(): void {
 
     this.checkScrollDirection();
+
+    this.checkSidebarVisibility();
 
     // get distance from top of content 10 + 40 = 50 padding top
     // this.contentOffsetTop = this.contentWrapper.offset().top - 10;

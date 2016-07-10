@@ -152,11 +152,7 @@
 					</div>
 
 				</div>
-				<div class="lowercontainer">
-					<div class="meta-desc">
-						<p><?php bloginfo('description'); ?></p>
-					</div>
-				</div>
+				
 			</div>
 
 			<div class="et-dropdown-wrapper">

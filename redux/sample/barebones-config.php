@@ -479,7 +479,7 @@
             ),
 
             array(
-                'title' => wp_kses('Spacing Above the Logo', 'neat'),
+                'title' => esc_html__('Spacing Above the Logo', 'neat'),
                 'subtitle' => wp_kses('<em>Drag the slider to set the Spacing Above the Logo.</em>', 'neat'),
                 'id' => 'spacing_above_logo',
                 'type' => 'slider',
@@ -491,7 +491,7 @@
             ),
 
             array(
-                'title' => wp_kses('Spacing Below the Logo', 'neat'),
+                'title' => esc_html__('Spacing Below the Logo', 'neat'),
                 'subtitle' => wp_kses('<em>Drag the slider to set the Spacing Below the Logo.</em>', 'neat'),
                 'id' => 'spacing_below_logo',
                 'type' => 'slider',
@@ -503,7 +503,7 @@
             ),
 
             array(
-                'title' => wp_kses('Spacing Left of the Logo', 'neat'),
+                'title' => esc_html__('Spacing Left of the Logo', 'neat'),
                 'subtitle' => wp_kses('<em>Drag the slider to set the Spacing Left of the Logo.</em>', 'neat'),
                 'id' => 'spacing_left_logo',
                 'type' => 'slider',

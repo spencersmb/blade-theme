@@ -1,3 +1,7 @@
+/*------------------------------------*\
+    ANIMATIONS
+\*------------------------------------*/
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -86,6 +90,23 @@
   100% {
     opacity: 0;
     transform: translate3d(-100px, 0, 0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(.9);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 

@@ -1,5 +1,9 @@
-.quote {
+/*------------------------------------*\
+    QUOTE BUILDER COMPONENT
+\*------------------------------------*/
 
+.quote {
+  opacity: 0;
 }
 
 .quote__form--select {
@@ -144,6 +148,11 @@
   box-shadow: 0px 18px 44px -12px rgba(0, 0, 0, 0.6);
 }
 
+
+/*------------------------------------*\
+    QUOTE CARD ITEM
+\*------------------------------------*/
+
 .card__item--wrapper {
   margin-top: 50px;
   position: relative;
@@ -180,7 +189,7 @@
     left: 0;
     width: 47%;
     float: left;
-    @include transform(translateX(0%) translateY(5%));
+    @include transform(translateX(0%) translateY(5%) translateZ(0));
     @include transition( all .3s);
   }
 
@@ -192,7 +201,7 @@
     left: 0;
     top: 0;
     z-index: $above-content;
-    @include transform(translateX(0));
+    @include transform(translateX(0) translateZ(0));
     background-color: $white;
     max-width: 350px;
 
@@ -214,6 +223,7 @@
 
   @include breakpoint(tablet){
     padding:2.4rem 2.4rem 4rem;
+    @include transform(translateZ(0));
     @include transition( all .3s);
   }
 
@@ -292,7 +302,9 @@
   }
 }
 
-// Active Quote form builder
+/*------------------------------------*\
+    ACTIVE FORM PAGE
+\*------------------------------------*/
 .quote__form--card {
   background: #434343;
   position: relative;
@@ -384,6 +396,11 @@
       ul {
         padding-bottom: 2rem;
       }
+    }
+
+    &.in{
+      opacity: 1;
+      @include transform(translateY(0));
     }
 
   }

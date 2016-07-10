@@ -2,16 +2,17 @@
 /*
   Template Name: Gallery Index
 */
+
 $post_classes = array(
     'col-xs-12',
     'col-sm-6',
     'col-md-4',
     'post-thumb',
 );
-//Header Variables
+
+//filter 
 $has_filter = get_field('show_filter');
 $gallery_type = get_field('gallery_type');
-
 $filter_terms = get_terms( 'gallery_filter', array('fields' => 'names') );
 
 $page_layout = get_redux_options('main_page_layout');
@@ -36,11 +37,12 @@ get_header();
 
         <?php if($has_filter): ?>
             <!--
-#################################
-           - Filter -
-#################################
--->
+            #################################
+                       - Filter -
+            #################################
+            -->
             <section class="gallery-filter-container m-page scene_element scene_element--fadeinup">
+                
             <!-- gallery filter -->
             <?php if(!is_wp_error( $filter_terms )): ?>
                 <div class="col-xs-12 gallery-filters">
@@ -64,11 +66,11 @@ get_header();
 
         <?php endif; ?>
 
-<!--
-#################################
-           - Gallery -
-#################################
--->
+    <!--
+    #################################
+               - Gallery -
+    #################################
+    -->
     <?php if($page_layout === "1"): ?>
         <section class="gallery-container container-fluid no-padding m-page scene_element scene_element--fadein">
     <?php else: ?>

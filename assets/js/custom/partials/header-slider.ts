@@ -64,7 +64,7 @@ class SliderComponent {
   }
 
   updateSlide( direction ) {
-    
+
     let currentSlide = this.getCurrentSlideElement();
 
     if ( direction === "right" ) {
@@ -114,18 +114,27 @@ class SliderComponent {
 
       this.sliderOpen = true;
 
-      this.container.addClass("is-active").one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", () => {
-        $("body,html").animate({ "scrollTop": this.container.offset().top }, 200);
+      this.container
+        .addClass("is-active")
+        .one(
+          "webkitTransitionEnd " +
+          "otransitionend " +
+          "oTransitionEnd " +
+          "msTransitionEnd " +
+          "transitionend", () => {
 
-        // Close Btn animate in
-        let closeBtnAnimation = TweenMax.to(this.closeBtn, .3, {
-          opacity: 1,
-          z: .001,
-          x: -30,
-          right: 0,
-          ease: Cubic.easeOut,
-          delay: .3
-        });
+          $("body,html")
+            .animate({ "scrollTop": this.container.offset().top }, 200);
+
+          // Close Btn animate in
+          let closeBtnAnimation = TweenMax.to(this.closeBtn, .3, {
+            opacity: 1,
+            z: .001,
+            x: -30,
+            right: 0,
+            ease: Cubic.easeOut,
+            delay: .3
+          });
 
       });
     }

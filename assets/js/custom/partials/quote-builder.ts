@@ -27,6 +27,8 @@ class QuoteComponent {
   state: QuoteStateInterface;
   quoteContainer: JQuery;
   selectedItem: QuoteSelectedObject;
+  resizeTimer: number;
+  currentBreakpoint: number;
 
   constructor() {
     this.quoteContainer = $(".quote");
@@ -39,7 +41,12 @@ class QuoteComponent {
       selected: '',
       isFormActive: false
     };
+    this.currentBreakpoint = Utils.breakpoint;
 
+  }
+
+  getSelectedLabel() {
+    return this.selectConainer.find(".selected");
   }
 
   setWidth( label: JQuery ) {
@@ -244,36 +251,34 @@ class QuoteComponent {
     // remove current card
     let card = this.formBuilder.find(".card__item");
     let backBtn = this.formBuilder.find(".quote__form--card-wrapper").find(".go-back");
-    TweenMax.to(card, .2, {
-      opacity: 0,
-      y: 15,
-      onComplete: () => {
-        setTimeout( () => {
-          // set form to active
-          this.formBuilder.removeClass("active");
 
-          // set body back to scrollable
-          $("body").css("overflow-y", "auto");
-        }, 300);
-      }
-    });
+    card.removeClass("in");
+
+    setTimeout(() => {
+      // set form to active
+      this.formBuilder.removeClass("active");
+
+      // set body back to scrollable
+      $("body").css("overflow-y", "auto");
+    }, 400);
 
     if ( Utils.breakpoint >= Utils.bps.laptop ) {
-      this.formBuilder.find(".quote__form--vc").one('otransitionend oTransitionEnd msTransitionEnd transitionend',
-        ( e ) => {
 
-          // remove visibility once animation completes
-          this.formBuilder.css("visibility", "hidden");
-          this.quoteChooser.css("opacity", "1");
+      this.formBuilder
+        .find(".quote__form--vc")
+        .one('otransitionend oTransitionEnd msTransitionEnd transitionend',
+          ( e ) => {
 
-          // remove current card html
-          card.remove();
-          backBtn.remove();
+            // remove visibility once animation completes
+            this.formBuilder.css("visibility", "hidden");
+            this.quoteChooser.css("opacity", "1");
 
-        });
+            // remove current card html
+            card.remove();
+            backBtn.remove();
+
+          });
     } else {
-
-      console.log("close");
 
       // remove visibility once animation completes
       this.formBuilder.css("visibility", "hidden");
@@ -295,10 +300,12 @@ class QuoteComponent {
     let $this = $(e.currentTarget);
     let parentConatiner = $this.parent("div").parent("div");
 
+    // disable button click if item is selected
     if ( !parentConatiner.hasClass("selected") ) {
       return;
     }
 
+    // set state
     this.state.isFormActive = true;
 
     // set content plan HTML in new form area
@@ -316,6 +323,7 @@ class QuoteComponent {
     // fade out first display
     this.quoteChooser.removeClass("active");
 
+    // if desktop scroll top
     if ( Utils.breakpoint >= Utils.bps.laptop ) {
 
       // scroll top of div on open for graceful UX
@@ -323,38 +331,42 @@ class QuoteComponent {
 
     }
 
+
     let card = this.formBuilder.find(".quote__form--card");
+
+    // Set body to not scroll
+    $("body").css("overflow-y", "hidden");
 
     if ( Utils.breakpoint >= Utils.bps.laptop ) {
       card.one('otransitionend oTransitionEnd msTransitionEnd transitionend',
         ( e ) => {
 
-          // Set body to not scroll
-          $("body").css("overflow-y", "hidden");
-
           // fade card in once data is set & the card bg is finished animating
-          TweenMax.to(card.find(".card__item"), .3, {
-            opacity: 1,
-            delay: .2
-          });
-          TweenMax.to(card.find(".card__item"), .2, {
-            y: 0,
-          });
+          card.find(".card__item").addClass("in");
 
         });
     } else {
-      // Set body to not scroll
-      $("body").css("overflow-y", "hidden");
 
       // fade card in once data is set & the card bg is finished animating
-      TweenMax.to(card.find(".card__item"), .3, {
-        opacity: 1,
-        delay: .2
-      });
-      TweenMax.to(card.find(".card__item"), .2, {
-        y: 0,
-      });
+      card.find(".card__item").addClass("in");
+
     }
+
+  }
+
+  resize() {
+
+    // On resize end - check to enable clicks for desktop or remove them
+    clearTimeout(this.resizeTimer);
+
+    this.resizeTimer = setTimeout(() => {
+
+      if ( this.currentBreakpoint !== Utils.breakpoint ) {
+        this.setWidth(this.getSelectedLabel());
+        this.currentBreakpoint = Utils.breakpoint;
+      }
+
+    }, 400);
 
   }
 
@@ -375,6 +387,11 @@ class QuoteComponent {
     // add click events to cards buttons
     this.buildCardEventHandlers();
 
+    // fade main container in
+    this.fadeIn(this.quoteContainer);
+
+    // on resize change button size
+    $(window).on("resize", this.resize.bind(this));
 
   }
 }

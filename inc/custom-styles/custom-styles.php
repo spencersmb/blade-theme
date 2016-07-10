@@ -286,6 +286,12 @@ function neat_custom_styles() {
     {
         border-color: <?php echo esc_html($neat_theme_options['main_color']) ?>;
     }
+
+    /* Override breadcrumbs function output *****/
+    .breadcrumb-trail .item-current span {
+        color: <?php echo esc_html($neat_theme_options['main_color']); ?> !important;
+    }
+
     @media only screen and (min-width: 62em) {
         #header .et-dropdown-content > li:not(.service-dropdown) > a:hover{
             color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
@@ -344,6 +350,13 @@ function neat_custom_styles() {
             endif;
     ?>
 
+    <?php if ( (isset($neat_theme_options['spacing_left_logo'])) ) :
+                $spacing_left_logo = $neat_theme_options['spacing_left_logo'];
+            else:
+                $spacing_left_logo = 15;
+            endif;
+    ?>
+
     <?php if ( (isset($neat_theme_options['main_header_font_color'])) ) :
             $navFontColor = $neat_theme_options['main_header_font_color'];
         else:
@@ -361,19 +374,19 @@ function neat_custom_styles() {
 
     <?php
         // Conversions
-        $spacing_below_logo = $spacing_below_logo + 20;
+        $spacing_below_logo = $spacing_below_logo;
         $upperContainerHeight = $spacing_below_logo + $logo_height;
         $headerHeight = $upperContainerHeight + $spacing_below_logo;
 
         //tablet nav height
         $tablet_height = $upperContainerHeight - $spacing_below_logo + $spacing_above_logo + 15;
+
     ?>
 
     @media only screen and (min-width: 48em) {
 
         #header{
             padding-top: <?php echo esc_attr($spacing_above_logo)?>px;
-            height: <?php echo esc_attr($headerHeight)?>px;
         }
 
         .uppercontainer {
@@ -387,10 +400,7 @@ function neat_custom_styles() {
 
         #header .navbar-brand{
             height: <?php echo esc_attr($logo_height)?>px;
-        }
-
-        .et-dropdown-wrapper {
-            top:<?php echo esc_attr($tablet_height)?>px;
+            padding-left: <?php echo esc_attr($spacing_left_logo)?>px
         }
 
         <?php if ( (isset($neat_theme_options['main_header_font_size'])) ) :
@@ -440,6 +450,9 @@ function neat_custom_styles() {
             background: rgba(<?php echo neat_hex2rgb($navFontColor); ?>,1);
         }
     }
+    /***************************************************************/
+    /* 	Breadcrumbs ************************************************/
+    /***************************************************************/
 
     /***************************************************************/
     /* 	Footer *****************************************************/

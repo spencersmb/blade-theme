@@ -1,3 +1,7 @@
+/*------------------------------------*\
+    SHOWCASE SLIDER
+\*------------------------------------*/
+
 .showcase {
   background: #424242;
   margin-bottom: -1px;
@@ -86,6 +90,7 @@
 
 .showcase__slider--content{
   padding-top: 30px;
+  @include transform(translateZ(0));
   @include transition(all .3s);
 
   @include breakpoint(laptop){
@@ -196,7 +201,7 @@
     margin: 0 auto;
     position: relative;
     @include transition( all .3s);
-    @include transform(translateX(0));
+    @include transform(translateX(0) translateZ(0));
 
     // each item
     li{
@@ -238,8 +243,8 @@
       &.selected{
         position: relative;
         opacity: 1;
-        -webkit-animation-name: bounceIn;
-        animation-name: bounceIn;
+        //-webkit-animation-name: bounceIn;
+        //animation-name: bounceIn;
 
 
         a{
@@ -248,9 +253,9 @@
           @include breakpoint(laptop){
             border: 6px solid $primary-color;
             font-weight: 600;
-            -webkit-box-shadow: 0px 0px 50px -4px #70d600;
-            -moz-box-shadow: 0px 0px 50px -4px #70d600;
-            box-shadow: 0px 0px 50px -4px #70d600;
+            //-webkit-box-shadow: 0px 0px 35px -4px #70d600;
+            //-moz-box-shadow: 0px 0px 35px -4px #70d600;
+            //box-shadow: 0px 0px 35px -4px #70d600;
           }
         }
 
@@ -392,14 +397,12 @@
 
   li {
     opacity: 0;
-    @include transition(all .3s cubic-bezier(0.86, 0, 0.07, 1));
+    @include transition(all .3s );
 
     &.selected{
       opacity: 1;
     }
   }
-
-
 
 }
 
@@ -461,6 +464,7 @@
   margin: 0;
   padding: 15px 0 0;
   height: 269px; //initial mobile height
+  @include transform(translateZ(0));
   @include transition(all .3s);
 
   @include breakpoint(tablet){

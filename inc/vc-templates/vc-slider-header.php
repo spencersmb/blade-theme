@@ -75,65 +75,68 @@ function neat_header_slider_func() {
             array(
                 "type" => "textfield",
                 "holder" => "div",
-                "class" => "hide_in_vc_editor",
                 "heading" => esc_html__("Subtext", "neat"),
                 "param_name" => "subtext",
-                "admin_label" => FALSE,
             ),
             array(
                 "type" => "colorpicker",
                 "holder" => "div",
                 "class" => "hide_in_vc_editor",
-                "admin_label" => true,
+                "admin_label" => false,
                 "heading" => esc_html__("Title Color", "neat"),
                 "param_name" => "title_color",
+                "value" => "#35373d",
             ),
             array(
                 "type" => "colorpicker",
                 "holder" => "div",
                 "class" => "hide_in_vc_editor",
-                "admin_label" => true,
+                "admin_label" => false,
                 "heading" => esc_html__("Subtitle Color", "neat"),
                 "param_name" => "subtitle_color",
+                "value" => "#35373d"
             ),
             array(
                 "type" => "colorpicker",
                 "holder" => "div",
                 "class" => "hide_in_vc_editor",
-                "admin_label" => true,
+                "admin_label" => false,
                 "heading" => esc_html__("Categories Color", "neat"),
                 "param_name" => "cat_color",
+                "value" => "#81d742"
             ),
             array(
                 "type" => "colorpicker",
                 "holder" => "div",
                 "class" => "hide_in_vc_editor",
-                "admin_label" => true,
+                "admin_label" => false,
                 "heading" => esc_html__("Breadcrumbs Color", "neat"),
                 "param_name" => "bread_color",
+                "value" => "#8c8c8c",
             ),
             array(
                 "type" => "colorpicker",
                 "holder" => "div",
                 "class" => "hide_in_vc_editor",
-                "admin_label" => true,
+                "admin_label" => false,
                 "heading" => esc_html__("Divider Color", "neat"),
                 "param_name" => "divider_color",
+                "value" => "#fff",
             ),
             array(
                 "type" => "colorpicker",
                 "holder" => "div",
                 "class" => "hide_in_vc_editor",
-                "admin_label" => true,
+                "admin_label" => false,
                 "heading" => esc_html__("Layout Background Color", "neat"),
                 "param_name" => "layout_bg_color",
-                "value" => "#ededed"
+                "value" => "#fff"
             ),
             array(
                 "type" => "colorpicker",
                 "holder" => "div",
                 "class" => "hide_in_vc_editor",
-                "admin_label" => true,
+                "admin_label" => false,
                 "heading" => esc_html__("Background Color", "neat"),
                 "param_name" => "bg_color",
                 "value" => "#7ED321"
@@ -142,7 +145,7 @@ function neat_header_slider_func() {
                 "type" => "attach_images",
                 "holder" => "div",
                 "class" => "hide_in_vc_editor",
-                "admin_label" => true,
+                "admin_label" => false,
                 "heading" => "Slider Images",
                 "description" => esc_html__( "Choose multiple images to add to the slider", "neat" ),
                 "param_name" => "images",
@@ -161,14 +164,13 @@ function neat_header_slider_func() {
 
 function neat_header_slider_shortcode($params = array(), $content = null) {
     extract(shortcode_atts(array(
-        'title' => 'Title',
         'subtext' => '',
-        'title_color' => '#fff',
-        'subtitle_color' => '#fff',
-        'cat_color' => '#fff',
-        'bread_color' => '#fff',
+        'title_color' => '#35373d',
+        'subtitle_color' => '#35373d',
+        'cat_color' => '#81d742',
+        'bread_color' => '#8c8c8c',
         'divider_color' => '#fff',
-        'layout_bg_color' => '#ededed',
+        'layout_bg_color' => '#fff',
         'bg_color' => '#7ED321',
         'images' => ''
     ), $params));

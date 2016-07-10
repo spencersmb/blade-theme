@@ -14,6 +14,4 @@ if ( ! is_active_sidebar( 'neat_sidebar_1' ) ) {
 
 	<?php dynamic_sidebar( 'neat_sidebar_1' ); ?>
 
-</aside>
-
-<!-- /.et-sidebar -->
+</aside><!-- /.et-sidebar -->

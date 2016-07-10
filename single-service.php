@@ -1,11 +1,7 @@
 <?php
 /**
- * The template for displaying all pages.
+ * The template for displaying service detail pages.
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
  *
  * @package Neat
  */
@@ -17,9 +13,9 @@ $page_layout = get_redux_options('main_page_layout');
     <main class="container-fluid">
 
         <section>
+            
             <div class="row">
 
-                <!-- user chooses block layout - needs to be moved inside page-content layout -->
                 <div class="et-page-wrapper">
 
                     <?php while ( have_posts() ) : the_post(); ?>
@@ -28,14 +24,12 @@ $page_layout = get_redux_options('main_page_layout');
 
                     <?php endwhile; // end of the loop. ?>
 
-                </div>
-                <!-- /.et-page-wrapper -->
+                </div><!-- /.et-page-wrapper -->
 
-            </div>
-            <!-- /.row -->
+            </div><!-- /.row -->
+
         </section>
 
-    </main>
-    <!-- /.container -->
+    </main><!-- /.container -->
 
 <?php get_footer(); ?>
