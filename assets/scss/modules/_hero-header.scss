@@ -42,10 +42,28 @@
   opacity: .7;
 
   @include breakpoint(tablet){
-    min-height: 450px;
+    min-height: 350px;
   }
   @include breakpoint(laptop){
-    min-height: 450px;
+    min-height: 350px;
+  }
+
+  .single-post & {
+    @include breakpoint(tablet){
+      min-height: 450px;
+    }
+    @include breakpoint(laptop){
+      min-height: 450px;
+    }
+  }
+
+  .error404 & {
+    @include breakpoint(tablet){
+      min-height: 600px;
+    }
+    @include breakpoint(laptop){
+      min-height: 600px;
+    }
   }
 }
 
@@ -60,6 +78,17 @@
   max-width: 1037px;
   margin: 0 auto;
   text-align: center;
+
+  img{
+    margin: 0 auto;
+    width: 100px;
+    @include breakpoint(tablet){
+        width: 150px;
+    }
+    @include breakpoint(laptop){
+        width: 200px;
+    }
+  }
 }
 
 .hero-title{
@@ -83,7 +112,8 @@
     @include font-size(6.2);
     line-height: 74px;
     line-height: 7.4rem;
-    padding-bottom: 2.4rem;
+    //padding-bottom: 2.4rem;
+    padding-bottom: 1rem;
   }
 }
 

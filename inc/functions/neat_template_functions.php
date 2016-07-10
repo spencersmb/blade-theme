@@ -123,6 +123,11 @@ if ( ! function_exists( 'neat_entry_footer' ) ) :
 	}
 endif;
 
+/**
+ * Returns thumbnail for the post.
+ *
+ *
+ */
 function neat_post_thumbnail() {
 	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 		return;
@@ -195,11 +200,11 @@ function neat_move_comment_field_to_bottom( $fields ) {
 add_filter( 'comment_form_fields', 'neat_move_comment_field_to_bottom' );
 
 // Replaces the excerpt "Read More" text by a link
-function new_excerpt_more($more) {
+function neat_excerpt_more($more) {
 	global $post;
 	return '<a class="moretag rounded-btn white-btn" href="'. get_permalink($post->ID) . '"> ' . esc_html__('Read more', 'neat'). '</a>';
 }
-add_filter('excerpt_more', 'new_excerpt_more');
+add_filter('excerpt_more', 'neat_excerpt_more');
 
 /*
  *

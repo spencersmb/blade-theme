@@ -364,22 +364,19 @@ function neat_custom_styles() {
         endif;
     ?>
 
-    <?php if ( (isset($neat_theme_options['blog_description'])) ) :
-            $desc_container_width = $neat_theme_options['blog_description'];
-        else:
-            $desc_container_width = "367";
-        endif;
-    ?>
-
 
     <?php
         // Conversions
-        $spacing_below_logo = $spacing_below_logo;
+        $spacing_below_logo = $spacing_below_logo +20;
         $upperContainerHeight = $spacing_below_logo + $logo_height;
         $headerHeight = $upperContainerHeight + $spacing_below_logo;
 
         //tablet nav height
         $tablet_height = $upperContainerHeight - $spacing_below_logo + $spacing_above_logo + 15;
+
+        //desktop absolute nav position top
+        $nav_height = 70;
+        $desktop_top_offset = $headerHeight - ($nav_height/2);
 
     ?>
 
@@ -387,6 +384,7 @@ function neat_custom_styles() {
 
         #header{
             padding-top: <?php echo esc_attr($spacing_above_logo)?>px;
+            height: <?php echo esc_attr($headerHeight)?>px;
         }
 
         .uppercontainer {
@@ -394,13 +392,13 @@ function neat_custom_styles() {
             height: <?php echo esc_attr($upperContainerHeight)?>px;
         }
 
-        .lowercontainer {
-            width: <?php echo esc_attr($desc_container_width)?>px;
-        }
-
         #header .navbar-brand{
             height: <?php echo esc_attr($logo_height)?>px;
             padding-left: <?php echo esc_attr($spacing_left_logo)?>px
+        }
+
+        .et-dropdown-wrapper{
+            top: <?php echo esc_attr($desktop_top_offset); ?>px;
         }
 
         <?php if ( (isset($neat_theme_options['main_header_font_size'])) ) :
@@ -434,6 +432,10 @@ function neat_custom_styles() {
     }
 
     @media only screen and (min-width: 62em) {
+
+        .et-dropdown{
+            top: <?php echo esc_attr($desktop_top_offset); ?>px;
+        }
         .et-dropdown-content a{
             text-transform: uppercase;
             font-weight: 600;
@@ -450,9 +452,6 @@ function neat_custom_styles() {
             background: rgba(<?php echo neat_hex2rgb($navFontColor); ?>,1);
         }
     }
-    /***************************************************************/
-    /* 	Breadcrumbs ************************************************/
-    /***************************************************************/
 
     /***************************************************************/
     /* 	Footer *****************************************************/

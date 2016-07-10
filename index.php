@@ -63,7 +63,7 @@ get_header();
 
 							<article
 								id="post-<?php the_ID(); ?>"
-								class="<?php echo implode(' ', $post_classes) ?>"
+								class="<?php echo esc_attr(implode(' ', $post_classes)); ?>"
 								<?php if($count === 1 && $current_page === 1): ?>
 									<?php if( strlen($featured_image[0]) > 0 ): ?>
 										style="background-image: url(<?php echo esc_url($featured_image[0]) ?>);"
@@ -88,11 +88,10 @@ get_header();
 											</a>
 										<?php endif; ?>
 
-
 									</div>
 									<div class="article">
 										<?php if($count === 1 && $current_page === 1): ?>
-											<span class="article-latest">LATEST NEWS</span>
+											<span class="article-latest"><?php echo esc_html__('LATEST NEWS', 'neat') ?></span>
 										<?php endif; ?>
 										<h2 class="article-title">
 											<a href="<?php esc_url(the_permalink()); ?>">
@@ -109,7 +108,9 @@ get_header();
 												$excerpt = get_the_excerpt();
 												$excerpt_trim = wp_trim_words( $excerpt , '25' );?>
 												<p><?php echo wp_kses($excerpt_trim, 'neat'); ?></p>
-												<a class="moretag rounded-btn white-btn" href="<?php the_permalink() ?>">Read More</a>
+												<a class="moretag rounded-btn white-btn" href="<?php the_permalink() ?>">
+													<?php echo esc_html__('Read More', 'neat') ?>
+												</a>
 											<?php else:
 												the_excerpt();
 											endif;
@@ -147,13 +148,11 @@ get_header();
 				<?php if($blog_layout === "1"): ?>
 					<div class="col-xs-12 col-md-3">
 						<?php get_sidebar(); ?>
-					</div>
+					</div><!-- end sidebar -->
 				<?php endif; ?>
 			</div>
 		</section>
-	</main>
-
-	<!-- /.aa_wrap -->
+	</main><!-- /main -->
 
 
 <?php get_footer(); ?>

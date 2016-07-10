@@ -173,25 +173,6 @@
 
 .widget_search {
 
-  form{
-    position: relative;
-
-    label {
-      display: none;
-    }
-
-    &:before {
-      z-index: $content;
-      font-family: 'FontAwesome';
-      content:"\f002";
-      top:50%;
-      @include transform(translateY(-50%));
-      right: 20px;
-      position: absolute;
-      color: $grey;
-    }
-  }
-
   .search-field{
     background: lighten($lightest-grey, 7%);
     color: $grey;

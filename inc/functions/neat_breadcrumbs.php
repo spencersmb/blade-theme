@@ -1,5 +1,5 @@
 <?php
-// code credit - https://github.com/BenSibley/ignite/blob/master/inc/breadcrumbs.php
+// https://github.com/BenSibley/ignite/blob/master/inc/breadcrumbs.php
 if ( ! function_exists( 'neat_breadcrumbs' ) ) {
     function neat_breadcrumbs( $args = array() ) {
 

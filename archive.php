@@ -6,40 +6,81 @@
  *
  * @package Neat
  */
-
+$blog_layout = get_redux_options('main_blog_layout');
 get_header(); ?>
 
-	<div class="aa_wrap">
+	<main class="container-fluid no-padding">
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="aa_headerblock">
+			<section>
 
-				<?php
-				the_archive_title( '<h2 class="page-title">', '</h2>' );
-				the_archive_description( '<h3 class="taxonomy-description">', '</h3>' );
-				?>
+				<!-- hero section -->
+				<div class="hero m-header scene_element scene_element--fadein" style="background-color:#7ED321">
 
-			</header>
-			<!-- /.aa_headerblock -->
+					<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="65" viewBox="0 0 1212.4 64.6" class="divider-svg">
+						<polygon points="606.2 40.9 0 0 0 64.6 595.2 64.6 617.2 64.6 1212.4 64.6 1212.4 0" class="divider-path"/>
+					</svg>
+					<!-- end svg -->
+					<div class="hero-background img-loader-bg delay-5" style="background-image:url('.esc_url($bg_image).')"></div>
+					<!-- end background-image -->
 
-		<?php while ( have_posts() ) : the_post(); ?>
+					<div class="hero-wrapper">
+						<div class="hero-content">
+							<div class="hero-content-inner">
+								<?php
+								the_archive_title( '<h2 class="hero-title">', '</h2>' );
+								the_archive_description( '<h4 class="hero-subtitle">', '</h4>' );
+								?>
 
-					<?php get_template_part( 'assets/views/content', get_post_format() ); ?>
+							</div>
+							<!-- end hero-content-inner -->
+						</div>
+						<!-- end hero-content -->
+					</div>
+					<!-- end hero wrapper -->
 
-				<?php endwhile; ?>
+				</div>
+				<!-- end hero section -->
 
-			<?php the_posts_navigation(); ?>
+			</section>
+			<!-- /header block -->
 
-		<?php else : ?>
+			<section class="container et-container-single">
 
-			<?php get_template_part( 'assets/views/content', 'none' ); ?>
+			<?php if($blog_layout === "1"): ?>
+				<div class="col-xs-12 col-md-8 col-lg-9 m-page scene_element scene_element--fadeinup">
+			<?php else: ?>
+				<div class="col-xs-12 m-page scene_element scene_element--fadeinup">
+			<?php endif; ?>
 
-		<?php endif; ?>
+					<?php while ( have_posts() ) : the_post(); ?>
 
-	</div>
-	<!-- /.aa_wrap -->
+						<?php get_template_part( 'assets/views/content', get_post_format() ); ?>
+
+					<?php endwhile; ?>
+
+					<?php the_posts_navigation(); ?>
+
+					<?php else : ?>
+
+						<?php get_template_part( 'assets/views/content', 'none' ); ?>
+
+					<?php endif; ?>
+
+				</div>
+
+				<?php if($blog_layout === "1"): ?>
+					<div class="col-xs-12 col-md-3">
+						<?php get_sidebar(); ?>
+					</div><!-- end sidebar -->
+				<?php endif; ?>
+
+			</section>
+
+	</main>
+	<!-- /main -->
 
 
-<?php get_sidebar(); ?>
+
 <?php get_footer(); ?>

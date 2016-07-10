@@ -43,8 +43,8 @@ class neat_Menu_Item_Custom_Fields_Example {
         add_filter( 'manage_nav-menus_columns', array( __CLASS__, '_columns' ), 99 );
 
         self::$fields = array(
-            'field_image' => esc_html__( 'Image Link', 'neat' ),
-            'field_icon' => esc_html__( 'Icon CSS Name', 'neat' ),
+//            'field_image' => esc_html__( 'Image Link', 'neat' ),
+//            'field_icon' => esc_html__( 'Icon CSS Name', 'neat' ),
 //            'field_viewall' => esc_html__( 'Text', 'neat' ),
         );
     }

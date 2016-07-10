@@ -77,10 +77,9 @@ function neat_custom_oembed_filter($html, $url, $attr, $post_ID) {
     $return = '<div class="neat-video embed-responsive embed-responsive-16by9">'.$html.'</div>';
     return $return;
 }
-
 add_filter( 'embed_oembed_html', 'neat_custom_oembed_filter', 10, 4 ) ;
 
-
+// Return redux params
 function get_redux_options($param1, $param2 = null){
 
     global $neat_theme_options;

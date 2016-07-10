@@ -8,6 +8,10 @@
   margin-bottom: 3.4rem;
   padding: 0 15px;
 
+  @include breakpoint(tablet){
+    margin-bottom: 5rem;
+  }
+
   .post-thumb-content {
     padding: 1rem 2rem 2rem;
     @include breakpoint(tablet){
@@ -49,6 +53,7 @@
   min-height: 250px;
   background-size: cover;
   background-position: center;
+  background-color: #e5e5e5;
   @include breakpoint(tablet){
     min-height: 386px;
     margin-left: 20px;

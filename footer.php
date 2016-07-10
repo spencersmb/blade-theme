@@ -143,7 +143,7 @@
 
 
 </footer>
-<!-- /.aa_footer -->
+<!-- /footer -->
 </div>
 <!-- /#content -->
 
