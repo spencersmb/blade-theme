@@ -265,6 +265,9 @@ function neat_custom_styles() {
     {
         background-color: <?php echo esc_html($neat_theme_options['main_color']) ?>;
     }
+    .rounded-btn:focus{
+        color:<?php echo esc_html($neat_theme_options['main_color']) ?>;
+    }
 
     .filled{
         color:white;
@@ -367,7 +370,7 @@ function neat_custom_styles() {
 
     <?php
         // Conversions
-        $spacing_below_logo = $spacing_below_logo +20;
+        $spacing_below_logo = $spacing_below_logo + 15;
         $upperContainerHeight = $spacing_below_logo + $logo_height;
         $headerHeight = $upperContainerHeight + $spacing_below_logo;
 
@@ -451,6 +454,30 @@ function neat_custom_styles() {
         .et-dropdown-content .menu-item-has-children > a::before{
             background: rgba(<?php echo neat_hex2rgb($navFontColor); ?>,1);
         }
+
+        #header .et-dropdown-content ul a:hover {
+            background: <?php echo esc_attr($neat_theme_options['navigation_hover_color']);?>;
+        }
+    }
+
+    /***************************************************************/
+    /* 	Widgets *****************************************************/
+    /***************************************************************/
+    .widget .rounded-btn,
+    footer .widget h6,
+    footer .hours-widget h6:before
+    {
+        color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+    }
+    .input-mail .icon {
+        background: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+    }
+    .tagcloud a{
+        border-color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+    }
+
+    .tagcloud a:hover {
+        background-color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
     }
 
     /***************************************************************/
@@ -490,6 +517,13 @@ function neat_custom_styles() {
     footer a
     {
         color: <?php echo esc_html($neat_theme_options['footer_links_color']); ?>;
+    }
+
+    .footer-bottom{
+        border-color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+    }
+    .copyright a{
+        color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
     }
     <?php endif; ?>
 

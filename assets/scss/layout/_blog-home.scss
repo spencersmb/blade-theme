@@ -29,7 +29,11 @@
     margin: 2.4rem auto 0;
     line-height: 36px;
     line-height: 3.6rem;
-    padding:0;
+    padding:0 0 10px;
+
+    a{
+      color: $black !important;
+    }
   }
 
   .article-image{
@@ -70,10 +74,8 @@
   .moretag{
     display: table;
     text-align: center;
-    border-color: $primary-color !important;
     margin: 2.4rem auto 0;
     &:hover{
-      background: $primary-color !important;
       color: $white !important;
     }
   }
@@ -100,6 +102,7 @@
   }
 }
 
+// First feature post settings
 .primary {
   background-size: 0px;
 

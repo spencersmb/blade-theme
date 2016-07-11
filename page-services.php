@@ -55,16 +55,16 @@ get_header();
 
                     <?php endif; ?>
 
-                </div>
-                <!-- /.et-page-wrapper -->
-            </div>
-            <!-- /.col main content-->
-        </div>
-        <!-- /.row -->
-    </section>
-    <!-- /.container -->
-</main>
-<!-- /.container-fluid -->
+                </div><!-- /.et-page-wrapper -->
+                
+            </div><!-- /.col main content-->
+            
+        </div><!-- /.row -->
+        
+    </section><!-- /.container -->
+    
+</main><!-- /.container-fluid -->
+
 
 
 

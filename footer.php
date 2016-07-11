@@ -135,7 +135,7 @@
 	<?php if( isset($redux_footer_copywrite)  && $redux_footer_copywrite !== ''): ?>
 	<div class="footer-copyright">
 		<div class="copyright">
-			<p><?php echo $redux_footer_copywrite?></p>
+			<p><?php echo wp_kses_post($redux_footer_copywrite, 'neat')?></p>
 		</div>
 	</div>
 	<?php endif; ?>

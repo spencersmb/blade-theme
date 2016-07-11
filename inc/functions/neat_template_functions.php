@@ -41,6 +41,31 @@ function neat_posted_on() {
 }
 endif;
 
+/**
+ * Returns all pages.
+ *
+ * @return assoc array: postID -> postName
+ */
+function neat_getAllPages($type){
+	// return assoc array with Name and post ID
+	global $post;
+
+	$listings = new WP_Query();
+
+	$page_array = array();
+	$string_names = '';
+	$listings->query('post_type=' . $type);
+
+	while ( $listings->have_posts() ) {
+		$listings->the_post();
+
+		$page_title = html_entity_decode(get_the_title($post->ID));
+		$page_array[$post->ID] = $page_title;
+	}
+
+
+	return $page_array;
+}
 
 /**
  * Returns true if a blog has more than 1 category.
@@ -202,7 +227,7 @@ add_filter( 'comment_form_fields', 'neat_move_comment_field_to_bottom' );
 // Replaces the excerpt "Read More" text by a link
 function neat_excerpt_more($more) {
 	global $post;
-	return '<a class="moretag rounded-btn white-btn" href="'. get_permalink($post->ID) . '"> ' . esc_html__('Read more', 'neat'). '</a>';
+	return '<a class="moretag rounded-btn" href="'. get_permalink($post->ID) . '"> ' . esc_html__('Read more', 'neat'). '</a>';
 }
 add_filter('excerpt_more', 'neat_excerpt_more');
 

@@ -14,7 +14,12 @@ get_header();
 $page_layout = get_redux_options('main_page_layout'); ?>
 
 
-<main class="container-fluid">
+<?php if($page_layout === "2"): ?>
+	<main class="container">
+<?php else: ?>
+	<main class="container-fluid">
+<?php endif; ?>
+
 
 	<section>
 
@@ -37,15 +42,12 @@ $page_layout = get_redux_options('main_page_layout'); ?>
 
 				<?php endwhile; // end of the loop. ?>
 
-			</div>
-			<!-- /.et-page-wrapper -->
+			</div><!-- /.et-page-wrapper -->
 
+		</div><!-- /.row -->
+		
+	</section><!-- /section -->
 
-		</div>
-		<!-- /.row -->
-	</section>
-
-</main>
-<!-- /.container-fluid -->
+</main><!-- /.container-fluid -->
 
 <?php get_footer(); ?>

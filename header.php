@@ -157,7 +157,7 @@
 				<a href="#" id="nav-trigger" class="et-nav-trigger"><?php echo esc_html__('Menu', 'neat') ?></a>
 			</div>
 
-			<nav id="et-dropdown-trigger" class="et-dropdown">
+			<nav id="et-dropdown-trigger" class="et-dropdown m-header scene_element scene_element--fadeInUpNav">
 				<h2><?php bloginfo('name'); ?></h2>
 				<a id="nav-close" href="#" class="et-close"><?php echo esc_html__('Close', 'neat') ?></a>
 				<div id="nav-xfer">
@@ -176,16 +176,21 @@
 					/*
 					 * ---> Free Quote Button
 					 */
-					$header_main_button_show = get_redux_options('main_header_button');
+					$header_main_button_show = get_redux_options('has_free_quote');
 
 					?>
 
 					<?php if($header_main_button_show): ?>
+						
 						<?php $header_main_button_text = get_redux_options('main_header_button_text'); ?>
-						<?php $header_main_button_link = get_redux_options('main_header_button_link'); ?>
+						<?php $header_main_button_link = get_redux_options('free_quote_link'); ?>
+						
 						<div class="free">
-							<a href="<?php echo esc_url($header_main_button_link); ?>" class="rounded-btn"><?php echo wp_kses($header_main_button_text, 'neat') ?></a>
+							<a href="<?php echo esc_url(get_the_permalink($header_main_button_link)); ?>" class="rounded-btn">
+								<?php echo wp_kses($header_main_button_text, 'neat') ?>
+							</a>
 						</div>
+						
 					<?php endif; ?>
 
 				</div>

@@ -32,8 +32,8 @@
         //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
         'allow_sub_menu'       => true,
         // Show the sections below the admin menu item or not
-        'menu_title'           => wp_kses( 'Theme Options', 'neat' ),
-        'page_title'           => wp_kses( 'Theme Options', 'neat' ),
+        'menu_title'           => esc_html__( 'Theme Options', 'neat' ),
+        'page_title'           => esc_html__( 'Theme Options', 'neat' ),
         // You will need to generate a Google API key to use this feature.
         // Please visit: https://developers.google.com/fonts/docs/developer_api#Auth
         'google_api_key'       => '',
@@ -137,42 +137,42 @@
     // ADMIN BAR LINKS -> Setup custom links in the admin bar menu as external items.
     $args['admin_bar_links'][] = array(
         'id'    => 'redux-docs',
-        'href'  => 'http://docs.reduxframework.com/',
-        'title' => wp_kses( 'Documentation', 'neat' ),
+        'href'  => esc_url('http://docs.reduxframework.com/'),
+        'title' => esc_html__( 'Documentation', 'neat' ),
     );
 
     $args['admin_bar_links'][] = array(
         //'id'    => 'redux-support',
-        'href'  => 'https://github.com/ReduxFramework/redux-framework/issues',
-        'title' => wp_kses( 'Support', 'neat' ),
+        'href'  => esc_url('https://github.com/ReduxFramework/redux-framework/issues'),
+        'title' => esc_html__( 'Support', 'neat' ),
     );
 
     $args['admin_bar_links'][] = array(
         'id'    => 'redux-extensions',
-        'href'  => 'reduxframework.com/extensions',
-        'title' => wp_kses( 'Extensions', 'neat' ),
+        'href'  => esc_url('reduxframework.com/extensions'),
+        'title' => esc_html__( 'Extensions', 'neat' ),
     );
 
     // SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
     $args['share_icons'][] = array(
         'url'   => 'https://github.com/ReduxFramework/ReduxFramework',
-        'title' => 'Visit us on GitHub',
+        'title' => esc_html__('Visit us on GitHub', 'neat'),
         'icon'  => 'el el-github'
         //'img'   => '', // You can use icon OR img. IMG needs to be a full URL.
     );
     $args['share_icons'][] = array(
-        'url'   => 'https://www.facebook.com/pages/Redux-Framework/243141545850368',
-        'title' => 'Like us on Facebook',
+        'url'   => esc_url('https://www.facebook.com/pages/Redux-Framework/243141545850368'),
+        'title' => esc_html__('Like us on Facebook', 'neat'),
         'icon'  => 'el el-facebook'
     );
     $args['share_icons'][] = array(
-        'url'   => 'http://twitter.com/reduxframework',
-        'title' => 'Follow us on Twitter',
+        'url'   => esc_url('http://twitter.com/reduxframework'),
+        'title' => esc_html__('Follow us on Twitter', 'neat'),
         'icon'  => 'el el-twitter'
     );
     $args['share_icons'][] = array(
-        'url'   => 'http://www.linkedin.com/company/redux-framework',
-        'title' => 'Find us on LinkedIn',
+        'url'   => esc_url('http://www.linkedin.com/company/redux-framework'),
+        'title' => esc_html__('Find us on LinkedIn', 'neat'),
         'icon'  => 'el el-linkedin'
     );
 
@@ -204,12 +204,12 @@
     $tabs = array(
         array(
             'id'      => 'redux-help-tab-1',
-            'title'   => wp_kses( 'Theme Information 1', 'neat' ),
+            'title'   => esc_html__( 'Theme Information 1', 'neat' ),
             'content' => wp_kses( '<p>This is the tab content, HTML is allowed.</p>', 'neat' )
         ),
         array(
             'id'      => 'redux-help-tab-2',
-            'title'   => wp_kses( 'Theme Information 2', 'neat' ),
+            'title'   => esc_html__( 'Theme Information 2', 'neat' ),
             'content' => wp_kses( '<p>This is the tab content, HTML is allowed.</p>', 'neat' )
         )
     );
@@ -247,31 +247,31 @@
      */
 
     Redux::setSection( $opt_name, array(
-        'title' => wp_kses( 'General', 'neat' ),
+        'title' => esc_html__( 'General', 'neat' ),
         'id'    => 'general',
         'customizer_width' => '400px',
         'icon'             => 'el el-home'
     ) );
 
     Redux::setSection( $opt_name, array(
-        'title'  => wp_kses( 'Site Info', 'neat' ),
+        'title'  => esc_html__( 'Site Info', 'neat' ),
         'id'     => 'site_info',
         'subsection' => true,
         'fields'    => array(
             array(
                 'id'        => 'blogname',
                 'type'      => 'text',
-                'title'     => 'Blog Title',
+                'title'     => esc_html__('Blog Title', 'neat'),
                 'default'   => get_option( 'blogname' )
             ),
             array(
                 'id'        => 'blogdescription',
                 'type'      => 'text',
-                'title'     => 'Blog Description',
+                'title'     => esc_html__('Blog Description', 'neat'),
                 'default'   => get_option( 'blogdescription' )
             ),
             array(
-                'title' => wp_kses('Blog Description container size', 'neat'),
+                'title' => esc_html__('Blog Description container size', 'neat'),
                 'subtitle' => wp_kses('<em>Drag the slider to set the width of the description container.</em>', 'neat'),
                 'id' => 'blog_description',
                 'type' => 'slider',
@@ -282,7 +282,7 @@
                 'display_value' => 'text'
             ),
             array (
-                'title' => wp_kses('Favicon', 'neat'),
+                'title' => esc_html__('Favicon', 'neat'),
                 'id' => 'favicon',
                 'type' => 'media',
                 'default' => array (
@@ -293,13 +293,13 @@
     ) );
 
     Redux::setSection( $opt_name, array(
-        'title'      => wp_kses( 'Favicon', 'neat' ),
+        'title'      => esc_html__( 'Favicon', 'neat' ),
         'desc'       => wp_kses('<em>Upload your custom Favicon image. <br>.ico or .png file required.</em>', 'neat'),
         'id'         => 'favicon',
         'subsection' => true,
         'fields'     => array(
             array (
-                'title' => wp_kses('Favicon', 'neat'),
+                'title' => esc_html__('Favicon', 'neat'),
                 'id' => 'favicon',
                 'type' => 'media',
                 'default' => array (
@@ -316,12 +316,12 @@
      */
 
     Redux::setSection( $opt_name, array(
-        'title'      => wp_kses( 'Logo', 'neat' ),
+        'title'      => esc_html__( 'Logo', 'neat' ),
         'subsection' => true,
         'fields'     => array(
 
             array (
-                'title' => wp_kses('Your Logo', 'neat'),
+                'title' => esc_html__('Your Logo', 'neat'),
                 'subtitle' => wp_kses('<em>Upload your logo image.</em>', 'neat'),
                 'id' => 'site_logo',
                 'type' => 'media',
@@ -330,7 +330,7 @@
                 ),
             ),
             array (
-                'title' => wp_kses('Alternative Logo', 'neat'),
+                'title' => esc_html__('Alternative Logo', 'neat'),
                 'subtitle' => wp_kses('<em>The Alternative Logo is used on the <strong>Sticky Header</strong> and <strong>Mobile Devices</strong>.</em>', 'neat'),
                 'id' => 'alt_header_logo',
                 'type' => 'media',
@@ -339,22 +339,8 @@
                 ),
             ),
 
-
-//            array(
-//                'title' => wp_kses('Logo Container Min Width', 'neat'),
-//                'subtitle' => wp_kses('<em>Drag the slider to set the logo container min width.</em>', 'neat'),
-//                'id' => 'logo_min_height',
-//                'type' => 'slider',
-//                "default" => 300,
-//                "min" => 0,
-//                "step" => 1,
-//                "max" => 600,
-//                'display_value' => 'text',
-//                'required' => array( 'main_header_layout', 'equals', array( '2' ) ),
-//            ),
-
             array(
-                'title' => wp_kses('Logo Height', 'neat'),
+                'title' => esc_html__('Logo Height', 'neat'),
                 'subtitle' => wp_kses('<em>Drag the slider to set the logo height <br/>(ignored if there\'s no uploaded logo).</em>', 'neat'),
                 'id' => 'logo_height',
                 'type' => 'slider',
@@ -375,9 +361,9 @@
      *
      */
     Redux::setSection( $opt_name, array(
-        'title' => wp_kses( 'Header', 'neat' ),
+        'title' => esc_html__( 'Header', 'neat' ),
         'id'    => 'header',
-        'desc'             => wp_kses( 'These are really basic fields!', 'neat' ),
+        'desc'             => esc_html__( 'These are really basic fields!', 'neat' ),
         'customizer_width' => '400px',
         'icon'             => 'fa fa-lg fa-list-alt'
     ) );
@@ -388,16 +374,18 @@
      *
      */
     Redux::setSection( $opt_name, array(
-        'title'  => wp_kses( 'Header Styling', 'neat' ),
+        'title'  => esc_html__( 'Header Styling', 'neat' ),
         'subsection' => true,
         'fields' => array(
+
+
 
             array(
                 'id'       => 'main_header_layout',
                 'type'     => 'image_select',
                 'compiler' => true,
                 'subsection' => true,
-                'title'    => wp_kses( 'Header Layout', 'neat' ),
+                'title'    => esc_html__( 'Header Layout', 'neat' ),
                 'subtitle' => wp_kses( '<em>Select the Layout style for the Header.</em>', 'neat' ),
                 'options'  => array(
                     '1' => array(
@@ -415,12 +403,11 @@
                 ),
                 'default'  => '1'
             ),
-
             array(
                 'id'       => 'main_header_navigation_position_header_1',
                 'type'     => 'button_set',
                 'subsection' => true,
-                'title'    => wp_kses( 'Navigation Alignment', 'neat' ),
+                'title'    => esc_html__( 'Navigation Alignment', 'neat' ),
                 'subtitle' => wp_kses( '<em>Set up the alignment for the Main Navigation.</em>', 'neat' ),
                 'options'  => array(
                     'align_left'    => '<i class="fa fa-align-left"></i> Left',
@@ -433,7 +420,7 @@
             array(
                 'id'       => 'main_header_navigation_position_header_2',
                 'type'     => 'button_set',
-                'title'    => wp_kses( 'Navigation Position', 'neat' ),
+                'title'    => esc_html__( 'Navigation Position', 'neat' ),
                 'subtitle' => wp_kses( '<em>Specify the Main Header Navigation Position.</em>', 'neat' ),
                 'options'  => array(
                     '1' => '&nbsp;&nbsp;&nbsp; <i class="fa fa-align-right"></i> &nbsp;Align to Logo&nbsp; <i class="fa fa-align-left"></i> &nbsp;&nbsp;&nbsp;',
@@ -442,16 +429,25 @@
                 'default'  => '1',
                 'required' => array( 'main_header_layout', 'equals', array( '2' ) ),
             ),
+            array (
+                'title' => esc_html__('Navigation Hover Color', 'neat'),
+                'subtitle' => wp_kses('<em>Select Menu Hover Color</em>', 'neat'),
+                'id' => 'navigation_hover_color',
+                'type' => 'color',
+                'default' => '#53950C',
+                'transparent' => false
+            ),
 
             array (
                 'id' => 'main_nav_font_options',
                 'icon' => true,
                 'type' => 'info',
-                'raw' => '<h3 style="margin: 0;"><i class="fa fa-font"></i> Font Settings</h3>',
+                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-font"></i> Font Settings</h3>', 'neat'),
             ),
 
+
             array(
-                'title' => wp_kses('Main Header Font Size', 'neat'),
+                'title' => esc_html__('Main Header Font Size', 'neat'),
                 'subtitle' => wp_kses('<em>Drag the slider to set the Main Header Font Size.</em>', 'neat'),
                 'id' => 'main_header_font_size',
                 'type' => 'slider',
@@ -463,7 +459,7 @@
             ),
 
             array (
-                'title' => wp_kses('Main Header Font Color', 'neat'),
+                'title' => esc_html__('Main Header Font Color', 'neat'),
                 'subtitle' => wp_kses('<em>The Main Header Font Color.</em>', 'neat'),
                 'id' => 'main_header_font_color',
                 'type' => 'color',
@@ -475,7 +471,7 @@
                 'id' => 'header_size_spacing',
                 'icon' => true,
                 'type' => 'info',
-                'raw' => '<h3 style="margin: 0;"><i class="fa fa-expand"></i> Spacing and Size</h3>',
+                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-expand"></i> Spacing and Size</h3>', 'neat'),
             ),
 
             array(
@@ -514,50 +510,15 @@
                 'display_value' => 'text'
             ),
 
-//            array(
-//                'id'       => 'header_width',
-//                'type'     => 'button_set',
-//                'title'    => wp_kses( 'Header Width', 'neat' ),
-//                'subtitle' => wp_kses( '<em>Set up the width of the Header.</em>', 'neat' ),
-//                'options'  => array(
-//                    'full'  => 'Full',
-//                    'custom'    => 'Custom'
-//                ),
-//                'default'  => 'custom',
-//            ),
-//
-//            array(
-//                'title' => wp_kses('Header Max Width', 'neat'),
-//                'subtitle' => wp_kses('<em>Drag the slider to set the Header Max Width. (default: 1680)</em>', 'neat'),
-//                'id' => 'header_max_width',
-//                'type' => 'slider',
-//                "default" => 1680,
-//                "min" => 960,
-//                "step" => 1,
-//                "max" => 1680,
-//                'display_value' => 'text',
-//                'required' => array( 'header_width', 'equals', array( 'custom' ) ),
-//            ),
-
             array (
                 'id' => 'header_bg_options',
                 'icon' => true,
                 'type' => 'info',
-                'raw' => '<h3 style="margin: 0;"><i class="fa fa-eyedropper"></i> Header Background</h3>',
+                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-eyedropper"></i> Header Background</h3>', 'neat'),
             ),
 
-//            array(
-//                'id'            => 'main_header_background',
-//                'type'          => 'background',
-//                'title'         => "Header Background Color",
-//                'subtitle'      => "<em>The Main Header background.</em>",
-//                'default'  => array(
-//                    'background-color' => '#7ED321',
-//                ),
-//                'transparent'   => false,
-//            ),
             array (
-                'title' => wp_kses('Header Background Color', 'neat'),
+                'title' => esc_html__('Header Background Color', 'neat'),
                 'subtitle' => wp_kses('<em>The Main Header background.</em>', 'neat'),
                 'id' => 'main_header_background_color',
                 'type' => 'color',
@@ -575,7 +536,7 @@
      *
      */
     Redux::setSection( $opt_name, array(
-        'title'      => wp_kses( 'Header Elements', 'neat' ),
+        'title'      => esc_html__( 'Header Elements', 'neat' ),
         'subsection' => true,
         'fields'     => array(
 
@@ -586,26 +547,18 @@
                 'id' => 'search_header_info',
                 'icon' => true,
                 'type' => 'info',
-                'raw' => '<h3 style="margin: 0;"><i class="fa fa-search"></i> Search Icon</h3>',
+                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-search"></i> Search Icon</h3>', 'neat'),
             ),
 
             array (
-                'title' => wp_kses('Main Header Search Button', 'neat'),
+                'title' => esc_html__('Main Header Search Button', 'neat'),
                 'subtitle' => wp_kses('<em>Enable / Disable the Search Button in the Header.</em>', 'neat'),
                 'id' => 'search_button',
-                'on' => wp_kses('Enabled', 'neat'),
-                'off' => wp_kses('Disabled', 'neat'),
+                'on' => esc_html__('Enabled', 'neat'),
+                'off' => esc_html__('Disabled', 'neat'),
                 'type' => 'switch',
                 'default' => 1,
             ),
-
-//            array (
-//                'title' => wp_kses('Main Header Search bar Icon', 'neat'),
-//                'subtitle' => wp_kses('<em>Upload your custom Search bar Icon image (32x32 px).<br />Ignore if you want to use the default icon.</em>', 'neat'),
-//                'id' => 'main_header_search_bar_icon',
-//                'type' => 'media',
-//                'required' => array( 'main_header_search_bar', 'equals', array( '1' ) ),
-//            ),
             /*
              * ---> Phone & Email contact
              */
@@ -613,7 +566,7 @@
                 'id' => 'phone_header_info',
                 'icon' => true,
                 'type' => 'info',
-                'raw' => '<h3 style="margin: 0;"><i class="fa fa-phone"></i> Phone Contact</h3>',
+                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-phone"></i> Phone Contact</h3>', 'neat'),
             ),
             array (
                 'title' => esc_html__('Display Phone Number', 'neat'),
@@ -636,49 +589,42 @@
                 'subtitle' => wp_kses('<em>Enter your contact number here.</em>', 'neat'),
                 'id' => 'header_email',
                 'type' => 'text',
-                'default' => 'johndoe@gmail.com',
+                'default' => esc_html__('johndoe@gmail.com', 'neat'),
             ),
             /*
              * ---> Free Quote Button
              */
             array (
-                'id' => 'offcanvas_header_info',
+                'id' => 'free_quote_btn',
                 'icon' => true,
                 'type' => 'info',
-                'raw' => '<h3 style="margin: 0;"><i class="fa fa-bars"></i> Free Quote Button</h3>',
+                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-bars"></i> Free Quote Button</h3>', 'neat'),
             ),
-
             array (
-                'title' => wp_kses('Header Free Quote Button', 'neat'),
+                'title' => esc_html__('Header Free Quote Button', 'neat'),
                 'subtitle' => wp_kses('<em>Enable / Disable the Free Quote Button.</em>', 'neat'),
-                'id' => 'main_header_button',
-                'on' => wp_kses('Enabled', 'neat'),
-                'off' => wp_kses('Disabled', 'neat'),
+                'id' => 'has_free_quote',
+                'on' => esc_html__('Enabled', 'neat'),
+                'off' => esc_html__('Disabled', 'neat'),
                 'type' => 'switch',
                 'default' => 1,
             ),
             array (
-                'title' => wp_kses('Button Text', 'neat'),
+                'title' => esc_html__('Choose Free Quote Button Link', 'neat'),
+                'subtitle' => wp_kses('<em>Select the page the button will link to.</em>', 'neat'),
+                'id' => 'free_quote_link',
+                'type'     => 'select',
+                'required' => array( 'has_free_quote', 'equals', array( 1 ) ),
+                'options'  => neat_getAllPages('page')
+            ),
+            array (
+                'title' => esc_html__('Button Text', 'neat'),
                 'subtitle' => wp_kses('<em>Enter the button text here.</em>', 'neat'),
                 'id' => 'main_header_button_text',
                 'type' => 'text',
+                'required' => array( 'has_free_quote', 'equals', array( 1 ) ),
                 'default' => 'Free Quote',
             ),
-            array (
-                'title' => wp_kses('Button Link', 'neat'),
-                'subtitle' => wp_kses('<em>Enter link URL.</em>', 'neat'),
-                'id' => 'main_header_button_link',
-                'type' => 'text',
-                'default' => '',
-            ),
-// DEPENDeNT 
-//            array (
-//                'title' => wp_kses('Main Header Off-Canvas Icon', 'neat'),
-//                'subtitle' => wp_kses('<em>Upload your custom Off-Canvas Icon image (32x32 px).<br />Ignore if you want to use the default icon.</em>', 'neat'),
-//                'id' => 'main_header_off_canvas_icon',
-//                'type' => 'media',
-//                'required' => array( 'main_header_button_link', 'equals', array( '1' ) )
-//            ),
 
             /*
              * ---> Social Icons in Header
@@ -688,18 +634,18 @@
                 'id' => 'header_social_icons',
                 'icon' => true,
                 'type' => 'info',
-                'raw' => '<h3 style="margin: 0;"><i class="fa fa-share-alt"></i> Show / Hide Social Media Icons </h3>',
+                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-share-alt"></i> Show / Hide Social Media Icons </h3>', 'neat'),
             ),
 
             array (
-                'title' => wp_kses('Header Social Media Icon Display', 'neat'),
+                'title' => esc_html__('Header Social Media Icon Display', 'neat'),
                 'subtitle' => wp_kses('<em>Show / Hide Social Icons in the header.</em>', 'neat'),
                 'id' => 'top_bar_social_icons',
-                'on' => wp_kses('Show', 'neat'),
-                'off' => wp_kses('Hide', 'neat'),
+                'on' => esc_html__('Show', 'neat'),
+                'off' => esc_html__('Hide', 'neat'),
                 'type' => 'switch',
                 'default' => 1
-            ),
+            )
 
         )
 
@@ -715,7 +661,7 @@
         'br' => array()
     );
     Redux::setSection( $opt_name, array(
-        'title'  => wp_kses( 'Layout', 'neat' ),
+        'title'  => esc_html__( 'Layout', 'neat' ),
         'fields' => array(
 
             array(
@@ -727,11 +673,11 @@
                 'subtitle' => wp_kses( '<em>Select the Layout style for Blog posts.</em>', 'neat' ),
                 'options'  => array(
                     '1' => array(
-                        'alt' => 'Layout 1',
+                        'alt' => esc_html__('Layout 1', 'neat'),
                         'img' => get_template_directory_uri() . '/assets/images/theme_options/icons/blog_sidebar.png'
                     ),
                     '2' => array(
-                        'alt' => 'Layout 2',
+                        'alt' => esc_html__('Layout 2', 'neat'),
                         'img' => get_template_directory_uri() . '/assets/images/theme_options/icons/blog_no_sidebar.png'
                     )
 
@@ -747,11 +693,11 @@
                 'subtitle' => wp_kses( '<em>Select the Layout style for pages:</em></br><em>Full Width or Contained</em>', $layout_wp_kses, 'neat' ),
                 'options'  => array(
                     '1' => array(
-                        'alt' => 'Layout 1',
+                        'alt' => esc_html__('Layout 1', 'neat'),
                         'img' => get_template_directory_uri() . '/assets/images/theme_options/icons/page_full_width.png'
                     ),
                     '2' => array(
-                        'alt' => 'Layout 2',
+                        'alt' => esc_html__('Layout 2', 'neat'),
                         'img' => get_template_directory_uri() . '/assets/images/theme_options/icons/blog_no_sidebar.png'
                     )
 
@@ -771,11 +717,11 @@
      */
     Redux::setSection( $opt_name, array(
     'icon'    => 'fa fa-anchor',
-    'title'   => wp_kses( 'Footer', 'neat' ),
+    'title'   => esc_html__( 'Footer', 'neat' ),
     'fields'  => array(
 
             array (
-                'title' => wp_kses('Footer Background Color', 'neat'),
+                'title' => esc_html__('Footer Background Color', 'neat'),
                 'subtitle' => wp_kses('<em>The Top Bar background color.</em>', 'neat'),
                 'id' => 'footer_background_color',
                 'type' => 'color',
@@ -783,7 +729,7 @@
             ),
 
             array (
-                'title' => wp_kses('Footer Text', 'neat'),
+                'title' => esc_html__('Footer Text', 'neat'),
                 'subtitle' => wp_kses('<em>Specify the Footer Text Color.</em>', 'neat'),
                 'id' => 'footer_texts_color',
                 'type' => 'color',
@@ -792,7 +738,7 @@
             ),
 
             array (
-                'title' => wp_kses('Footer Links', 'neat'),
+                'title' => esc_html__('Footer Links', 'neat'),
                 'subtitle' => wp_kses('<em>Specify the Footer Links Color.</em>', 'neat'),
                 'id' => 'footer_links_color',
                 'type' => 'color',
@@ -801,17 +747,17 @@
             ),
 
             array (
-                'title' => wp_kses('Social Icons', 'neat'),
+                'title' => esc_html__('Social Icons', 'neat'),
                 'subtitle' => wp_kses('<em>Enable / Disable the Social Icons.</em>', 'neat'),
                 'id' => 'footer_social_icons',
-                'on' => wp_kses('Enabled', 'neat'),
-                'off' => wp_kses('Disabled', 'neat'),
+                'on' => esc_html__('Enabled', 'neat'),
+                'off' => esc_html__('Disabled', 'neat'),
                 'type' => 'switch',
                 'default' => 1,
             ),
 
             array (
-                'title' => wp_kses('Footer Copyright Text', 'neat'),
+                'title' => esc_html__('Footer Copyright Text', 'neat'),
                 'subtitle' => wp_kses('<em>Enter your copyright information here.</em>', 'neat'),
                 'id' => 'footer_copyright_text',
                 'type' => 'text',
@@ -843,7 +789,7 @@
         ),
 
         array (
-            'title' => wp_kses('Headings Color', 'neat'),
+            'title' => esc_html__('Headings Color', 'neat'),
             'subtitle' => wp_kses('<em>Headings Color of the site.</em>', 'neat'),
             'id' => 'headings_color',
             'type' => 'color',
@@ -892,18 +838,18 @@
      */
     Redux::setSection( $opt_name, array(
     'icon'   => 'fa fa-font',
-    'title'  => wp_kses( 'Typography', 'neat' ),
+    'title'  => esc_html__( 'Typography', 'neat' ),
     'fields' => array(
 
         array (
             'id' => 'source_fonts_info',
             'icon' => true,
             'type' => 'info',
-            'raw' => wp_kses('<h3 style="margin: 0;"><i class="fa fa-font"></i> Font Sources</h3>', 'neat'),
+            'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-font"></i> Font Sources</h3>', 'neat'),
         ),
 
         array(
-            'title'    => wp_kses('Font Source', 'neat'),
+            'title'    => esc_html__('Font Source', 'neat'),
             'subtitle' => wp_kses('<em>Choose the Font Source</em>', 'neat'),
             'id'       => 'font_source',
             'type'     => 'radio',
@@ -919,7 +865,7 @@
         array(
             'id'=>'font_google_code',
             'type' => 'text',
-            'title' => wp_kses('Google Code', 'neat'),
+            'title' => esc_html__('Google Code', 'neat'),
             'subtitle' => wp_kses('<em>Paste the provided Google Code</em>', 'neat'),
             'default' => 'https://fonts.googleapis.com/css?family=Yantramanav|Poppins:400,700',
             'required' => array('font_source','=','2')
@@ -929,7 +875,7 @@
         array(
             'id'=>'font_typekit_kit_id',
             'type' => 'text',
-            'title' => wp_kses('Typekit Kit ID', 'neat'),
+            'title' => esc_html__('Typekit Kit ID', 'neat'),
             'subtitle' => wp_kses('<em>Paste the provided Typekit Kit ID.</em>', 'neat'),
             'default' => '',
             'required' => array('font_source','=','3')
@@ -939,12 +885,12 @@
             'id' => 'main_font_info',
             'icon' => true,
             'type' => 'info',
-            'raw' => wp_kses('<h3 style="margin: 0;"><i class="fa fa-font"></i> Main Font</h3>', 'neat'),
+            'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-font"></i> Main Font</h3>', 'neat'),
         ),
 
         // Standard + Google Webfonts
         array (
-            'title' => wp_kses('Font Face', 'neat'),
+            'title' => esc_html__('Font Face', 'neat'),
             'subtitle' => wp_kses('<em>Pick the Main Font for your site.</em>', 'neat'),
             'id' => 'main_font',
             'type' => 'typography',
@@ -964,9 +910,9 @@
 
         // Google Custom
         array (
-            'title' => wp_kses('Google Font Face', 'neat'),
+            'title' => esc_html__('Google Font Face', 'neat'),
             'subtitle' => wp_kses('<em>Enter your Google Font Name for the theme\'s Main Typography</em>', 'neat'),
-            'desc' => wp_kses('e.g.: open sans', 'neat'),
+            'desc' => esc_html__('e.g.: open sans', 'neat'),
             'id' => 'main_google_font_face',
             'type' => 'text',
             'default' => 'Poppins',
@@ -975,9 +921,9 @@
 
         // Adobe Typekit
         array (
-            'title' => wp_kses('Typekit Font Face', 'neat'),
+            'title' => esc_html__('Typekit Font Face', 'neat'),
             'subtitle' => wp_kses('<em>Enter your Typekit Font Name for the theme\'s Main Typography</em>', 'neat'),
-            'desc' => wp_kses('e.g.: futura-pt', 'neat'),
+            'desc' => esc_html__('e.g.: futura-pt', 'neat'),
             'id' => 'main_typekit_font_face',
             'type' => 'text',
             'default' => '',
@@ -989,12 +935,12 @@
             'id' => 'secondary_font_info',
             'icon' => true,
             'type' => 'info',
-            'raw' => wp_kses('<h3 style="margin: 0;"><i class="fa fa-font"></i> Secondary Font</h3>', 'neat'),
+            'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-font"></i> Secondary Font</h3>', 'neat'),
         ),
 
         // Standard + Google Webfonts
         array (
-            'title' => wp_kses('Font Face', 'neat'),
+            'title' => esc_html__('Font Face', 'neat'),
             'subtitle' => wp_kses('<em>Pick the Secondary Font for your site.</em>', 'neat'),
             'id' => 'secondary_font',
             'type' => 'typography',
@@ -1015,9 +961,9 @@
 
         // Google Custom
         array (
-            'title' => wp_kses('Google Font Face', 'neat'),
+            'title' => esc_html__('Google Font Face', 'neat'),
             'subtitle' => wp_kses('<em>Enter your Google Font Name for the theme\'s Secondary Typography</em>', 'neat'),
-            'desc' => wp_kses('e.g.: open sans', 'neat'),
+            'desc' => esc_html__('e.g.: open sans', 'neat'),
             'id' => 'secondary_google_font_face',
             'type' => 'text',
             'default' => 'Yantramanav',
@@ -1026,9 +972,9 @@
 
         // Adobe Typekit
         array (
-            'title' => wp_kses('Typekit Font Face', 'neat'),
+            'title' => esc_html__('Typekit Font Face', 'neat'),
             'subtitle' => wp_kses('<em>Enter your Typekit Font Name for the theme\'s Secondary Typography</em>', 'neat'),
-            'desc' => wp_kses('e.g.: futura-pt', 'neat'),
+            'desc' => esc_html__('e.g.: futura-pt', 'neat'),
             'id' => 'secondary_typekit_font_face',
             'type' => 'text',
             'default' => '',
@@ -1048,7 +994,7 @@
      */
     Redux::setSection( $opt_name, array(
     'icon'   => 'fa fa-share-alt-square',
-    'title'  => wp_kses( 'Social Media', 'neat' ),
+    'title'  => esc_html__( 'Social Media', 'neat' ),
     'fields' => array(
 
             array (
@@ -1158,11 +1104,11 @@
      */
     Redux::setSection( $opt_name, array(
         'icon'   => 'fa fa-code',
-        'title'  => wp_kses( 'Custom Code', 'neat' ),
+        'title'  => esc_html__( 'Custom Code', 'neat' ),
         'fields' => array(
 
             array (
-                'title' => wp_kses('Custom CSS', 'neat'),
+                'title' => esc_html__('Custom CSS', 'neat'),
                 'subtitle' => wp_kses('<em>Paste your custom CSS code here.</em>', 'neat'),
                 'id' => 'custom_css',
                 'type' => 'ace_editor',
@@ -1170,7 +1116,7 @@
             ),
 
             array (
-                'title' => wp_kses('Header JavaScript Code', 'neat'),
+                'title' => esc_html__('Header JavaScript Code', 'neat'),
                 'subtitle' => wp_kses('<em>Paste your custom JS code here. The code will be added to the header of your site.</em>', 'neat'),
                 'id' => 'header_js',
                 'type' => 'ace_editor',
@@ -1178,7 +1124,7 @@
             ),
 
             array (
-                'title' => wp_kses('Footer JavaScript Code', 'neat'),
+                'title' => esc_html__('Footer JavaScript Code', 'neat'),
                 'subtitle' => wp_kses('<em>Here is the place to paste your Google Analytics code or any other JS code you might want to add to be loaded in the footer of your website.</em>', 'neat'),
                 'id' => 'footer_js',
                 'type' => 'ace_editor',

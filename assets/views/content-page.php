@@ -4,13 +4,8 @@
  *
  * @package Neat
  */
-$page_layout = get_redux_options('main_page_layout');
 ?>
-<?php if (is_front_page()): ?>
-
-	<?php the_content(); ?>
-
-<?php else: ?>
+<!-- content-page.php -->
 <article class="et_page">
 
 	<div class="inner-page-wrapper">
@@ -23,11 +18,7 @@ $page_layout = get_redux_options('main_page_layout');
 		) );
 		?>
 
-	</div>
-	<!-- /.et-page-wrapper -->
+	</div><!-- /.inner-page-wrapper -->
 
-</article>
-<!-- /.article -->
-
-<?php endif; ?>
+</article><!-- /.et_page -->
 

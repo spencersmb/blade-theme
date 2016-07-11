@@ -33,6 +33,30 @@
   }
 }
 
+@keyframes fadeInUpNav {
+  0% {
+    opacity: 0;
+    transform: translateY(10px)translateX(-50%)translateZ(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0)translateX(-50%)translateZ(0);
+  }
+}
+
+@keyframes fadeInDownNav {
+  0% {
+    opacity: 1;
+    transform: translateY(0)translateX(-50%)translateZ(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px)translateX(-50%)translateZ(0);
+  }
+}
+
 @keyframes fadeInDown {
   0% {
     opacity: 1;
@@ -133,6 +157,13 @@
       animation-delay: .4s;
     }
 
+    /** Nav element that fades in and slides up */
+    .scene_element--fadeInUpNav {
+      animation-name: fadeInUpNav;
+      animation-fill-mode: both;
+      animation-delay: .5s;
+    }
+
     /** An element that fades in and slides from the right */
     .scene_element--fadeinright {
       animation-name: fadeInRight;
@@ -162,6 +193,12 @@
         animation-delay: .3s;
         animation-name: fadeInDown;
       }
+      /** Nav element that fades in and slides up */
+      .scene_element--fadeInUpNav {
+        animation-name: fadeInDownNav;
+        animation-fill-mode: both;
+        animation-delay: .3s;
+      }
       .scene_element--fadein {
         animation-duration: .5s;
         animation-name: fadeOut;
@@ -177,14 +214,14 @@
 }
 
 .m-mobile-nav {
-  &.scene_element{
-    animation-duration: 0.25s;
-    transition-timing-function: ease-in;
-    animation-fill-mode: both;
-  }
-  &.scene_element--fadein {
-    animation-duration: .3s;
-    animation-delay: .5s;
-    animation-name: fadeIn;
-  }
+  //&.scene_element{
+  //  animation-duration: 0.25s;
+  //  transition-timing-function: ease-in;
+  //  animation-fill-mode: both;
+  //}
+  //&.scene_element--fadein {
+  //  animation-duration: .3s;
+  //  animation-delay: .5s;
+  //  animation-name: fadeIn;
+  //}
 }

@@ -66,7 +66,7 @@
 		<div class="col-xs-12">
 			<div class="et-single-social__container">
 
-				<h6>Share</h6>
+				<h6><?php esc_html__('Share', 'neat') ?></h6>
 
 				<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php esc_url(the_permalink()); ?>">
 					<i class="fa fa-facebook"></i>
@@ -84,14 +84,12 @@
 					<i class="fa fa-google-plus"></i>
 				</a>
 
-			</div>
-			<!-- end container -->
-		</div>
-		<!-- end col-12 -->
-	</div>
-	<!-- end social -->
+			</div><!-- /.container -->
+			
+		</div><!-- /.col-12 -->
+		
+	</div><!-- /.social -->
 
-</div>
-<!-- /et-single__content -->
+</div><!-- /.et-single__content -->
 
 

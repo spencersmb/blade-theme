@@ -10,7 +10,8 @@ $blog_layout = get_redux_options('main_blog_layout');
 ?>
 
 <section class="search-container">
-	<!-- hero ssection -->
+	
+	<!-- hero section -->
 	<div class="hero no-image m-header scene_element scene_element--fadein">
 
 		<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="65" viewBox="0 0 1212.4 64.6" class="divider-svg">
@@ -24,17 +25,15 @@ $blog_layout = get_redux_options('main_blog_layout');
 				<div class="hero-content-inner">
 					<h2 class="page-title"><?php printf( __( 'Search Results for: %s', 'neat' ), '<span>' . esc_html( get_search_query() ) . '</span>' ); ?></h2>
 
-					<div class="hero-meta">
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-		<!-- end hero wrapper -->
-	</div>
-	<!-- end hero section -->
-	<div class="container">
+				</div><!-- /.hero-content-inner -->
+				
+			</div><!-- /.hero-content -->
+			
+		</div><!-- /.hero wrapper -->
+		
+	</div><!-- /.hero section -->
+	
+	<div class="container et-container-primary">
 		<div class="row">
 			<div class="col-xs-12 <?php if($blog_layout === "1"): echo esc_attr('col-md-8 col-lg-9'); ?><?php endif; ?>">
 
@@ -55,20 +54,19 @@ $blog_layout = get_redux_options('main_blog_layout');
 						<?php get_template_part( 'assets/views/content', 'none' ); ?>
 
 					<?php endif; ?>
-				</div>
+				</div><!-- /.content -->
 
-			</div>
-			<!-- /.col -->
+			</div><!-- /.col -->
+			
 			<?php if($blog_layout === "1"): ?>
 				<div class="col-xs-12 col-md-4 col-lg-3">
 					<?php get_sidebar(); ?>
 				</div>
 			<?php endif; ?>
-		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /.et-primary-container -->
-</section>
-<!-- /.et-search -->
+		</div><!-- /.row -->
+		
+	</div><!-- /.et-primary-container -->
+	
+</section><!-- /.et-search -->
 
 <?php get_footer(); ?>

@@ -9,7 +9,10 @@
 <article class="blog-article">
 
 	<div class="article">
-
+		
+		<?php if ( 'post' == get_post_type() ) : ?>
+			<span class="entry-date"><?php echo get_the_date(); ?></span>
+		<?php endif; ?>
 		<h2 class="article-title">
 			<a href="<?php esc_url(the_permalink()); ?>">
 
@@ -17,17 +20,16 @@
 
 			</a>
 		</h2>
-		<?php if ( 'post' == get_post_type() ) : ?>
-			<span class="entry-date"><?php echo get_the_date(); ?></span>
-		<?php endif; ?>
+
 
 		<div class="article-content">
 
-			<?php the_excerpt(); ?>
 
-		</div>
-	</div>
-		<!-- /.aa_article__excerpt -->
+			<span class="span-excerpt"><?php the_excerpt(); ?></span>
 
-</article>
-<!-- /.aa_search -->
+
+		</div><!-- /.article-content -->
+
+	</div><!-- /.article -->
+
+</article><!-- /.blog-article -->
