@@ -204,8 +204,3 @@ if ( !isset( $redux_demo ) && file_exists( get_template_directory() . '/redux/sa
 	require_once (get_template_directory() . '/redux/sample/barebones-config.php');
 //	require_once (get_template_directory() . '/redux/sample/sample-config.php');
 }
-
-/**
- * VC Templates.
- */
-require get_template_directory() . '/inc/vc-templates/vc-templates.php';

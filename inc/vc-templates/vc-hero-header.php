@@ -1,5 +1,4 @@
 <?php
-add_action( 'vc_before_init', 'neat_hero_header' );
 function neat_hero_header()
 {
 
@@ -72,6 +71,8 @@ function neat_hero_header()
     ));
 }
 
+neat_hero_header();
+
 // [hero]
 function hero_header($params = array(), $content = null) {
     extract(shortcode_atts(array(
@@ -122,6 +123,5 @@ function hero_header($params = array(), $content = null) {
 
     return $hero_header;
 }
-
 add_shortcode('hero', 'hero_header');
 

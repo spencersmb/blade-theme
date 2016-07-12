@@ -6,7 +6,7 @@
  */
 ?>
 
-<section class="et-no-results">
+<section class="neat-no-results">
 
 	<?php esc_html__( 'Nothing Found', 'neat' ); ?>
 
@@ -35,5 +35,4 @@
 	<?php endif; ?>
 
 
-</section>
-<!-- /.aa_no_results -->
+</section><!-- /.neat-no-results -->

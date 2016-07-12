@@ -46,7 +46,7 @@ endif;
  *
  * @return assoc array: postID -> postName
  */
-function neat_getAllPages($type){
+function neat_getAllPages_Reverse($type){
 	// return assoc array with Name and post ID
 	global $post;
 

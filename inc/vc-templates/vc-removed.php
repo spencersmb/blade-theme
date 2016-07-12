@@ -24,3 +24,19 @@ vc_remove_element("vc_tour");
 vc_remove_element("vc_message");
 vc_remove_element("vc_round_chart");
 vc_remove_element("vc_line_chart");
+
+//TEst
+vc_add_param("vc_row", array(
+    "type" => "dropdown",
+    "class" => "hide_in_vc_editor",
+    "admin_label" => true,
+    "heading" => "Row Type",
+    "param_name" => "type",
+    "value" => array(
+        "Normal" => "normal",
+        "Content" => "neat_content"
+    ),
+    "default" => "normal",
+));
+
+require get_template_directory() . '/inc/vc-templates/vc-hero-header.php';

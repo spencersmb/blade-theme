@@ -74,9 +74,36 @@
   @include breakpoint(laptop){
     max-width: 970px;
   }
-  @include breakpoint(laptop){
+  @include breakpoint(desktop){
     max-width: 1170px;
   }
+}
+
+.contain__1200{
+
+    @include breakpoint(tablet){
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    @include breakpoint(laptop){
+      max-width: 970px;
+      margin: 0 auto;
+    }
+
+    @include breakpoint(desktop){
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+}
+
+.contain__1200--inner{
+      margin: 0 auto;
+
+
+    @include breakpoint(desktop){
+      margin: 0 15px;
+    }
 }
 
 .content{

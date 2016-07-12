@@ -147,7 +147,7 @@
   @include breakpoint(laptop) {
     top: 75px;
     left: 50%;
-    @include transform(translateX(-50%));
+    @include transform(translateX(-50%)translateZ(0));
     max-width: 1200px;
     margin: 0 auto;
     padding:0 15px 0 0;

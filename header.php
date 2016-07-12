@@ -157,7 +157,7 @@
 				<a href="#" id="nav-trigger" class="et-nav-trigger"><?php echo esc_html__('Menu', 'neat') ?></a>
 			</div>
 
-			<nav id="et-dropdown-trigger" class="et-dropdown m-header scene_element scene_element--fadeInUpNav">
+			<nav id="et-dropdown-trigger" class="et-dropdown scene_element scene_element--fadeInUpNav">
 				<h2><?php bloginfo('name'); ?></h2>
 				<a id="nav-close" href="#" class="et-close"><?php echo esc_html__('Close', 'neat') ?></a>
 				<div id="nav-xfer">

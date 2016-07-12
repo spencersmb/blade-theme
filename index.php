@@ -118,7 +118,7 @@ get_header();
 											<?php
 											//paginated links inside post
 											wp_link_pages( array(
-												'before' => '<div class="aa_pagelinks">' . esc_html__( 'Pages:', 'neat' ),
+												'before' => '<div class="neat_pagelinks">' . esc_html__( 'Pages:', 'neat' ),
 												'after'  => '</div>',
 											) );
 											?>

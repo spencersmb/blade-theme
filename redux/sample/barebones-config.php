@@ -615,7 +615,7 @@
                 'id' => 'free_quote_link',
                 'type'     => 'select',
                 'required' => array( 'has_free_quote', 'equals', array( 1 ) ),
-                'options'  => neat_getAllPages('page')
+                'options'  => neat_getAllPages_Reverse('page')
             ),
             array (
                 'title' => esc_html__('Button Text', 'neat'),
