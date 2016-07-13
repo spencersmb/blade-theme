@@ -14,6 +14,12 @@
   background-size: 0;
   opacity: 0;
 
+  @include breakpoint(tabletmax){
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+  }
+
   @include breakpoint(tablet){
     background-size: cover;
   }
@@ -40,6 +46,11 @@
 .showcase__inner{
   background: $white;
   overflow: hidden;
+  @include breakpoint(tabletmax){
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+  }
 
   @include breakpoint(tablet){
     position: relative;

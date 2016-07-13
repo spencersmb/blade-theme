@@ -6,7 +6,7 @@
  */
 ?>
 <!-- content-page.php -->
-<article class="et_page">
+<article class="neat_page">
 
 	<div class="inner-page-wrapper">
 
@@ -20,5 +20,5 @@
 
 	</div><!-- /.inner-page-wrapper -->
 
-</article><!-- /.et_page -->
+</article><!-- /.neat_page -->
 

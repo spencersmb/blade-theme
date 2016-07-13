@@ -50,7 +50,7 @@
   }
 }
 
-.et-close, .super-search-close {
+.neat-close, .super-search-close {
   height: 50px;
   overflow: hidden;
   position: absolute;
@@ -135,7 +135,7 @@
 }
 
 // No Results
-.et-no-results {
+.neat-no-results {
   h2 {
     color: $black;
     @include font-size(2.4);

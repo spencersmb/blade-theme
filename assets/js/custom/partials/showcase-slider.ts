@@ -410,6 +410,8 @@ class ShowcaseComponent {
 
     }, 400);
 
+    this.updateDescHeight();
+
   }
 
   animateShadowInOut() {

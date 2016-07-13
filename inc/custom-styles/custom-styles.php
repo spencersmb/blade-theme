@@ -296,18 +296,18 @@ function neat_custom_styles() {
     }
 
     @media only screen and (min-width: 62em) {
-        #header .et-dropdown-content > li:not(.service-dropdown) > a:hover{
+        #header .neat-dropdown-content > li:not(.service-dropdown) > a:hover{
             color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
         }
-        #header .et-dropdown-content > li:not(.service-dropdown) > a:hover::after,
-        #header .et-dropdown-content > li:not(.service-dropdown) > a:hover::before,
-        #header .et-dropdown-content ul a{
+        #header .neat-dropdown-content > li:not(.service-dropdown) > a:hover::after,
+        #header .neat-dropdown-content > li:not(.service-dropdown) > a:hover::before,
+        #header .neat-dropdown-content ul a{
             background: <?php echo esc_html($neat_theme_options['main_color']); ?>;
         }
 
 
 
-        #header .et-dropdown-content ul a:hover{
+        #header .neat-dropdown-content ul a:hover{
             background: <?php echo esc_attr($neat_theme_options['nav_hover_color']); ?>;
         }
     }
@@ -400,7 +400,7 @@ function neat_custom_styles() {
             padding-left: <?php echo esc_attr($spacing_left_logo)?>px
         }
 
-        .et-dropdown-wrapper{
+        .neat-dropdown-wrapper{
             top: <?php echo esc_attr($desktop_top_offset); ?>px;
         }
 
@@ -436,26 +436,26 @@ function neat_custom_styles() {
 
     @media only screen and (min-width: 62em) {
 
-        .et-dropdown{
+        .neat-dropdown{
             top: <?php echo esc_attr($desktop_top_offset); ?>px;
         }
-        .et-dropdown-content a{
+        .neat-dropdown-content a{
             text-transform: uppercase;
             font-weight: 600;
             font-size: <?php echo esc_attr($fontSize); ?>px;
             font-size: <?php echo esc_attr($implodeRem); ?>rem;
             color: rgba(<?php echo neat_hex2rgb($navFontColor); ?>,1);
         }
-        .et-dropdown-content ul .menu-item-has-children > a::after,
-        .et-dropdown-content ul .menu-item-has-children > a::before{
+        .neat-dropdown-content ul .menu-item-has-children > a::after,
+        .neat-dropdown-content ul .menu-item-has-children > a::before{
 
         }
-        .et-dropdown-content .menu-item-has-children > a::after,
-        .et-dropdown-content .menu-item-has-children > a::before{
+        .neat-dropdown-content .menu-item-has-children > a::after,
+        .neat-dropdown-content .menu-item-has-children > a::before{
             background: rgba(<?php echo neat_hex2rgb($navFontColor); ?>,1);
         }
 
-        #header .et-dropdown-content ul a:hover {
+        #header .neat-dropdown-content ul a:hover {
             background: <?php echo esc_attr($neat_theme_options['navigation_hover_color']);?>;
         }
     }

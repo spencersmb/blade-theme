@@ -245,7 +245,7 @@ class Sv_Walker_Nav_Menu extends Walker_Nav_Menu{
                         break;
 
                     default:
-                        $output .= "\n$indent<ul role=\"menu\" class=\"et-secondary-dropdown is-hidden\">\n";
+                        $output .= "\n$indent<ul role=\"menu\" class=\"neat-secondary-dropdown is-hidden\">\n";
                         $output .= '<li class="go-back"><a href="#0">Back</a></li>';
                         $output .= '<li class="sub-title"><a href="#0">Browse '. $this->curItem->title .'</a></li>';
                 }

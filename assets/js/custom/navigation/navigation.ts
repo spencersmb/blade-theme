@@ -25,13 +25,13 @@ class NavComponent {
   constructor() {
 
     this.$navTrigger = document.getElementById("nav-trigger");
-    this.$navDropdown = document.getElementById("et-dropdown-trigger");
+    this.$navDropdown = document.getElementById("neat-dropdown-trigger");
     // this.$lowerContainer = $(".lowercontainer");
     this.$upperContainer = $(".uppercontainer");
-    this.$navMeta = $(".et-nav-meta");
-    this.$dropDownWrapper = $(".et-dropdown-wrapper");
+    this.$navMeta = $(".neat-nav-meta");
+    this.$dropDownWrapper = $(".neat-dropdown-wrapper");
     this.$search = $("#nav-xfer");
-    this.$dropDownContent = $(".et-dropdown-content");
+    this.$dropDownContent = $(".neat-dropdown-content");
 
     /*
      Nav State Object
@@ -50,13 +50,13 @@ class NavComponent {
   reload() {
 
     this.$navTrigger = document.getElementById("nav-trigger");
-    this.$navDropdown = document.getElementById("et-dropdown-trigger");
+    this.$navDropdown = document.getElementById("neat-dropdown-trigger");
     // this.$lowerContainer = $(".lowercontainer");
     this.$upperContainer = $(".uppercontainer");
-    this.$navMeta = $(".et-nav-meta");
-    this.$dropDownWrapper = $(".et-dropdown-wrapper");
+    this.$navMeta = $(".neat-nav-meta");
+    this.$dropDownWrapper = $(".neat-dropdown-wrapper");
     this.$search = $("#nav-xfer");
-    this.$dropDownContent = $(".et-dropdown-content");
+    this.$dropDownContent = $(".neat-dropdown-content");
 
     this.state = {
       navEnabled: false,
@@ -133,7 +133,7 @@ class NavComponent {
       $(".go-back > a").on("click", function ( event ) {
         event.preventDefault();
         let selected = $(this);
-        selected.parent("li").parent(".et-secondary-dropdown").addClass("is-hidden").parent(".menu-item-has-children").parent("ul").removeClass("move-out");
+        selected.parent("li").parent(".neat-secondary-dropdown").addClass("is-hidden").parent(".menu-item-has-children").parent("ul").removeClass("move-out");
       });
     } else {
       $(".go-back > a").off();
@@ -187,7 +187,7 @@ class NavComponent {
      */
     this.$navDropdown.setAttribute("style", "");
     this.$dropDownContent.removeClass("move-out");
-    let dropdown = this.$dropDownContent.find(".et-secondary-dropdown");
+    let dropdown = this.$dropDownContent.find(".neat-secondary-dropdown");
 
     dropdown.each( (index, elem) => {
       if ( !$(elem).hasClass("is-hidden") ) {

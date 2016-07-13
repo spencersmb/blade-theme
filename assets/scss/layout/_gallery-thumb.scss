@@ -373,7 +373,7 @@
 
 // Displays greater than 992px
 @include breakpoint(laptop) {
-  .full-width-gallery, .width-contained {
+  .full-width-gallery{
     .grid-sizer {
       width: 33.333333333333%;
     }
@@ -408,23 +408,23 @@
     }
   }
 
-  .width-contained {
-
-    .grid-sizer {
-      width: 33.333333333333%;
-    }
-    .gallery-item {
-      width: 33.333333333333%;
-      padding-bottom: 33.333333333333%;
-
-      &.width2 {
-        width: 66.666666666666%;
-      }
-      &.height2 {
-        padding-bottom: 66.666666666666%;
-      }
-    }
-  }
+  //.width-contained {
+  //
+  //  .grid-sizer {
+  //    width: 33.333333333333%;
+  //  }
+  //  .gallery-item {
+  //    width: 33.333333333333%;
+  //    padding-bottom: 33.333333333333%;
+  //
+  //    &.width2 {
+  //      width: 66.666666666666%;
+  //    }
+  //    &.height2 {
+  //      padding-bottom: 66.666666666666%;
+  //    }
+  //  }
+  //}
 }
 
 // Displays greater than 1200px

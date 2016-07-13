@@ -200,7 +200,7 @@ function neat_header_slider_shortcode($params = array(), $content = null) {
                     
                     <div class="count"><span class="current">1</span> / <span class="total"></span></span></div>
                     
-                    <a href="#" class="et-close header-slider-close">Close</a>
+                    <a href="#" class="neat-close header-slider-close">Close</a>
                 </div>
                 <div class="header-slider-desc">
                     
