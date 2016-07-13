@@ -22,7 +22,7 @@ class ServiceSidebarComponent {
     this.asideOffset = this.aside.offset().top;
     this.windowHeight = $(window).height();
     this.sidebarHeight = this.aside.outerHeight();
-    this.footerOffset = $(".et_footer").offset().top;
+    this.footerOffset = $(".neat_footer").offset().top;
   }
 
   addClass( event ) {

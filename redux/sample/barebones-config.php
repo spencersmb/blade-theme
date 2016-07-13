@@ -703,6 +703,26 @@
 
                 ),
                 'default'  => '1'
+            ),
+            array(
+                'id'       => 'gallery_layout',
+                'type'     => 'image_select',
+                'compiler' => true,
+                'subsection' => true,
+                'title'    => esc_html__( 'Gallery Layout', 'neat' ),
+                'subtitle' => wp_kses( '<em>Select the Layout style for your gallery:</em></br><em>Full Width or Contained</em>', $layout_wp_kses, 'neat' ),
+                'options'  => array(
+                    '1' => array(
+                        'alt' => esc_html__('Layout 1', 'neat'),
+                        'img' => get_template_directory_uri() . '/assets/images/theme_options/icons/page_full_width.png'
+                    ),
+                    '2' => array(
+                        'alt' => esc_html__('Layout 2', 'neat'),
+                        'img' => get_template_directory_uri() . '/assets/images/theme_options/icons/blog_no_sidebar.png'
+                    )
+
+                ),
+                'default'  => '1'
             )
 
         )

@@ -50,7 +50,7 @@
 
 <div id="content" class="m-scene">
 
-	<header id="header" class="m-mobile-nav m-header scene_element scene_element--fadein <?php echo esc_attr( neat_admin_class_checks() ); ?>">
+	<header id="header" class="m-mobile-nav m-header scene_element scene_element--fadein shadow-medium<?php echo esc_attr( neat_admin_class_checks() ); ?>">
 
 		<!-- Dropdown Nav -->
 		<?php if(has_nav_menu( 'primary' )): ?>
@@ -153,7 +153,7 @@
 
 			</div>
 
-			<div class="et-dropdown-wrapper">
+			<div class="et-dropdown-wrapper shadow-medium">
 				<a href="#" id="nav-trigger" class="et-nav-trigger"><?php echo esc_html__('Menu', 'neat') ?></a>
 			</div>
 
@@ -200,7 +200,7 @@
 				$args = array(
 					'menu' => 'primary-menu',
 					'theme_location' => 'primary',
-					'menu_class' => 'et-dropdown-content',
+					'menu_class' => 'et-dropdown-content shadow-medium',
 					'container' => 'false',
 					'items_wrap'      => '
                 <ul id="%1$s" class="%2$s">%3$s</ul>',

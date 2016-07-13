@@ -6,9 +6,6 @@
   background-position: center;
   background-size: cover;
   position: relative;
-  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-  box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
 
   @include breakpoint(tablet){
       width: 95%;
@@ -106,9 +103,6 @@
 .blog-stories-container {
   visibility: hidden;
   display: none;
-  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-  box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
 
   background: $white;
   @include breakpoint(tablet){

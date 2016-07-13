@@ -46,7 +46,7 @@ get_header(); ?>
 			</section>
 			<!-- /header block -->
 
-			<section class="container et-container-single">
+			<section class="container neat-container-single">
 
 			<?php if($blog_layout === "1"): ?>
 				<div class="col-xs-12 col-md-8 col-lg-9 m-page scene_element scene_element--fadeinup">

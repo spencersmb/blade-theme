@@ -91,7 +91,7 @@ class QuoteComponent {
 
     });
 
-    fragment.append('<span class="quote__switch"></span>');
+    fragment.append('<span class="quote__switch shadow-small-btn"></span>');
 
     this.selectConainer.append(fragment);
 
@@ -207,11 +207,11 @@ class QuoteComponent {
       let $this = $(el),
         id = $this.attr("id");
 
-      $this.removeClass("selected");
+      $this.removeClass("selected shadow-medium-dark");
 
       if ( id === this.state.selected ) {
 
-        $this.addClass("selected");
+        $this.addClass("selected shadow-medium-dark");
 
       }
 

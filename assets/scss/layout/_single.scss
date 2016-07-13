@@ -2,7 +2,7 @@
     SINGLE-POST LAYOUT
 \*------------------------------------*/
 
-.et-single {
+.neat-single {
   padding: 0 2.4rem;
 
   @include breakpoint(tablet){
@@ -110,17 +110,17 @@
 
 }
 
-.et-single__meta {
+.neat-single__meta {
   margin-bottom: 2.4rem;
 }
 
-.et-single__tags {
+.neat-single__tags {
   border-top: 1px solid $lightest-grey;
   margin-top: 3rem;
   padding-top: 4rem;
 }
 
-.et-single-social {
+.neat-single-social {
   border: 1px solid $grey;
   border-radius: 100px;
   background: $white;
@@ -151,7 +151,7 @@
   }
 }
 
-.et-single-social__container{
+.neat-single-social__container{
   padding:.75rem 0;
 }
 

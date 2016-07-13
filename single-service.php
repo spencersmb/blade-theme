@@ -16,7 +16,7 @@ $page_layout = get_redux_options('main_page_layout');
             
             <div class="row">
 
-                <div class="et-page-wrapper">
+                <div class="neat-page-wrapper">
 
                     <?php while ( have_posts() ) : the_post(); ?>
 
@@ -24,7 +24,7 @@ $page_layout = get_redux_options('main_page_layout');
 
                     <?php endwhile; // end of the loop. ?>
 
-                </div><!-- /.et-page-wrapper -->
+                </div><!-- /.neat-page-wrapper -->
 
             </div><!-- /.row -->
 

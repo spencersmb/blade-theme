@@ -49,11 +49,11 @@ $has_excerpt = has_excerpt();
 
 		?>
 
-	<div class="post-thumb-content has-excerpt <?php echo esc_attr($excerpt_css) ?>">
+	<div class="post-thumb-content shadow-small-btn has-excerpt <?php echo esc_attr($excerpt_css) ?>">
 
 	<?php else: ?>
 
-		<div class="post-thumb-content">
+		<div class="post-thumb-content shadow-small-btn">
 
 	<?php endif; ?>
 

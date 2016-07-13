@@ -15,7 +15,7 @@ $has_filter = get_field('show_filter');
 $gallery_type = get_field('gallery_type');
 $filter_terms = get_terms( 'gallery_filter', array('fields' => 'names') );
 
-$page_layout = get_redux_options('main_page_layout');
+$page_layout = get_redux_options('gallery_layout');
 $page_layout_css = '';
 
 if($page_layout === "1"){

@@ -2,7 +2,7 @@
     GENERAL LAYOUT CLASSES
 \*------------------------------------*/
 
-.et-blocked-container{
+.neat-blocked-container{
   max-width: 1200px;
   padding: 0 15px;
   display: table;
@@ -17,7 +17,7 @@
   }
 }
 
-.et-container-primary {
+.neat-container-primary {
   margin-top: 35px;
   margin-top: 3.5rem;
   @include breakpoint(tablet){
@@ -26,12 +26,12 @@
   }
 }
 
-.et-container-single {
+.neat-container-single {
   margin-top: 5px;
   margin-top: 5rem;
 }
 
-.et_sidebar {
+.neat_sidebar {
   max-width: 262px;
   margin:0 auto;
   position: relative;
@@ -62,11 +62,7 @@
   }
 }
 
-.inner-page-wrapper {
-
-}
-
-.et-contain{
+.neat-contain{
   margin: 0 auto;
   @include breakpoint(tablet){
       max-width: 750px;
@@ -99,7 +95,6 @@
 
 .contain__1200--inner{
       margin: 0 auto;
-
 
     @include breakpoint(desktop){
       margin: 0 15px;

@@ -36,7 +36,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      width: 100%;
+      width: 101%;
       max-width: none;
       position: absolute;
       min-height: 100%;
@@ -128,7 +128,7 @@
       @include breakpoint(laptop){
         &:hover{
           h5 {
-            @include transform( scale(.5) translateY(-36px) translateX(-80px));
+            @include transform( scale(.5) translateY(-36px) translateX(-49px));
           }
           i {
             @include transform(translateX(0));

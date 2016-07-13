@@ -195,7 +195,7 @@ function neat_blog_shortcode( $atts, $content = null ) { // New function paramet
     }
 
     $output = '
-    <div class="blog-container et-contain no-padding m-page scene_element scene_element--fadeinup">
+    <div class="blog-container neat-contain no-padding m-page scene_element scene_element--fadeinup">
     ';
 
     // Pass through args to inner html

@@ -4,13 +4,17 @@
 
 .super-search {
 
-  .et-search {
+  .neat-search {
     top: 25%;
     position: absolute;
     @include transform(translateY(-20%) translateX(-50%));
     width: 80%;
     left: 50%;
     opacity: 0;
+
+    &::before {
+      content: none;
+    }
 
     label {
       display: none;

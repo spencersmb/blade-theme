@@ -33,7 +33,7 @@ $blog_layout = get_redux_options('main_blog_layout');
 		
 	</div><!-- /.hero section -->
 	
-	<div class="container et-container-primary">
+	<div class="container neat-container-primary">
 		<div class="row">
 			<div class="col-xs-12 <?php if($blog_layout === "1"): echo esc_attr('col-md-8 col-lg-9'); ?><?php endif; ?>">
 
@@ -65,8 +65,8 @@ $blog_layout = get_redux_options('main_blog_layout');
 			<?php endif; ?>
 		</div><!-- /.row -->
 		
-	</div><!-- /.et-primary-container -->
+	</div><!-- /.neat-primary-container -->
 	
-</section><!-- /.et-search -->
+</section><!-- /.neat-search -->
 
 <?php get_footer(); ?>

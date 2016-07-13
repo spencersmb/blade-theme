@@ -93,25 +93,28 @@
   line-height: 2.1rem!important;
 }
 
-.et-container-desktop  {
-  max-width: 1170px;
-  margin: 0 auto;
+.shadow-small-btn {
+  -webkit-box-shadow: 0px 18px 44px -12px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0px 18px 44px -12px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 18px 44px -12px rgba(0, 0, 0, 0.6);
 }
 
-.et-container-laptop {
-  max-width: 970px;
-  margin: 0 auto;
-}
-
-.et-container-tablet {
-  max-width: 768px;
-  margin: 0 auto;
+.shadow-light {
+  -webkit-box-shadow: 0px 15px 75px -6px rgba(0,0,0,0.38);
+  -moz-box-shadow: 0px 15px 75px -6px rgba(0,0,0,0.38);
+  box-shadow: 0px 15px 75px -6px rgba(0,0,0,0.38);
 }
 
 .shadow-medium {
   -webkit-box-shadow: 0px 15px 75px -6px rgba(0,0,0,0.38);
   -moz-box-shadow: 0px 15px 75px -6px rgba(0,0,0,0.38);
   box-shadow: 0px 15px 75px -6px rgba(0,0,0,0.38);
+}
+
+.shadow-medium-dark {
+  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
+  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
+  box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
 }
 
 @media only screen and (max-width: 62em) {

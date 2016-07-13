@@ -42,7 +42,7 @@ get_header(); ?>
 		</section>
 		<!-- /header block -->
 
-		<section class="container et-container-single">
+		<section class="container neat-container-single">
 
 			<div class="col-xs-12 m-page scene_element scene_element--fadeinup">
 				<div class="search-page">

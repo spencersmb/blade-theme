@@ -158,5 +158,16 @@
     // Small. Above 34em (544px)
     @media (min-width: $mobile)  { @content ; }
 
+  }@else if $point == tabletmax {
+    // Small. Above 34em (767px)
+    @media (max-width: 47.94rem) {
+      @content;
+    }
+  }
+  @else if $point == mobilemax {
+    // Small. Above 34em (544px)
+    @media (max-width: $mobile) {
+      @content;
+    }
   }
 }

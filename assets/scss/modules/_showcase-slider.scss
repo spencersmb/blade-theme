@@ -21,9 +21,6 @@
   @include breakpoint(laptop){
     max-width: 900px;
     margin: 0 auto;
-    -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
-    -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
-    box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.68);
   }
 
 }
@@ -42,16 +39,11 @@
 
 .showcase__inner{
   background: $white;
-  //padding: 60px 20px 20px;
   overflow: hidden;
 
   @include breakpoint(tablet){
-    //padding: 130px 20px 15px;
     position: relative;
     background: $white;
-    -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-    -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-    box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
   }
 
   @include breakpoint(laptop){
@@ -250,9 +242,6 @@
       &.selected{
         position: relative;
         opacity: 1;
-        //-webkit-animation-name: bounceIn;
-        //animation-name: bounceIn;
-
 
         a{
           border: 4px solid $primary-color;
@@ -260,9 +249,6 @@
           @include breakpoint(laptop){
             border: 6px solid $primary-color;
             font-weight: 600;
-            //-webkit-box-shadow: 0px 0px 35px -4px #70d600;
-            //-moz-box-shadow: 0px 0px 35px -4px #70d600;
-            //box-shadow: 0px 0px 35px -4px #70d600;
           }
         }
 
@@ -275,7 +261,6 @@
     }
 
     img{
-      // Temp sizing
       border-radius: 50%;
     }
 
@@ -356,16 +341,8 @@
       height: 45px;
       width: 45px;
       border-radius: 50%;
-      -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
-      -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
-      box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
       @include transition(box-shadow .3s);
 
-      &:hover{
-        -webkit-box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.38);
-        -moz-box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.38);
-        box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.38);
-      }
     }
 
     i{

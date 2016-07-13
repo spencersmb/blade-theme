@@ -13,8 +13,8 @@ get_header();
 	$current_page = max(1, get_query_var('paged'));
 	?>
 
-	<main class="et-blocked-container">
-		<section class="et-container-primary">
+	<main class="neat-blocked-container">
+		<section class="neat-container-primary">
 			<div class="row">
 				<div class="col-xs-12 <?php if($blog_layout === "1"): echo esc_attr('col-md-9'); ?><?php endif; ?>">
 
@@ -42,6 +42,7 @@ get_header();
 									'post-thumb',
 									'blog-article',
 									'primary',
+									'shadow-medium',
 									'img-loader-bg',
 									'col-xs-12'
 								);

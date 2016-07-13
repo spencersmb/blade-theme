@@ -103,9 +103,6 @@
 .header-slider-content{
   @include transition(all .3s);
   margin: 0 35px;
-  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-  box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
 
   @include breakpoint(laptop){
     margin: 0 15px;
@@ -284,7 +281,6 @@
       }
 
       &.slider-hidden{
-        //opacity: 0;
         @include transform(translateX(150%)translateY(-50%)!important) ;
       }
 

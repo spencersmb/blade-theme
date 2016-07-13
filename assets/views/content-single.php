@@ -10,7 +10,7 @@
 
 ?>
 
-<div class="et-single__content">
+<div class="neat-single__content">
 
 	<?php the_content(); ?>
 	
@@ -35,7 +35,7 @@
 
 		$output .= '
 		<!-- Tags -->
-		<div class="et-single__tags">
+		<div class="neat-single__tags">
 			';
 
 		foreach($get_tags as $tag){
@@ -62,11 +62,11 @@
 	$title_urlencode = rawurlencode($blog_title);
 	?>
 
-	<div class="et-single-social">
+	<div class="neat-single-social">
 		<div class="col-xs-12">
-			<div class="et-single-social__container">
+			<div class="neat-single-social__container">
 
-				<h6><?php esc_html__('Share', 'neat') ?></h6>
+				<h6><?php echo esc_html__('Share', 'neat') ?></h6>
 
 				<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php esc_url(the_permalink()); ?>">
 					<i class="fa fa-facebook"></i>
@@ -90,6 +90,6 @@
 		
 	</div><!-- /.social -->
 
-</div><!-- /.et-single__content -->
+</div><!-- /.neat-single__content -->
 
 

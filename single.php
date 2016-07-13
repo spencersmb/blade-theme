@@ -14,7 +14,7 @@ get_header(); ?>
 				<?php
 
 				$css_array = array(
-					'et-single'
+					'neat-single'
 				);
 
 				// Setup Images
@@ -54,7 +54,7 @@ get_header(); ?>
 										$comments_count = wp_count_comments( $post->ID );
 										$total_comments = $comments_count->total_comments;
 									?>
-									<span class="post-time"><i class="fa fa-clock-o fa-lg"></i><?php echo wp_kses($date, 'shave') ?></span>
+									<span class="post-time"><i class="fa fa-clock-o fa-lg"></i><?php echo wp_kses($date, 'neat') ?></span>
 									<?php if($total_comments > 0 ): ?>
 										<span class="post-comments-count"><i class="fa fa-comments-o fa-lg"></i><?php echo wp_kses($total_comments, 'neat'); ?> Comments</span>
 									<?php endif; ?>
@@ -67,7 +67,7 @@ get_header(); ?>
 				</div>
 				<!-- end hero section -->
 
-				<div class="container et-container-single">
+				<div class="container neat-container-single">
 
 					<?php if($blog_layout === "1"): ?>
 						<div class="col-xs-12 col-md-8 col-lg-9 m-page scene_element scene_element--fadeinup">
@@ -90,11 +90,11 @@ get_header(); ?>
 						</article>
 					</div>
 
-				<!-- /et-single -->
+				<!-- /neat-single -->
 				<?php endwhile; // end of the loop. ?>
 
 					<?php if($blog_layout === "1"): ?>
-					<div class="col-xs-12 col-md-3">
+					<div class="col-xs-12 col-md-4 col-lg-3">
 						<?php get_sidebar(); ?>
 					</div><!-- /sidebar - container -->
 					<?php endif; ?>

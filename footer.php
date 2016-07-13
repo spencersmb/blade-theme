@@ -8,7 +8,7 @@
  */
 ?>
 
-<footer class="et_footer">
+<footer class="neat_footer">
 
 		<?php
 		if(is_active_sidebar('neat_footer')): ?>

@@ -10,8 +10,8 @@ if ( ! is_active_sidebar( 'neat_sidebar_1' ) ) {
 }
 ?>
 
-<aside class="et-sidebar m-right-panel m-page scene_element scene_element--fadeinright">
+<aside class="neat-sidebar m-right-panel m-page scene_element scene_element--fadeinright">
 
 	<?php dynamic_sidebar( 'neat_sidebar_1' ); ?>
 
-</aside><!-- /.et-sidebar -->
+</aside><!-- /.neat-sidebar -->
