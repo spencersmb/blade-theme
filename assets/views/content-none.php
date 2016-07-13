@@ -18,7 +18,7 @@
 
 	<?php elseif ( is_search() ) : ?>
 		<div class="single-headline">
-			<h2><?php echo esc_html__( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'shave' ); ?></h2>
+			<h2><?php echo esc_html__( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'neat' ); ?></h2>
 		</div>
 		<div class="new-search">
 			<div class="new-search-form">

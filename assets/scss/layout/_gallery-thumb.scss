@@ -125,6 +125,17 @@
       left: 0;
       cursor: pointer;
 
+      &::after{
+        content: "";
+        background-image: linear-gradient( to top, rgba(0, 0, 0, 0.55) 0, rgba(0, 0, 0, 0) 100%);
+        position: absolute;
+        bottom: 0;
+        height: 100px;
+        width: 100%;
+        left: 0;
+        z-index: $content;
+      }
+
       @include breakpoint(laptop){
         &:hover{
           h5 {

@@ -54,7 +54,7 @@ get_header();
 
                             <li class="filter-item"
                                 data-filter=".<?php echo strtolower(esc_attr($filter)); ?>">
-                                <?php echo wp_kses($filter, 'shave') ?><span></span></li>
+                                <?php echo wp_kses($filter, 'neat') ?><span></span></li>
 
                         <?php endforeach; ?>
                     </ul>
@@ -246,14 +246,14 @@ get_header();
                                 <img
                                     class="img-responsive"
                                     src="'. esc_url($img_wide_preview) .'"
-                                    alt="'. wp_kses($image_alt, 'shave') .'" />
+                                    alt="'. wp_kses($image_alt, 'neat') .'" />
                                 ';
 
                                     break;
 
                                 default:
                                     echo'
-                                    <img class="img-responsive" src="'. esc_url($image_small) .'" alt="'. wp_kses($image_alt, 'shave') .'" />
+                                    <img class="img-responsive" src="'. esc_url($image_small) .'" alt="'. wp_kses($image_alt, 'neat') .'" />
                                     ';
 
                             }

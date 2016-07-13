@@ -23,9 +23,9 @@ function neat_register_required_plugins() {
 
         //delivered with the theme
         array(
-            'name'                  => 'Shave Custom Post Types', // The plugin name
-            'slug'                  => 'Shave-CPT', // The plugin slug (typically the folder name)
-            'source'                => get_template_directory() . '/inc/plugins/shave-custom-post-type.zip', // The plugin source
+            'name'                  => 'Neat Custom Post Types / Widgets / Shortcodes', // The plugin name
+            'slug'                  => 'neat-extended', // The plugin slug (typically the folder name)
+            'source'                => get_template_directory() . '/inc/plugins/neat-extended.zip', // The plugin source
             'required'              => true, // If false, the plugin is only 'recommended' instead of required
             'version'               => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
             'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
@@ -49,17 +49,6 @@ function neat_register_required_plugins() {
             'name'      => 'Contact7',
             'slug'      => 'contact-form-7',
             'required'  => true,
-        ),
-        array(
-            'name'                  => 'Advanced Custom Fields Pro', // The plugin name
-            'slug'                  => 'acf', // The plugin slug (typically the folder name)
-            'source'                => get_template_directory() . '/inc/plugins/advanced-custom-fields-pro.zip', // The plugin source
-            'required'              => true, // If false, the plugin is only 'recommended' instead of required
-            'version'               => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-            'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-            'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-            'external_url'          => '', // If set, overrides default API URL and points to an external URL
-            'image_url'             => get_template_directory_uri() . '/assets/images/backend/acf.jpg',
         ),
         array(
             'name'                  => 'Redux Settings Framework', // The plugin name

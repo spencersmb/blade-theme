@@ -197,8 +197,8 @@ function neat_testimonials_item_func( $atts, $content = null ) { // New function
         <div class="item testimonial-item '. esc_attr($class) .'" style="background-image: url('. esc_url($bg_image). ');">
             
             <blockquote style="color:'. esc_attr($quote_text_color) .'">
-                <q>'. wp_kses($quote, 'shave') .'</q>
-                <cite style="color:'. esc_attr($author_text_color) .'">-'. wp_kses($author, 'shave') .'</cite>
+                <q>'. wp_kses($quote, 'neat') .'</q>
+                <cite style="color:'. esc_attr($author_text_color) .'">-'. wp_kses($author, 'neat') .'</cite>
             </blockquote>
             
             <div class="testimonial-color-block" style="background-color: '. esc_attr($overlay_color). ';"></div>
