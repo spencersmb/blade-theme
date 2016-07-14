@@ -3,11 +3,7 @@
 \*------------------------------------*/
 
 .showcase {
-  background: #424242;
   margin-bottom: -1px;
-  @include breakpoint(laptop){
-    padding: 8rem 6rem;
-  }
 }
 
 .showcase__outer--bgimage {

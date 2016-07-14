@@ -10,6 +10,8 @@ class GalleryComponent {
   $fullGrid: JQuery;
   $isotopeGallery: JQuery;
   $galleryContainer: JQuery;
+  $galleryItem: JQuery;
+  $filter: JQuery;
   $grid: any;
   currentHeight: string;
   currentHeightPX: number;
@@ -21,6 +23,8 @@ class GalleryComponent {
     this.$fullGrid = $("#" + this.gridId);
     this.$galleryContainer = $(".gallery-container");
     this.$isotopeGallery = $(".gallery-isotope");
+    this.$galleryItem = $(".gallery-item");
+    this.$filter = $(".filter-group");
   }
 
   setupIsotope() {
@@ -87,8 +91,10 @@ class GalleryComponent {
 
   setMinHeight() {
 
+    let item = $(".gallery-item.width1");
+
     // Set min height depending one what content was filtered
-    this.currentHeight = $(".gallery-item.width1").css("padding-bottom");
+    this.currentHeight = item.css("padding-bottom");
     let heightStr = this.currentHeight.toString();
     this.currentHeightPX = this.pxConvert(heightStr);
 
@@ -98,7 +104,7 @@ class GalleryComponent {
 
     } else {
 
-      this.currentHeightPX = $(".gallery-item.width1").height();
+      this.currentHeightPX = item.height();
 
       this.$isotopeGallery.css("min-height", Math.round(this.currentHeightPX));
 
@@ -111,18 +117,18 @@ class GalleryComponent {
 
   addImageTransition() {
     // add transition for intro animation
-    $(".gallery-item").css("transition-duration", "600ms");
+    this.$galleryItem.css("transition-duration", "600ms");
   }
 
   loadImagesIn() {
     this.$grid.isotope("once", "arrangeComplete", () => {
 
       // fade in
-      $(".gallery-item").addClass("active");
+      this.$galleryItem.addClass("active");
 
-      // remove animation for smooth filtering
-      setTimeout(function () {
-        $(".gallery-item").css("transition-duration", "0ms");
+      // remove animation for smooth filtering after images have loaded in
+      setTimeout( () => {
+        this.$galleryItem.css("transition-duration", "0ms");
       }, 500);
 
     });
@@ -145,7 +151,7 @@ class GalleryComponent {
     clearTimeout(this.reIsoTimeOut);
 
     // check if the container has items inside it
-    if ( $(".gallery-container").length > 0 ) {
+    if ( this.$galleryContainer.length > 0 ) {
 
       // set grid dimension
       this.galleryIsotopeWrapper();
@@ -197,7 +203,7 @@ class GalleryComponent {
 
     // Add filter on Click
     let $this = this;
-    $(".filter-group").on("click", "li", this.onFilterClick.bind(this, $this));
+    this.$filter.on("click", "li", this.onFilterClick.bind(this, $this));
 
     $(window).on("resize", this.onResize.bind(this));
   }
