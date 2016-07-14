@@ -46,6 +46,26 @@ function neat_get_product_ids( $object, $name ){
     return $arr;
 }
 
+function neat_get_postTags_string($postId){
+    //Get tags
+    $get_tags = get_the_tags($postId); //$tag_name[0]->name
+    $tags_arr = array();
+    $tags = '';
+
+    //safety check for empty tag value
+    if( $get_tags != "" ){
+        foreach($get_tags as $tag){
+            $tags_arr[] = $tag->name;
+        }
+
+        $tags = join(', ', $tags_arr );
+
+    }
+
+    return $tags;
+
+}
+
 // new excerpt function
 function neat_new_excerpt_more($more) {
     //grab global variable

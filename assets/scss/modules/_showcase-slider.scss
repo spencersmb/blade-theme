@@ -21,7 +21,7 @@
   }
 
   @include breakpoint(laptop){
-    max-width: 900px;
+    max-width: 1030px;
     margin: 0 auto;
   }
 
@@ -486,7 +486,7 @@
   @include breakpoint(laptop){
     text-align: left;
     padding: 15px 20px 30px 20px;
-    width: 70%;
+    width: 80%;
   }
 
   &.selected {

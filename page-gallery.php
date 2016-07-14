@@ -153,21 +153,7 @@ get_header();
                     $css_filter_names = join(' ', $filter_arr ) ;
 
                     //Get tags
-                    $get_tags = get_the_tags(); //$tag_name[0]->name
-                    $tags_arr = array();
-                    $tags = '';
-
-                    //safety check for empty tag value
-                    if( $get_tags != "" ){
-                        foreach($get_tags as $tag){
-                            $tags_arr[] = $tag->name;
-                        }
-
-                        $tags = join(', ', $tags_arr );
-
-                    }else{
-
-                    }
+                    $tags = neat_get_postTags_string($post->ID);
 
                     //Add css names for gallery sizing
                     switch ($gallery_type) {
