@@ -126,11 +126,16 @@
   padding: 2rem 0;
   text-transform: uppercase;
   @include font-size(1.4);
-  font-weight: 600;
-  background: $lighter-grey-hover;
+  font-weight: 400;
+  background: $primary-color;
+  color: $white;
 
+  @include first(1){
+    border-bottom: 0;
+  }
   @include last(1){
     border-bottom: 0;
+    background: $lighter-grey-hover;
   }
 
   a{
@@ -144,7 +149,11 @@
   @include breakpoint(laptop){
     @include font-size(1.4);
     padding: 2rem;
-    font-weight: 400;
+    font-weight: 800;
+
+    @include last(1){
+      font-weight: 400;
+    }
   }
 
 }
@@ -209,7 +218,7 @@
 
 .blog-feature-meta {
   @include font-size(1.4);
-  color: $light-grey;
+  color: $primary-color;
 
   span {
     padding-right: 15px;
@@ -217,9 +226,7 @@
 
   i {
     padding-right: 5px;
-  }
-
-  .blog-meta-comments{
+    color: $primary-color;
   }
 
   @include breakpoint(tablet){

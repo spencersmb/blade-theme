@@ -55,33 +55,6 @@
     box-shadow:none;
   }
 
-  // Small icon
-  &::before {
-    //content: 'Showcase';
-    //background: url("./assets/images/showcase-arrow.png")no-repeat ;
-    //position: absolute;
-    //background-position: center;
-    //background-size: contain;
-    //top: 0;
-    //left: 50%;
-    //@include transform(translateX(-50%));
-    //height: 35px;
-    //padding-top: 34px;
-    //text-align: center;
-    //text-transform: uppercase;
-    //@include breakpoint(tablet){
-    //  left: 30px;
-    //  height: 50px;
-    //  padding-top: 50px;
-    //  @include transform(translateX(0));
-    //}
-    //@include breakpoint(laptop){
-    //  height: 40px;
-    //  padding-top: 40px;
-    //  @include font-size(1.2);
-    //}
-  }
-
 }
 
 .showcase__slider--content{
@@ -237,10 +210,10 @@
         opacity: 1;
 
         a{
-          border: 4px solid #ef7810;
+          border: 4px solid $primary-color;
           background: $primary-color;
           @include breakpoint(laptop){
-            border: 6px solid #ff8102;
+            border: 6px solid $primary-color;
             font-weight: 600;
           }
         }

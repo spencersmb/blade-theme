@@ -1,6 +1,6 @@
 <?php
 /*
-  Template Name: Services List
+  Template Name: Services Index page
 */
 
 get_header();
@@ -26,8 +26,9 @@ get_header();
                     //Build loop
                     /////////////////////
                     $args = array(
-                        'posts_per_page'  => 10,
-                        'post_type' => 'service',
+                        'posts_per_page'  => 20,
+                        'post_parent'  => get_the_ID(),
+                        'post_type' => 'page',
                         'orderby'=> 'menu_order',
                         'order'=>'ASC'
                     );
@@ -38,6 +39,7 @@ get_header();
                     if( have_posts()): while( $the_query->have_posts() ): $the_query->the_post(); ?>
 
                         <?php
+
                         /*
                          * Include the Post-Format-specific template for the content.
                          * If you want to override this in a child theme, then include a file

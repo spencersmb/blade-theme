@@ -197,6 +197,10 @@ function neat_custom_styles() {
         margin:0 auto;
     }
 
+    .wpb_content_element{
+        margin-bottom: 0;
+    }
+
     <?php endif; ?>
 
     /***************************************************************/
