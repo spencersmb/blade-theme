@@ -430,15 +430,6 @@
                 'required' => array( 'main_header_layout', 'equals', array( '2' ) ),
             ),
             array (
-                'title' => esc_html__('Navigation Hover Color', 'neat'),
-                'subtitle' => wp_kses('<em>Select Menu Hover Color</em>', 'neat'),
-                'id' => 'navigation_hover_color',
-                'type' => 'color',
-                'default' => '#53950C',
-                'transparent' => false
-            ),
-
-            array (
                 'id' => 'main_nav_font_options',
                 'icon' => true,
                 'type' => 'info',
@@ -624,6 +615,22 @@
                 'type' => 'text',
                 'required' => array( 'has_free_quote', 'equals', array( 1 ) ),
                 'default' => 'Free Quote',
+            ),
+            array (
+                'title' => esc_html__('Button Color', 'neat'),
+                'subtitle' => wp_kses('<em>The color of the free quote button.</em>', 'neat'),
+                'id' => 'freeQuote_btn_color',
+                'type' => 'color',
+                'transparent' => false,
+                'default' => '#53950C',
+            ),
+            array (
+                'title' => esc_html__('Background Color', 'neat'),
+                'subtitle' => wp_kses('<em>Choose a background color on laptop or larger screens.</em>', 'neat'),
+                'id' => 'freeQuote_background_color',
+                'type' => 'color',
+                'transparent' => false,
+                'default' => '#E0E0E0',
             ),
 
             /*
@@ -824,6 +831,14 @@
             'type' => 'color',
             'transparent' => false,
             'default' => '#EC7A5C',
+        ),
+        array (
+            'title' => esc_html__('Nav Item Background Color', 'neat'),
+            'subtitle' => wp_kses('<em>The color of the nav when it pops open.</em>', 'neat'),
+            'id' => 'nav_item_color',
+            'type' => 'color',
+            'transparent' => false,
+            'default' => '#8ed72b',
         ),
 
         array (

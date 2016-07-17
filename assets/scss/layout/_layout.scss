@@ -105,3 +105,74 @@
   position: relative;
   z-index: 10;
 }
+
+.container-divider{
+  position: absolute;
+  bottom: -10px;
+  left:0;
+  width: 100%;
+}
+
+//INLINE BLOCK MODULE
+
+.inline__block {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 3rem;
+  @include first(1){
+    margin-top: 3rem;
+  }
+  @include last(1){
+    margin-bottom: 0;
+  }
+
+  @include breakpoint(tablet){
+    clear: both;
+    display: table;
+  }
+
+  @include breakpoint(laptop){
+    @include first(1){
+      margin-top: 0;
+    }
+  }
+
+}
+
+.inline__image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  max-width: 250px;
+  max-height: 166px;
+
+  @include breakpoint(tablet){
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+  }
+}
+
+.inline__desc{
+  position: relative;
+  display: block;
+
+  h4{
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
+  }
+
+  @include breakpoint(tablet){
+    display: table;
+    padding-left: 2rem;
+    text-align: left;
+
+    h4{
+      padding-top: 0;
+      padding-bottom: 1.4rem;
+    }
+  }
+
+
+}

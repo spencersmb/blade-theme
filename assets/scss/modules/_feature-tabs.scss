@@ -3,20 +3,41 @@
 \*------------------------------------*/
 
   .blade-feature-tabs{
+
+    // ul element
+    .vc_tta-tabs-list{
+      border: 1px solid $light-grey;
+      border-radius: 50px !important;
+    }
     .vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab.vc_active>a {
       color: $white !important;
       background-color: $primary-color !important;
       font-weight: 900;
+      -webkit-box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
+      -moz-box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
+      box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
+    }
+
+    // li element
+    .vc_tta.vc_tta-style-classic .vc_tta-tab {
+      margin: 5px;
     }
 
     .vc_tta.vc_tta-style-classic .vc_tta-tab>a {
       border-width: 0px!important;
+      border-radius: 50px !important;
+      background: transparent;
     }
 
     .vc_tta.vc_general .vc_tta-tab>a {
       font-weight: 600;
       @include font-size(1.4);
+      padding: 1rem 2rem !important;
+
+      @include breakpoint(laptop){
       padding: 1rem 4rem !important;
+
+      }
     }
 
     .vc_tta-tabs-container {
@@ -24,9 +45,6 @@
     }
 
     .vc_tta-tabs-list {
-      -webkit-box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
-      -moz-box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
-      box-shadow: 0px 12px 65px -6px rgba(0,0,0,0.38);
       width: auto;
       display: inline-block !important;
       border-radius: 40%;

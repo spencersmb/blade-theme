@@ -2,7 +2,7 @@
     HEADER-SLIDER COMPONENT
 \*------------------------------------*/
 
-.rounded-btn{
+.rounded-btn {
   @include transition(all .3s);
   border: 2px solid $primary-color;
   color: $primary-color;
@@ -164,8 +164,27 @@ a.rounded-btn {
     font-weight: 600 !important;
   }
 }
+.vc_btn3 {
+  padding:11px 23px 11px 23px !important;
+  text-transform: uppercase !important;
+  @include font-size(1.2);
+  font-weight:600 !important;
+}
+
+.vc_btn3-color-green {
+  color: $green !important;
+
+  &:hover{
+    color: $white !important;
+    background-color: $green !important;
+  }
+
+  &.vc_btn3-style-outline{
+    border-color: $green !important;
+  }
+}
 
 .btn-sm {
   @include font-size(1);
-  padding: 7px 15px;
+  padding:7px 25px 7px 25px !important;
 }

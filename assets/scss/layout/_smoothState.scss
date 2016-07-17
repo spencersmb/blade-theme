@@ -161,7 +161,7 @@
     .scene_element--fadeInUpNav {
       animation-name: fadeInUpNav;
       animation-fill-mode: both;
-      animation-delay: .7s;
+      animation-delay: .9s;
     }
 
     /** An element that fades in and slides from the right */
@@ -213,6 +213,25 @@
   }
 }
 
+.home {
+  .m-scene {
+    @include breakpoint(tablet){
+      .scene_element--fadeInUpNav {
+        animation-name: fadeInUpNav;
+        animation-fill-mode: both;
+        animation-delay: 2s;
+      }
+      &.is-exiting {
+        /** Nav element that fades in and slides up */
+        .scene_element--fadeInUpNav {
+          animation-name: fadeInDownNav;
+          animation-fill-mode: both;
+          animation-delay: .3s;
+        }
+      }
+    }
+  }
+}
 .m-mobile-nav {
   //&.scene_element{
   //  animation-duration: 0.25s;

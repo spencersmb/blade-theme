@@ -91,7 +91,9 @@ class QuoteComponent {
 
     });
 
-    fragment.append('<span class="quote__switch shadow-small-btn"></span>');
+    // Get color from data el and set button
+    let $button_color = this.selectConainer.data("color");
+    fragment.append('<span class="quote__switch shadow-small-btn" style="background-color:' + $button_color + '"></span>');
 
     this.selectConainer.append(fragment);
 

@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .testimonials {
-  max-width: 900px;
+  max-width: 1030px;
 
   @include transition(all .3s);
 
@@ -82,7 +82,7 @@
   top: 0;
   left: 0;
   display: block;
-  opacity: 1;
+  opacity: .9;
 
   &::before{
     content:'';

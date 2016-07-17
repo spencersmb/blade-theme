@@ -206,3 +206,17 @@ Custom VC Admin Icons
     background-image: url("../../images/theme_options/icons/neat_icons.png");
     background-position: 0 -384px;
 }
+
+.quote_icon.vc_element-icon{
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -416px !important;
+}
+
+.quote_item_icon.vc_element-icon{
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -448px !important;
+}
+.quote_bullet_icon.vc_element-icon{
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -480px;
+}

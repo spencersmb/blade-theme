@@ -259,6 +259,10 @@
       -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
       -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
       box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
+      color: $white !important;
+    }
+    &:focus{
+      color: $white !important;
     }
   }
 

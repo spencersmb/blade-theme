@@ -10,17 +10,15 @@
   background-size: 0;
   opacity: 0;
 
-  @include breakpoint(tabletmax){
+  @include breakpoint(laptopmax){
     -webkit-box-shadow:none;
     -moz-box-shadow:none;
     box-shadow:none;
   }
 
-  @include breakpoint(tablet){
-    background-size: cover;
-  }
 
   @include breakpoint(laptop){
+    background-size: cover;
     max-width: 1030px;
     margin: 0 auto;
   }
@@ -30,7 +28,7 @@
 .showcase__outer--bgcolor {
 
   @include breakpoint(tablet){
-    padding: 5rem;
+    //padding: 5rem 3.6rem;
   }
 
   @include breakpoint(laptop){
@@ -42,15 +40,11 @@
 .showcase__inner{
   background: $white;
   overflow: hidden;
-  @include breakpoint(tabletmax){
-    -webkit-box-shadow:none;
-    -moz-box-shadow:none;
-    box-shadow:none;
-  }
+  position: relative;
 
   @include breakpoint(tablet){
-    position: relative;
     background: $white;
+    margin: 0;
   }
 
   @include breakpoint(laptop){
@@ -63,29 +57,29 @@
 
   // Small icon
   &::before {
-    content: 'Showcase';
-    background: url("./assets/images/showcase-arrow.png")no-repeat ;
-    position: absolute;
-    background-position: center;
-    background-size: contain;
-    top: 0;
-    left: 50%;
-    @include transform(translateX(-50%));
-    height: 35px;
-    padding-top: 34px;
-    text-align: center;
-    text-transform: uppercase;
-    @include breakpoint(tablet){
-      left: 30px;
-      height: 50px;
-      padding-top: 50px;
-      @include transform(translateX(0));
-    }
-    @include breakpoint(laptop){
-      height: 40px;
-      padding-top: 40px;
-      @include font-size(1.2);
-    }
+    //content: 'Showcase';
+    //background: url("./assets/images/showcase-arrow.png")no-repeat ;
+    //position: absolute;
+    //background-position: center;
+    //background-size: contain;
+    //top: 0;
+    //left: 50%;
+    //@include transform(translateX(-50%));
+    //height: 35px;
+    //padding-top: 34px;
+    //text-align: center;
+    //text-transform: uppercase;
+    //@include breakpoint(tablet){
+    //  left: 30px;
+    //  height: 50px;
+    //  padding-top: 50px;
+    //  @include transform(translateX(0));
+    //}
+    //@include breakpoint(laptop){
+    //  height: 40px;
+    //  padding-top: 40px;
+    //  @include font-size(1.2);
+    //}
   }
 
 }
@@ -93,7 +87,7 @@
 .showcase__slider--content{
   @include transform(translateZ(0));
   @include transition(all .3s);
-  padding: 60px 20px 20px;
+  padding: 80px 20px 20px;
 
   @include breakpoint(tablet){
     padding: 140px 20px 20px;
@@ -213,15 +207,7 @@
     li{
       list-style: none;
       display: inline-block;
-      @include transform(scale(.9));
-      @include transition(all .3s);
-      animation-name: bounceInUp;
-      opacity: .7;
-      -webkit-animation-duration: .4s;
-      animation-duration: .4s;
-      animation-delay: .1s;
-      -webkit-animation-fill-mode: both;
-      animation-fill-mode: both;
+      opacity: .5;
 
       @include breakpoint(tablet){
           display: table-cell;
@@ -251,10 +237,10 @@
         opacity: 1;
 
         a{
-          border: 4px solid $primary-color;
+          border: 4px solid #ef7810;
           background: $primary-color;
           @include breakpoint(laptop){
-            border: 6px solid $primary-color;
+            border: 6px solid #ff8102;
             font-weight: 600;
           }
         }
@@ -278,7 +264,7 @@
       border-radius: 50%;
       display: block;
       margin: 0 auto;
-      transition: all .3s;
+      transition: all .2s;
 
       @include breakpoint(laptop){
         display: block;
@@ -362,6 +348,36 @@
   }
 }
 
+.showcase__tab{
+  position: absolute;
+  top: 0;
+  width: 80px;
+  text-align: center;
+  left: 50%;
+  @include transform(translateX(-50%));
+
+  @include breakpoint(tablet){
+    left: 33px;
+    @include transform(translateX(0));
+  }
+
+  @include breakpoint(laptop){
+      left:23px;
+  }
+
+  .showcase__tab--img{
+    width: 60px;
+    margin: 0 auto;
+  }
+
+  span{
+    text-align: center;
+    text-transform: uppercase;
+    color: $grey;
+    @include font-size(1.2);
+  }
+}
+
 .showcase__slider--gallery {
   cursor: default;
   -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
@@ -377,7 +393,7 @@
   @include breakpoint(laptop){
     //overflow: hidden;
     min-height: 281.25px;
-    max-width: 450px;
+    max-width: 525px;
     margin: 0;
     &:before, &:after{
       opacity: 0 !important;
@@ -501,10 +517,10 @@
   }
 
   h2{
-    @include font-size(2.4);
+    @include font-size(2.8);
     line-height: 32px;
     line-height: 3.2rem;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     padding-top: 10px;
     color: $dark-blue-grey;
 
