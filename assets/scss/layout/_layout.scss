@@ -42,7 +42,7 @@
     margin-left: 0;
   }
   @include breakpoint(laptop) {
-    max-width: 320px;
+    max-width: 374px;
     margin-left: 0;
     padding-right:15px !important;
   }
@@ -78,7 +78,7 @@
 .contain__1200{
 
     @include breakpoint(tablet){
-      max-width: 750px;
+      max-width: 768px;
       margin: 0 auto;
     }
 

@@ -7,15 +7,15 @@
   position: relative;
 
   @include breakpoint(tablet){
-    max-width: 840px;
-    margin-bottom: 147px;
+    max-width: 1030px;
+    margin-bottom: 180px;
   }
 
   img{
     margin: 0 auto;
     @include breakpoint(tablet){
       margin: 0;
-      max-width: 470px;
+      max-width: 575px;
     }
   }
 

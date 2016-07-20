@@ -364,16 +364,11 @@ summary
 }
 
 .header-topper-left{
-  &::before {
-    left: 50%;
-    @include transform(translateX(-50%));
-  }
-  @include breakpoint(laptop){
+
     &::before {
       left: 0;
       @include transform(translateX(0));
     }
-  }
 }
 
 .neat-search {

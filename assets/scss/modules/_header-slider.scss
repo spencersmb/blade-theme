@@ -58,7 +58,7 @@
     }
     .header-slider-gallery{
       // disable hover when full size
-      height: 100% !important;
+      height: 100% ;
       cursor: default;
       &::after, &::before{
         opacity: 0;
@@ -81,8 +81,11 @@
   }
 }
 .header-slider-divider{
-  position: relative;
+  position: absolute;
+  bottom: 43px;
   z-index: 0;
+  opacity: 0;
+  @include transform(translate3d(0, 50px, 0))
 }
 .header-slider-inner{
   @include transform(translateZ(0));
@@ -211,6 +214,11 @@
 .header-slider-gallery {
   overflow: hidden;
   @include transform(translateZ(0));
+  max-height: 436px;
+
+  @include breakpoint(laptop){
+      max-height: none;
+  }
 }
 
 .count{

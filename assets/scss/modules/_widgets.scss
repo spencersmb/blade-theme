@@ -208,6 +208,38 @@
   }
 }
 
+.widget_nav_menu {
+  h2{
+    @include font-size(2.4);
+    font-weight: 600;
+    line-height: 2.4rem;
+    padding-top:23px;
+  }
+
+  li{
+    padding: 5px 0;
+    @include first(1){
+      padding-top: 0;
+    }
+  }
+
+  a{
+    color: $primary-color;
+    padding: 0;
+    @include font-size(1.8);
+  }
+
+  .white-text & {
+    h2 {
+      color: $white !important;
+    }
+
+    a{
+      color: $white !important;
+    }
+  }
+}
+
 .widget_recent_comments{
   li {
     display: block;

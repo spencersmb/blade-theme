@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom template tags for this theme.
+ * Custom template functions for this theme.
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
@@ -230,6 +230,35 @@ function neat_excerpt_more($more) {
 	return '<a class="moretag rounded-btn" href="'. get_permalink($post->ID) . '"> ' . esc_html__('Read more', 'neat'). '</a>';
 }
 add_filter('excerpt_more', 'neat_excerpt_more');
+
+/**
+ * Add Categories to pages. Then add pages to the search results of categories
+ *
+ *
+ */
+function neat_add_taxonomies_to_pages() {
+	register_taxonomy_for_object_type( 'category', 'page' );
+}
+add_action( 'init', 'neat_add_taxonomies_to_pages' );
+if ( ! is_admin() ) {
+	add_action( 'pre_get_posts', 'neat_category_and_tag_archives' );
+
+}
+function neat_category_and_tag_archives( $wp_query ) {
+	$my_post_array = array('post','page');
+
+	if ( $wp_query->get( 'category_name' ) || $wp_query->get( 'cat' ) )
+		$wp_query->set( 'post_type', $my_post_array );
+
+	if ( $wp_query->get( 'tag' ) )
+		$wp_query->set( 'post_type', $my_post_array );
+}
+
+
+//add_action( 'init', 'my_add_excerpts_to_pages' );
+//function my_add_excerpts_to_pages() {
+//	add_post_type_support( 'page', 'excerpt' );
+//}
 
 /*
  *

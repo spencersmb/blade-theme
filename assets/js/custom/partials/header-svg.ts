@@ -64,21 +64,29 @@ class SvgHeaderComponent {
     });
   }
 
+  loadDivider() {
+    let y = Utils.breakpoint < Utils.bps.tablet ? 0 : 50;
+    TweenLite.to(this.svg, .1, {
+      y: y,
+      z: ".001",
+      width: this._setWindowWidth(),
+      height: this._setSvgHeight(),
+      delay: 0,
+      ease: "Linear.easeNone",
+      onComplete: ()=> {
+        this.svg.parent("div").css("opacity", 1);
+        this.svg.addClass("m-page scene_element scene_element--fadeinupDivider");
+      }
+    });
+  }
+
   init(): void {
     console.log("Svg header loaded");
 
     // this.svg.height(this._setSvgHeight());
     // this.svg.attr("height", this._setSvgHeight());
 
-    TweenLite.to(this.svg, .1, {
-      y: "3",
-      z: ".001",
-      width: this._setWindowWidth(),
-      height: this._setSvgHeight(),
-      delay: 0,
-      ease: "Linear.easeNone"
-    });
-
+    this.loadDivider();
 
 
     $(window).on("resize", this.resizeSvg.bind(this)).bind(this);

@@ -69,7 +69,7 @@ class StickySidebarComponent {
 
     // get distance from top of content 10 + 40 = 50 padding top
     // this.contentOffsetTop = this.contentWrapper.offset().top - 10;
-    this.contentOffsetTop = this.contentWrapper.offset().top;
+    this.contentOffsetTop = this.contentWrapper.offset().top - 25;
     this.sidebarHeight = this.aside.height();
     this.contentWrapperHeight = this.contentWrapper.outerHeight(); // include padding and margin
 
@@ -86,11 +86,11 @@ class StickySidebarComponent {
 
     // If the window V position is less than the content V position make sidebar normal
     if ( this.scrollTop < this.contentOffsetTop ) {
-      // let cssProps = {
-      //   "transition": "top .3s"
-      // };
+      let cssProps = {
+        "transition": "top .3s"
+      };
       this.aside.removeClass("sticky");
-      // this.aside.css(cssProps);
+      this.aside.css(cssProps);
 
       // if window V position is greater than content - add sticky
       // 2nd checks the offset of the top of the window to the top of the content && the position of the content in relation to the position of the window - 40 on end
@@ -98,16 +98,16 @@ class StickySidebarComponent {
       this.aside.addClass("sticky").attr("style", "");
 
       if ( this.scrollingDown === true ) {
-        // this.aside.css("transition", "top .3s");
+        this.aside.css("transition", "top .3s");
       } else {
-        // this.aside.css("transition", "");
+        this.aside.css("transition", "");
       }
 
     } else {
       // let articlePaddingTop = Number(articles.eq(1).css("padding-top").replace("px", ""));
       if ( this.aside.hasClass("sticky") ) {
         this.aside.attr("style", "");
-        this.aside.removeClass("sticky").css("top", this.contentWrapperHeight - this.sidebarHeight + "px");
+        this.aside.removeClass("sticky").css("top", this.contentWrapperHeight - this.sidebarHeight + 1 + "px");
       }
 
     }

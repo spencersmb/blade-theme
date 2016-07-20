@@ -136,6 +136,20 @@
 
 .m-scene {
 
+  /** An element that fades in and slides up */
+  .scene_element--fadeinupDivider {
+    animation-name: fadeInUp;
+    animation-delay: .4s;
+  }
+
+  &.is-exiting {
+    /** An element that fades in and slides up */
+    .scene_element--fadeinupDivider {
+      animation-delay: .3s;
+      animation-name: fadeInDown;
+    }
+  }
+
   @include breakpoint(tablet){
     /** Basic styles for an animated element */
     .scene_element {

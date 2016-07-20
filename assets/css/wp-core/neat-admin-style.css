@@ -220,3 +220,33 @@ Custom VC Admin Icons
     background-image: url("../../images/theme_options/icons/neat_icons.png");
     background-position: 0 -480px;
 }
+
+.vc_btn3 {
+    padding: 11px 23px 11px 23px !important;
+    text-transform: uppercase !important;
+    font-size: 12px;
+    font-size: 1.2rem;
+    font-weight: 600 !important; }
+.vc_btn3.vc_btn3-icon-left i {
+    padding-right: 12px !important;
+    left: 0 !important;
+    display: inline !important;
+    position: relative !important; }
+.vc_btn3.vc_btn3-icon-right i {
+    padding-left: 12px !important;
+    right: 0 !important;
+    display: inline !important;
+    position: relative !important; }
+
+.vc_btn3-color-green {
+    color: #78be01 !important; }
+.vc_btn3-color-green:hover {
+    color: #fff !important;
+    background-color: #78be01 !important; }
+.vc_btn3-color-green.vc_btn3-style-outline {
+    border-color: #78be01 !important; }
+
+.btn-sm {
+    font-size: 10px;
+    font-size: 1rem;
+    padding: 7px 25px 7px 25px !important; }
