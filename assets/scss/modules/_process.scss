@@ -61,9 +61,6 @@
   }
   p {
     @include breakpoint(tablet){
-      @include font-size(1.6);
-      line-height: 1.8rem;
-      line-height: 18px;
       @include font-size(1.4);
       line-height: 1.8rem;
       line-height: 18px;
@@ -188,4 +185,65 @@
       }
     }
   }
+}
+
+
+// Styles for layouts with a sidebar
+.sidebar-content {
+
+  .process-container {
+    display: table;
+    width: 100%;
+
+    img {
+      max-width: 350px !important;
+      @include breakpoint(tablet) {
+        max-width: 215px !important;
+      }
+    }
+  }
+
+  .process-item-container{
+    position: relative;
+
+    h6 {
+      @include font-size(1.6);
+      line-height: 1.8rem;
+      line-height: 18px;
+      font-weight: 600;
+      @include breakpoint(tablet){
+        display: inline-block;
+        position: relative;
+        padding-left: 25px;
+        @include font-size(1.4);
+        line-height: 18px;
+        line-height: 1.8rem;
+      }
+    }
+
+    span {
+      @include breakpoint(tablet){
+        left: 0;
+        position: absolute;
+      }
+    }
+
+    p {
+
+      @include breakpoint(tablet) {
+        @include font-size(1.4);
+        line-height: 1.8rem;
+        line-height: 18px;
+      }
+
+      @include breakpoint(laptop){
+        @include font-size(1.6);
+        line-height: 24px;
+        line-height: 2.4rem;
+      }
+
+    }
+
+  }
+
 }

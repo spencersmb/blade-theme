@@ -69,7 +69,7 @@ class StickySidebarComponent {
 
     // get distance from top of content 10 + 40 = 50 padding top
     // this.contentOffsetTop = this.contentWrapper.offset().top - 10;
-    this.contentOffsetTop = this.contentWrapper.offset().top - 25;
+    this.contentOffsetTop = this.contentWrapper.offset().top + 25;
     this.sidebarHeight = this.aside.height();
     this.contentWrapperHeight = this.contentWrapper.outerHeight(); // include padding and margin
 
@@ -94,7 +94,7 @@ class StickySidebarComponent {
 
       // if window V position is greater than content - add sticky
       // 2nd checks the offset of the top of the window to the top of the content && the position of the content in relation to the position of the window - 40 on end
-    } else if ( this.scrollTop >= this.contentOffsetTop && this.scrollTop < this.contentWrapperHeight - this.sidebarHeight + this.contentOffsetTop ) {
+    } else if ( this.scrollTop >= this.contentOffsetTop && this.scrollTop < this.contentWrapperHeight - this.sidebarHeight + this.contentOffsetTop - 50 ) {
       this.aside.addClass("sticky").attr("style", "");
 
       if ( this.scrollingDown === true ) {
@@ -122,12 +122,12 @@ class StickySidebarComponent {
 
     // compare to last scrollPoint
     if ( st > this.lastScrollTop ) {
-      console.log("scroll down");
+      // console.log("scroll down");
       // downscroll code
       this.scrollingDown = true;
 
     } else {
-      console.log("scroll up");
+      // console.log("scroll up");
       // upscroll code
       this.scrollingDown = false;
     }

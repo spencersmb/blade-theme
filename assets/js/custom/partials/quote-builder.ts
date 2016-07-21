@@ -153,6 +153,30 @@ class QuoteComponent {
 
   }
 
+  setTranslateX( currentTarget: JQuery, width: Number ){
+    let $this = currentTarget;
+    let inputId = $this.attr("id");
+
+    // if the currently selected input matches the 2nd item - then move switchBtn right, otherwise back to position 1
+    if ( inputId === $(this.inputs[ 1 ]).attr("id") ) {
+      this.switchBtn.css({
+        "webkitTransform": "translateX(" + width + "px)",
+        "MozTransform": "translateX(" + width + "px)",
+        "msTransform": "translateX(" + width + "px)",
+        "OTransform": "translateX(" + width + "px)",
+        "transform": "translateX(" + width + "px)"
+      });
+    } else {
+      this.switchBtn.css({
+        "webkitTransform": "translateX(0px)",
+        "MozTransform": "translateX(0px)",
+        "msTransform": "translateX(0px)",
+        "OTransform": "translateX(0px)",
+        "transform": "translateX(0px)"
+      });
+    }
+  }
+
   onChange( e ) {
 
     let $this = $(e.currentTarget),
@@ -172,23 +196,7 @@ class QuoteComponent {
     $this.prop("checked", true);
 
     // if the currently selected input matches the 2nd item - then move switchBtn right, otherwise back to position 1
-    if ( inputId === $(this.inputs[ 1 ]).attr("id") ) {
-      this.switchBtn.css({
-        "webkitTransform": "translateX(" + prevWidth + "px)",
-        "MozTransform": "translateX(" + prevWidth + "px)",
-        "msTransform": "translateX(" + prevWidth + "px)",
-        "OTransform": "translateX(" + prevWidth + "px)",
-        "transform": "translateX(" + prevWidth + "px)"
-      });
-    } else {
-      this.switchBtn.css({
-        "webkitTransform": "translateX(0px)",
-        "MozTransform": "translateX(0px)",
-        "msTransform": "translateX(0px)",
-        "OTransform": "translateX(0px)",
-        "transform": "translateX(0px)"
-      });
-    }
+    this.setTranslateX( $this, prevWidth);
 
     // change the width of the btn to match the width of the new label
     this.setWidth(selectedLabel);
@@ -329,7 +337,7 @@ class QuoteComponent {
     if ( Utils.breakpoint >= Utils.bps.laptop ) {
 
       // scroll top of div on open for graceful UX
-      $("body,html").animate({ "scrollTop": this.quoteContainer.offset().top - 35 }, 200);
+      $("body,html").animate({ "scrollTop": this.quoteContainer.offset().top}, 200);
 
     }
 
@@ -358,13 +366,20 @@ class QuoteComponent {
 
   resize() {
 
-    // On resize end - check to enable clicks for desktop or remove them
+    // On resize end - check button size to accurately resize selected button width
     clearTimeout(this.resizeTimer);
 
     this.resizeTimer = setTimeout(() => {
 
       if ( this.currentBreakpoint !== Utils.breakpoint ) {
-        this.setWidth(this.getSelectedLabel());
+
+        let selectedLabel = this.getSelectedLabel(),
+            selectedInput = selectedLabel.prev(),
+            firstLabel = $(this.inputs[ 0 ]).next(),
+            firstLabelWidth = firstLabel.outerWidth() - 1;
+
+        this.setTranslateX(selectedInput, firstLabelWidth );
+        this.setWidth(selectedLabel);
         this.currentBreakpoint = Utils.breakpoint;
       }
 

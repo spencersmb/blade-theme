@@ -300,6 +300,41 @@
   }
 }
 
+.single__item {
+  width: 100%;
+  max-width: 330px;
+  margin: 0 auto;
+  float: none;
+  position: relative;
+  background-color: $lighter-grey-hover;
+
+  .card__item--content {
+    padding:5rem 5rem;
+
+    .desc{
+      @include font-size(1.8);
+      line-height: 24px;
+    }
+
+    li{
+      position: relative;
+      padding-bottom: 10px;
+      padding-left: 25px;
+      text-align: left;
+    }
+  }
+
+  .card__list {
+    padding-bottom: 0;
+  }
+
+  i {
+    position: absolute;
+    left: 0;
+    color: $primary-color;
+  }
+}
+
 /*------------------------------------*\
     ACTIVE FORM PAGE
 \*------------------------------------*/
