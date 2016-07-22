@@ -73,7 +73,7 @@ class SvgHeaderComponent {
       height: this._setSvgHeight(),
       delay: 0,
       ease: "Linear.easeNone",
-      onComplete: ()=> {
+      onComplete: () => {
         this.svg.parent("div").css("opacity", 1);
         this.svg.addClass("m-page scene_element scene_element--fadeinupDivider");
       }

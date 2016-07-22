@@ -76,6 +76,12 @@
         color: $primary-color !important;
       }
     }
+    .post-thumb-header {
+      button {
+        color: $primary-color;
+        border-color: $primary-color;
+      }
+    }
     @include breakpoint(laptop) {
 
       &.has-excerpt{
@@ -126,7 +132,7 @@
         position: absolute;
         bottom: 20px;
         opacity: 1;
-        @include transition(all .2s .1s cubic-bezier(0.755, 0.050, 0.855, 0.060));
+        @include transition(color .3s, border .3s, transform .2s .1s cubic-bezier(0.755, 0.050, 0.855, 0.060));
         @include transform(translateY(0));
       }
     }

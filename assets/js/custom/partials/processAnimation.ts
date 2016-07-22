@@ -1,56 +1,22 @@
 declare var ScrollMagic: any;
 const $ = jQuery;
 import Utils from "./utils";
+import DescOffsetAnimation from "./desc-o-animation";
+
 class AnimationComponent {
 
   container: JQuery;
   item: JQuery;
   mScene: JQuery;
   serviceSideBar: JQuery;
-
+  descOffset: JQuery;
 
   constructor() {
     this.container = $(".process-container");
     this.item = $(".process-item-container");
     this.mScene = $(".m-scene");
     this.serviceSideBar = $(".service-sidebar-wrapper");
-  }
-
-  desc_o_animate() {
-    if ( $(".desc-o-animate").length > 0 ) {
-      let wipeAnimation = new TimelineMax();
-      wipeAnimation.add([
-        TweenMax.fromTo($(".desc-o-image-1"), 1, { yPercent: 0 }, { yPercent: -20, ease: Power0.easeInOut })
-      ]);
-
-      let wipeAnimation2 = new TimelineMax();
-      wipeAnimation2.add([
-        TweenMax.fromTo($(".desc-o-image-2"), 1, { yPercent: 0, }, { yPercent: -105, ease: Power0.easeInOut })
-      ]);
-
-      let controller = new ScrollMagic.Controller();
-
-      let scene = new ScrollMagic.Scene(
-        {
-          triggerElement: ".desc-o-animate",
-          duration: $(".desc-o-animate").height(),
-          offset: -100
-        })
-      // .setPin(".desc-o-image-1")
-        .setTween(wipeAnimation)
-        .addIndicators({ name: "1 (duration: El)" }) // add indicators (requires plugin)
-        .addTo(controller);
-
-      let scene2 = new ScrollMagic.Scene(
-        {
-          triggerElement: ".desc-o-animate",
-          duration: $(".desc-o-animate").height() + 100,
-        })
-      // .setPin(".desc-o-image-1")
-        .setTween(wipeAnimation2)
-        .addIndicators({ name: "2 (duration: El)" }) // add indicators (requires plugin)
-        .addTo(controller);
-    }
+    this.descOffset = $(".desc-o-animate");
   }
 
   processAnimateIn() {
@@ -85,17 +51,37 @@ class AnimationComponent {
   }
 
   animateServiceSidebarOut() {
-    TweenLite.to(this.serviceSideBar, .3, {
-      x: "-100",
-      z: ".001",
-      delay: 0,
-      opacity: 0,
-      ease: "Linear.easeNone",
-      onComplete: () => {
-        // remove sidebar html element so it doesnt show up again when scrolling up
-        this.serviceSideBar.remove();
-      }
-    });
+
+    if ( this.serviceSideBar.length > 0 ) {
+
+      TweenLite.to(this.serviceSideBar, .3, {
+        x: "-100",
+        z: ".001",
+        delay: 0,
+        opacity: 0,
+        ease: "Linear.easeNone",
+        onComplete: () => {
+          // remove sidebar html element so it doesnt show up again when scrolling up
+          this.serviceSideBar.remove();
+        }
+      });
+
+    } else {
+
+      TweenLite.to($(".service-sidebar-nostick"), .3, {
+        x: "-100",
+        z: ".001",
+        delay: 0,
+        opacity: 0,
+        ease: "Linear.easeNone",
+        onComplete: () => {
+          // remove sidebar html element so it doesnt show up again when scrolling up
+          this.serviceSideBar.remove();
+        }
+      });
+
+    }
+
   }
 
   loadUrl( url ) {
@@ -166,7 +152,7 @@ class AnimationComponent {
        */
 
       // console.log("laptop or larger");
-      this.mainContentAnimationOut( () => {
+      this.mainContentAnimationOut(() => {
         this.loadUrl(newUrl);
       });
 
@@ -188,15 +174,34 @@ class AnimationComponent {
 
   }
 
+  descOffsetCheck() {
+    if ( this.descOffset.length > 0 ) {
+      this.addDescOffsetModule();
+    }
+  }
+
+  addDescOffsetModule() {
+    this.descOffset.each(( index, el ) => {
+
+      // Pass "this" to each new Header slider component
+      let animation = new DescOffsetAnimation(el);
+      animation.init();
+    });
+  }
+
   init() {
     this.processAnimateIn();
-    this.desc_o_animate();
+    // this.desc_o_animate();
 
     // Click event to control window Loading
     $("a").on("click", ( e ) => {
       e.preventDefault();
       this.globalClickCheck(e);
     });
+
+    this.descOffsetCheck();
+
+    // $(window).on("resize", this.checkSize.bind(this));
 
     // Custom event example
     // $(document).on("test", {}, ( event, arg1, arg2 ) => {
@@ -208,9 +213,11 @@ class AnimationComponent {
     //   }
     //
     // }).bind(this);
+
   }
 }
 
 let AnimationController = new AnimationComponent();
 
 export default AnimationController;
+

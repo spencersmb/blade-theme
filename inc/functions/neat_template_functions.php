@@ -255,10 +255,10 @@ function neat_category_and_tag_archives( $wp_query ) {
 }
 
 
-//add_action( 'init', 'my_add_excerpts_to_pages' );
-//function my_add_excerpts_to_pages() {
-//	add_post_type_support( 'page', 'excerpt' );
-//}
+add_action( 'init', 'neat_add_excerpts_to_pages' );
+function neat_add_excerpts_to_pages() {
+	add_post_type_support( 'page', 'excerpt' );
+}
 
 /*
  *

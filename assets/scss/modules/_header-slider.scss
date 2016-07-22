@@ -83,7 +83,7 @@
 .header-slider-divider{
   position: absolute;
   bottom: 43px;
-  z-index: 0;
+  z-index: 3;
   opacity: 0;
   @include transform(translate3d(0, 50px, 0))
 }

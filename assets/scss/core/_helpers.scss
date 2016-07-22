@@ -125,6 +125,7 @@
 
 .img-loader-bg{
   opacity: 0;
+  @include transform(translateZ(0));
   @include transition(opacity .3s);
 
   &.delay-5{
@@ -133,9 +134,8 @@
 
   &.loaded {
     opacity: 1;
-  }
-
-  &.hero-background{
-    opacity: .7;
+    &.hero-background {
+      opacity: .7;
+    }
   }
 }

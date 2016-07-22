@@ -670,14 +670,19 @@
     Redux::setSection( $opt_name, array(
         'title'  => esc_html__( 'Layout', 'neat' ),
         'fields' => array(
-
+            array (
+                'id' => 'blog_page_options',
+                'icon' => true,
+                'type' => 'info',
+                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-wordpress"></i> Blog Layout</h3>', 'neat'),
+            ),
             array(
                 'id'       => 'main_blog_layout',
                 'type'     => 'image_select',
                 'compiler' => true,
                 'subsection' => true,
-                'title'    => esc_html__( 'Blog Layout', 'neat' ),
-                'subtitle' => wp_kses( '<em>Select the Layout style for Blog posts.</em>', 'neat' ),
+                'title'    => esc_html__( 'Blog Width Settings', 'neat' ),
+                'subtitle' => wp_kses( '<em>Select the Layout style for Blog posts: Full width or contained with sidebar.</em>', 'neat' ),
                 'options'  => array(
                     '1' => array(
                         'alt' => esc_html__('Layout 1', 'neat'),
@@ -690,6 +695,12 @@
 
                 ),
                 'default'  => '1'
+            ),
+            array (
+                'id' => 'sticky_sidebar_options',
+                'icon' => true,
+                'type' => 'info',
+                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-columns"></i> Page Settings</h3>', 'neat'),
             ),
             array(
                 'id'       => 'main_page_layout',
@@ -710,6 +721,18 @@
 
                 ),
                 'default'  => '1'
+            ),
+            array(
+                'id'       => 'service_sticky_sidebar',
+                'type'     => 'button_set',
+                'subsection' => true,
+                'title'    => esc_html__( 'Sticky Sidebar', 'neat' ),
+                'subtitle' => wp_kses( '<em>Enable the sidebar on service pages to be sticky.</em>', 'neat' ),
+                'options'  => array(
+                    'enabled'    => 'Enable',
+                    'disabled'   => 'Disable'
+                ),
+                'default'  => 'enabled',
             ),
             array(
                 'id'       => 'gallery_layout',

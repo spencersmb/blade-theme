@@ -42,12 +42,12 @@ class StickySidebarComponent {
 
     if ( Utils.breakpoint >= Utils.bps.laptop ) {
 
-      // does sidebar haveclass visibility
+      // does sidebar have class visibility
       let isVisible = this.aside.hasClass('visible');
 
       if ( !isVisible ) {
 
-        this.animateSidebarIn();
+        this.animateSidebarIn(this.aside);
 
       }
 
@@ -136,13 +136,13 @@ class StickySidebarComponent {
     this.lastScrollTop = st;
   }
 
-  animateSidebarIn() {
+  animateSidebarIn( element: JQuery ) {
 
-    this.aside.removeClass("intro");
+    element.removeClass("intro");
 
     if ( Utils.breakpoint >= Utils.bps.laptop ) {
 
-      let sidebarIntro = TweenMax.to(this.aside, .3, {
+      let sidebarIntro = TweenMax.to(element, .3, {
         x: 0,
         opacity: 1,
         z: .001,
@@ -150,7 +150,7 @@ class StickySidebarComponent {
         delay: .9,
         onComplete: () => {
           // make sidebar permanently visible
-          this.aside.addClass("visible");
+          element.addClass("visible");
         }
       });
     }
@@ -161,6 +161,7 @@ class StickySidebarComponent {
     console.log("Sticky sidebar loaded");
 
     this.lastScrollTop = 0;
+
     if ( this.aside.length > 0 ) {
       this.checkSidebar();
 
@@ -168,7 +169,13 @@ class StickySidebarComponent {
       $(window).on("resize", this.checkSidebar.bind(this));
 
       // Animate side bar in on load
-      this.animateSidebarIn();
+      this.animateSidebarIn(this.aside);
+
+    } else {
+
+      // Animate side bar in on load
+      this.animateSidebarIn($(".service-sidebar-nostick"));
+
     }
   }
 }

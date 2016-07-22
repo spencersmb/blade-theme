@@ -3,19 +3,11 @@
 \*------------------------------------*/
 
 .service-wrapper {
-  background: $black;
   -webkit-box-shadow: 0px 0px 0px -4px rgba(0,0,0,0.5);
   -moz-box-shadow: 0px 0px 0px -4px rgba(0,0,0,0.5);
   box-shadow: 0px 0px 0px -4px rgba(0,0,0,0.5);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  //@include transition(box-shadow .3s cubic-bezier(0.755, 0.050, 0.855, 0.060));
-
-  .sticky & {
-    //-webkit-box-shadow: 0px 35px 84px -5px rgba(80, 72, 91, 0.58);
-    //-moz-box-shadow: 0px 35px 84px -5px rgba(80, 72, 91, 0.58);
-    //box-shadow: 0px 35px 84px -5px rgba(80, 72, 91, 0.58);
-  }
 
   aside {
 
@@ -27,20 +19,18 @@
 
   .service-widget {
     ul {
-      background: $black;
       padding: 0;
     }
   }
 }
 
-.service-sidebar-wrapper{
+.service-sidebar-wrapper, .service-sidebar-nostick{
   display: block;
   @include transform(translateZ(0));
   top: 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   position: relative;
-  padding: 0;
 
 
   @include breakpoint(laptop){
@@ -94,9 +84,11 @@
   .widget {
     padding: 0 0 0 2rem;
     max-width: none;
-    &:first-of-type{
-      padding: 0;
-    }
+    //
+    //&:first-of-type{
+    //  padding: 0;
+    //}
+
     @include breakpoint(laptop){
       max-width: 270px;
     }
@@ -104,6 +96,12 @@
 
   .service-title {
     padding: 2rem 1.5rem 3rem;
+    background: $black;
+  }
+
+  .neat_ext_services_widget{
+    background: $black;
+    padding: 0 0 2.4rem 0;
   }
 
   .service-icon-wrapper{

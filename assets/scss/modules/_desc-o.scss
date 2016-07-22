@@ -91,7 +91,7 @@
     //z-index: $content;
     padding: 3% ;
     @include breakpoint(tablet){
-      padding: 2rem 2rem 3rem;
+      padding: 4rem 2rem 3rem;
     }
     @include breakpoint(desktop){
     }
@@ -110,11 +110,39 @@
 // Add different image alt positions for animation instead of static
 .desc-o-animate {
   .desc-o-container {
-    .desc-o-image-1{
+    margin-top: 100px;
+    margin-bottom: 80px;
 
+    @include breakpoint(tabletmax){
+      max-width: 420px;
+    }
+
+    @include breakpoint(mobilemax){
+      max-width: 300px;
+    }
+
+    @include breakpoint(tablet){
+      margin-top: 200px;
+      margin-bottom: 50px;
+    }
+
+    .desc-o-image-1{
+      @include breakpoint(tabletmax){
+        position: absolute;
+        top:-70px;
+        left: 10%;
+        right: -10%;
+      }
     }
     .desc-o-image-2{
-      bottom: -170px;
+      @include breakpoint(tabletmax){
+        position: absolute;
+        bottom: -80px;
+        left: -10%;
+      }
+      @include breakpoint(tablet){
+        bottom: -170px;
+      }
     }
   }
 }

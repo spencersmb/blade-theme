@@ -39,7 +39,7 @@
   min-height: 300px;
   background-size: cover;
   background-position: center;
-  opacity: .7;
+  //opacity: .7;
 
   @include breakpoint(tablet){
     min-height: 350px;

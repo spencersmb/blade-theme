@@ -40,12 +40,12 @@
 
 
 .white-btn{
-  border: 2px solid $white !important;
-  color: $white !important;
+  border: 2px solid $white;
+  color: $white;
 
   &:hover{
-    background: $white !important;
-    color: $black !important;
+    background: $white;
+    color: $black;
   }
 }
 

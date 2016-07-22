@@ -140,7 +140,7 @@ class GalleryComponent {
 
       let currentHeight = this.$isotopeGallery.height();
 
-      this.$isotopeGallery.css("height", currentHeight-1 + "px");
+      this.$isotopeGallery.css("height", currentHeight - 1 + "px");
 
     }
 

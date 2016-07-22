@@ -153,7 +153,7 @@ class QuoteComponent {
 
   }
 
-  setTranslateX( currentTarget: JQuery, width: Number ){
+  setTranslateX( currentTarget: JQuery, width: Number ) {
     let $this = currentTarget;
     let inputId = $this.attr("id");
 

@@ -294,9 +294,24 @@ function neat_custom_styles() {
         border-color: <?php echo esc_html($neat_theme_options['main_color']) ?>;
     }
 
+    .rounded-btn:hover{
+        color: #fff;
+    }
+
     /* Override breadcrumbs function output *****/
     .breadcrumb-trail .item-current span {
         color: <?php echo esc_html($neat_theme_options['main_color']); ?> !important;
+    }
+
+    /* Override breadcrumbs function output *****/
+    .white-btn{
+        color: #fff;
+        border-color: #fff;
+    }
+    .white-btn:hover{
+        color: #222228;
+        border-color: #fff;
+        background-color: #fff;
     }
 
     @media only screen and (min-width: 62em) {
@@ -489,7 +504,7 @@ function neat_custom_styles() {
     /***************************************************************/
     /* 	Widgets *****************************************************/
     /***************************************************************/
-    .widget .rounded-btn,
+    .widget,
     footer .widget h6,
     footer .hours-widget h6:before
     {
