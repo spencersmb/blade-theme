@@ -153,6 +153,8 @@ class GalleryComponent {
     // check if the container has items inside it
     if ( this.$galleryContainer.length > 0 ) {
 
+      console.log("resize event");
+      
       // set grid dimension
       this.galleryIsotopeWrapper();
 

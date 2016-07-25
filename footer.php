@@ -8,7 +8,7 @@
  */
 ?>
 
-<footer class="neat_footer">
+<footer class="neat_footer m-page scene_element scene_element--fadein">
 
 		<?php
 		if(is_active_sidebar('neat_footer')): ?>

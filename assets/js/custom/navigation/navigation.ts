@@ -21,6 +21,7 @@ class NavComponent {
   $dropDownContent: JQuery;
 
   state: NavState;
+  reIsoTimeOut: number;
 
   constructor() {
 
@@ -47,27 +48,27 @@ class NavComponent {
 
 
   // Not used
-  reload() {
-
-    this.$navTrigger = document.getElementById("nav-trigger");
-    this.$navDropdown = document.getElementById("neat-dropdown-trigger");
-    // this.$lowerContainer = $(".lowercontainer");
-    this.$upperContainer = $(".uppercontainer");
-    this.$navMeta = $(".neat-nav-meta");
-    this.$dropDownWrapper = $(".neat-dropdown-wrapper");
-    this.$search = $("#nav-xfer");
-    this.$dropDownContent = $(".neat-dropdown-content");
-
-    this.state = {
-      navEnabled: false,
-      mobile: false,
-      tablet: false,
-      laptop: false,
-      desktop: false
-    };
-
-    this.init();
-  }
+  // reload() {
+  //
+  //   this.$navTrigger = document.getElementById("nav-trigger");
+  //   this.$navDropdown = document.getElementById("neat-dropdown-trigger");
+  //   // this.$lowerContainer = $(".lowercontainer");
+  //   this.$upperContainer = $(".uppercontainer");
+  //   this.$navMeta = $(".neat-nav-meta");
+  //   this.$dropDownWrapper = $(".neat-dropdown-wrapper");
+  //   this.$search = $("#nav-xfer");
+  //   this.$dropDownContent = $(".neat-dropdown-content");
+  //
+  //   this.state = {
+  //     navEnabled: false,
+  //     mobile: false,
+  //     tablet: false,
+  //     laptop: false,
+  //     desktop: false
+  //   };
+  //
+  //   this.init();
+  // }
 
 
   /*
@@ -181,7 +182,7 @@ class NavComponent {
     this.navItemClick(false);
     this.goback(false);
     this.state.navEnabled = false;
-
+    // console.log("Nav turned off");
     /*
      Remove Styles from element & reset dropdown
      */
@@ -189,7 +190,7 @@ class NavComponent {
     this.$dropDownContent.removeClass("move-out");
     let dropdown = this.$dropDownContent.find(".neat-secondary-dropdown");
 
-    dropdown.each( (index, elem) => {
+    dropdown.each(( index, elem ) => {
       if ( !$(elem).hasClass("is-hidden") ) {
         $(elem).addClass("is-hidden");
       }
@@ -198,7 +199,7 @@ class NavComponent {
   }
 
   enableMobileNav() {
-    console.log("Nav turned on");
+    // console.log("Nav turned on");
     this.navOpenInit(true);
     this.navClose(true);
     this.navItemClick(true);
@@ -252,12 +253,33 @@ class NavComponent {
 
   }
 
+  safariResizeFix() {
+
+    clearTimeout(this.reIsoTimeOut);
+
+    // check if the container has items inside it
+    if ( Utils.browser === "safari" && Utils.breakpoint >= Utils.bps.laptop ) {
+
+      // remove animation classes temporarily
+      $(this.$navDropdown).removeClass("scene_element--fadeInUpNav");
+
+
+      // on resize complete, re-addClass elements
+      this.reIsoTimeOut = setTimeout(() => {
+        $(this.$navDropdown).addClass("scene_element--fadeInUpNav");
+      }, 500);
+
+    }
+  }
+
   navResize() {
     /*
      Mobile
      */
     if ( Utils.breakpoint === Utils.bps.mobile ) {
 
+      // if state mobile = false - then run breakpoint mobile
+      // if its true then skip cus its already mobile
       if ( !this.state.mobile ) {
         this.breakPointMobile();
       }
@@ -331,6 +353,11 @@ class NavComponent {
         desktop: true
       };
     }
+
+    /*
+     safari Nav resize event fix
+     */
+    this.safariResizeFix();
   }
 
   navLoad() {

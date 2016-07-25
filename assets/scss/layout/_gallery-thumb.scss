@@ -27,8 +27,7 @@
     overflow: hidden;
     position: relative;
     margin: 0;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
     will-change: width;
 
     span {
@@ -384,6 +383,7 @@
 
 // Displays greater than 992px
 @include breakpoint(laptop) {
+
   .full-width-gallery{
     .grid-sizer {
       width: 33.333333333333%;
@@ -400,14 +400,15 @@
       }
     }
   }
+
   .gallery-3-grid,
   .gallery-4-grid,
   .gallery-5-grid {
     .grid-sizer {
-      width: 33.33333333333%;
+      width: calc(972px / 3);
     }
     .gallery-item {
-      width: 33.33333333333%;
+      width: 33.333333333333%;
     }
     &.gallery-preview-grid{
       .grid-sizer {
@@ -461,6 +462,13 @@
       padding-bottom: 50%;
     }
   }
+
+  .gallery-3-grid {
+    .grid-sizer {
+      width: calc(1170px / 3);
+    }
+  }
+
   .gallery-4-grid,
   .gallery-5-grid {
     .grid-sizer {

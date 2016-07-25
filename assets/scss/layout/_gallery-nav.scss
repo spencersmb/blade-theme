@@ -56,7 +56,6 @@
     text-transform: uppercase;
   }
   &-subtitle {
-    font-family: $courier;
     font-weight: 700;
     display: block;
     position: relative;
@@ -66,23 +65,10 @@
     position: relative;
     -ms-word-wrap: break-word;
     word-wrap: break-word;
+    font-weight: 600;
   }
 }
 
-// Displays greater than 768px
-@include breakpoint(tablet) {
-
-  //.post-nav {
-  //  .prev-post {
-  //    text-align: right;
-  //    h2{
-  //      right:-5px;
-  //    }
-  //  }
-  //}
-}
-
-// Displays greater than 992px
 @include breakpoint(laptop) {
 
   .post-nav {
@@ -91,10 +77,3 @@
     }
   }
 }
-
-// Displays greater than 1200px
-@include breakpoint(desktop) {
-}
-
-// Displays greater than 1600px
-@include breakpoint(desktopXL) {}

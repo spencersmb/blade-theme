@@ -43,7 +43,7 @@ if($thisindex - 1 === -1){
 //echo "</pre>";
 ?>
 
-<div class="section">
+<div class="section m-page scene_element scene_element--fadein">
     <nav class="post-nav">
         <div class="row no-margin">
             <!-- Gallery Item -->

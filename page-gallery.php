@@ -133,7 +133,7 @@ get_header();
                     $image_wide_preview = get_field('gallery_wide_image');
 
                     // Set image sizes
-                    $image_small = $image['sizes']['neat-gallery-thumb-sm'];
+                    $image_small = $image['sizes']['neat-square'];
                     $image_wide = $image_wide_preview['url'];
                     $image_large = $image['url'];
 
@@ -227,7 +227,7 @@ get_header();
                             switch ($masonry_size) {
 
                                 case 'wide':
-                                    $img_wide_preview = $image_wide_preview['sizes']['neat-gallery-thumb-sm'];
+                                    $img_wide_preview = $image_wide_preview['sizes']['neat-square'];
                                     echo'
                                 <img
                                     class="img-responsive"
