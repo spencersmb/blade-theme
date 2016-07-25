@@ -144,9 +144,6 @@ if ( file_exists(get_template_directory() . '/inc/functions/neat_theme_init.php'
 if ( file_exists(get_template_directory() . '/inc/functions/neat_widgets.php') ) {
 	require_once( get_template_directory() . '/inc/functions/neat_widgets.php' );
 }
-//if ( file_exists(get_template_directory() . '/inc/widgets/tag_cloud.php') ) {
-//	require_once( get_template_directory() . '/inc/widgets/tag_cloud.php' );
-//}
 
 
 /**

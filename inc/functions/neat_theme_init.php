@@ -74,15 +74,15 @@ if (class_exists('WPBakeryVisualComposerAbstract')) {
     function neat_vcSetAsTheme() {
 
     // Add VC to custom post types
-        if(function_exists('vc_set_default_editor_post_types')) vc_set_default_editor_post_types( array('post','page','service','gallery') );
+        if(function_exists('vc_set_default_editor_post_types')) vc_set_default_editor_post_types( array('post','page','gallery') );
 
         vc_manager()->disableUpdater(true);
         vc_set_as_theme();
 
     }
 
-    //update cpt to init before visual composer
-    // remove_action( 'init', 'neat_theme_register_my_cpts', 10 );
-    // add_action( 'init', 'neat_theme_register_my_cpts', 1 );
+    //update cpt to init before visual composer ( fixes meta cap issue too )
+     remove_action( 'init', 'neat_ext_theme_register_my_cpts', 10 );
+     add_action( 'init', 'neat_ext_theme_register_my_cpts', 1 );
 
 }

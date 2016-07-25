@@ -21,7 +21,7 @@ function neat_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Sidebar', 'neat' ),
 		'id'            => 'neat_sidebar_1',
-		'description'   => '',
+		'description'   => 'General sidebar used in the blog',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h6 class="widget-title">',
@@ -30,7 +30,7 @@ function neat_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Footer', 'neat' ),
 		'id'            => 'neat_footer',
-		'description'   => '',
+		'description'   => 'Sidebar used in the footer',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h6 class="widget-title">',
@@ -39,8 +39,17 @@ function neat_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Service Sidebar', 'neat' ),
 		'id'            => 'neat_service_bar',
-		'description'   => '',
+		'description'   => 'Sidebar designed specifically for service pages',
 		'before_widget' => '<aside id="%1$s" class="service-widget widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h6 class="widget-title">',
+		'after_title'   => '</h6>',
+	) );
+	register_sidebar( array(
+		'name'          => esc_html__( 'Page Sidebar', 'neat' ),
+		'id'            => 'neat_page_sidebar',
+		'description'   => 'Small sidebar used inside static pages',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h6 class="widget-title">',
 		'after_title'   => '</h6>',

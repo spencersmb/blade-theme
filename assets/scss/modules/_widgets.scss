@@ -148,18 +148,20 @@
   text-align: center;
 
   h3 {
-    @include font-size(1.4);
-    font-weight: 500;
-    padding-bottom: 0
+    @include font-size(1.8);
+    font-weight: 900;
+    padding-bottom: 15px;
   }
   img{
     margin: 0 auto;
     max-width: 160px;
   }
   p{
-    @include font-size(1.8);
+    @include font-size(1.6);
+    line-height: 24px;
+    line-height: 2.4rem;
     padding:0;
-    font-weight: 600;
+    font-weight: 500;
   }
   footer &{
     h3 {

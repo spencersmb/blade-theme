@@ -73,7 +73,8 @@ a.rounded-btn.down-arrow{padding:10px 47px 10px 25px}.down-arrow::after,.down-ar
 .shadow-medium-dark{box-shadow:0 18px 94px -16px rgba(0,0,0,0.68)}.img-loader-bg{opacity:0;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transition:opacity .3s;transition:opacity .3s}
 .img-loader-bg.delay-5{-webkit-transition:opacity .3s 1s;transition:opacity .3s 1s}
 .img-loader-bg.loaded{opacity:1}.img-loader-bg.loaded.hero-background{opacity:.7}
-.alignnone{margin:.8rem 0 1.6rem 0}.aligncenter{display:block;margin:5px auto}.alignright{float:none;margin:0 auto 2.4rem}
+.img-loader-bg.loaded.post-nav-thumb{opacity:.7}.alignnone{margin:.8rem 0 1.6rem 0}
+.aligncenter{display:block;margin:5px auto}.alignright{float:none;margin:0 auto 2.4rem}
 .alignleft{float:none;margin:0 auto 2.4rem}a img.alignright{float:right;margin:5px 0 20px 20px}
 a img.alignnone{margin:.8rem 1.6rem 1.6rem 0}a img.alignleft{float:left;margin:.8rem 1.6rem 1.6rem 0}
 a img.aligncenter{display:block;margin-left:auto;margin-right:auto}.wp-caption{background:#595959;max-width:100%;padding:2rem;text-align:center}
@@ -100,7 +101,8 @@ a img.aligncenter{display:block;margin-left:auto;margin-right:auto}.wp-caption{b
 .vc_row{position:relative}.neat-blocked-container{max-width:1200px;padding:0 15px;display:table;width:100%;position:relative;margin:0 auto}
 .neat-container-primary{margin-top:35px;margin-top:3.5rem}.neat-container-single{margin-top:5px;margin-top:5rem}
 .neat_sidebar{max-width:262px;margin:0 auto;position:relative}.neat-contain{margin:0 auto}
-.contain__1200--inner{margin:0 auto}.content{position:relative;z-index:10}.container-divider{position:absolute;bottom:-10px;left:0;width:100%}
+.neat-container-tablet{max-width:768px;margin:0 auto}.contain__1200--inner{margin:0 auto}
+.content{position:relative;z-index:10}.container-divider{position:absolute;bottom:-10px;left:0;width:100%}
 .inline__block{display:inline-block;position:relative;width:100%;margin-bottom:3rem}
 .inline__block:first-child{margin-top:3rem}.inline__block:nth-last-child(-n+1){margin-bottom:0}
 .inline__image{position:relative;display:block;overflow:hidden;max-width:250px;max-height:166px}
@@ -177,7 +179,15 @@ a img.aligncenter{display:block;margin-left:auto;margin-right:auto}.wp-caption{b
 .gallery-3-grid .gallery-item a img,.gallery-4-grid .gallery-item a img,.gallery-5-grid .gallery-item a img{top:0;left:0;height:100%}
 .gallery-3-grid .grid-sizer,.gallery-4-grid .grid-sizer,.gallery-5-grid .grid-sizer{width:100%}
 .gallery-3-grid .gallery-item,.gallery-4-grid .gallery-item,.gallery-5-grid .gallery-item{width:100%}
-.gallery-preview .gallery-item{opacity:1}#velocity{-webkit-transform:translateY(-100%);transform:translateY(-100%);background:#222228;height:100%;left:0;position:fixed;top:0;width:100%;z-index:3}
+.gallery-preview .gallery-item{opacity:1}.post-nav{padding:0}.post-nav-overlay{display:block;position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(47,47,47,0);-webkit-transition:background .3s;transition:background .3s}
+.post-nav .next-post,.post-nav .prev-post{height:auto;cursor:pointer;position:relative;padding:0;background:#222228;color:#fff}
+.post-nav .next-post a,.post-nav .next-post span,.post-nav .prev-post a,.post-nav .prev-post span{color:#fff;position:absolute;top:0;width:100%;left:0;height:100%}
+.post-nav .next-post:hover .post-nav-overlay,.post-nav .prev-post:hover .post-nav-overlay{background-color:rgba(47,47,47,0.64)}
+.post-nav-thumb{height:300px;opacity:0;width:100%;background-position:center;background-size:cover;background-repeat:no-repeat;-webkit-transition:opacity .3s;transition:opacity .3s}
+.post-nav-content{position:absolute;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);padding:40px;left:0;width:100%;text-align:center;text-transform:uppercase}
+.post-nav-subtitle{font-family:Courier,"Lucida Sans Typewriter","Lucida Typewriter",monospace;font-weight:700;display:block;position:relative}
+.post-nav-title{margin-top:5px;position:relative;-ms-word-wrap:break-word;word-wrap:break-word}
+#velocity{-webkit-transform:translateY(-100%);transform:translateY(-100%);background:#222228;height:100%;left:0;position:fixed;top:0;width:100%;z-index:3}
 #header{background:#78be01;position:relative;z-index:999;width:100%;margin:0 auto;padding:0;min-height:122px}
 .uppercontainer{height:77px;position:relative;max-width:1200px;margin:0 auto}.free{display:none}
 .neat-dropdown-wrapper{display:block;position:relative;right:0;width:113px;height:77px;float:right;background:#fff}
@@ -243,8 +253,8 @@ footer .navbar-brand>img{margin:0 auto;height:auto}.footer-top{padding:6.5rem 0;
 .service-wrapper .widget h6{font-weight:900;color:#78be01}footer .widget{max-width:none;margin:0 auto 4.4rem;color:#fff;padding:0 20px}
 footer .widget h6{color:#78be01}footer .widget ul{padding-bottom:0}footer .widget a,footer .widget p{color:#fff}
 footer .widget a:hover{color:#78be01}.about-widget{padding:1rem 2rem 2rem;text-align:center}
-.about-widget h3{font-size:14px;font-size:1.4rem;font-weight:500;padding-bottom:0}
-.about-widget img{margin:0 auto;max-width:160px}.about-widget p{font-size:18px;font-size:1.8rem;padding:0;font-weight:600}
+.about-widget h3{font-size:18px;font-size:1.8rem;font-weight:900;padding-bottom:15px}
+.about-widget img{margin:0 auto;max-width:160px}.about-widget p{font-size:16px;font-size:1.6rem;line-height:24px;line-height:2.4rem;padding:0;font-weight:500}
 footer .about-widget h3{font-size:14px;font-size:1.4rem}footer .about-widget p{font-size:14px;font-size:1.4rem}
 .widget_search .search-field{background:#f2f2f2;color:#727272;border:0;padding:.9rem .5rem .9rem 2rem;position:relative;color:#222228}
 .widget_search .search-field::-webkit-input-placeholder{color:#727272}.widget_search .search-field:-moz-placeholder{color:#727272}
@@ -340,7 +350,8 @@ footer .input-mail input{background:#545454}.contact-widget:nth-last-child(-n+1)
 .sidebar-content .dual-images-container img{max-width:100%}.sidebar-content .dual-images-container .image-2{position:relative}
 .blade-feature-tabs .vc_tta-tabs-list{border:1px solid #95989a;border-radius:50px !important}
 .blade-feature-tabs .vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab.vc_active>a{color:#fff !important;background-color:#78be01 !important;font-weight:900;box-shadow:0 12px 65px -6px rgba(0,0,0,0.38)}
-.blade-feature-tabs .vc_tta.vc_tta-style-classic .vc_tta-tab{margin:5px}.blade-feature-tabs .vc_tta.vc_tta-style-classic .vc_tta-tab>a{border-width:0 !important;border-radius:50px !important;background:transparent}
+.blade-feature-tabs .vc_tta.vc_tta-style-classic .vc_tta-tab{margin:5px 5px 5.5px 5px}
+.blade-feature-tabs .vc_tta.vc_tta-style-classic .vc_tta-tab>a{border-width:0 !important;border-radius:50px !important;background:transparent}
 .blade-feature-tabs .vc_tta.vc_general .vc_tta-tab>a{font-weight:600;font-size:14px;font-size:1.4rem;padding:1rem 2rem !important}
 .blade-feature-tabs .vc_tta-tabs-container{margin-bottom:40px !important}.blade-feature-tabs .vc_tta-tabs-list{width:auto;display:inline-block !important;border-radius:40%}
 .blade-feature-tabs .vc_tta-color-grey.vc_tta-style-classic .vc_tta-panel .vc_tta-panel-heading{border-width:0 !important;background-color:#e0e0e0 !important;border-radius:0 !important}
@@ -380,7 +391,7 @@ footer .input-mail input{background:#545454}.contact-widget:nth-last-child(-n+1)
 .header-slider-container.is-active .header-slider-gallery::after,.header-slider-container.is-active .header-slider-gallery::before{opacity:0;color:transparent;-webkit-animation-duration:0s;animation-duration:0s}
 .no-touch .header-slider-container.is-active .header-slider-gallery:hover::after,.no-touch .header-slider-container.is-active .header-slider-gallery:hover::before{opacity:0}
 .header-slider-container.is-active .count{top:38px;right:8rem}.header-slider-divider{position:absolute;bottom:43px;z-index:3;opacity:0;-webkit-transform:translate3d(0,50px,0);transform:translate3d(0,50px,0)}
-.header-slider-inner{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transition:all .3s;transition:all .3s;position:relative;z-index:3}
+.header-slider-inner{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transition:all .3s;transition:all .3s;position:relative;z-index:4}
 .header-slider-content{-webkit-transition:all .3s;transition:all .3s;margin:0 35px}
 .header-slider-wrapper{margin-left:auto;margin-right:0;width:100%;position:relative;z-index:2;-webkit-backface-visibility:hidden;backface-visibility:hidden;will-change:width;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transition:width .5s;transition:width .5s}
 .header-slider-gallery,.showcase__slider--gallery{position:relative;z-index:2;list-style:none;margin:0;padding:0}
@@ -622,7 +633,7 @@ footer .navbar-brand>img{height:100%}.footer-top{max-width:none}.footer-nav ul{t
 .gallery-3-grid .gallery-item,.gallery-4-grid .gallery-item,.gallery-5-grid .gallery-item{width:33.33333333333%}
 .gallery-3-grid.gallery-preview-grid .grid-sizer,.gallery-4-grid.gallery-preview-grid .grid-sizer,.gallery-5-grid.gallery-preview-grid .grid-sizer{width:50%}
 .gallery-3-grid.gallery-preview-grid .gallery-item,.gallery-4-grid.gallery-preview-grid .gallery-item,.gallery-5-grid.gallery-preview-grid .gallery-item{width:50%}
-.uppercontainer{padding:0 15px}.free{float:right;position:relative;right:0;left:auto;padding:14px 15px 14px;top:0;-webkit-transform:translateY(0);transform:translateY(0)}
+.post-nav-thumb{height:400px}.uppercontainer{padding:0 15px}.free{float:right;position:relative;right:0;left:auto;padding:14px 15px 14px;top:0;-webkit-transform:translateY(0);transform:translateY(0)}
 .neat-dropdown-wrapper .neat-nav-trigger{display:none}.neat-dropdown-wrapper{display:none}
 .neat-dropdown{top:75px;left:50%;-webkit-transform:translateX(-50%) translateZ(0);transform:translateX(-50%) translateZ(0);max-width:1200px;margin:0 auto;padding:0 15px 0 0;position:absolute;width:100%;height:70px;display:block;z-index:2;background:transparent}
 .neat-dropdown h2{display:none}.neat-dropdown li{display:inline-block}.neat-dropdown-content li:last-of-type>a,.neat-dropdown-content ul li:last-of-type>a,.neat-dropdown-content ul li:last-of-type>a,.neat-dropdown-content ul ul li:last-of-type>a{border:0}
