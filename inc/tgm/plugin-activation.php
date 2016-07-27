@@ -50,6 +50,12 @@ function neat_register_required_plugins() {
             'slug'      => 'contact-form-7',
             'required'  => true,
         ),
+        // TablePress
+        array(
+            'name'      => 'TablePress',
+            'slug'      => 'tablepress',
+            'required'  => true,
+        ),
         array(
             'name'                  => 'Redux Settings Framework', // The plugin name
             'slug'                  => 'redux', // The plugin slug (typically the folder name)

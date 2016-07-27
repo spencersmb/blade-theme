@@ -65,7 +65,7 @@ $has_excerpt = has_excerpt();
 
 					<?php if($has_excerpt): ?>
 						<div class="post-thumb-excerpt">
-							<?php the_excerpt(); ?>
+							<p><?php the_excerpt(); ?></p>
 						</div>
 					<?php endif; ?>
 

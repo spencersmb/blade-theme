@@ -199,7 +199,32 @@ class AnimationComponent {
       this.globalClickCheck(e);
     });
 
+    // Check for VC grid link
+    if ( $(".vc_grid-container").length > 0 ) {
+
+      setTimeout(() => {
+        $(".vc_grid-container").find("a").each(( index, el ) => {
+          $(el).on("click", ( e ) => {
+            e.preventDefault();
+            this.globalClickCheck(e);
+          });
+        });
+
+      }, 2000);
+    }
+
     this.descOffsetCheck();
+
+    // SPECIAL TABLES ADD CLASS
+    if ( $(".dataTables_wrapper").length > 0 ) {
+      console.log("add data table class");
+      let el = $(".dataTables_wrapper");
+
+      el.each(( index, el ) => {
+        $(el).addClass("table-responsive");
+      });
+
+    }
 
     // $(window).on("resize", this.checkSize.bind(this));
 

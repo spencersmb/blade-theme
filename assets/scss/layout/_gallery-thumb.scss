@@ -46,6 +46,7 @@
 
     h5 {
       position: absolute;
+      text-align: left;
       bottom: 0;
       left: 20px;
       margin: 0;
@@ -138,7 +139,8 @@
       @include breakpoint(laptop){
         &:hover{
           h5 {
-            @include transform( scale(.5) translateY(-36px) translateX(-49px));
+            @include transform( scale(.5) translateY(0) translateX(0));
+            transform-origin: top left;
           }
           i {
             @include transform(translateX(0));

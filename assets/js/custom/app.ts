@@ -34,7 +34,6 @@ declare var ScrollMagic: any;
       Testimonials.init();
       QuoteBuilder.init();
       AnimationController.init(); // Global window anim and click control
-
     }
   }
 
@@ -50,6 +49,7 @@ declare var ScrollMagic: any;
   // Bind events to the imagesLoaded plugin here
   $(document).on("imgLoaded", function ( e ) {
     console.log("image loaded custom event");
+    
     // check if page has gallery
     if ( $(".gallery-container").length > 0 ) {
       IsotopeGallery.init();

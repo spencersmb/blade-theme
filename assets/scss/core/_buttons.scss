@@ -204,6 +204,10 @@ a.rounded-btn {
   &.vc_btn3-style-outline{
     border-color: $green !important;
   }
+  &.vc_gitem-link{
+    border-bottom-width: 2px !important;
+    border-bottom: 2px solid $green !important;
+  }
 }
 
 .btn-sm {

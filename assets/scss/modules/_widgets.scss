@@ -655,3 +655,35 @@
   }
 
 }
+
+/*------------------------------------*\
+    TablePress
+\*------------------------------------*/
+
+.tablepress {
+
+  thead {
+
+    color: $white;
+
+    th {
+      background-color: $primary-color !important;
+    }
+  }
+
+  &.table>thead>tr>th{
+    border-bottom: 0;
+  }
+
+  tbody{
+    tr{
+      @include even(){
+        td{
+            background: $lighter-grey-hover !important;
+          }
+      }
+    }
+  }
+
+}
+

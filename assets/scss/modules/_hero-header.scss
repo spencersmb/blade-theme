@@ -137,3 +137,13 @@
   padding-left: 2rem;
   padding-right: 0;
 }
+
+// color fix for divider on blog pages
+.single-post{
+  .hero{
+    svg{
+      fill: #fff;
+      bottom: -5px;
+    }
+  }
+}

@@ -231,6 +231,13 @@ function neat_excerpt_more($more) {
 }
 add_filter('excerpt_more', 'neat_excerpt_more');
 
+function neat_excerpt($content) {
+	global $post;
+	$post_content = get_post($post->ID)->post_excerpt;
+	return $post_content;
+}
+add_filter('the_excerpt', 'neat_excerpt');
+
 /**
  * Add Categories to pages. Then add pages to the search results of categories
  *
