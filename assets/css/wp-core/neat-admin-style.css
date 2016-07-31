@@ -1,5 +1,4 @@
 
-
 [data-name="custom_url"] {
     /* Styles */
     clear:none !important;
@@ -220,7 +219,14 @@ Custom VC Admin Icons
     background-image: url("../../images/theme_options/icons/neat_icons.png");
     background-position: 0 -480px;
 }
-
+.inline_block_icon.vc_element-icon{
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -512px;
+}
+.single_quote_item_icon.vc_element-icon{
+    background-image: url("../../images/theme_options/icons/neat_icons.png");
+    background-position: 0 -544px;
+}
 .vc_btn3 {
     padding: 11px 23px 11px 23px !important;
     text-transform: uppercase !important;

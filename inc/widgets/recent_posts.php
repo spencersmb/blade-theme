@@ -35,10 +35,10 @@ Class neat_Recent_Posts_Widget extends WP_Widget_Recent_Posts {
         endif;
     }
 }
-function my_recent_widget_registration() {
+function neat_recent_widget_registration() {
     unregister_widget('WP_Widget_Recent_Posts');
     register_widget('neat_Recent_Posts_Widget');
 }
-add_action('widgets_init', 'my_recent_widget_registration');
+add_action('widgets_init', 'neat_recent_widget_registration');
 
 

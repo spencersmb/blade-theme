@@ -12,5 +12,5 @@
         class="search-field"
         placeholder="<?php echo esc_attr( 'Search...'); ?>"
         value="<?php echo get_search_query(); ?>"
-        name="s" title="<?php echo esc_attr( 'Search for:'); ?>">
+        name="search" title="<?php echo esc_attr( 'Search for:'); ?>">
 </form>

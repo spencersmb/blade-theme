@@ -2,7 +2,6 @@
     BLOG HOMEPAGE STYLE
 \*------------------------------------*/
 
-
 .blog-article, .blog-article-p1 {
 
   @include breakpoint(tablet){
@@ -239,6 +238,10 @@
   padding: 0;
   margin: 2.4rem 0;
 
+  .nav-links {
+    display: table;
+  }
+
   .nav-previous, .nav-next {
     display: inline-block;
   }
@@ -248,6 +251,9 @@
   }
 }
 
+/*------------------------------------*\
+    SEARCH RESULTS PAGE
+\*------------------------------------*/
 .search-container {
 
   .blog-article {
@@ -263,6 +269,9 @@
       padding-left: 0;
       padding-right: 0;
       clear: both;
+    }
+    @include last(1) {
+      border-bottom: none;
     }
 
     .article-title {

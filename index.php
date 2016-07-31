@@ -109,13 +109,14 @@ get_header();
 												$excerpt = get_the_excerpt();
 												$excerpt_trim = wp_trim_words( $excerpt , '25' );?>
 												<p><?php echo wp_kses($excerpt_trim, 'neat'); ?></p>
-												<a class="moretag rounded-btn white-btn" href="<?php the_permalink() ?>">
+												<a class="moretag rounded-btn" href="<?php echo esc_url(the_permalink()) ?>">
 													<?php echo esc_html__('Read More', 'neat') ?>
 												</a>
 											<?php else:
 												the_excerpt();
 											endif;
 											?>
+
 											<?php
 											//paginated links inside post
 											wp_link_pages( array(

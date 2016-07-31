@@ -17,14 +17,6 @@ $post_classes = array(
 $blog_layout = get_redux_options('main_blog_layout');
 $is_archive_page = is_archive();
 
-if( $blog_layout === '1' && $is_archive_page ){
-	$post_classes = array(
-		'col-xs-12',
-		'col-sm-6',
-		'post-thumb',
-	);
-}
-
 $featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
 $has_excerpt = has_excerpt();
 ?>
@@ -71,7 +63,6 @@ $has_excerpt = has_excerpt();
 
 			</div><!-- /.post-thumb-header -->
 
-		</div>
-		<!-- /.post-thumb-content -->
+		</div><!-- /.post-thumb-content -->
 
 </article><!-- /article -->

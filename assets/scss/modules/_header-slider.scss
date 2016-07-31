@@ -162,8 +162,8 @@
       content: '\f065';
       top: 50%;
       color: $white;
-      left: 50%;
-      @include transform(translateX(-50%)translateY(-50%));
+      left: 45%;
+      @include transform(translateX(-45%)translateY(-50%));
       opacity: 0;
       -webkit-animation-duration: .4s;
       animation-duration: .4s;

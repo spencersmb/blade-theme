@@ -24,6 +24,7 @@ Tags: one-column, two-columns, custom-header, custom-menu, full-width-template, 
     STRUCTURE
 \*------------------------------------*/
 @import 'core/structure';
+@import 'layout/headings';
 @import 'core/buttons';
 @import 'core/helpers';
 
@@ -65,3 +66,5 @@ Tags: one-column, two-columns, custom-header, custom-menu, full-width-template, 
 @import 'modules/testimonials';
 @import 'modules/quote-builder';
 @import 'modules/404';
+@import 'modules/dhvc-plugin';
+@import 'modules/contact-7';

@@ -65,9 +65,11 @@ class QuoteComponent {
     this.quoteItemsArray.each(( index, el ) => {
 
       let $this = $(el),
-        title = $this.find("h2").text(),
+        title = $this.find(".card__item--content > h2").text(),
         name = title.toLocaleLowerCase(),
         uniqueId = name + "-" + index;
+
+      console.log("Title: ", title);
 
       // Add matching ID's to each Card
       $this.attr("id", uniqueId);
@@ -196,7 +198,7 @@ class QuoteComponent {
     $this.prop("checked", true);
 
     // if the currently selected input matches the 2nd item - then move switchBtn right, otherwise back to position 1
-    this.setTranslateX( $this, prevWidth);
+    this.setTranslateX($this, prevWidth);
 
     // change the width of the btn to match the width of the new label
     this.setWidth(selectedLabel);
@@ -232,14 +234,29 @@ class QuoteComponent {
   setActivePlan() {
 
     let id = this.state.selected;
+
     let selectedCard = this.quoteItemsArray.filter(( item ) => {
       return $(this.quoteItemsArray[ item ]).attr("id") === id;
     });
 
     let button = '<a class="rounded-btn white-btn go-back" href="#">Go Back</a>';
 
+    // find form
+    let formRef = selectedCard.find(".quote__form--temp").find(".quote__form--inner");
+    let form = formRef.detach();
+
+    // cloned element
     let modifiedElement = selectedCard.clone();
 
+    // remove form from cloned item.
+    // modifiedElement.find(".quote__form--item.temp").remove();
+    // formRef.remove();
+
+    // add form to the VC content area
+    let quoteFormContainer = $(".quote__form--vc");
+    quoteFormContainer.append(form);
+
+    // find button and remove
     modifiedElement.find(".card__item--btn").remove();
 
     // modifiedElement.insertBefore(this.formBuilder.find(".go-back"));
@@ -254,13 +271,24 @@ class QuoteComponent {
 
   }
 
+  putFormBack( form: JQuery ) {
+    let id = this.state.selected;
+    // find element id that matches the current state
+    let selectedCard = this.quoteItemsArray.filter(( item ) => {
+      return $(this.quoteItemsArray[ item ]).attr("id") === id;
+    });
+
+    selectedCard.find(".quote__form--temp").append( form );
+  }
+
   closeForm( e ) {
     e.preventDefault();
     this.state.isFormActive = false;
 
-    // remove current card
+    // ref for items in VC view
     let card = this.formBuilder.find(".card__item");
     let backBtn = this.formBuilder.find(".quote__form--card-wrapper").find(".go-back");
+    let form = this.formBuilder.find(".quote__form--vc").find(".quote__form--inner");
 
     card.removeClass("in");
 
@@ -270,6 +298,7 @@ class QuoteComponent {
 
       // set body back to scrollable
       $("body").css("overflow-y", "auto");
+
     }, 400);
 
     if ( Utils.breakpoint >= Utils.bps.laptop ) {
@@ -283,9 +312,14 @@ class QuoteComponent {
             this.formBuilder.css("visibility", "hidden");
             this.quoteChooser.css("opacity", "1");
 
+            // z-index fix
+            $(".inner-page-wrapper").children("div").css("z-index", "0");
+
             // remove current card html
             card.remove();
             backBtn.remove();
+
+            this.putFormBack( form.detach() );
 
           });
     } else {
@@ -294,11 +328,15 @@ class QuoteComponent {
       this.formBuilder.css("visibility", "hidden");
       this.quoteChooser.css("opacity", "1");
 
+      // z-index fix
+      $(".inner-page-wrapper").children("div").css("z-index", "0");
+
       // remove current card html
       card.remove();
       backBtn.remove();
-    }
 
+      this.putFormBack( form.detach() );
+    }
 
     // fade out first display
     this.quoteChooser.addClass("active");
@@ -321,24 +359,40 @@ class QuoteComponent {
     // set content plan HTML in new form area
     this.setActivePlan();
 
-    // fade out cards
-    this.quoteChooser.css("opacity", "0");
+    // Animate form in
+    let activateInnerForm = () => {
 
-    // set form to active
-    this.formBuilder.addClass("active");
+      // z-index fix
+      $(".inner-page-wrapper").children("div").css("z-index", "-1");
+      this.quoteContainer.parents(".vc_row").css("z-index", "2");
 
-    // add visibility immediately
-    this.formBuilder.css("visibility", "visible");
+      // fade out cards
+      this.quoteChooser.css("opacity", "0");
 
-    // fade out first display
-    this.quoteChooser.removeClass("active");
+      // set form to active
+      this.formBuilder.addClass("active");
+
+      // add visibility immediately
+      this.formBuilder.css("visibility", "visible");
+
+      // fade out first display
+      this.quoteChooser.removeClass("active");
+    };
 
     // if desktop scroll top
     if ( Utils.breakpoint >= Utils.bps.laptop ) {
 
       // scroll top of div on open for graceful UX
-      $("body,html").animate({ "scrollTop": this.quoteContainer.offset().top}, 200);
+      $("body,html").animate(
+        {
+          "scrollTop": this.quoteContainer.offset().top
+        }, 200, () => {
+          activateInnerForm();
+        }
+      ).bind(this);
 
+    }else {
+      activateInnerForm();
     }
 
 
@@ -374,11 +428,11 @@ class QuoteComponent {
       if ( this.currentBreakpoint !== Utils.breakpoint ) {
 
         let selectedLabel = this.getSelectedLabel(),
-            selectedInput = selectedLabel.prev(),
-            firstLabel = $(this.inputs[ 0 ]).next(),
-            firstLabelWidth = firstLabel.outerWidth() - 1;
+          selectedInput = selectedLabel.prev(),
+          firstLabel = $(this.inputs[ 0 ]).next(),
+          firstLabelWidth = firstLabel.outerWidth() - 1;
 
-        this.setTranslateX(selectedInput, firstLabelWidth );
+        this.setTranslateX(selectedInput, firstLabelWidth);
         this.setWidth(selectedLabel);
         this.currentBreakpoint = Utils.breakpoint;
       }

@@ -17,11 +17,8 @@ class DescOffsetAnimation {
 
     if ( Utils.breakpoint >= Utils.bps.tablet ) {
 
-      console.log("tablet or larger");
-
+      // Enable Animation
       if ( this.is_desc_animating === false ) {
-
-        console.log("enable animation");
 
         this.is_desc_animating = true;
         this.desc_o_animate();
@@ -29,13 +26,16 @@ class DescOffsetAnimation {
 
     }
 
+    // disable animation
     if ( Utils.breakpoint < Utils.bps.tablet ) {
-      console.log("disable animation");
+
       this.is_desc_animating = false;
-      console.log(this.scene);
+
       if ( typeof this.scene === "object" ) {
+
         this.scene.destroy(true);
         this.scene2.destroy(true);
+
       }
     }
 
@@ -76,9 +76,8 @@ class DescOffsetAnimation {
           duration: this.$this.height(),
           offset: -100
         })
-      // .setPin(".desc-o-image-1")
         .setTween(wipeAnimation)
-        .addIndicators({ name: "1 (duration: El)" }) // add indicators (requires plugin)
+        // .addIndicators({ name: "1 (duration: El)" }) // add indicators (requires plugin)
         .addTo(this.controller);
 
       this.scene2 = new ScrollMagic.Scene(
@@ -86,9 +85,8 @@ class DescOffsetAnimation {
           triggerElement: this.$this[0],
           duration: this.$this.height() + 100,
         })
-      // .setPin(".desc-o-image-1")
         .setTween(wipeAnimation2)
-        .addIndicators({ name: "2 (duration: El)" }) // add indicators (requires plugin)
+        // .addIndicators({ name: "2 (duration: El)" }) // add indicators (requires plugin)
         .addTo(this.controller);
     }
 

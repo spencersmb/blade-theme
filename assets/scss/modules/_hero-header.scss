@@ -17,11 +17,12 @@
     position: absolute;
     left:0;
     height: auto;
-    bottom: 0;
+    bottom: -5px;
     width: 100%;
     transform: translate3d(0, 40px, 0);
     z-index: $content;
-    opacity: 1;
+    opacity: 0;
+    fill: #fff;
   }
 
   .divider-path {
@@ -48,6 +49,8 @@
   }
 
   .single-post & {
+    opacity: 0;
+
     @include breakpoint(tablet){
       min-height: 450px;
     }
@@ -118,6 +121,9 @@
 
 .hero-subtitle {
   padding-top: 1rem;
+  color: $white;
+  @include font-size(2.4);
+
   @include breakpoint(tablet){
       padding-top: 0;
   }
@@ -141,9 +147,6 @@
 // color fix for divider on blog pages
 .single-post{
   .hero{
-    svg{
-      fill: #fff;
-      bottom: -5px;
-    }
+    background: $black;
   }
 }

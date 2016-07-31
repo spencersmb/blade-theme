@@ -27,6 +27,10 @@
 
 			<span class="span-excerpt"><?php the_excerpt(); ?></span>
 
+			<?php if(has_excerpt()): ?>
+				<a class="moretag rounded-btn" href="<?php echo esc_url(the_permalink()) ?>"><?php echo esc_html__('Read More', 'neat') ?></a>
+			<?php endif; ?>
+
 
 		</div><!-- /.article-content -->
 

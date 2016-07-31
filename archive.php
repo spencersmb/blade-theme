@@ -16,7 +16,7 @@ get_header(); ?>
 			<section>
 
 				<!-- hero section -->
-				<div class="hero m-header scene_element scene_element--fadein" style="background-color:#7ED321">
+				<div class="hero m-header scene_element scene_element--fadein">
 
 					<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="65" viewBox="0 0 1212.4 64.6" class="divider-svg">
 						<polygon points="606.2 40.9 0 0 0 64.6 595.2 64.6 617.2 64.6 1212.4 64.6 1212.4 0" class="divider-path"/>
@@ -48,11 +48,7 @@ get_header(); ?>
 
 			<section class="container neat-container-single">
 
-			<?php if($blog_layout === "1"): ?>
-				<div class="col-xs-12 col-md-8 col-lg-9 m-page scene_element scene_element--fadeinup">
-			<?php else: ?>
 				<div class="col-xs-12 m-page scene_element scene_element--fadeinup">
-			<?php endif; ?>
 
 					<?php while ( have_posts() ) : the_post(); ?>
 
@@ -69,12 +65,6 @@ get_header(); ?>
 					<?php endif; ?>
 
 				</div>
-
-				<?php if($blog_layout === "1"): ?>
-					<div class="col-xs-12 col-md-3">
-						<?php get_sidebar(); ?>
-					</div><!-- end sidebar -->
-				<?php endif; ?>
 
 			</section>
 

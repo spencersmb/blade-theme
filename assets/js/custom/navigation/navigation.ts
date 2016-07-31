@@ -170,7 +170,17 @@ class NavComponent {
   moveNavigationDekstop() {
     // console.log("move navigation desktop");
 
-    this.$search.insertBefore(this.$dropDownContent);
+    if ( this.$dropDownContent.length > 0 ) {
+
+      this.$search.insertBefore(this.$dropDownContent);
+
+    } else {
+
+      // fix for no nav - first time wp install
+      this.$search.detach();
+      $("#neat-dropdown-trigger").append(this.$search);
+
+    }
 
   }
 
@@ -259,6 +269,7 @@ class NavComponent {
 
     // check if the container has items inside it
     if ( Utils.browser === "safari" && Utils.breakpoint >= Utils.bps.laptop ) {
+      console.log("safari");
 
       // remove animation classes temporarily
       $(this.$navDropdown).removeClass("scene_element--fadeInUpNav");
@@ -398,9 +409,13 @@ class NavComponent {
       };
     }
 
-    if ( Utils.breakpoint === Utils.bps.desktop ) {
+    if ( Utils.breakpoint >= Utils.bps.desktop ) {
+
+      console.log("current breakpoint", Utils.breakpoint);
+      console.log("xfer div", this.$search);
 
       this.breakPointDesktop(this.state);
+
       this.state = {
         navEnabled: false,
         mobile: false,
@@ -408,6 +423,7 @@ class NavComponent {
         laptop: false,
         desktop: true
       };
+
     }
   }
 

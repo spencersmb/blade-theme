@@ -140,8 +140,6 @@
 	</div>
 	<?php endif; ?>
 
-
-
 </footer>
 <!-- /footer -->
 </div>

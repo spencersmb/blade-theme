@@ -1,0 +1,94 @@
+/*------------------------------------*\
+    Contact 7 plugin
+\*------------------------------------*/
+.wpcf7-form-control.wpcf7-submit {
+  width: auto !important;
+  color: $white !important;
+}
+
+
+.wpcf7-validation-errors {
+  display: none !important;
+}
+.wpcf7-not-valid-tip {
+  position: absolute;
+  width: 320px;
+  display: block;
+  bottom: -42px;
+  left: 50%;
+  @include transform(translateX(-50%));
+  text-align: center;
+}
+
+.wpcf7-mail-sent-ok{
+  display: block;
+  position: absolute;
+  left: 50%;
+  @include transform(translateX(-50%));
+  margin-top: 0 !important;
+  border:0 !important;
+  color: green;
+}
+
+.input-mail {
+  position: relative;
+  max-width: 350px;
+  margin: 0 auto;
+
+  input {
+    @include transition(all .3s);
+    background: lighten($lightest-grey, 7%);
+    color: $grey;
+    padding-left: 2rem;
+    @include placeholder($grey);
+    border: none;
+
+  }
+  .ajax-loader{
+    display: none;
+  }
+
+  .icon {
+    z-index: $content;
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
+    right: 0;
+    width: 65px;
+    height: 42px;
+    background: $primary-color;
+    border-radius: 50px;
+  }
+
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translateY(-50%)translateX(-50%));
+    color: $white;
+  }
+
+  input[type="submit"] {
+    @include transition(all .3s);
+    width: 65px !important;
+    height: 42px;
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-indent: 500%;
+    overflow: hidden;
+    z-index: $above-content;
+
+    &:hover{
+      background: transparent !important;
+    }
+  }
+
+  footer & {
+    input {
+      background: $dark-grey;
+    }
+  }
+}

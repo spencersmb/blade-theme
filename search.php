@@ -35,7 +35,7 @@ $blog_layout = get_redux_options('main_blog_layout');
 	
 	<div class="container neat-container-primary">
 		<div class="row">
-			<div class="col-xs-12 <?php if($blog_layout === "1"): echo esc_attr('col-md-8 col-lg-9'); ?><?php endif; ?>">
+			<div class="col-xs-12">
 
 				<div class="content m-page scene_element scene_element--fadeinup">
 
@@ -58,11 +58,6 @@ $blog_layout = get_redux_options('main_blog_layout');
 
 			</div><!-- /.col -->
 			
-			<?php if($blog_layout === "1"): ?>
-				<div class="col-xs-12 col-md-4 col-lg-3">
-					<?php get_sidebar(); ?>
-				</div>
-			<?php endif; ?>
 		</div><!-- /.row -->
 		
 	</div><!-- /.neat-primary-container -->

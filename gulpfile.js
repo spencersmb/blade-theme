@@ -31,9 +31,12 @@ build = './buildtheme/', // Files that you want to package into a zip go here
 		'**/*.json',
 		'**/*.md',
 		'**/*.ts',
+		'**/*.ts',
+		'**/*.zip',
 
 		// include specific files and folders
 		'screenshot.png',
+		'favicon.png',
 
 		// exclude files and folders
 		'!node_modules/**/*',
@@ -342,8 +345,12 @@ gulp.task('buildFiles', function() {
  * Look at src/images, optimize the images and send them to the appropriate place
  */
 gulp.task('buildImages', function() {
-	return gulp.src(['assets/img/**/*', '!assets/images/raw/**'])
-		.pipe(gulp.dest(build + 'assets/img/'))
+	return gulp.src(
+		[
+			'assets/images/**/*',
+			'!assets/images/raw/**']
+		)
+		.pipe(gulp.dest(build + 'assets/images/'))
 		.pipe(plugins.notify({
 			message: 'Images copied to buildTheme folder',
 			onLast: true

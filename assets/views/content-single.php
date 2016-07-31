@@ -36,13 +36,14 @@
 		$output .= '
 		<!-- Tags -->
 		<div class="neat-single__tags">
+			<h6 class="uppercase bold">'.esc_html__('Tags:', 'neat').'</h6>
 			';
 
-		foreach($get_tags as $tag){
-			$tag_id = $tag->term_taxonomy_id;
-			$tag_link = get_tag_link( $tag_id );
-			$output .= '<a class="tag-btn" href="'. esc_url($tag_link) .'">'. wp_kses($tag->name, 'neat') .'</a>';
-		}
+			foreach($get_tags as $tag){
+				$tag_id = $tag->term_taxonomy_id;
+				$tag_link = get_tag_link( $tag_id );
+				$output .= '<a class="tag-btn" href="'. esc_url($tag_link) .'">'. wp_kses($tag->name, 'neat') .'</a>';
+			}
 
 		$output .= '
 		</div>

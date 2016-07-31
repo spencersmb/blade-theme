@@ -47,14 +47,22 @@ endif;
  * @return assoc array: postID -> postName
  */
 function neat_getAllPages_Reverse($type){
+
+	$args = array(
+		'posts_per_page'  => -1,
+		'post_type' => $type,
+		'orderby'=> 'title',
+		'order'=>'ASC'
+	);
+
 	// return assoc array with Name and post ID
 	global $post;
 
-	$listings = new WP_Query();
+	$listings = new WP_Query($args);
 
 	$page_array = array();
+
 	$string_names = '';
-	$listings->query('post_type=' . $type);
 
 	while ( $listings->have_posts() ) {
 		$listings->the_post();
@@ -64,6 +72,35 @@ function neat_getAllPages_Reverse($type){
 	}
 
 
+	return $page_array;
+}
+
+/**
+ * Returns all pages.
+ *
+ * @return assoc array: postID -> postName
+ */
+function neat_getAllDHVC_forms(){
+
+	$args = array(
+		'post_type'=>'dhvcform',
+		'posts_per_page'=> -1,
+		'post_status'=>'publish',
+	);
+	$form = new WP_Query($args);
+
+	// return assoc array with Name and post ID
+	global $post;
+
+	$page_array = array();
+
+	while ( $form->have_posts() ) {
+		$form->the_post();
+		$page_title = html_entity_decode(get_the_title($post->ID));
+		$page_array[$page_title] = $post->ID;
+	}
+
+	wp_reset_postdata();
 	return $page_array;
 }
 
@@ -261,11 +298,161 @@ function neat_category_and_tag_archives( $wp_query ) {
 		$wp_query->set( 'post_type', $my_post_array );
 }
 
-
 add_action( 'init', 'neat_add_excerpts_to_pages' );
 function neat_add_excerpts_to_pages() {
 	add_post_type_support( 'page', 'excerpt' );
 }
+
+/**
+ * Custom Navigation output for blog
+ *
+ *
+ */
+function neat_get_the_post_navigation( $args = array() ) {
+	$args = wp_parse_args( $args, array(
+		'prev_text'          => '%title',
+		'next_text'          => '%title',
+		'featured_image'          => '%image',
+		'in_same_term'       => false,
+		'excluded_terms'     => '',
+		'taxonomy'           => 'category',
+		'screen_reader_text' => __( 'Post navigation' ),
+	) );
+
+	$navigation = '';
+
+
+	$previous = neat_get_previous_post_link(
+
+		'<div class="nav-previous">
+			%link
+		</div>
+		',
+		$args['prev_text'],
+		$args['in_same_term'],
+		$args['excluded_terms'],
+		$args['taxonomy']
+	);
+
+	$next = neat_get_next_post_link(
+		'<div class="nav-next">
+			%link
+		</div>',
+		$args['next_text'],
+		$args['in_same_term'],
+		$args['excluded_terms'],
+		$args['taxonomy']
+	);
+
+	// Only add markup if there's somewhere to navigate to.
+	if ( $previous || $next ) {
+		$navigation = _navigation_markup( $previous . $next, 'post-navigation', $args['screen_reader_text'] );
+	}
+
+
+	return $navigation;
+}
+
+function neat_the_post_navigation( $args = array() ) {
+
+	echo neat_get_the_post_navigation( $args );
+}
+
+/**
+ * Get next post link that is adjacent to the current post.
+ *
+ * @since 3.7.0
+ *
+ * @param string       $format         Optional. Link anchor format.
+ * @param string       $link           Optional. Link permalink format.
+ * @param bool         $in_same_term   Optional. Whether link should be in a same taxonomy term.
+ * @param array|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs.
+ * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
+ * @return string The link URL of the next post in relation to the current post.
+ */
+function neat_get_next_post_link( $format = '%link &raquo;', $link = '%title', $in_same_term = false, $excluded_terms = '', $taxonomy = 'category' ) {
+	return neat_get_adjacent_post_link( $format, $link, $in_same_term, $excluded_terms, false, $taxonomy );
+}
+function neat_get_previous_post_link( $format = '&laquo; %link', $link = '%title', $in_same_term = false, $excluded_terms = '', $taxonomy = 'category' ) {
+	return neat_get_adjacent_post_link( $format, $link, $in_same_term, $excluded_terms, true, $taxonomy );
+}
+
+/**
+ * Get adjacent post link.
+ *
+ * Can be either next post link or previous.
+ *
+ * @since 3.7.0
+ *
+ * @param string       $format         Link anchor format.
+ * @param string       $link           Link permalink format.
+ * @param bool         $in_same_term   Optional. Whether link should be in a same taxonomy term.
+ * @param array|string $excluded_terms Optional. Array or comma-separated list of excluded terms IDs.
+ * @param bool         $previous       Optional. Whether to display link to previous or next post. Default true.
+ * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
+ * @return string The link URL of the previous or next post in relation to the current post.
+ */
+function neat_get_adjacent_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
+	if ( $previous && is_attachment() )
+		$post = get_post( get_post()->post_parent );
+	else
+		$post = get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
+
+	if ( ! $post ) {
+		$output = '';
+	} else {
+		$title = $post->post_title;
+
+		if ( empty( $post->post_title ) )
+			$title = $previous ? __( 'Previous Post' ) : __( 'Next Post' );
+
+		/** This filter is documented in wp-includes/post-template.php */
+		$title = apply_filters( 'the_title', $title, $post->ID );
+
+		$date = mysql2date( get_option( 'date_format' ), $post->post_date );
+		$rel = $previous ? 'prev' : 'next';
+
+		$image_class = $previous ? 'img-prev' : 'img-next';
+		$postId = $post->ID;
+		$thumbnail_id = get_post_thumbnail_id( $postId );
+
+		$featured_image = wp_get_attachment_image_url( $thumbnail_id, 'thumbnail' );
+
+		$string = '<span class="'. $image_class .'">
+						<a href="'.get_the_permalink($postId).'"><img src="'. $featured_image .'" alt=""></a>
+				   </span>';
+
+		$string .= '<a href="' . get_permalink( $post ) . '" rel="'.$rel.'"><span class="text">';
+
+		$inlink = str_replace( '%title', $title, $link );
+		$inlink = str_replace( '%date', $date, $inlink );
+		$inlink = $string . $inlink . '</span></a>';
+
+		$output = str_replace( '%link', $inlink, $format );
+
+	}
+
+	$adjacent = $previous ? 'previous' : 'next';
+
+	/**
+	 * Filter the adjacent post link.
+	 *
+	 * The dynamic portion of the hook name, `$adjacent`, refers to the type
+	 * of adjacency, 'next' or 'previous'.
+	 *
+	 * @since 2.6.0
+	 * @since 4.2.0 Added the `$adjacent` parameter.
+	 *
+	 * @param string  $output   The adjacent post link.
+	 * @param string  $format   Link anchor format.
+	 * @param string  $link     Link permalink format.
+	 * @param WP_Post $post     The adjacent post.
+	 * @param string  $adjacent Whether the post is previous or next.
+	 */
+//	return $string;
+	return apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post, $adjacent );
+}
+
 
 /*
  *

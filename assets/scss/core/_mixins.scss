@@ -109,19 +109,19 @@
 
 @mixin placeholder($color){
   &::-webkit-input-placeholder {
-    color: $color;
+    color: $color !important;
   }
 
   &:-moz-placeholder { /* Firefox 18- */
-    color: $color;
+    color: $color !important;
   }
 
   &::-moz-placeholder {  /* Firefox 19+ */
-    color: $color;
+    color: $color !important;
   }
 
   &:-ms-input-placeholder {
-    color: $color;
+    color: $color !important;
   }
 }
 

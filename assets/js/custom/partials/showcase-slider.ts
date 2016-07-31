@@ -446,12 +446,14 @@ class ShowcaseComponent {
       // create html elements
       let itemIndex = Utils.setNumber(index),
         imageThumbUrl = $(el).data("thumb"),
+        imageThumbAlt = $(el).data("alt"),
         imageElement = document.createElement("img"),
         linkElement = document.createElement("a"),
         element = document.createElement("li");
 
       // add src and attr to image
       imageElement.setAttribute("src", imageThumbUrl);
+      imageElement.setAttribute("alt", imageThumbAlt);
       linkElement.setAttribute("href", "#");
       linkElement.appendChild(imageElement);
       element.appendChild(linkElement);

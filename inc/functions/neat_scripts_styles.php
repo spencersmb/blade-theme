@@ -32,30 +32,13 @@ function neat_scripts()
         wp_register_script('fontawesome', 'https://use.fontawesome.com/c1013b11d0.js', '', '4', true);
         wp_enqueue_script('fontawesome'); // Enqueue it!
 
-//        wp_register_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js', '', '1.2.3', true);
-        wp_register_script('gsap', get_template_directory_uri() . '/node_modules/gsap/src/minified/TweenMax.min.js', '', '1.2.3', true);
+        wp_register_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js', '', '1.2.3', true);
+//        wp_register_script('gsap', get_template_directory_uri() . '/node_modules/gsap/src/minified/TweenMax.min.js', '', '1.2.3', true);
         wp_enqueue_script('gsap'); // Enqueue it!
 
         wp_register_script('gsap-scrollTo', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/ScrollToPlugin.min.js', '', '1.2.3', true);
         wp_enqueue_script('gsap-scrollTo'); // Enqueue it!
 
-        wp_register_script('smoothstate', get_template_directory_uri() . '/node_modules/smoothstate/jquery.smoothState.min.js', array('jquery'), '0.7.2', true);
-        wp_enqueue_script('smoothstate'); // Enqueue it!
-
-        wp_register_script('scrollmagic', get_template_directory_uri() . '/assets/js/vendor/scrollmagic/ScrollMagic.min.js', array('jquery'), '0.7.2', true);
-        wp_enqueue_script('scrollmagic'); // Enqueue it!
-
-        wp_register_script('scrollmagic-debug', get_template_directory_uri() . '/assets/js/vendor/scrollmagic/plugins/debug.addIndicators.min.js', array('jquery'), '0.7.2', true);
-        wp_enqueue_script('scrollmagic-debug'); // Enqueue it!
-
-        wp_register_script('scrollmagic-gsap', get_template_directory_uri() . '/assets/js/vendor/scrollmagic/plugins/animation.gsap.min.js', array('jquery'), '0.7.2', true);
-        wp_enqueue_script('scrollmagic-gsap'); // Enqueue it!
-
-        wp_register_script('hot-keys', get_template_directory_uri() . '/assets/js/vendor/jquery.hotkeys.js', array('jquery'), '0.7.2', true);
-        wp_enqueue_script('hot-keys'); // Enqueue it!
-
-        wp_register_script('modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr.js', '', '2.8.3');
-        wp_enqueue_script('modernizr'); // Enqueue it!
 
         //wp_deregister_script('jquery'); // Deregister WordPress jQuery
         //wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', array(), '1.11.2');

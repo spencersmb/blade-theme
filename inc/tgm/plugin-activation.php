@@ -34,6 +34,17 @@ function neat_register_required_plugins() {
             'image_url'             => get_template_directory_uri() . '/assets/images/backend/neat-theme.jpg',
         ),
         array(
+            'name'                  => 'DHVC Form : Wordpress Form for Visual Composer', // The plugin name
+            'slug'                  => 'dhvc-form', // The plugin slug (typically the folder name)
+            'source'                => get_template_directory() . '/inc/plugins/dhvc-form.zip', // The plugin source
+            'required'              => true, // If false, the plugin is only 'recommended' instead of required
+            'version'               => '1.4.9', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+            'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
+            'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+            'external_url'          => '', // If set, overrides default API URL and points to an external URL
+            'image_url'             => get_template_directory_uri() . '/assets/images/backend/visual-composer.jpg',
+        ),
+        array(
             'name'                  => 'WPBakery Visual Composer', // The plugin name
             'slug'                  => 'js_composer', // The plugin slug (typically the folder name)
             'source'                => get_template_directory() . '/inc/plugins/js_composer.zip', // The plugin source

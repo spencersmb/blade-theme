@@ -265,7 +265,8 @@ function neat_custom_styles() {
     .green-spacer,
     .filled,
     .rounded-btn:hover,
-    .down-arrow::after, .down-arrow::before
+    .down-arrow::after, .down-arrow::before,
+    .hero
     {
         background-color: <?php echo esc_html($neat_theme_options['main_color']) ?>;
     }
@@ -289,9 +290,33 @@ function neat_custom_styles() {
 
     .post_tags a:hover,
     .widget .tagcloud a:hover,
-    .rounded-btn
+    .rounded-btn,
+    .dhvc-form-flat .dhvc-form-select select:focus,
+    .dhvc-form-flat .dhvc-form-input:hover input,
+    .dhvc-form-flat .dhvc-form-captcha:hover input,
+    .dhvc-form-flat .dhvc-form-file:hover input[type=text],
+    .dhvc-form-flat .dhvc-form-select:hover select,
+    .dhvc-form-flat .dhvc-form-textarea:hover textarea,
+    .dhvc-form-flat .dhvc-form-radio label:hover i,
+    .dhvc-form-flat .dhvc-form-checkbox label:hover i,
+    .dhvc-form-flat .dhvc-form-input input:focus,
+    .dhvc-form-flat .dhvc-form-captcha input:focus,
+    .dhvc-form-flat .dhvc-form-file:hover input[type=text]:focus,
+    .dhvc-form-flat .dhvc-form-select select:focus,
+    .dhvc-form-flat .dhvc-form-textarea textarea:focus,
+    .dhvc-form-flat .dhvc-form-radio input:checked + i
     {
-        border-color: <?php echo esc_html($neat_theme_options['main_color']) ?>;
+        border-color: <?php echo esc_attr($neat_theme_options['main_color']) ?>;
+    }
+
+    .dhvc-form-flat .dhvc-form-checkbox input:checked + i
+    {
+        border-color: <?php echo esc_attr($neat_theme_options['main_color'])?> !important;
+    }
+
+    /* Override for dhvc-plugin *****/
+    .dhvc-form-hidden{
+        display: block !important;
     }
 
     .rounded-btn:hover{

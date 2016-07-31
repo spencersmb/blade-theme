@@ -135,46 +135,46 @@
     );
 
     // ADMIN BAR LINKS -> Setup custom links in the admin bar menu as external items.
-    $args['admin_bar_links'][] = array(
-        'id'    => 'redux-docs',
-        'href'  => esc_url('http://docs.reduxframework.com/'),
-        'title' => esc_html__( 'Documentation', 'neat' ),
-    );
-
-    $args['admin_bar_links'][] = array(
-        //'id'    => 'redux-support',
-        'href'  => esc_url('https://github.com/ReduxFramework/redux-framework/issues'),
-        'title' => esc_html__( 'Support', 'neat' ),
-    );
-
-    $args['admin_bar_links'][] = array(
-        'id'    => 'redux-extensions',
-        'href'  => esc_url('reduxframework.com/extensions'),
-        'title' => esc_html__( 'Extensions', 'neat' ),
-    );
+//    $args['admin_bar_links'][] = array(
+//        'id'    => 'redux-docs',
+//        'href'  => esc_url('http://docs.reduxframework.com/'),
+//        'title' => esc_html__( 'Documentation', 'neat' ),
+//    );
+//
+//    $args['admin_bar_links'][] = array(
+//        //'id'    => 'redux-support',
+//        'href'  => esc_url('https://github.com/ReduxFramework/redux-framework/issues'),
+//        'title' => esc_html__( 'Support', 'neat' ),
+//    );
+//
+//    $args['admin_bar_links'][] = array(
+//        'id'    => 'redux-extensions',
+//        'href'  => esc_url('reduxframework.com/extensions'),
+//        'title' => esc_html__( 'Extensions', 'neat' ),
+//    );
 
     // SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
-    $args['share_icons'][] = array(
-        'url'   => 'https://github.com/ReduxFramework/ReduxFramework',
-        'title' => esc_html__('Visit us on GitHub', 'neat'),
-        'icon'  => 'el el-github'
-        //'img'   => '', // You can use icon OR img. IMG needs to be a full URL.
-    );
-    $args['share_icons'][] = array(
-        'url'   => esc_url('https://www.facebook.com/pages/Redux-Framework/243141545850368'),
-        'title' => esc_html__('Like us on Facebook', 'neat'),
-        'icon'  => 'el el-facebook'
-    );
-    $args['share_icons'][] = array(
-        'url'   => esc_url('http://twitter.com/reduxframework'),
-        'title' => esc_html__('Follow us on Twitter', 'neat'),
-        'icon'  => 'el el-twitter'
-    );
-    $args['share_icons'][] = array(
-        'url'   => esc_url('http://www.linkedin.com/company/redux-framework'),
-        'title' => esc_html__('Find us on LinkedIn', 'neat'),
-        'icon'  => 'el el-linkedin'
-    );
+//    $args['share_icons'][] = array(
+//        'url'   => 'https://github.com/ReduxFramework/ReduxFramework',
+//        'title' => esc_html__('Visit us on GitHub', 'neat'),
+//        'icon'  => 'el el-github'
+//        //'img'   => '', // You can use icon OR img. IMG needs to be a full URL.
+//    );
+//    $args['share_icons'][] = array(
+//        'url'   => esc_url('https://www.facebook.com/pages/Redux-Framework/243141545850368'),
+//        'title' => esc_html__('Like us on Facebook', 'neat'),
+//        'icon'  => 'el el-facebook'
+//    );
+//    $args['share_icons'][] = array(
+//        'url'   => esc_url('http://twitter.com/reduxframework'),
+//        'title' => esc_html__('Follow us on Twitter', 'neat'),
+//        'icon'  => 'el el-twitter'
+//    );
+//    $args['share_icons'][] = array(
+//        'url'   => esc_url('http://www.linkedin.com/company/redux-framework'),
+//        'title' => esc_html__('Find us on LinkedIn', 'neat'),
+//        'icon'  => 'el el-linkedin'
+//    );
 
     // Panel Intro text -> before the form
     if ( ! isset( $args['global_variable'] ) || $args['global_variable'] !== false ) {
@@ -269,17 +269,6 @@
                 'type'      => 'text',
                 'title'     => esc_html__('Blog Description', 'neat'),
                 'default'   => get_option( 'blogdescription' )
-            ),
-            array(
-                'title' => esc_html__('Blog Description container size', 'neat'),
-                'subtitle' => wp_kses('<em>Drag the slider to set the width of the description container.</em>', 'neat'),
-                'id' => 'blog_description',
-                'type' => 'slider',
-                "default" => 367,
-                "min" => 0,
-                "step" => 1,
-                "max" => 600,
-                'display_value' => 'text'
             ),
             array (
                 'title' => esc_html__('Favicon', 'neat'),
@@ -775,7 +764,7 @@
                 'subtitle' => wp_kses('<em>The Top Bar background color.</em>', 'neat'),
                 'id' => 'footer_background_color',
                 'type' => 'color',
-                'default' => '#F4F4F4',
+                'default' => '#222228',
             ),
 
             array (
@@ -853,7 +842,7 @@
             'id' => 'main_color',
             'type' => 'color',
             'transparent' => false,
-            'default' => '#EC7A5C',
+            'default' => '#78be01',
         ),
         array (
             'title' => esc_html__('Nav Item Background Color', 'neat'),

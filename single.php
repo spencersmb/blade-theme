@@ -19,9 +19,14 @@ get_header(); ?>
 
 				// Setup Images
 				$thumbnail_id = get_post_thumbnail_id( $post->ID );
-				$thumbnail_url = wp_get_attachment_url( $thumbnail_id );
+				$thumbnail_url = wp_get_attachment_url( $thumbnail_id, 'large' );
+				$thumbnail_url = wp_get_attachment_image_url( $thumbnail_id, 'large' );
 				$thumbnail_alt = get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', 'true');
 				$date = get_the_date('F j, Y');
+
+//				echo "<pre>";
+//				var_export(get_intermediate_image_sizes());
+//				echo "</pre>";
 
 				?>
 
@@ -38,9 +43,9 @@ get_header(); ?>
 					</svg>
 					
 					<?php if(strlen($thumbnail_url) > 0): ?>
-						<div class="hero-background" style="background-image: url(<?php echo esc_url($thumbnail_url);?>)"></div>
+						<div class="hero-background img-loader-bg" style="background-image: url(<?php echo esc_url($thumbnail_url);?>)"></div>
 					<?php else: ?>
-						<div class="hero-background"></div>
+						<div class="hero-background img-loader-bg"></div>
 					<?php endif; ?>
 
 					<div class="hero-wrapper">
@@ -79,7 +84,7 @@ get_header(); ?>
 						<article id="post-<?php the_ID(); ?>" <?php post_class($css_array); ?> >
 						<?php get_template_part( 'assets/views/content', 'single' ); ?>
 
-						<?php the_post_navigation(); ?>
+						<?php neat_the_post_navigation(); ?>
 
 						<?php
 						// If comments are open or we have at least one comment, load up the comment template

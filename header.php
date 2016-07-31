@@ -45,20 +45,24 @@
 	<?php wp_head(); ?>
 
 </head>
-
+<?php
+$header_search_show = get_redux_options('search_button');
+$header_logo = get_redux_options('site_logo', 'url');
+$header_main_button_show = get_redux_options('has_free_quote');
+$topbar_show_social = get_redux_options('top_bar_social_icons');
+$header_phone_display = get_redux_options('header_phone_display');
+$header_phone = get_redux_options('header_phone');
+?>
 <body <?php body_class(); ?>>
 
 <div id="content" class="m-scene">
 
 	<header id="header" class="m-mobile-nav m-header scene_element scene_element--fadein shadow-medium<?php echo esc_attr( neat_admin_class_checks() ); ?>">
 
-		<!-- Dropdown Nav -->
-		<?php if(has_nav_menu( 'primary' )): ?>
+		<!-- Main Nav -->
 			<div class="uppercontainer">
 				<a class="navbar-brand" href="<?php echo esc_url(get_home_url('/')); ?>">
-					<?php
-					$header_logo = get_redux_options('site_logo', 'url');
-					?>
+					
 					<?php if ( (isset($header_logo)) ) : ?>
 						<img src="<?php echo esc_url($header_logo)?>" alt="<?php echo get_bloginfo('description') ?>">
 					<?php else: ?>
@@ -73,7 +77,7 @@
 						/*
                          * ---> Social Header Icons
                          */
-						$topbar_show_social = get_redux_options('top_bar_social_icons');
+						
 
 						if($topbar_show_social){
 							$redux_facebook = get_redux_options('facebook_link');
@@ -138,8 +142,7 @@
 						/*
 						 * ---> PHONE
 						 */
-						$header_phone_display = get_redux_options('header_phone_display');
-						$header_phone = get_redux_options('header_phone');
+						
 						?>
 						<?php if($header_phone_display === "1"): ?>
 							<div class="meta-phone <?php if($topbar_show_social === "0"): echo esc_attr( 'no-social' ); endif; ?>">
@@ -160,11 +163,8 @@
 			<nav id="neat-dropdown-trigger" class="neat-dropdown scene_element scene_element--fadeInUpNav">
 				<h2><?php bloginfo('name'); ?></h2>
 				<a id="nav-close" href="#" class="neat-close"><?php echo esc_html__('Close', 'neat') ?></a>
+				
 				<div id="nav-xfer">
-
-					<?php
-					$header_search_show = get_redux_options('search_button');
-					?>
 
 					<?php if($header_search_show === "1"): ?>
 						<div class="meta-search">
@@ -176,7 +176,7 @@
 					/*
 					 * ---> Free Quote Button
 					 */
-					$header_main_button_show = get_redux_options('has_free_quote');
+					
 
 					?>
 
@@ -193,31 +193,28 @@
 						
 					<?php endif; ?>
 
-				</div>
+				</div><!-- end nav-
 
-				<?php
+				<?php if(has_nav_menu( 'primary' )):
 
-				$args = array(
-					'menu' => 'primary-menu',
-					'theme_location' => 'primary',
-					'menu_class' => 'neat-dropdown-content shadow-medium',
-					'container' => 'false',
-					'items_wrap'      => '
-                <ul id="%1$s" class="%2$s">%3$s</ul>',
-					'walker' => new Sv_Walker_Nav_Menu
-				);
+					$args = array(
+						'menu' => 'primary-menu',
+						'theme_location' => 'primary',
+						'menu_class' => 'neat-dropdown-content shadow-medium',
+						'container' => 'false',
+						'items_wrap'      => '
+					<ul id="%1$s" class="%2$s">%3$s</ul>',
+						'walker' => new Sv_Walker_Nav_Menu
+					);
+	
+					wp_nav_menu( $args );
 
-				wp_nav_menu( $args );
-
+				endif
 				?>
 
 			</nav>
 
 			<!-- /nav -->
-
-		<?php endif ?>
-
-
 	</header>
 	<div class="super-search">
 		<div class="super-search-close">

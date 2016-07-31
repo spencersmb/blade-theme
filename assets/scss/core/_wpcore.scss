@@ -2,6 +2,12 @@
   WORDPRESS CORE
 \*------------------------------------*/
 
+#wpadminbar {
+  @media screen and (max-width: 600px) {
+    position: fixed;
+  }
+}
+
 .alignnone {
   margin: .8rem 0 1.6rem 0;
 }
@@ -286,3 +292,4 @@ a img.aligncenter {
 .vc_row{
   position: relative;
 }
+
