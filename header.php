@@ -166,7 +166,7 @@ $header_phone = get_redux_options('header_phone');
 				
 				<div id="nav-xfer">
 
-					<?php if($header_search_show === "1"): ?>
+					<?php if($header_search_show === "1" || $header_search_show === 1): ?>
 						<div class="meta-search">
 							<a href="#" class="meta-search-trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
 						</div>
@@ -193,7 +193,7 @@ $header_phone = get_redux_options('header_phone');
 						
 					<?php endif; ?>
 
-				</div><!-- end nav-
+				</div><!-- end nav-->
 
 				<?php if(has_nav_menu( 'primary' )):
 

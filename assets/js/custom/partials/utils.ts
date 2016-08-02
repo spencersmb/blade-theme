@@ -37,6 +37,8 @@ class UtilityComponent {
   };
   private _setBreakpoint = () => {
     // get breakpoint from css
+    console.log($('body').css("z-index"));
+
     let body = getComputedStyle(document.body),
       zindex = getComputedStyle(document.body)[ "z-index" ];
 

@@ -429,31 +429,6 @@
   }
 }
 
-.widget_recent_entries {
-
-  a {
-    @include font-size(1.6);
-    font-weight: 600;
-    display: block;
-    position: relative;
-  }
-
-  li {
-    padding-left: 2rem;
-  }
-
-  i {
-    position: absolute;
-    top: 4px;
-    left: -15px;
-  }
-
-  span {
-    @include font-size(1.2);
-    color:$light-grey;
-  }
-}
-
 .hours-widget {
   max-width: 270px;
   margin:1.5rem auto 0;

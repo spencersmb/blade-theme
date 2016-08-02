@@ -67,7 +67,9 @@
   }
 
   .article-content{
+    padding: 0 15px;
     text-align: center;
+    word-wrap: break-word;
   }
 
   .moretag{
@@ -232,23 +234,6 @@
 
   }
 
-}
-
-.posts-navigation {
-  padding: 0;
-  margin: 2.4rem 0;
-
-  .nav-links {
-    display: table;
-  }
-
-  .nav-previous, .nav-next {
-    display: inline-block;
-  }
-
-  .nav-next {
-    float: right;
-  }
 }
 
 /*------------------------------------*\

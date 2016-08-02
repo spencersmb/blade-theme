@@ -316,7 +316,7 @@ function neat_get_the_post_navigation( $args = array() ) {
 		'in_same_term'       => false,
 		'excluded_terms'     => '',
 		'taxonomy'           => 'category',
-		'screen_reader_text' => __( 'Post navigation' ),
+		'screen_reader_text' => esc_html__( 'Post navigation', 'neat' ),
 	) );
 
 	$navigation = '';
@@ -334,15 +334,34 @@ function neat_get_the_post_navigation( $args = array() ) {
 		$args['taxonomy']
 	);
 
-	$next = neat_get_next_post_link(
-		'<div class="nav-next">
-			%link
-		</div>',
-		$args['next_text'],
-		$args['in_same_term'],
-		$args['excluded_terms'],
-		$args['taxonomy']
-	);
+//	echo "<pre>";
+//	print_r($previous);
+//	echo "</pre>";
+
+	// check to push the next link all the way to the right
+	if ($previous === '') {
+		$next = neat_get_next_post_link(
+			'<div class="nav-next no-prev">
+				%link
+			</div>',
+			$args['next_text'],
+			$args['in_same_term'],
+			$args['excluded_terms'],
+			$args['taxonomy']
+		);
+	} else {
+		$next = neat_get_next_post_link(
+			'<div class="nav-next">
+				%link
+			</div>',
+			$args['next_text'],
+			$args['in_same_term'],
+			$args['excluded_terms'],
+			$args['taxonomy']
+		);
+	}
+
+
 
 	// Only add markup if there's somewhere to navigate to.
 	if ( $previous || $next ) {
@@ -404,7 +423,7 @@ function neat_get_adjacent_post_link( $format, $link, $in_same_term = false, $ex
 		$title = $post->post_title;
 
 		if ( empty( $post->post_title ) )
-			$title = $previous ? __( 'Previous Post' ) : __( 'Next Post' );
+			$title = $previous ? esc_html__( 'Previous Post', 'neat' ) : esc_html__( 'Next Post', 'neat' );
 
 		/** This filter is documented in wp-includes/post-template.php */
 		$title = apply_filters( 'the_title', $title, $post->ID );
@@ -417,9 +436,18 @@ function neat_get_adjacent_post_link( $format, $link, $in_same_term = false, $ex
 		$thumbnail_id = get_post_thumbnail_id( $postId );
 
 		$featured_image = wp_get_attachment_image_url( $thumbnail_id, 'thumbnail' );
+		$blank_image = get_template_directory_uri() . '/assets/images/blank.jpg';
 
 		$string = '<span class="'. $image_class .'">
-						<a href="'.get_the_permalink($postId).'"><img src="'. $featured_image .'" alt=""></a>
+						<a href="'.get_the_permalink($postId).'">';
+						if($featured_image !== false){
+							$string .= '<img src="'. $featured_image .'" alt="">';
+						} else {
+							$string .= '<img src="'. $blank_image .'" alt="">';
+						}
+
+		$string .= '
+						</a>
 				   </span>';
 
 		$string .= '<a href="' . get_permalink( $post ) . '" rel="'.$rel.'"><span class="text">';
@@ -451,81 +479,6 @@ function neat_get_adjacent_post_link( $format, $link, $in_same_term = false, $ex
 	 */
 //	return $string;
 	return apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post, $adjacent );
-}
-
-
-/*
- *
- * -------------------------------------------------------------------------------------
- * @Author: Smartik
- * @Author URI: http://smartik.ws/
- * @Copyright: (c) 2014 Smartik. All rights reserved
- * -------------------------------------------------------------------------------------
- *
- * @Date:   2014-06-20 03:40:47
- * @Last Modified by:   Smartik
- * @Last Modified time: 2014-06-23 22:46:40
- *
- */
-
-################################################################################
-
-/**
- * Theme View
- *
- * Include a file and(optionally) pass arguments to it.
- *
- * @param string $file The file path, relative to theme root
- * @param array $args The arguments to pass to this file. Optional.
- * Default empty array.
- *
- * @return object Use render() method to display the content.
- */
-if ( ! class_exists('neat_ThemeView') ) {
-	class neat_ThemeView{
-		private $args;
-		private $file;
-
-		public function __get($name) {
-			return $this->args[$name];
-		}
-
-		public function __construct($file, $args = array()) {
-			$this->file = $file;
-			$this->args = $args;
-		}
-
-		public function __isset($name){
-			return isset( $this->args[$name] );
-		}
-
-		public function render() {
-			if( locate_template($this->file) ){
-				include( locate_template($this->file) );//Theme Check free. Child themes support.
-			}
-		}
-	}
-}
-
-################################################################################
-
-/**
- * neat Get Template Part
- *
- * An alternative to the native WP function `get_template_part`
- *
- * @see PHP class neat_ThemeView
- * @param string $file The file path, relative to theme root
- * @param array $args The arguments to pass to this file. Optional.
- * Default empty array.
- *
- * @return string The HTML from $file
- */
-if( ! function_exists('neat_get_template_part') ){
-	function neat_get_template_part($file, $args = array()){
-		$template = new neat_ThemeView($file, $args);
-		$template->render();
-	}
 }
 
 

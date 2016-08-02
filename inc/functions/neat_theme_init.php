@@ -67,22 +67,29 @@ function neat_update_blog_info()
 }
 add_action('init', 'neat_update_blog_info');
 
-//check for VC plugin
-if (class_exists('WPBakeryVisualComposerAbstract')) {
+add_action( 'init', 'visual_composer_cpt' );
+function visual_composer_cpt()
+{
 
-    add_action( 'vc_before_init', 'neat_vcSetAsTheme' );
-    function neat_vcSetAsTheme() {
+    if (class_exists('WPBakeryVisualComposerAbstract')) {
 
-    // Add VC to custom post types
-        if(function_exists('vc_set_default_editor_post_types')) vc_set_default_editor_post_types( array('post','page','gallery') );
+        add_action( 'vc_before_init', 'neat_setup_vc' );
+        function neat_setup_vc() {
 
-        vc_manager()->disableUpdater(true);
-        vc_set_as_theme();
+            //update cpt to init before visual composer ( fixes meta cap issue too )
+            remove_action( 'init', 'neat_ext_theme_register_my_cpts', 10 );
+            add_action( 'init', 'neat_ext_theme_register_my_cpts', 1 );
+
+            if(function_exists('vc_set_default_editor_post_types')) {
+
+                $list = array('post','page','gallery');
+
+                vc_set_default_editor_post_types( $list );
+
+            }
+
+        }
 
     }
-
-    //update cpt to init before visual composer ( fixes meta cap issue too )
-     remove_action( 'init', 'neat_ext_theme_register_my_cpts', 10 );
-     add_action( 'init', 'neat_ext_theme_register_my_cpts', 1 );
 
 }

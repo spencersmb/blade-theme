@@ -120,18 +120,18 @@ a.rounded-btn {
 }
 
 .tag-btn{
-    border: 2px solid $primary-color;
+    border: 1px solid $primary-color;
     font-size: 11px !important;
     font-size: 1.1rem !important;
     border-radius: 25px;
-    padding: .5rem 1.5rem .6rem;
+    padding: .65rem 1.5rem .6rem;
     line-height: 12px;
     line-height: 1.2rem;
     display: inline-block;
     color:$grey;
     margin-right:.5rem;
     margin-bottom: .75rem;
-    font-weight: 600;
+    font-weight: 400;
     text-transform: uppercase;
     &:hover{
       color: $white;

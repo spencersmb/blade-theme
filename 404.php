@@ -25,7 +25,7 @@ get_header(); ?>
 					<div class="hero-content">
 						<div class="hero-content-inner">
 							<img class="img-responsive"
-								src="<?php bloginfo('stylesheet_directory') ?>/assets/images/error_404.png"
+								src="<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/assets/images/error_404.png"
 								alt="error">
 							<h2 class="hero-title"><?php echo esc_html__( 'Cut it out!', 'neat' ); ?></h2>
 							<h3 class="hero-subtitle"><?php echo esc_html__( 'You&rsquo;ve reached a 404 page.', 'neat' ); ?></h3>

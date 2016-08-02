@@ -2,12 +2,6 @@
   WORDPRESS CORE
 \*------------------------------------*/
 
-#wpadminbar {
-  @media screen and (max-width: 600px) {
-    position: fixed;
-  }
-}
-
 .alignnone {
   margin: .8rem 0 1.6rem 0;
 }
@@ -58,17 +52,17 @@ a img.aligncenter {
 }
 
 .wp-caption {
-  background: darken($grey, 10%);
+  background: $lightest-grey;
   max-width: 100%;
   padding: 2rem;
   text-align: center;
 
   figcaption {
     padding: .8rem 0 1.6rem;
-    color: $white;
+    color: $black;
 
     a{
-      color: $white;
+      color: $black;
       text-decoration: underline;
     }
   }
@@ -103,7 +97,7 @@ a img.aligncenter {
 .wp-caption .wp-caption-text,
 .gallery-caption {
   margin: 0;
-  padding: .5rem;
+  padding: 1.5rem .5rem .5rem;
 
   @include breakpoint(mobile) {
   }
@@ -265,6 +259,25 @@ a img.aligncenter {
       padding-top: 10px;
       text-transform: uppercase;
     }
+  }
+}
+
+
+.posts-navigation {
+  padding: 0;
+  margin: 2.4rem 0;
+  float: right;
+
+  .nav-links {
+    display: table;
+  }
+
+  .nav-previous, .nav-next {
+    display: inline-block;
+  }
+
+  .nav-next {
+    padding-left: 20px;
   }
 }
 

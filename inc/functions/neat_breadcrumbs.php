@@ -119,7 +119,7 @@ if ( ! function_exists( 'neat_breadcrumbs' ) ) {
         } elseif ( is_search() ) {
             $html .= '<span class="item-current item-search"><span class="bread-current bread-search">Search results for: ' . get_search_query() . '</span></span>';
         } elseif ( is_404() ) {
-            $html .= '<span>' . __( 'Error 404', 'ignite' ) . '</span>';
+            $html .= '<span>' . __( 'Error 404', 'neat' ) . '</span>';
         } elseif ( is_home() ) {
             $html .= '<span>' . get_the_title( get_option( 'page_for_posts' ) ) . '</span>';
         }

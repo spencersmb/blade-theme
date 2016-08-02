@@ -101,6 +101,7 @@ class ImageLoaderComponent {
         console.log("all images loaded, at least one is broken");
       })
       .progress(( instance, image ) => {
+        // console.log(image);
         let result = image.isLoaded ? "loaded" : "broken";
 
         if ( result ) {

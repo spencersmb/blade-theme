@@ -105,6 +105,7 @@ get_header();
 										<div class="article-content">
 											<?php
 											// Check to do custom excerpt length
+
 											if(has_excerpt()):
 												$excerpt = get_the_excerpt();
 												$excerpt_trim = wp_trim_words( $excerpt , '25' );?>
@@ -112,10 +113,9 @@ get_header();
 												<a class="moretag rounded-btn" href="<?php echo esc_url(the_permalink()) ?>">
 													<?php echo esc_html__('Read More', 'neat') ?>
 												</a>
-											<?php else:
-												the_excerpt();
-											endif;
-											?>
+											<?php else: ?>
+												<p><?php the_excerpt(); ?></p>
+											<?php endif; ?>
 
 											<?php
 											//paginated links inside post

@@ -225,7 +225,17 @@ class NavComponent {
     if ( !this.state.navEnabled ) {
       this.enableMobileNav();
     }
+    
     this.moveNavigationMobile();
+
+    // Fix for mobil wordpress admin bar
+    // and not wp-admin
+    let body = $("body");
+    
+    if ( body.hasClass("admin-bar") && body.hasClass("wp-admin") === false ) {
+      $("#wpadminbar").css("position", "fixed");
+    }
+    
   }
 
   breakPointTablet( prevState ) {

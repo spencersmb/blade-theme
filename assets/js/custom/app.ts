@@ -7,7 +7,6 @@ import Utils from "./partials/utils";
 import Nav from "./navigation/navigation";
 import Search from "./navigation/components/search";
 import SvgHeader from "./partials/header-svg";
-// import SmoothState from "./partials/smoothState";
 import ImageLoader from "./partials/imageLoader";
 import StickySidebar from "./partials/sticky-sidebar";
 import AnimationController from "./partials/processAnimation";
@@ -19,9 +18,9 @@ import QuoteBuilder from "./partials/quote-builder";
 // import StickySidebar from "./partials/service-sidebar";
 const $ = jQuery;
 declare var ScrollMagic: any;
-// declare var revapi1: any;
 
 (function () {
+
   class App {
 
     init(): void {
@@ -37,13 +36,13 @@ declare var ScrollMagic: any;
     }
   }
 
-  let bootstrap = new App();
+    let bootstrap = new App();
+
 
   /** run all functions */
   $(document).ready(function () {
     bootstrap.init();
     ImageLoader.init();
-    // SmoothState.init("");
   });
 
   // Bind events to the imagesLoaded plugin here

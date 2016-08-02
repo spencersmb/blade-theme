@@ -37,10 +37,12 @@ build = './buildtheme/', // Files that you want to package into a zip go here
 		// include specific files and folders
 		'screenshot.png',
 		'favicon.png',
+		'readme.md',
 
 		// exclude files and folders
 		'!node_modules/**/*',
 		'!assets/bower_components/**/*',
+		'!redux/sample/sample-config.php',
 		'!style.css.map'
 		// '!assets/js/custom/*',
 		// '!assets/css/patrials/*'
@@ -107,7 +109,7 @@ gulp.task('compile-js', function() {
 		})
 		.pipe(source('neat-custom.js'))
 		.pipe(buffer())
-		.pipe(gulp.dest('./assets/js/custom'))
+		.pipe(gulp.dest('./assets/js/'))
 		.pipe(notify({
 			message: 'Typescript task complete',
 			onLast: true

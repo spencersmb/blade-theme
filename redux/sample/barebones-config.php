@@ -367,57 +367,6 @@
         'subsection' => true,
         'fields' => array(
 
-
-
-            array(
-                'id'       => 'main_header_layout',
-                'type'     => 'image_select',
-                'compiler' => true,
-                'subsection' => true,
-                'title'    => esc_html__( 'Header Layout', 'neat' ),
-                'subtitle' => wp_kses( '<em>Select the Layout style for the Header.</em>', 'neat' ),
-                'options'  => array(
-                    '1' => array(
-                        'alt' => 'Layout 1',
-                        'img' => get_template_directory_uri() . '/assets/images/theme_options/icons/header_1.png'
-                    ),
-                    '2' => array(
-                        'alt' => 'Layout 2',
-                        'img' => get_template_directory_uri() . '/assets/images/theme_options/icons/header_2.png'
-                    ),
-                    '3' => array(
-                        'alt' => 'Layout 3',
-                        'img' => get_template_directory_uri() . '/assets/images/theme_options/icons/header_3.png'
-                    ),
-                ),
-                'default'  => '1'
-            ),
-            array(
-                'id'       => 'main_header_navigation_position_header_1',
-                'type'     => 'button_set',
-                'subsection' => true,
-                'title'    => esc_html__( 'Navigation Alignment', 'neat' ),
-                'subtitle' => wp_kses( '<em>Set up the alignment for the Main Navigation.</em>', 'neat' ),
-                'options'  => array(
-                    'align_left'    => '<i class="fa fa-align-left"></i> Left',
-                    'align_right'   => 'Right <i class="fa fa-align-right"></i>'
-                ),
-                'default'  => 'align_left',
-                'required' => array( 'main_header_layout', 'equals', array( '1' ) ),
-            ),
-
-            array(
-                'id'       => 'main_header_navigation_position_header_2',
-                'type'     => 'button_set',
-                'title'    => esc_html__( 'Navigation Position', 'neat' ),
-                'subtitle' => wp_kses( '<em>Specify the Main Header Navigation Position.</em>', 'neat' ),
-                'options'  => array(
-                    '1' => '&nbsp;&nbsp;&nbsp; <i class="fa fa-align-right"></i> &nbsp;Align to Logo&nbsp; <i class="fa fa-align-left"></i> &nbsp;&nbsp;&nbsp;',
-                    '2' => '<i class="fa fa-align-left"></i> &nbsp;&nbsp;&nbsp; Align to Edges &nbsp;&nbsp;&nbsp; <i class="fa fa-align-right"></i>',
-                ),
-                'default'  => '1',
-                'required' => array( 'main_header_layout', 'equals', array( '2' ) ),
-            ),
             array (
                 'id' => 'main_nav_font_options',
                 'icon' => true,
@@ -502,7 +451,7 @@
                 'subtitle' => wp_kses('<em>The Main Header background.</em>', 'neat'),
                 'id' => 'main_header_background_color',
                 'type' => 'color',
-                'default' => '#7ED321',
+                'default' => '#78be01',
                 'transparent' => false
             ),
 
@@ -850,7 +799,7 @@
             'id' => 'nav_item_color',
             'type' => 'color',
             'transparent' => false,
-            'default' => '#8ed72b',
+            'default' => '#515151',
         ),
 
         array (

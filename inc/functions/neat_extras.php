@@ -66,15 +66,6 @@ function neat_get_postTags_string($postId){
 
 }
 
-// new excerpt function
-function neat_new_excerpt_more($more) {
-    //grab global variable
-    global $post;
-
-    //put 3 dots at the end + a tag + link of specific post
-    return '</p><a class="moretag" href="'. esc_url(get_permalink($post->ID)) . '">'. esc_html__('continue reading', 'neat') .'</a></p>';
-}
-
 //CSS tricks function
 function neat_get_the_content_by_id($post_id) {
     $page_data = get_post($post_id);
@@ -83,9 +74,6 @@ function neat_get_the_content_by_id($post_id) {
     }
     else return false;
 }
-
-//add this new function to the original function and it will replace the function with our new one
-add_filter('excerpt_more', 'neat_new_excerpt_more');
 
 function neat_custom_excerpt_length( $length ) {
     return 20;
