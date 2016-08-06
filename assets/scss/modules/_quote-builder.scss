@@ -1,0 +1,522 @@
+/*------------------------------------*\
+    QUOTE BUILDER COMPONENT
+\*------------------------------------*/
+
+.quote {
+  opacity: 0;
+  height: 100%;
+  @include transition(all .3s);
+
+  &.active{
+    height: 100vh;
+  }
+}
+
+.quote__form--select {
+  @include transition( opacity .3s);
+
+  //Temp container for forms output from php
+  .quote__form--temp {
+      display: none;
+  }
+}
+
+.quote__chooser {
+  
+  @include breakpoint(laptop){
+      margin-top: 40px;
+  }
+  
+
+  h2{
+    text-align: center;
+
+    @include breakpoint(laptop){
+        text-align: left;
+    }
+  }
+
+  p {
+
+    text-align: center;
+
+    @include breakpoint(laptop){
+      @include font-size(1.8);
+      line-height: 26px;
+      line-height: 2.6rem;
+      text-align: left;
+    }
+  }
+  span {
+    @include font-size(1.3);
+    font-weight: bold;
+    text-align: center;
+    display: table;
+    width: 100%;
+
+    a{
+      padding-left: 5px;
+    }
+
+    @include breakpoint(laptop){
+        text-align: left;
+    }
+  }
+
+}
+
+.quote__select--btn {
+  text-align: center;
+  min-width: 186px;
+  margin-bottom: 3.5rem;
+  margin-top: 4rem;
+  position: relative;
+  opacity: 0;
+
+  @include breakpoint(laptop){
+    display: table;
+    clear: both;
+    margin-bottom: 4.5rem;
+    margin-top: 5rem;
+  }
+
+  &::before{
+    content:'select option';
+    text-transform: uppercase;
+    @include font-size(1.2);
+    color: $black;
+    position: absolute;
+    top: -3rem;
+    left: 50%;
+    @include transform(translateX(-50%));
+
+    @include breakpoint(laptop){
+      left: 0;
+      @include transform(translateX(0));
+    }
+
+  }
+
+
+  .fieldset {
+    display: inline-block;
+    position: relative;
+    padding: 5px;
+    border-radius: 5rem;
+    border: 1px solid $light-grey;
+
+    @include breakpoint(laptop){
+      float: left;
+    }
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+  }
+
+  label {
+    position: relative;
+    z-index: $below-content;
+    display: inline-block;
+    float: left;
+    padding: 0 15px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    margin: 0;
+    @include font-size(1.4);
+    @include transition( color .4s);
+
+    &.selected {
+      color: $white;
+    }
+
+    @include breakpoint(laptop){
+      padding: 0 20px;
+    }
+  }
+  //
+  //input[type="radio"]:checked + label + .quote__switch,
+  //input[type="radio"]:checked + label:nth-of-type(n) + .quote__switch {
+  //  /* use label:nth-of-type(n) to fix a bug on safari with multiple adjacent-sibling selectors*/
+  //  @include transform(translateX(90px));
+  //}
+}
+
+.quote__switch {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  height: 40px;
+  width: 90px;
+  background-color: $primary-color;
+  border-radius: 5rem;
+  @include transition( all .4s cubic-bezier(0.860, 0.000, 0.070, 1.000));
+}
+
+/*------------------------------------*\
+    QUOTE CARD ITEM
+\*------------------------------------*/
+
+.card__item--wrapper {
+  margin-top: 50px;
+  position: relative;
+  display: table;
+  width: 100%;
+
+  @include breakpoint(tablet){
+      padding-left: 10px;
+  }
+
+  @include breakpoint(laptop){
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+.card__item{
+  display: block;
+  background-color: $lightest-grey;
+  border-radius: 5px;
+  max-width: 325px;
+  margin: 0 auto;
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  overflow: hidden;
+  z-index: $content;
+  @include transform(translateX(-50%));
+
+  @include breakpoint(tablet){
+    position: relative;
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    width: 47%;
+    float: left;
+    @include transform(translateX(0%) translateY(5%) translateZ(0));
+    @include transition( all .3s);
+  }
+
+  &.selected {
+    position: relative;
+    left: 0;
+    top: 0;
+    z-index: $above-content;
+    @include transform(translateX(0) translateZ(0));
+    background-color: $white;
+    max-width: 350px;
+
+    @include breakpoint(tablet){
+      margin: auto 0;
+      max-width: 100%;
+      width: 52%;
+    }
+
+  }
+
+}
+
+.card__item--content {
+  text-align: center;
+  padding:4rem 4rem 6rem;
+  z-index: $above-content;
+  position: relative;
+
+  @include breakpoint(tablet){
+    padding:2.4rem 2.4rem 4rem;
+    @include transform(translateZ(0));
+    @include transition( all .3s);
+  }
+
+  h2{
+    font-weight: 400;
+    padding-bottom: 3rem;
+    @include font-size(3.2);
+  }
+
+  .price{
+    margin-bottom: 2rem;
+    padding: 3px 20px 3px 20px
+  }
+
+  .desc {
+    @include font-size(2.4);
+    font-weight: 400;
+    color:$grey;
+    padding-bottom: 5rem;
+  }
+
+  ul{
+    padding-bottom: 5rem;
+    margin:0;
+  }
+
+  li{
+    list-style: none;
+
+    i{
+      padding-right: 10px;
+    }
+  }
+
+  .card__item--btn {
+    opacity: .5;
+    cursor: default;
+    &:hover{
+      -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
+      -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
+      box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
+      color: $white !important;
+    }
+    &:focus{
+      color: $white !important;
+    }
+  }
+
+  .selected & {
+    padding:5rem 3rem 8rem;
+
+    .card__item--btn {
+      opacity: 1;
+      cursor: pointer;
+      &:hover{
+        -webkit-box-shadow: 0px 12px 45px -6px rgba(0,0,0,0.48);
+        -moz-box-shadow: 0px 12px 45px -6px rgba(0,0,0,0.48);
+        box-shadow: 0px 12px 45px -6px rgba(0,0,0,0.48);
+      }
+    }
+  }
+}
+
+.card__image {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  @include transform(translateY(100%) translateX(-50%));
+  opacity: 0;
+  z-index: $below-content;
+
+  @include breakpoint(tablet){
+    @include transition(transform .3s .3s, opacity .1s);
+  }
+
+  .selected & {
+    opacity: 1;
+    @include transform(translateY(0%) translateX(-50%));
+  }
+}
+
+.single__item {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto 30px;
+  float: none;
+  position: relative;
+  background-color: transparent;
+  overflow: visible;
+
+  .card__item--content {
+    padding:5rem 4rem;
+    margin: 15px;
+    background-color: $lighter-grey-hover;
+
+    .desc{
+      @include font-size(1.8);
+      line-height: 24px;
+    }
+
+    li{
+      position: relative;
+      padding-bottom: 10px;
+      padding-left: 25px;
+      text-align: left;
+    }
+
+    &.premium {
+      border-top:5px solid $primary-color;
+
+      h2 {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .card__list {
+    padding-bottom: 0;
+  }
+
+  i {
+    position: absolute;
+    left: 0;
+    color: $primary-color;
+  }
+}
+
+/*------------------------------------*\
+    ACTIVE FORM PAGE
+\*------------------------------------*/
+.quote__form--card {
+  background: #434343;
+  position: relative;
+  display: none;
+  width: 100%;
+  height: 90px;
+  @include transition(transform .3s ease-out);
+  @include transform(translateX(-100%));
+
+  @include breakpoint(laptop){
+    display: table;
+    height: 100%;
+    width: 35%;
+    float:left;
+  }
+
+  .active & {
+    @include transform(translateX(0));
+    display: table;
+  }
+}
+
+.quote__form--vc{
+  background: $white;
+  position: relative;
+  display: none;
+  overflow-y: auto;
+  width: 100%;
+  height: auto;
+  @include transition(transform .3s ease-out);
+  @include transform(translateX(100%));
+  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,.68);
+  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,.68);
+  box-shadow: 0px 18px 94px -16px rgba(0,0,0,.68);
+
+  @include breakpoint(laptop){
+    height: 100%;
+    width: 65%;
+    display: block;
+    -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
+    -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
+    box-shadow: 0px 18px 94px -16px rgba(0,0,0,0);
+  }
+
+  .active & {
+    display: block;
+    @include transform(translateX(0));
+  }
+
+  form {
+    padding:0;
+  }
+}
+
+.quote__form--input {
+  width: 100%;
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $above-content;
+  visibility: hidden;
+  padding: 0;
+
+  @include breakpoint(tablet){
+    padding: 6rem;
+  }
+
+  @include breakpoint(laptop){
+      display: table;
+      padding:0;
+      height: 100vh;
+  }
+
+  .go-back {
+    text-align: center;
+    margin-top: 3rem;
+    display: inline-block;
+    position: relative;
+  }
+
+  .card__item {
+    max-width: 330px;
+    margin: 0 auto;
+    width: 100%;
+    opacity: 0;
+    @include transform(translateY(15%));
+
+    .card__item--content{
+      ul {
+        padding-bottom: 2rem;
+      }
+    }
+
+    &.in{
+      opacity: 1;
+      @include transform(translateY(0));
+    }
+
+  }
+
+  &.active{
+    position: fixed;
+    z-index: 100;
+    overflow-y: auto;
+    background: rgba(22, 22, 22, 0.63);
+
+    @include breakpoint(laptop){
+      overflow-y: hidden;
+    }
+
+  }
+}
+
+.quote__form--card-wrapper {
+  display: none;
+  @include breakpoint(laptop){
+    position: absolute;
+    display: block;
+    top: 45%;
+    left: 50%;
+    width: 330px;
+    text-align: center;
+    @include transform(translateX(-50%)translateY(-45%));
+  }
+}
+
+//Tablet Header settings
+.tablet {
+  position: relative;
+  .go-back{
+    margin-top: 1px;
+
+    @include breakpoint(tablet){
+      position: absolute;
+      top: 50%;
+      @include transform(translateY(-50%));
+      right: 30px;
+
+
+    }
+  }
+}
+
+.tablet__card--header {
+  position: relative;
+  padding:30px;
+
+  span {
+    color: $white;
+    @include font-size(1.4);
+  }
+
+  h2{
+    padding-top: 0;
+    color: $primary-color;
+    @include font-size(3.2);
+    line-height: 32px;
+  }
+}

@@ -1,0 +1,18 @@
+/*------------------------------------*\
+    PAGE LAYOUT
+\*------------------------------------*/
+
+.neat-page-wrapper {
+
+  .row{
+    &.container{
+      margin:0 auto !important;
+    }
+  }
+
+  // Structure
+  h3{
+    font-weight: 900;
+  }
+
+}

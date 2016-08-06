@@ -1,0 +1,158 @@
+/*------------------------------------*\
+    POST-THUMB LAYOUT - General post/item layout
+\*------------------------------------*/
+
+.post-thumb {
+  position: relative;
+  //overflow: hidden;
+  margin-bottom: 3.4rem;
+  padding: 0 15px;
+
+  @include breakpoint(tablet){
+    margin-bottom: 5rem;
+  }
+
+  .post-thumb-content {
+    padding: 1rem 2rem 2rem;
+    @include breakpoint(tablet){
+      position: absolute;
+      bottom: 0;
+      width: 80%;
+    }
+    @include breakpoint(laptop){
+      width: 80%;
+    }
+  }
+
+  .post-thumb-title {
+    @include font-size(2.4);
+    font-weight:600;
+    padding-top:0;
+    padding-bottom: 2.4rem;
+    line-height: 36px;
+    a{
+      @include transition(all .3s);
+      color: $white !important;
+    }
+  }
+
+}
+
+.post-thumb-link {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: $above-content;
+}
+
+.post-thumb-img{
+  min-height: 250px;
+  background-size: cover;
+  background-position: center;
+  background-color: #e5e5e5;
+  @include breakpoint(tablet){
+    min-height: 386px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.post-thumb-content {
+  background: $black;
+  overflow: hidden;
+
+  &.has-excerpt{
+    @include transform(translateZ(0));
+    @include transition(all .3s cubic-bezier(0.755, 0.050, 0.855, 0.060));
+  }
+
+  &:hover{
+    .post-thumb-title {
+      a{
+        color: $primary-color !important;
+      }
+    }
+    .post-thumb-header {
+      button {
+        color: $primary-color;
+        border-color: $primary-color;
+      }
+    }
+    @include breakpoint(laptop) {
+
+      &.has-excerpt{
+        @include transform(translate3d(0, 0, 0));
+
+        .post-thumb-header {
+          button {
+            opacity: 1;
+            @include transform(translateY(70px)translateZ(0));
+          }
+        }
+
+      }
+      &.excerpt-sm{
+        height: 45%;
+      }
+      &.excerpt-md{
+        height: 60%;
+      }
+      &.excerpt-lg{
+        height: 85%;
+      }
+      .post-thumb-excerpt {
+        opacity: 1;
+        @include transform(translate3d(0, -10%, 0));
+      }
+    }
+
+  }
+
+  @include breakpoint(tablet){
+    height: 150px;
+    @include transform(translate3d(0, 0, 0));
+    background: rgba(34, 34, 40, 1);
+  }
+
+}
+
+.post-thumb-header{
+
+  .post-thumb-title {
+    @include transition(all .2s);
+    opacity: 1;
+    @include transform(translateY(0));
+  }
+  button {
+      @include breakpoint(tablet){
+        position: absolute;
+        bottom: 20px;
+        opacity: 1;
+        @include transition(color .3s, border .3s, transform .2s .1s cubic-bezier(0.755, 0.050, 0.855, 0.060));
+        @include transform(translateY(0));
+      }
+    }
+}
+
+.post-thumb-excerpt{
+  display: none;
+  p{
+    color: $white-grey;
+  }
+
+  @include breakpoint(laptop){
+    display: block;
+    @include transition(all .2s .2s cubic-bezier(0.785, 0.135, 0.150, 0.860));
+    @include transform(translate3d(0, 0, 0));
+    top:0;
+    bottom:0;
+    opacity: 0;
+    .moretag{
+      display: none;
+    }
+  }
+}

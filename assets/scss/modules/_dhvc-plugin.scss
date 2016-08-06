@@ -1,0 +1,60 @@
+/*------------------------------------*\
+    dhvc plugin
+\*------------------------------------*/
+.dhvc-form-flat .dhvc-form-checkbox i {
+  background: #e5e5e5 !important;
+  border-color: transparent !important;
+}
+
+.dhvc-form-flat .dhvc-form-checkbox input:checked + i{
+  background: transparent !important;
+}
+.dhvc-form-submit {
+  border-radius: 50px !important;
+}
+
+.dhvc-form-input > input {
+
+}
+
+// Ratings stars
+.dhvc-form-flat .dhvc-form-rate {
+  float: left !important;
+}
+
+// Icons for date and time
+.dhvc-form-group .dhvc-form-add-on {
+  left: 0 !important;
+}
+
+.dhvc-form-input.dhvc-form-has-add-on  .dhvc-form-control {
+ padding-left: 3rem !important;
+}
+
+.dhvc_form_text, .dhvc_form_email {
+  padding-bottom: 20px !important;
+}
+
+// Form message
+.dhvc-form-hidden{
+  opacity: 0;
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 0px;
+  z-index: 3;
+  padding: 20px 0 !important;
+  @include transition(all .3s);
+  text-align: center;
+  @include font-size(2.4);
+  color: $white;
+
+  &.dhvc-form-show{
+    height: 75px;
+    top: 50%;
+    @include transform(translateY(-50%));
+    opacity: 1;
+    background: rgba(120, 190, 1, 0.81);
+  }
+}
