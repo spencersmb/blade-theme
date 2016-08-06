@@ -367,28 +367,6 @@ function neat_custom_styles() {
     }
     <?php endif; ?>
 
-    <?php if ( (isset($neat_theme_options['freeQuote_btn_color'])) ) : ?>
-    .free a{
-        border-color:<?php echo esc_attr($neat_theme_options['freeQuote_btn_color']); ?>;
-        color:<?php echo esc_attr($neat_theme_options['freeQuote_btn_color']); ?>;
-    }
-    .free a:hover {
-        background-color: <?php echo esc_attr($neat_theme_options['freeQuote_btn_color']); ?>;
-        color: #fff;
-    }
-    <?php endif; ?>
-
-    @media only screen and (min-width: 62em) {
-    <?php if ( (isset($neat_theme_options['freeQuote_background_color'])) ) : ?>
-        .free {
-            background-color:<?php echo esc_attr($neat_theme_options['freeQuote_background_color']); ?>;
-        }
-
-    <?php endif; ?>
-    }
-
-
-
     /***************************************************************/
     /* 	Header Logo *****************************************************/
     /***************************************************************/
@@ -396,14 +374,14 @@ function neat_custom_styles() {
     <?php if ( (isset($neat_theme_options['spacing_above_logo'])) ) :
                 $spacing_above_logo = $neat_theme_options['spacing_above_logo'];
             else:
-                $spacing_above_logo = 20;
+                $spacing_above_logo = 10;
             endif;
     ?>
 
     <?php if ( (isset($neat_theme_options['spacing_below_logo'])) ) :
                 $spacing_below_logo = $neat_theme_options['spacing_below_logo'];
             else:
-                $spacing_below_logo = 20;
+                $spacing_below_logo = 10;
             endif;
     ?>
 
@@ -433,7 +411,6 @@ function neat_custom_styles() {
 
     <?php
         // Conversions
-        $spacing_below_logo = $spacing_below_logo + 15;
         $upperContainerHeight = $spacing_below_logo + $logo_height;
         $headerHeight = $upperContainerHeight + $spacing_below_logo;
 
@@ -444,30 +421,34 @@ function neat_custom_styles() {
         $nav_height = 70;
         $desktop_top_offset = $headerHeight - ($nav_height/2);
 
+        //li padding calc
+        $li_text_height = 24;
+        $li_padding = ($logo_height - $li_text_height) / 2;
+
+        // li caret calc
+        $li_caret_top = $logo_height / 2;
+
     ?>
 
     @media only screen and (min-width: 48em) {
 
-        #header{
-            padding-top: <?php echo esc_attr($spacing_above_logo)?>px;
-            height: <?php echo esc_attr($headerHeight)?>px;
-        }
-
-        .uppercontainer {
-            padding-bottom: <?php echo esc_attr($spacing_below_logo)?>px;
-            height: <?php echo esc_attr($upperContainerHeight)?>px;
-        }
-
         #header .navbar-brand{
             height: <?php echo esc_attr($logo_height)?>px;
+        }
+
+        /* logo */
+        #header .navbar-brand{
+            padding-top: <?php echo esc_attr($spacing_above_logo)?>px;
+            padding-bottom: <?php echo esc_attr($spacing_below_logo)?>px;
             padding-left: <?php echo esc_attr($spacing_left_logo)?>px
         }
 
         .neat-dropdown-wrapper{
-            top: <?php echo esc_attr($desktop_top_offset); ?>px;
+            height: <?php echo esc_attr($logo_height)?>px;
         }
 
         <?php if ( (isset($neat_theme_options['main_header_font_size'])) ) :
+        
             $fontSize = $neat_theme_options['main_header_font_size'];
 
             else:
@@ -499,20 +480,27 @@ function neat_custom_styles() {
 
     @media only screen and (min-width: 62em) {
 
-        .neat-dropdown{
-            top: <?php echo esc_attr($desktop_top_offset); ?>px;
+        .nav-main__container {
+            height: <?php echo esc_attr($logo_height)?>px;
         }
+
         .neat-dropdown-content a{
             text-transform: uppercase;
             font-weight: 600;
-            font-size: <?php echo esc_attr($fontSize); ?>px;
-            font-size: <?php echo esc_attr($implodeRem); ?>rem;
             color: rgba(<?php echo neat_hex2rgb($navFontColor); ?>,1);
         }
-        .neat-dropdown-content ul .menu-item-has-children > a::after,
-        .neat-dropdown-content ul .menu-item-has-children > a::before{
-
+        .neat-dropdown-content .menu-item-has-children > a,
+        .neat-dropdown-content ul .menu-item-has-children > a {
+            padding-top: <?php echo esc_attr($li_padding)?>px;
+            padding-bottom: <?php echo esc_attr($li_padding)?>px;
         }
+        .neat-dropdown-content .menu-item-has-children > a::after,
+        .neat-dropdown-content .menu-item-has-children > a::before,
+        .neat-dropdown-content ul .menu-item-has-children > a::after,
+        .neat-dropdown-content ul .menu-item-has-children > a::before {
+            top: <?php echo esc_attr($li_caret_top)?>px;
+        }
+
         .neat-dropdown-content .menu-item-has-children > a::after,
         .neat-dropdown-content .menu-item-has-children > a::before{
             background: rgba(<?php echo neat_hex2rgb($navFontColor); ?>,1);

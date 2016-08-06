@@ -45,6 +45,10 @@ class SearchComponent {
     return this.$searchButtonArea.width();
   }
 
+  getHeight(): number {
+    return this.$searchButtonArea.height();
+  }
+
   getTopPosition(): number {
     return this.$searchTrigger.offset().top - $(window).scrollTop();
   }
@@ -74,8 +78,9 @@ class SearchComponent {
       left: this.getLeftPosition(),
       top: this.getTopPosition(),
       width: this.getWidth(),
-      height: this.getWidth(),
+      height: this.getHeight(),
       delay: .3,
+      opacity: 0,
       onComplete: function () {
         $("body").css({
           position: "relative",
@@ -87,14 +92,13 @@ class SearchComponent {
         });
       }.bind(this)
     }).to(this.$searchForm, .4, {
-      opacity: 0,
       onComplete: function () {
         this.$searchForm.css({
           "z-index": -1,
           "left": 0,
           "top": 0,
-          "width": this.getWidth(),
-          "height": this.getWidth(),
+          "width": 0,
+          "height": 0,
         });
       }.bind(this)
     });
@@ -112,8 +116,8 @@ class SearchComponent {
     this.$searchForm.css({
       left: this.getLeftPosition(),
       top: this.getTopPosition(),
-      width: this.getWidth(),
-      height: this.getWidth(),
+      width: 35,
+      height: 35,
       "z-index": 999
     });
 
@@ -121,14 +125,14 @@ class SearchComponent {
 
     animation.to(this.$searchForm, .2, {
       visibility: "visible",
-      opacity: "1",
       delay: .2
     }).to(this.$searchForm, .2, {
       left: 0,
+      opacity: "1",
       top: 0,
       width: "100%",
       height: "100vh",
-      background: "#35373D",
+      borderRadius: 0,
       onComplete: function () {
         $("body").css({
           position: "fixed",

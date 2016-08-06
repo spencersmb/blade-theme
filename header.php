@@ -61,37 +61,21 @@ $header_phone = get_redux_options('header_phone');
 
 		<!-- Main Nav -->
 			<div class="uppercontainer">
-				<a class="navbar-brand" href="<?php echo esc_url(get_home_url('/')); ?>">
-					
-					<?php if ( (isset($header_logo)) ) : ?>
-						<img src="<?php echo esc_url($header_logo)?>" alt="<?php echo get_bloginfo('description') ?>">
-					<?php else: ?>
-						<?php bloginfo( 'name' ); ?>
-					<?php endif; ?>
-				</a>
 
 				<div class="neat-nav-meta">
 
 					<div class="meta-wrapper">
 
+						<div class="meta-blog__desc">
+							<?php bloginfo('description'); ?>
+						</div>
 
-						<?php
-						/*
-						 * ---> Free Quote Button
-						 */
-						?>
-
-						<?php if($header_main_button_show): ?>
-
-							<?php $header_main_button_text = get_redux_options('main_header_button_text'); ?>
-							<?php $header_main_button_link = get_redux_options('free_quote_link'); ?>
-							<div class="free">
-								<a href="<?php echo esc_url(get_the_permalink($header_main_button_link)); ?>" class="rounded-btn">
-									<?php echo wp_kses($header_main_button_text, 'neat') ?>
-								</a>
+						<?php if($header_search_show === "1" || $header_search_show === 1): ?>
+							<div class="meta-search">
+								<a href="#" class="meta-search-trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
 							</div>
-
 						<?php endif; ?>
+
 
 						<?php
 						/*
@@ -178,6 +162,14 @@ $header_phone = get_redux_options('header_phone');
 			</div>
 
 			<div class="neat-dropdown-wrapper shadow-medium">
+				<a class="navbar-brand visible-xs visible-sm" href="<?php echo esc_url(get_home_url('/')); ?>">
+
+					<?php if ( (isset($header_logo)) ) : ?>
+						<img src="<?php echo esc_url($header_logo)?>" alt="<?php echo get_bloginfo('description') ?>">
+					<?php else: ?>
+						<?php bloginfo( 'name' ); ?>
+					<?php endif; ?>
+				</a>
 				<a href="#" id="nav-trigger" class="neat-nav-trigger"><?php echo esc_html__('Menu', 'neat') ?></a>
 			</div>
 
@@ -187,30 +179,35 @@ $header_phone = get_redux_options('header_phone');
 				
 				<div id="nav-xfer">
 
-					<?php if($header_search_show === "1" || $header_search_show === 1): ?>
-						<div class="meta-search">
-							<a href="#" class="meta-search-trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
-						</div>
-					<?php endif; ?>
-
 				</div><!-- end nav-->
 
-				<?php if(has_nav_menu( 'primary' )):
+				<div class="nav-main__container">
+					<a class="navbar-brand" href="<?php echo esc_url(get_home_url('/')); ?>">
 
-					$args = array(
-						'menu' => 'primary-menu',
-						'theme_location' => 'primary',
-						'menu_class' => 'neat-dropdown-content shadow-medium',
-						'container' => 'false',
-						'items_wrap'      => '
+						<?php if ( (isset($header_logo)) ) : ?>
+							<img src="<?php echo esc_url($header_logo)?>" alt="<?php echo get_bloginfo('description') ?>">
+						<?php else: ?>
+							<?php bloginfo( 'name' ); ?>
+						<?php endif; ?>
+					</a>
+					<?php if(has_nav_menu( 'primary' )):
+
+						$args = array(
+							'menu' => 'primary-menu',
+							'theme_location' => 'primary',
+							'menu_class' => 'neat-dropdown-content shadow-medium',
+							'container' => 'false',
+							'items_wrap'      => '
 					<ul id="%1$s" class="%2$s">%3$s</ul>',
-						'walker' => new Sv_Walker_Nav_Menu
-					);
-	
-					wp_nav_menu( $args );
+							'walker' => new Sv_Walker_Nav_Menu
+						);
 
-				endif
-				?>
+						wp_nav_menu( $args );
+
+					endif
+					?>
+				</div>
+
 
 			</nav>
 

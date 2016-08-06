@@ -21,8 +21,12 @@
   margin: 35px auto;
   margin: 3.5rem auto;
   @include breakpoint(tablet){
-    margin: 70px auto;
-    margin: 7rem auto;
+    margin: 90px auto;
+    margin: 9rem auto;
+  }
+  @include breakpoint(laptop){
+    margin: 110px auto;
+    margin: 11rem auto;
   }
 
   .inner-page-wrapper & {
