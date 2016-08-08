@@ -27,7 +27,7 @@ declare var ScrollMagic: any;
       console.log("App loaded");
       SvgHeader.init();
       Utils.init();
-      // Nav.init();
+      Nav.init();
       Search.init();
       StickySidebar.init();
       Testimonials.init();

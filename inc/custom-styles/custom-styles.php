@@ -387,12 +387,24 @@ function neat_custom_styles() {
 
     <?php if ( (isset($neat_theme_options['logo_height'])) ) :
 
-            $logo_height = $neat_theme_options['logo_height'];
-
+            $logo_height = $neat_theme_options['logo_height']; ?>
+            .navbar-dropdown {
+                height: <?php echo esc_attr($logo_height)?>px;
+            }
+            .neat-dropdown-content {
+                padding-top: <?php echo esc_attr($logo_height)?>px;
+            }
+    <?php
             else:
-                $logo_height = 70;
-            endif;
-    ?>
+                $logo_height = 70;?>
+    
+            .navbar-dropdown {
+                height: <?php echo esc_attr($logo_height)?>px;
+            }
+            .neat-dropdown-content {
+                padding-top: <?php echo esc_attr($logo_height)?>px;
+            }
+    <?php endif; ?>
 
     <?php if ( (isset($neat_theme_options['spacing_left_logo'])) ) :
                 $spacing_left_logo = $neat_theme_options['spacing_left_logo'];

@@ -33,10 +33,15 @@
 .nav-main__container {
   position: relative;
   padding: 0;
-  width: auto;
+  width: 100%;
+  height: 100%;
   overflow: visible;
-  margin-left:15px;
-  margin-right:15px;
+
+  @include breakpoint(laptop){
+    margin-left:15px;
+    margin-right:15px;
+    width: auto;
+  }
 
 }
 
@@ -142,7 +147,7 @@
   left: 0;
   position: fixed;
   width: 100%;
-  padding: 0 2.5rem;
+  padding:0;
   z-index: $above-content;
 
   // Fix for animation class added ontop of nav bar element
@@ -163,7 +168,6 @@
     @include transform(translateX(-50%)translateZ(0));
     max-width: 1200px;
     margin: 0 auto;
-    padding:0;
     position: absolute;
     width: 100%;
     height: 70px;
@@ -201,7 +205,7 @@
 .neat-dropdown-content, .neat-dropdown-content ul {
   @include transition(all .3);
   margin: 0;
-  padding: $header-s 0 0;
+  padding: 15px 0 0;
   position:absolute;
   top:0;
   left:0;
@@ -426,14 +430,13 @@
 
   @include breakpoint(laptop){
     position: relative;
-    padding:0;
+    padding:0 !important; // override user settings for desktop bar
     width:auto;
     overflow: visible;
     background: $white;
     -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
     -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
     box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-
     text-align: right;
 
     // Submenu item for desktop

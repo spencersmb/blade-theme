@@ -57,7 +57,7 @@ $header_phone = get_redux_options('header_phone');
 
 <div id="content" class="m-scene">
 
-	<header id="header" class="m-mobile-nav m-header scene_element scene_element--fadein shadow-medium<?php echo esc_attr( neat_admin_class_checks() ); ?>">
+	<header id="header" class="m-mobile-nav m-header scene_element scene_element--fadein<?php echo esc_attr( neat_admin_class_checks() ); ?>">
 
 		<!-- Main Nav -->
 			<div class="uppercontainer">
@@ -163,7 +163,6 @@ $header_phone = get_redux_options('header_phone');
 
 			<div class="neat-dropdown-wrapper shadow-medium">
 				<a class="navbar-brand visible-xs visible-sm" href="<?php echo esc_url(get_home_url('/')); ?>">
-
 					<?php if ( (isset($header_logo)) ) : ?>
 						<img src="<?php echo esc_url($header_logo)?>" alt="<?php echo get_bloginfo('description') ?>">
 					<?php else: ?>
@@ -174,7 +173,13 @@ $header_phone = get_redux_options('header_phone');
 			</div>
 
 			<nav id="neat-dropdown-trigger" class="neat-dropdown scene_element scene_element--fadeInUpNav">
-				<h2><?php bloginfo('name'); ?></h2>
+				<a class="navbar-brand navbar-dropdown visible-xs visible-sm" href="<?php echo esc_url(get_home_url('/')); ?>">
+					<?php if ( (isset($header_logo)) ) : ?>
+						<img src="<?php echo esc_url($header_logo)?>" alt="<?php echo get_bloginfo('description') ?>">
+					<?php else: ?>
+						<?php bloginfo( 'name' ); ?>
+					<?php endif; ?>
+				</a>
 				<a id="nav-close" href="#" class="neat-close"><?php echo esc_html__('Close', 'neat') ?></a>
 				
 				<div id="nav-xfer">
@@ -182,8 +187,7 @@ $header_phone = get_redux_options('header_phone');
 				</div><!-- end nav-->
 
 				<div class="nav-main__container">
-					<a class="navbar-brand" href="<?php echo esc_url(get_home_url('/')); ?>">
-
+					<a class="navbar-brand hidden-xs hidden-sm" href="<?php echo esc_url(get_home_url('/')); ?>">
 						<?php if ( (isset($header_logo)) ) : ?>
 							<img src="<?php echo esc_url($header_logo)?>" alt="<?php echo get_bloginfo('description') ?>">
 						<?php else: ?>
@@ -195,7 +199,7 @@ $header_phone = get_redux_options('header_phone');
 						$args = array(
 							'menu' => 'primary-menu',
 							'theme_location' => 'primary',
-							'menu_class' => 'neat-dropdown-content shadow-medium',
+							'menu_class' => 'neat-dropdown-content',
 							'container' => 'false',
 							'items_wrap'      => '
 					<ul id="%1$s" class="%2$s">%3$s</ul>',

@@ -27,11 +27,7 @@ class NavComponent {
 
     this.$navTrigger = document.getElementById("nav-trigger");
     this.$navDropdown = document.getElementById("neat-dropdown-trigger");
-    // this.$lowerContainer = $(".lowercontainer");
-    this.$upperContainer = $(".uppercontainer");
-    this.$navMeta = $(".neat-nav-meta");
     this.$dropDownWrapper = $(".neat-dropdown-wrapper");
-    this.$search = $("#nav-xfer");
     this.$dropDownContent = $(".neat-dropdown-content");
 
     /*
@@ -45,31 +41,6 @@ class NavComponent {
       desktop: false
     };
   }
-
-
-  // Not used
-  // reload() {
-  //
-  //   this.$navTrigger = document.getElementById("nav-trigger");
-  //   this.$navDropdown = document.getElementById("neat-dropdown-trigger");
-  //   // this.$lowerContainer = $(".lowercontainer");
-  //   this.$upperContainer = $(".uppercontainer");
-  //   this.$navMeta = $(".neat-nav-meta");
-  //   this.$dropDownWrapper = $(".neat-dropdown-wrapper");
-  //   this.$search = $("#nav-xfer");
-  //   this.$dropDownContent = $(".neat-dropdown-content");
-  //
-  //   this.state = {
-  //     navEnabled: false,
-  //     mobile: false,
-  //     tablet: false,
-  //     laptop: false,
-  //     desktop: false
-  //   };
-  //
-  //   this.init();
-  // }
-
 
   /*
    Mobile Nav functionality
@@ -172,47 +143,6 @@ class NavComponent {
 
   }
 
-  moveNavigationMobile() {
-    // console.log("move navigation mobile");
-
-    this.$search.detach();
-    this.$navMeta.detach();
-    // this.$lowerContainer.detach();
-    this.$dropDownWrapper.detach();
-    // this.$lowerContainer.insertAfter(this.$upperContainer);
-    this.$navMeta.insertBefore(this.$upperContainer);
-    this.$upperContainer.append(this.$dropDownWrapper);
-    this.$navMeta.append(this.$search);
-  }
-
-  moveNavigationTablet() {
-    // console.log("move navigation tablet");
-
-    this.$search.detach();
-    // this.$lowerContainer.detach();
-    this.$upperContainer.append(this.$navMeta);
-    // this.$upperContainer.append(this.$lowerContainer);
-    this.$dropDownWrapper.insertAfter(this.$upperContainer);
-    this.$dropDownWrapper.prepend(this.$search);
-  }
-
-  moveNavigationDekstop() {
-    // console.log("move navigation desktop");
-
-    if ( this.$dropDownContent.length > 0 ) {
-
-      this.$search.insertBefore(this.$dropDownContent);
-
-    } else {
-
-      // fix for no nav - first time wp install
-      this.$search.detach();
-      $("#neat-dropdown-trigger").append(this.$search);
-
-    }
-
-  }
-
   disableMobileNav() {
 
     // console.log("Nav turned off");
@@ -222,6 +152,7 @@ class NavComponent {
     this.goback(false);
     this.state.navEnabled = false;
     // console.log("Nav turned off");
+
     /*
      Remove Styles from element & reset dropdown
      */
@@ -255,9 +186,7 @@ class NavComponent {
       this.enableMobileNav();
     }
 
-    this.moveNavigationMobile();
-
-    // Fix for mobil wordpress admin bar
+    // Fix for mobile wordpress admin bar
     // and not wp-admin
     let body = $("body");
 
@@ -273,7 +202,6 @@ class NavComponent {
       this.enableMobileNav();
     }
 
-    this.moveNavigationTablet();
   }
 
   breakPointLaptop( prevState ) {
@@ -283,23 +211,10 @@ class NavComponent {
       this.disableMobileNav();
     }
 
-    // if prev state was tablet do this:
-    if ( prevState.desktop === false || prevState.mobile === true ) {
-
-      this.moveNavigationTablet();
-      this.moveNavigationDekstop();
-    }
   }
 
   breakPointDesktop( prevState ) {
     console.log("Breakpoint Desktop");
-
-    if ( prevState.laptop === false || prevState.mobile === true ) {
-
-      this.moveNavigationTablet();
-      this.moveNavigationDekstop();
-    }
-
   }
 
   safariResizeFix() {
@@ -411,6 +326,9 @@ class NavComponent {
   }
 
   navLoad() {
+    /*
+     Set state on load
+     */
     if ( Utils.breakpoint === Utils.bps.mobile ) {
 
       this.breakPointMobile();
@@ -450,9 +368,6 @@ class NavComponent {
 
     if ( Utils.breakpoint >= Utils.bps.desktop ) {
 
-      console.log("current breakpoint", Utils.breakpoint);
-      console.log("xfer div", this.$search);
-
       this.breakPointDesktop(this.state);
 
       this.state = {
@@ -470,7 +385,6 @@ class NavComponent {
     console.log("Nav loaded");
 
     this.navLoad();
-    // SearchBox.init();
 
     /****************
      NAV RESIZE EVENT
