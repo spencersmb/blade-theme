@@ -14,7 +14,7 @@ get_header();
 	?>
 
 	<main class="neat-blocked-container">
-		<section class="neat-container-primary">
+		<div class="neat-container-primary">
 			<div class="row">
 				<div class="col-xs-12 <?php if($blog_layout === "1"): echo esc_attr('col-md-9'); ?><?php endif; ?>">
 
@@ -109,10 +109,12 @@ get_header();
 											if(has_excerpt()):
 												$excerpt = get_the_excerpt();
 												$excerpt_trim = wp_trim_words( $excerpt , '25' );?>
-												<p><?php echo wp_kses($excerpt_trim, 'neat'); ?></p>
-												<a class="moretag rounded-btn" href="<?php echo esc_url(the_permalink()) ?>">
-													<?php echo esc_html__('Read More', 'neat') ?>
-												</a>
+												<p>
+													<?php echo wp_kses($excerpt_trim, 'neat'); ?>
+													<a class="moretag rounded-btn" href="<?php echo esc_url(the_permalink()) ?>">
+														<?php echo esc_html__('Read More', 'neat') ?>
+													</a>
+												</p>
 											<?php else: ?>
 												<p><?php the_excerpt(); ?></p>
 											<?php endif; ?>
@@ -153,7 +155,7 @@ get_header();
 					</div><!-- end sidebar -->
 				<?php endif; ?>
 			</div>
-		</section>
+		</div>
 	</main><!-- /main -->
 
 

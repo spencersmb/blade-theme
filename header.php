@@ -48,6 +48,7 @@
 <?php
 $header_search_show = get_redux_options('search_button');
 $header_logo = get_redux_options('site_logo', 'url');
+$header_logo_alt = get_redux_options('alt_header_logo', 'url');
 $header_main_button_show = get_redux_options('has_free_quote');
 $topbar_show_social = get_redux_options('top_bar_social_icons');
 $header_phone_display = get_redux_options('header_phone_display');
@@ -97,6 +98,9 @@ $header_phone = get_redux_options('header_phone');
 						}
 						?>
 						<?php if ($topbar_show_social): ?>
+							<div class="meta meta-top meta-spacer hidden-xs">
+								|
+							</div>
 							<div class="nav-social-widget">
 								<?php if ((isset($redux_facebook)) && $redux_facebook !== "" ): ?>
 									<a href="<?php echo esc_url($redux_facebook) ?>" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -139,6 +143,7 @@ $header_phone = get_redux_options('header_phone');
 								<?php endif; ?>
 
 							</div>
+
 						<?php endif; ?>
 
 
@@ -149,8 +154,11 @@ $header_phone = get_redux_options('header_phone');
 						
 						?>
 						<?php if($header_phone_display === "1"): ?>
-							<div class="meta-phone <?php if($topbar_show_social === "0"): echo esc_attr( 'no-social' ); endif; ?>">
-								<a href="tel:<?php echo esc_attr($header_phone) ?>"><?php echo wp_kses($header_phone, 'neat') ?></a>
+							<div class="meta meta-top meta-spacer hidden-xs">
+								|
+							</div>
+							<div class="meta-phone meta-top <?php if($topbar_show_social === "0"): echo esc_attr( 'no-social' ); endif; ?>">
+								<a href="tel:<?php echo esc_attr($header_phone) ?>"><i class="fa fa-phone fa-h-icon" aria-hidden="true"></i><?php echo wp_kses($header_phone, 'neat') ?></a>
 							</div>
 						<?php endif; ?>
 
@@ -174,8 +182,8 @@ $header_phone = get_redux_options('header_phone');
 
 			<nav id="neat-dropdown-trigger" class="neat-dropdown scene_element scene_element--fadeInUpNav">
 				<a class="navbar-brand navbar-dropdown visible-xs visible-sm" href="<?php echo esc_url(get_home_url('/')); ?>">
-					<?php if ( (isset($header_logo)) ) : ?>
-						<img src="<?php echo esc_url($header_logo)?>" alt="<?php echo get_bloginfo('description') ?>">
+					<?php if ( (isset($header_logo_alt)) ) : ?>
+						<img src="<?php echo esc_url($header_logo_alt)?>" alt="<?php echo get_bloginfo('description') ?>">
 					<?php else: ?>
 						<?php bloginfo( 'name' ); ?>
 					<?php endif; ?>

@@ -65,8 +65,6 @@ function neat_setup() {
 	// Square for Isotop gallery
 	add_image_size( 'neat-square', 1024, 1024, true );
 
-	// replace this with a scalled version of 'neat-gallery-thumb-sm' with responsive image src
-//	add_image_size( 'neat-slider-nav-thumb', 292, 195, true );
 	add_image_size( 'neat-gallery-slider', 1920, 1280, true );
 
 	//basic image dimension - horizontal - based off of a 2560x1600 ratio
@@ -212,4 +210,7 @@ if ( !isset( $redux_demo ) && file_exists( get_template_directory() . '/redux/sa
 }
 
 // 3. Hide ACF field group menu item
-add_filter('acf/settings/show_admin', '__return_false');
+function remove_acf(){
+	remove_menu_page( 'edit.php?post_type=acf' );
+}
+add_action( 'admin_menu', 'remove_acf',100 );

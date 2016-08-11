@@ -32,8 +32,8 @@
         //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
         'allow_sub_menu'       => true,
         // Show the sections below the admin menu item or not
-        'menu_title'           => esc_html__( 'Theme Options', 'neat' ),
-        'page_title'           => esc_html__( 'Theme Options', 'neat' ),
+        'menu_title'           => esc_html__( 'Sprout Options', 'neat' ),
+        'page_title'           => esc_html__( 'Sprout Options', 'neat' ),
         // You will need to generate a Google API key to use this feature.
         // Please visit: https://developers.google.com/fonts/docs/developer_api#Auth
         'google_api_key'       => '',
@@ -67,7 +67,7 @@
         // For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
         'page_permissions'     => 'manage_options',
         // Permissions needed to access the options panel.
-        'menu_icon'            => '',
+        'menu_icon'            => 'http://teelalynne.com/speela2015/wp-content/themes/neat/assets/images/menu-icon.png',
         // Specify a custom URL to an icon
         'last_tab'             => '',
         // Force your panel to always open to a specific tab (by id)
@@ -262,13 +262,13 @@
                 'id'        => 'blogname',
                 'type'      => 'text',
                 'title'     => esc_html__('Blog Title', 'neat'),
-                'default'   => get_option( 'blogname' )
+                'default'   => get_option( 'blogname' ),
             ),
             array(
                 'id'        => 'blogdescription',
                 'type'      => 'text',
                 'title'     => esc_html__('Blog Description', 'neat'),
-                'default'   => get_option( 'blogdescription' )
+                'default'   => get_option( 'blogdescription' ),
             ),
             array (
                 'title' => esc_html__('Favicon', 'neat'),
@@ -315,7 +315,7 @@
                 'id' => 'site_logo',
                 'type' => 'media',
                 'default' => array (
-                    'url' => get_template_directory_uri() . '/assets/images/neat-theme-logo-dark.png',
+                    'url' => get_template_directory_uri() . '/assets/images/logos/sprout-logo-white.png',
                 ),
             ),
             array (
@@ -324,7 +324,7 @@
                 'id' => 'alt_header_logo',
                 'type' => 'media',
                 'default' => array (
-                    'url' => get_template_directory_uri() . '/assets/images/neat-theme-logo-light.png',
+                    'url' => get_template_directory_uri() . '/assets/images/logos/sprout-logo-black.png',
                 ),
             ),
 

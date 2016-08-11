@@ -41,7 +41,7 @@ get_header();
                        - Filter -
             #################################
             -->
-            <section class="gallery-filter-container m-page scene_element scene_element--fadeinup">
+            <div class="gallery-filter-container m-page scene_element scene_element--fadeinup">
                 
             <!-- gallery filter -->
             <?php if(!is_wp_error( $filter_terms )): ?>
@@ -62,7 +62,7 @@ get_header();
                 <!-- end filter -->
 
             <?php endif; ?>
-            </section>
+            </div>
 
         <?php endif; ?>
 
@@ -72,9 +72,9 @@ get_header();
     #################################
     -->
     <?php if($page_layout === "1"): ?>
-        <section class="gallery-container container-fluid no-padding m-page scene_element scene_element--fadein">
+        <div class="gallery-container container-fluid no-padding m-page scene_element scene_element--fadein">
     <?php else: ?>
-        <section class="gallery-container container no-padding m-page scene_element scene_element--fadein">
+        <div class="gallery-container container no-padding m-page scene_element scene_element--fadein">
     <?php endif; ?>
 
             <div class="inner-content-module full-width-container">
@@ -246,18 +246,20 @@ get_header();
 
                     }
                     echo '
-                        </a>
-                    </div>
+                        </a><!-- ./a link -->
+                    </div> <!-- ./gallery item -->
                     ';
 
                 endwhile; endif;
 
                 ?>
+                </div>
+                <!-- end ./gallery-isotope -->
 
             </div>
-            <!-- end isotope inner wrapper -->
+            <!-- end ./inner-content-module wrapper -->
 
-        </section>
-        <!-- end gallery section -->
+        </div>
+        <!-- end ./gallery-container -->
     </main>
 <?php get_footer(); ?>

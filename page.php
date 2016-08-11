@@ -20,9 +20,6 @@ $page_layout = get_redux_options('main_page_layout'); ?>
 	<main class="container-fluid">
 <?php endif; ?>
 
-
-	<section>
-
 		<div class="row">
 
 			<!-- page.php -->
@@ -46,8 +43,6 @@ $page_layout = get_redux_options('main_page_layout'); ?>
 
 		</div><!-- /.row -->
 		
-	</section><!-- /section -->
-
 </main><!-- /.container-fluid -->
 
 <?php get_footer(); ?>

@@ -1,0 +1,724 @@
+#velocity {
+  @include transform(translateY(-100%));
+  background: $black;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $above-content;
+}
+
+#header {
+  background: $primary-color;
+  position: relative;
+  z-index:999;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+
+  @include breakpoint(tablet){
+    padding: 0 35px;
+    min-height: 70px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  @include breakpoint(laptop){
+    padding: 0 15px;
+  }
+}
+
+.nav-main__container {
+  position: relative;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+
+  @include breakpoint(laptop){
+    margin-left:15px;
+    margin-right:15px;
+    width: auto;
+  }
+
+}
+
+.uppercontainer{
+  position: relative;
+  max-width:1170px;
+  margin:0 auto;
+
+  @include breakpoint(tablet) {
+    height: 100%;
+    padding: 0 0 25px;
+  }
+}
+
+.free{
+  display:none;
+
+  a{
+    border-color: $white;
+    font-size: 12px !important;
+    font-size: 1.2rem !important;
+    border-bottom: 2px solid $white;
+  }
+  @include breakpoint(tablet){
+    display: block;
+    position: relative;
+    padding-left: 15px;
+    height: auto;
+    z-index: 3;
+    float: right;
+    right:0;
+    color: $white;
+
+  }
+  @include breakpoint(laptop){
+
+  }
+}
+
+.neat-dropdown-wrapper {
+  display: block;
+  position: relative;
+  right: 0;
+  width: 100%;
+  height: 77px;
+  background: $white;
+
+  .neat-nav-trigger {
+    border: 2px solid $primary-color;
+    border-radius: 50px;
+    background: transparent;
+    color: $black;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    @include font-size(1.3);
+    font-weight:600;
+    top: 50%;
+    right: 25px;
+    position: absolute;
+    @include transform(translateY(-50%));
+
+    @include breakpoint(tablet){
+      padding: 5px 25px 5px 25px;
+      top: 50%;
+      left: auto;
+      right: 20px;
+      @include transform(translateY(-50%)translateX(0));
+    }
+
+    @include breakpoint(laptop){
+      display: none;
+    }
+  }
+
+  @include breakpoint(tabletmax){
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  @include breakpoint(tablet){
+    position: absolute;
+    margin:0;
+    right:35px;
+    left:35px;
+    top:70%;
+    z-index: $above-content;
+    height: 70px;
+    width: auto;
+
+  }
+
+  @include breakpoint(laptop){
+    display: none;
+  }
+}
+
+// Mobile Nav dropdown
+.neat-dropdown {
+  top:-100%;
+  background: $black;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  padding:0;
+  z-index: $above-content;
+
+  // Fix for animation class added ontop of nav bar element
+  animation-fill-mode: none !important;
+  -webkit-animation-fill-mode: none !important;
+
+  h2 {
+    @include font-size(1.8);
+    @include line-height(6);
+    color: $white;
+    height: $header-s;
+    padding: 0;
+  }
+
+  @include breakpoint(laptop) {
+    top: 45px;
+    left: 50%;
+    @include transform(translateX(-50%)translateZ(0));
+    max-width: 1200px;
+    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+    height: 70px;
+    display: block;
+    z-index: $content;
+    background: transparent;
+
+    // Fix for animation class added ontop of nav bar element
+    animation-fill-mode: both !important;
+    -webkit-animation-fill-mode: both !important;
+
+    h2 {
+      display: none;
+    }
+
+    li {
+      display: inline-block;
+
+      // nav check for last 2 items to hover the oppisite way.
+      @include last(2){
+
+        ul {
+          left: auto;
+          right: 0;
+          display: block;
+          width: auto;
+        }
+      }
+
+    }
+  }
+
+}
+
+.neat-dropdown-content, .neat-dropdown-content ul {
+  @include transition(all .3);
+  margin: 0;
+  padding: 15px 0 0;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  li, ul li {
+
+    &:last-of-type>a{
+      border-bottom-width: 1px;
+      border-style: solid;
+      border-color: darken($dark-grey, 15);
+    }
+
+    @include breakpoint(laptop) {
+
+      &:last-of-type>a{
+        border: 0;
+      }
+    }
+
+  }
+
+  &.is-hidden{
+    @include transform(translateX(100%));
+
+    @include breakpoint(laptop) {
+      @include transform(translateX(0));
+      //@include transform(translateY(30%));
+      //@include transition(all .25s);
+      opacity: 0;
+      visibility: hidden;
+
+      &.visible-desktop{
+        opacity: 1;
+        visibility: visible;
+      }
+
+      &.service-in{
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  // global menu hover links
+  a, ul, ul a {
+    @include transform(translateZ(0));
+    @include backface-visibility(hidden);
+    opacity: 1;
+    @media only screen and (max-width: 991px) {
+      @include transition(all .3s cubic-bezier(0.755, 0.050, 0.855, 0.060));
+    }
+  }
+
+  a, ul a {
+    padding:20px 25px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-style: solid;
+    border-color: darken($dark-grey, 15);
+    border-top-width: 1px;
+    border-left:0;
+    border-right:0;
+    border-bottom: 0;
+    @include breakpoint(tablet){
+
+    }
+
+    @include breakpoint(laptop) {
+      padding:7px 0 0 0;
+      border:none;
+    }
+
+    @include breakpoint(desktop) {
+      @include font-size(1.4);
+    }
+
+  }
+
+  .menu-item-has-children {
+
+    & > a {
+      position: relative;
+      &::before, &::after {
+        content: '';
+        width: 9px;
+        height: 2px;
+        position: absolute;
+        background: $primary-color;
+        top:50%;
+        @include transform(translateX(-50%));
+        @include backface-visibility(hidden);
+        right: 0;
+      }
+
+      &::before {
+        top: 33px;
+        right: 25px;
+        @include transform(rotate(-45deg));
+      }
+
+      &::after {
+        top: 28px;
+        right: 25px;
+        @include transform(rotate(45deg));
+      }
+
+      @include breakpoint(laptop) {
+        padding: 23px 30px 23px 10px;
+        &::after, &::before {
+          @include transition(all .3s);
+          margin-top:-1px;
+          width: 6px;
+          top:35px;
+          background: $dark-grey;
+        }
+
+        &::before {
+          right:19px;
+          @include transform(rotate(45deg));
+        }
+
+        &::after {
+          right:15px;
+          @include transform(rotate(-45deg));
+        }
+      }
+
+      @include breakpoint(desktop) {
+        padding: 23px 30px 23px 20px;
+      }
+    }
+
+    // nav check for last 2 items to hover the oppisite way.
+    @include last(1){
+      & > a {
+        @include breakpoint(laptop){
+          margin-right: 10px;
+        }
+        @include breakpoint(desktop){
+          margin-right: 20px;
+        }
+      }
+    }
+
+  }
+
+  &.move-out>li>a{
+    @include transform(translateX(-100%));
+    opacity: 0;
+  }
+
+  //todo: Add color to header
+  .go-back {
+    position: relative;
+    a {
+      padding-left: 40px;
+
+      &::before, &::after {
+        content: '';
+        width: 9px;
+        height: 2px;
+        position: absolute;
+        background: $primary-color;
+        top:50%;
+        @include transform(translateX(-50%));
+        left:0;
+      }
+
+      &::before {
+        top: 33px;
+        left: 25px;
+        @include transform(rotate(45deg));
+      }
+
+      &::after {
+        top: 28px;
+        left: 25px;
+        @include transform(rotate(-45deg));
+      }
+    }
+    @include breakpoint(laptop) {
+      display: none;
+    }
+
+  }
+
+  .sub-title {
+    a {
+      background-color:$b;
+      color:$g;
+      padding:5px 15px;
+      @include font-size(1.4);
+    }
+    @include breakpoint(laptop) {
+      display: none;
+    }
+  }
+
+}
+
+.neat-dropdown-content {
+
+  & > li{
+    // nav check for last items with no children
+    @include last(1){
+      & > a {
+        @include breakpoint(laptop){
+          margin-right: 10px;
+        }
+        @include breakpoint(desktop){
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(laptop){
+    position: relative;
+    padding:0 !important; // override user settings for desktop bar
+    width:auto;
+    overflow: visible;
+    background: $white;
+    -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
+    -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
+    box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
+    text-align: right;
+
+    // Submenu item for desktop
+    ul{
+      display: table;
+      left:0;
+      position: absolute;
+      top:100%;
+      padding:0;
+      min-width: 240px;
+      overflow: visible;
+      text-align: left;
+      //@include transition(all 0s);
+
+      li{
+        display: block;
+        -webkit-box-shadow: 0px 28px 74px -16px rgba(0,0,0,0.38);
+        -moz-box-shadow: 0px 28px 74px -16px rgba(0,0,0,0.38);
+        box-shadow: 0px 28px 74px -16px rgba(0,0,0,0.38);
+        max-width: 367px;
+      }
+
+      a{
+        padding:12px 20px;
+        //@include transition(all .3s);
+        color:$white;
+        border-bottom: 2px solid rgba(60, 118, 61, 0.08);
+        &:hover{
+          color:$white;
+          background: $dark-green;
+        }
+      }
+
+    }
+
+    // top level hover states
+    > li:not(.service-dropdown){
+      @include transition(background .3s);
+      position: relative;
+
+      &:hover{
+
+        //background: $primary-color;
+        ul.is-hidden{
+          //@include transform(translateY(0));
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+      > a{
+
+        &:hover {
+          color:$primary-color;
+          &::after, &::before {
+            background-color:$primary-color;
+          }
+        }
+      }
+    }
+
+    a{
+      overflow: visible;
+      display: inline-block;
+      padding: 23px 20px;
+      color: $dark-grey;
+      @include font-size(1.3);
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+
+      // top item nav font sizeing
+      @include breakpoint(laptop){
+        @include font-size(1.2);
+        padding: 23px 10px;
+      }
+      @include breakpoint(desktop){
+        padding: 23px 20px;
+        @include font-size(1.3);
+      }
+    }
+
+
+
+  }
+
+  @include breakpoint(desktop) {
+    ul{
+      li {
+        max-width: 443px;
+      }
+    }
+  }
+
+}
+
+
+.navbar-brand {
+  //Todo: get height from customizer for all device sizes?
+  position: relative;
+  display:block;
+  width:auto;
+  height: auto;
+  > img {
+    width: auto;
+  }
+
+  &:hover, &:focus{
+    background: transparent;
+  }
+
+  @include breakpoint(tablet){
+    position: relative;
+    float: left;
+    padding: 0 0 0 15px;
+    z-index: $above-content;
+  }
+
+  #header & {
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    padding: 0;
+    @include transform(translateY(-50%));
+
+    @include breakpoint(tablet){
+        width: auto;
+    }
+  }
+
+  #header .neat-dropdown & {
+    position: relative;
+    top: 0;
+    @include transform(translateY(0));
+    width: auto;
+  }
+}
+
+.neat-nav-meta{
+  top:0;
+  padding: 0 20px;
+  width: 100%;
+  display: table;
+  height: 45px;
+  background: $dark-blue;
+
+  a, p {
+    @include font-size(1.4);
+    color: $white;
+  }
+
+  @include breakpoint(tablet){
+    max-width: 1170px;
+    padding:0 0 0 15px;
+    position: relative;
+    height:100%;
+    background: transparent;
+  }
+
+}
+
+.meta-blog__desc{
+  color: $white;
+  text-align: center;
+  position: relative;
+  padding-top: 10px;
+  @include font-size(1.3);
+  width: 100%;
+  padding-bottom: 10px;
+  display: none;
+
+  @include breakpoint(tablet){
+    text-align: left;
+    float: left;
+    width: 40%;
+    display: block;
+  }
+
+  @include breakpoint(laptop){
+      width: auto;
+  }
+}
+
+.meta-search {
+  overflow: hidden;
+  float: right;
+  margin:5px 0 0 20px;
+  position: relative;
+  height: 35px;
+  width: 35px;
+  z-index: $content;
+  a{
+    color:$white;
+    &:hover{
+      color:$black;
+    }
+    &:focus{
+    }
+  }
+
+  a{
+    width: 100%;
+    display: block;
+    height: 100%;
+
+    &:focus {
+      color: $white;
+    }
+  }
+  i{
+    @include center();
+    @include font-size(1.7);
+    position: absolute;
+    line-height: 0;
+    opacity: 1;
+  }
+
+}
+
+.meta-wrapper {
+
+  @include breakpoint(tablet) {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    right: 0;
+    top: 50%;
+    @include transform(translateY(-50%));
+  }
+}
+
+.meta-phone{
+  text-align: left;
+  padding:10px 0 0;
+  @include breakpoint(tablet){
+
+    position: relative;
+    display: table;
+    float:right;
+    padding:0;
+
+    a{
+      @include font-size(1.2);
+      color:$white;
+      display: block;
+      position: relative;
+      font-weight: 600;
+    }
+
+    &.no-social {
+      a{
+        padding-right: 0;
+        margin-right: 0;
+        border-right: none;
+      }
+    }
+  }
+}
+
+.nav-social-widget, .meta-phone, .free {
+  @include breakpoint(tablet){
+      padding-top: 10px;
+  }
+}
+.navbar {
+  #header.logged-in & {
+    margin-top: 32px;
+  }
+}
+
+.nav-social-widget {
+  display: none;
+  @include breakpoint(tablet){
+    display: block;
+    float: right;
+    position: relative;
+    padding-left: 20px;
+
+    a{
+      @include font-size(1.2);
+      padding:0 5px;
+      color:$white;
+    }
+  }
+}

@@ -365,7 +365,7 @@ function neat_get_the_post_navigation( $args = array() ) {
 
 	// Only add markup if there's somewhere to navigate to.
 	if ( $previous || $next ) {
-		$navigation = _navigation_markup( $previous . $next, 'post-navigation', $args['screen_reader_text'] );
+		$navigation = neat_navigation_markup( $previous . $next, 'post-navigation', $args['screen_reader_text'] );
 	}
 
 
@@ -479,6 +479,51 @@ function neat_get_adjacent_post_link( $format, $link, $in_same_term = false, $ex
 	 */
 //	return $string;
 	return apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post, $adjacent );
+}
+
+/**
+ * Wraps passed links in navigational markup.
+ *
+ * @since 4.1.0
+ * @access private
+ *
+ * @param string $links              Navigational links.
+ * @param string $class              Optional. Custom class for nav element. Default: 'posts-navigation'.
+ * @param string $screen_reader_text Optional. Screen reader text for nav element. Default: 'Posts navigation'.
+ * @return string Navigation template tag.
+ */
+function neat_navigation_markup( $links, $class = 'posts-navigation', $screen_reader_text = '' ) {
+	if ( empty( $screen_reader_text ) ) {
+		$screen_reader_text = esc_html__( 'Posts navigation', 'neat' );
+	}
+
+	$template = '
+	<nav class="navigation %1$s">
+		<h2 class="screen-reader-text">%2$s</h2>
+		<div class="nav-links">%3$s</div>
+	</nav>';
+
+	/**
+	 * Filter the navigation markup template.
+	 *
+	 * Note: The filtered template HTML must contain specifiers for the navigation
+	 * class (%1$s), the screen-reader-text value (%2$s), and placement of the
+	 * navigation links (%3$s):
+	 *
+	 *     <nav class="navigation %1$s" role="navigation">
+	 *         <h2 class="screen-reader-text">%2$s</h2>
+	 *         <div class="nav-links">%3$s</div>
+	 *     </nav>
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param string $template The default template.
+	 * @param string $class    The class passed by the calling function.
+	 * @return string Navigation template.
+	 */
+	$template = apply_filters( 'navigation_markup_template', $template, $class );
+
+	return sprintf( $template, sanitize_html_class( $class ), esc_html( $screen_reader_text ), $links );
 }
 
 

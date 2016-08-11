@@ -4,10 +4,8 @@
 
 .testimonials {
   max-width: 1030px;
-
+  margin: 0 auto;
   @include transition(all .3s);
-
-
 
   .carousel-inner {
     @include transition(all .3s);

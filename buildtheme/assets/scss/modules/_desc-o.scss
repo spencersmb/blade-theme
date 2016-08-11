@@ -1,0 +1,148 @@
+/*------------------------------------*\
+    DESCRIPTION + IMAGE OFFSET
+    COMPONENT
+\*------------------------------------*/
+
+.desc-o-container {
+  position: relative;
+  padding: 0px;
+  display: table;
+  margin: 0 auto;
+  @include breakpoint(tablet){
+    padding: 0 30px;
+      max-width: 750px;
+  }
+  @include breakpoint(laptop){
+    max-width: 970px;
+  }
+  @include breakpoint(laptop){
+    max-width: 1170px;
+  }
+
+
+  img{
+    width: 100%;
+    margin: 0 auto;
+    -webkit-box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.3);
+    box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.3);
+    @include breakpoint(tablet){
+      margin: 0;
+      max-width: 435px;
+    }
+    @include breakpoint(desktop){
+      margin: 0;
+      max-width: 470px;
+    }
+  }
+  .desc-o-image-1, .desc-o-image-2 {
+    overflow: hidden;
+    -webkit-box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.3);
+    box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.3);
+  }
+
+  .desc-o-image-1{
+    //z-index: $above-content;
+    max-height: 294px;
+
+    @include breakpoint(tablet){
+      position: absolute;
+      top:-15%;
+      left:35%;
+    }
+    @include breakpoint(laptop){
+      position: absolute;
+      top:-15%;
+      left:45%;
+    }
+    @include breakpoint(desktop){
+      position: absolute;
+      top:-15%;
+      left:45%;
+    }
+  }
+
+  .desc-o-image-2{
+    max-height: 294px;
+    z-index: $below-content;
+    @include breakpoint(tablet){
+       position: absolute;
+       bottom: -170px;
+       left: 0px;
+       height: 200px;
+       width: 350px;
+     }
+    @include breakpoint(laptop){
+      position: absolute;
+      bottom: -180px;
+      left: 50px;
+      height: 250px;
+      width: 400px;
+    }
+    @include breakpoint(desktop){
+      position: absolute;
+      bottom: 13%;
+      left: 50px;
+    }
+  }
+
+  .desc-o-content{
+    //z-index: $content;
+    padding: 3% ;
+    @include breakpoint(tablet){
+      padding: 4rem 2rem 3rem;
+    }
+    @include breakpoint(desktop){
+    }
+  }
+
+}
+
+.desc-o-inner {
+  position: relative;
+  z-index: $content;
+  -webkit-box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.3);
+  box-shadow: 0px 18px 74px -5px rgba(0,0,0,0.3);
+}
+
+// Add different image alt positions for animation instead of static
+.desc-o-animate {
+  .desc-o-container {
+    margin-top: 100px;
+    margin-bottom: 80px;
+
+    @include breakpoint(tabletmax){
+      max-width: 420px;
+    }
+
+    @include breakpoint(mobilemax){
+      max-width: 300px;
+    }
+
+    @include breakpoint(tablet){
+      margin-top: 200px;
+      margin-bottom: 50px;
+    }
+
+    .desc-o-image-1{
+      @include breakpoint(tabletmax){
+        position: absolute;
+        top:-70px;
+        left: 10%;
+        right: -10%;
+      }
+    }
+    .desc-o-image-2{
+      @include breakpoint(tabletmax){
+        position: absolute;
+        bottom: -80px;
+        left: -10%;
+      }
+      @include breakpoint(tablet){
+        bottom: -170px;
+      }
+    }
+  }
+}

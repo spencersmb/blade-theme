@@ -52,7 +52,7 @@ $has_excerpt = has_excerpt();
 			<div class="post-thumb-header">
 
 				<a class="post-thumb-link" href="<?php esc_url(the_permalink()); ?>"></a>
-				<h1 class="post-thumb-title"><a href="<?php esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h1>
+				<h2 class="post-thumb-title"><a href="<?php esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h2>
 				<button class="read-more rounded-btn white-btn btn-sm"><?php echo esc_html__('View Service', 'neat') ?></button>
 
 					<?php if($has_excerpt): ?>

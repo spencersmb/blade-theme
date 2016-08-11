@@ -20,10 +20,6 @@ footer{
 
     > img {
       margin: 0 auto;
-      height: auto;
-      @include breakpoint(tablet){
-        height:100%;
-      }
     }
 
   }
@@ -49,20 +45,30 @@ footer{
 }
 
 .footer-logo{
-  margin-bottom: 2.4rem;
+  margin: 0 auto 2.4rem;
+  max-width: 300px;
 
   @include breakpoint(laptop) {
     float: left;
     margin-bottom: 0;
-    height: 50px;
   }
 }
 
 .footer-nav{
   position: relative;
+  padding-top: 10px;
+  display: block;
 
   ul{
-    padding-bottom: 2.4rem;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 3.5rem;
+    display: inline-block;
+
+    @include breakpoint(laptop){
+      padding-bottom: 0;
+        text-align: right;
+    }
   }
 
   li {
@@ -79,9 +85,6 @@ footer{
   }
 
   @include breakpoint(tablet){
-    ul {
-      text-align: center;
-    }
 
     li {
       display: inline-block;
@@ -94,17 +97,13 @@ footer{
 
   @include breakpoint(laptop){
     height: 50px;
-
-    ul {
-      text-align: left;
-      display: inline-block;
-      padding:0;
-      position: absolute;
-      top: 50%;
-      @include transform(translateY(-50%));
-      margin-left: 2.4rem;
+    li{
+      @include last(1){
+        a{
+          padding-right: 15px;
+        }
+      }
     }
-
     a{
       padding: 0 2.4rem 0 0;
       @include font-size(1.2);
@@ -113,7 +112,7 @@ footer{
 }
 
 .footer-social {
-
+  display: block;
   ul {
     text-align: center;
     padding:0;
@@ -129,15 +128,12 @@ footer{
   }
 
   @include breakpoint(laptop) {
-
     height:50px;
-    display: table;
-    float: right;
 
     ul{
       padding:0;
       text-align: right;
-      display: table-cell;
+      display: block;
       vertical-align: middle;
     }
   }

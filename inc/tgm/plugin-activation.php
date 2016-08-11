@@ -92,13 +92,12 @@ function neat_register_required_plugins() {
         array(
             'name'                  => 'Advanced Custom Fields', // The plugin name
             'slug'                  => 'acf', // The plugin slug (typically the folder name)
-            'source'                => get_template_directory() . '/inc/plugins/acf.zip', // The plugin source
+            'source'                => get_template_directory() . '/inc/plugins/advanced-custom-fields.zip', // The plugin source
             'required'              => true, // If false, the plugin is only 'recommended' instead of required
             'version'               => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
             'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
             'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
             'external_url'          => '', // If set, overrides default API URL and points to an external URL
-            'image_url'             => get_template_directory_uri() . '/assets/images/backend/revslider.jpg',
         ),
 
     );

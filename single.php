@@ -32,7 +32,7 @@ get_header(); ?>
 
 			<!-- hero section if no image select correct header-->
 			<?php if(strlen($thumbnail_url) > 0): ?>
-			<div class="hero m-header scene_element scene_element--fadein">
+				<div class="hero m-header scene_element scene_element--fadein">
 			<?php else: ?>
 				<div class="hero no-image m-header scene_element scene_element--fadein">
 			<?php endif; ?>
@@ -92,20 +92,19 @@ get_header(); ?>
 							comments_template();
 						endif;
 						?>
-						</article>
-					</div>
-
-				<!-- /neat-single -->
-				<?php endwhile; // end of the loop. ?>
+						</article><!-- /.post -->
+					</div><!-- /content -->
 
 					<?php if($blog_layout === "1"): ?>
-					<div class="col-xs-12 col-md-4 col-lg-3">
-						<?php get_sidebar(); ?>
-					</div><!-- /sidebar - container -->
+						<div class="col-xs-12 col-md-4 col-lg-3">
+							<?php get_sidebar(); ?>
+						</div><!-- /sidebar - container -->
 					<?php endif; ?>
-					
-			</div><!-- /primary - container -->
 
-		</div><!-- /fluid - container -->
+				</div><!-- /.neat-container-single -->
+
+				<?php endwhile; // end of the loop. ?>
+
+	</main><!-- /.container-fluid -->
 
 <?php get_footer(); ?>

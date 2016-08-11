@@ -82,7 +82,8 @@ add_filter( 'excerpt_length', 'neat_custom_excerpt_length' );
 
 //bootstrap embed video class
 function neat_custom_oembed_filter($html, $url, $attr, $post_ID) {
-    $return = '<div class="neat-video embed-responsive embed-responsive-16by9">'.$html.'</div>';
+    $html_embed = str_replace('frameborder="0"', "", $html);
+    $return = '<div class="neat-video embed-responsive embed-responsive-16by9">'.$html_embed.'</div>';
     return $return;
 }
 add_filter( 'embed_oembed_html', 'neat_custom_oembed_filter', 10, 4 ) ;

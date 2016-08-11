@@ -266,7 +266,8 @@ function neat_custom_styles() {
     .filled,
     .rounded-btn:hover,
     .down-arrow::after, .down-arrow::before,
-    .hero
+    .hero,
+    .faq-trigger::before, .faq-trigger::after
     {
         background-color: <?php echo esc_html($neat_theme_options['main_color']) ?>;
     }
@@ -374,36 +375,69 @@ function neat_custom_styles() {
     <?php if ( (isset($neat_theme_options['spacing_above_logo'])) ) :
                 $spacing_above_logo = $neat_theme_options['spacing_above_logo'];
             else:
-                $spacing_above_logo = 10;
+                $spacing_above_logo = 0;
             endif;
     ?>
 
     <?php if ( (isset($neat_theme_options['spacing_below_logo'])) ) :
                 $spacing_below_logo = $neat_theme_options['spacing_below_logo'];
             else:
-                $spacing_below_logo = 10;
+                $spacing_below_logo = 0;
             endif;
     ?>
 
     <?php if ( (isset($neat_theme_options['logo_height'])) ) :
 
-            $logo_height = $neat_theme_options['logo_height']; ?>
-            .navbar-dropdown {
+            $logo_height = $neat_theme_options['logo_height'] + 15;
+            $logo_height__laptop = $neat_theme_options['logo_height'];
+            $logo_height__mobile = $logo_height - ($spacing_above_logo + $spacing_below_logo);
+
+            ?>
+
+            .navbar-dropdown,
+            .neat-dropdown-wrapper,
+            .footer-logo,
+            .footer-logo .navbar-brand
+            {
                 height: <?php echo esc_attr($logo_height)?>px;
             }
             .neat-dropdown-content {
                 padding-top: <?php echo esc_attr($logo_height)?>px;
             }
+
+
     <?php
             else:
-                $logo_height = 70;?>
-    
-            .navbar-dropdown {
+                $logo_height = 85;
+                $logo_height__mobile = $logo_height - ($spacing_above_logo + $spacing_below_logo);
+                ?>
+
+            .navbar-dropdown,
+            .neat-dropdown-wrapper {
                 height: <?php echo esc_attr($logo_height)?>px;
             }
+
             .neat-dropdown-content {
                 padding-top: <?php echo esc_attr($logo_height)?>px;
             }
+
+    <?php endif;?>
+
+
+    <?php if( $spacing_above_logo == 0 && $spacing_below_logo == 0 ): ?>
+
+        #header .navbar-brand > img{
+            height: auto;
+            max-height: <?php echo esc_attr($logo_height)?>px;
+        }
+
+    <?php else: ?>
+
+        #header .navbar-brand > img{
+            height: <?php echo esc_attr($logo_height__mobile)?>px;
+            max-height: <?php echo esc_attr($logo_height)?>px;
+        }
+
     <?php endif; ?>
 
     <?php if ( (isset($neat_theme_options['spacing_left_logo'])) ) :
@@ -420,6 +454,12 @@ function neat_custom_styles() {
         endif;
     ?>
 
+    /* logo */
+    #header .navbar-brand {
+        padding-top: <?php echo esc_attr($spacing_above_logo)?>px;
+        padding-bottom: <?php echo esc_attr($spacing_below_logo)?>px;
+        padding-left: <?php echo esc_attr($spacing_left_logo)?>px
+    }
 
     <?php
         // Conversions
@@ -442,20 +482,19 @@ function neat_custom_styles() {
 
     ?>
 
-    @media only screen and (min-width: 48em) {
-
-        #header .navbar-brand{
+    @media only screen and (min-width: 768px) {
+        #header .navbar-brand {
             height: <?php echo esc_attr($logo_height)?>px;
         }
-
-        /* logo */
-        #header .navbar-brand{
-            padding-top: <?php echo esc_attr($spacing_above_logo)?>px;
-            padding-bottom: <?php echo esc_attr($spacing_below_logo)?>px;
-            padding-left: <?php echo esc_attr($spacing_left_logo)?>px
+        #header .navbar-brand > img{
+            height: 100%;
         }
+    }
 
-        .neat-dropdown-wrapper{
+
+    @media only screen and (min-width: 992px) {
+
+        .nav-main__container {
             height: <?php echo esc_attr($logo_height)?>px;
         }
 
@@ -488,13 +527,6 @@ function neat_custom_styles() {
             }
             $implodeRem = implode(".", $remDec);
         ?>
-    }
-
-    @media only screen and (min-width: 62em) {
-
-        .nav-main__container {
-            height: <?php echo esc_attr($logo_height)?>px;
-        }
 
         .neat-dropdown-content a{
             text-transform: uppercase;
@@ -524,6 +556,11 @@ function neat_custom_styles() {
         #header .neat-dropdown-content ul a:hover {
             background: <?php echo esc_attr($neat_theme_options['nav_hover_color']);?>;
         }
+    }
+
+    @media only screen and (min-width: 1200px) {
+
+
     }
 
     /***************************************************************/

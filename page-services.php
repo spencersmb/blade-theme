@@ -14,7 +14,7 @@ get_header();
     <?php endwhile; // end of the loop. ?>
 
     <!-- start list of services -->
-    <section class="container neat-container-single">
+    <div class="container neat-container-single">
 
         <div class="row">
 
@@ -63,7 +63,7 @@ get_header();
             
         </div><!-- /.row -->
         
-    </section><!-- /.container -->
+    </div><!-- /.container -->
     
 </main><!-- /.container-fluid -->
 
