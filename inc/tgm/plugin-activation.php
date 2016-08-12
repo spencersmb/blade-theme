@@ -55,12 +55,6 @@ function neat_register_required_plugins() {
             'external_url'          => '', // If set, overrides default API URL and points to an external URL
             'image_url'             => get_template_directory_uri() . '/assets/images/backend/visual-composer.jpg',
         ),
-        // Contact 7
-        array(
-            'name'      => 'Contact7',
-            'slug'      => 'contact-form-7',
-            'required'  => true,
-        ),
         // TablePress
         array(
             'name'      => 'TablePress',

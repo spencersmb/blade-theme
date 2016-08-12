@@ -139,7 +139,7 @@
   &.loaded {
     opacity: 1;
     &.hero-background {
-      opacity: .7;
+      opacity: .5;
     }
     &.post-nav-thumb{
       opacity: .7;
@@ -156,6 +156,19 @@
       &.loaded {
         opacity: 1;
       }
+    }
+  }
+}
+
+.input-grey{
+  .dhvc-form-input{
+    input{
+      @include transition(all .3s);
+      background: $lightest-grey;
+      color: $grey;
+      padding-left: 2rem;
+      @include placeholder($grey);
+      border: none;
     }
   }
 }

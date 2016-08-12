@@ -203,6 +203,7 @@
       @include transform(translateX(0)translateZ(0));
     }
     img{
+      opacity: 0;
       width: 100%;
     }
     &.left{

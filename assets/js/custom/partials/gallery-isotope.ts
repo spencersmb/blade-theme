@@ -166,7 +166,8 @@ class GalleryComponent {
   }
 
   onFilterClick( el, el2 ) {
-    let $this = $(el2.toElement);
+
+    let $this = $(el2.currentTarget);
 
     $this.parent().children("li").each(function () {
       $(this).removeClass("selected");

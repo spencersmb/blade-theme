@@ -28,6 +28,8 @@
       border-right-width: 0;
       width: 100%;
       @include font-size(8.4);
+      line-height: 84px;
+      line-height: 8.4rem;
       @include transition(all .3s);
       color: $black;
       padding: 0;

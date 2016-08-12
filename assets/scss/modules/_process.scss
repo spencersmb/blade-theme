@@ -244,6 +244,24 @@
 
     }
 
+    //First
+    @include first(1){
+      @include breakpoint(tablet){
+        .process-item-inner{
+          top: 80px;
+        }
+      }
+    }
+
+    //thrid
+    @include from-end(5){
+      @include breakpoint(tablet){
+        .process-item-inner{
+          top:80px;
+        }
+      }
+    }
+
   }
 
 }
