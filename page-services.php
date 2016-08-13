@@ -14,12 +14,12 @@ get_header();
     <?php endwhile; // end of the loop. ?>
 
     <!-- start list of services -->
-    <div class="container neat-container-single">
+    <div class="container sprout-container-single">
 
         <div class="row">
 
             <div class="col-xs-12 m-page scene_element scene_element--fadeinup">
-                <div class="neat-page-wrapper">
+                <div class="sprout-page-wrapper">
 
                     <?php
                     /////////////////////
@@ -57,7 +57,7 @@ get_header();
 
                     <?php endif; ?>
 
-                </div><!-- /.neat-page-wrapper -->
+                </div><!-- /.sprout-page-wrapper -->
                 
             </div><!-- /.col main content-->
             

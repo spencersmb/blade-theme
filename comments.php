@@ -5,7 +5,7 @@
  * The area of the page that contains both current comments
  * and the comment form.
  *
- * @package Neat
+ * @package Sprout
  */
 
 /*
@@ -23,7 +23,7 @@ if ( post_password_required() ) {
 			<?php
 			if ( comments_open() ) :
 				echo '<div class="comments-header"><h4>';
-				comments_number( esc_html__('No Comments','neat'), esc_html__('1 Comment','neat'), esc_html__('Comments','neat') . '<span class="number">%</span>'  );
+				comments_number( esc_html__('No Comments','sprout'), esc_html__('1 Comment','sprout'), esc_html__('Comments','sprout') . '<span class="number">%</span>'  );
 				echo '</h4></div>';
 			endif;
 
@@ -33,7 +33,7 @@ if ( post_password_required() ) {
 				'avatar_size'	=> 50,
 				'max_depth'		=> 5,
 				'style'			=> 'ul',
-				'callback'		=> 'neat_comments',
+				'callback'		=> 'sprout_comments',
 				'type'			=> 'all'
 			));
 
@@ -75,9 +75,9 @@ if ( post_password_required() ) {
 				'comment_notes_after'	=> '',
 				'logged_in_as' 			=> '',
 				'comment_notes_before' 	=> '',
-				'title_reply'			=> esc_html__('Leave a Comment', 'neat'),
-				'cancel_reply_link'		=> esc_html__('Cancel Comment', 'neat'),
-				'label_submit'			=> esc_html__('Post Comment', 'neat')
+				'title_reply'			=> esc_html__('Leave a Comment', 'sprout'),
+				'cancel_reply_link'		=> esc_html__('Cancel Comment', 'sprout'),
+				'label_submit'			=> esc_html__('Post Comment', 'sprout')
 			));
 			?>
 

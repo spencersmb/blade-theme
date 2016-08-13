@@ -4,19 +4,19 @@
  *
  * @link https://codex.WordPress.org/Template_Hierarchy
  *
- * @package Neat
+ * @package Sprout
  */
 
 
 ?>
 
-<div class="neat-single__content">
+<div class="sprout-single__content">
 
 	<?php the_content(); ?>
 	
 	<?php
 	wp_link_pages( array(
-		'before' => '<div class="et-pagelinks">' . esc_html__( 'Pages:', 'neat' ),
+		'before' => '<div class="et-pagelinks">' . esc_html__( 'Pages:', 'sprout' ),
 		'after'  => '</div>',
 	) );
 	?>
@@ -45,7 +45,7 @@
 
 		$output .= '
 			<!-- Tags -->
-			<div class="neat-single__tags">';
+			<div class="sprout-single__tags">';
 
 
 		/*
@@ -56,13 +56,13 @@
 
 			$output .= '
 			<!-- Tags -->
-			<h6 class="uppercase bold">'.esc_html__('Categories:', 'neat').'</h6>
+			<h6 class="uppercase bold">'.esc_html__('Categories:', 'sprout').'</h6>
 				';
 
 			foreach($cat_name as $cat){
 				$cat_id = $cat->cat_ID;
 				$cat_link = get_category_link( $cat_id );;
-				$output .= '<a class="tag-btn" href="'. esc_url($cat_link) .'">'. wp_kses($cat->name, 'neat') .'</a>';
+				$output .= '<a class="tag-btn" href="'. esc_url($cat_link) .'">'. wp_kses($cat->name, 'sprout') .'</a>';
 			}
 
 		} // end cat if
@@ -75,13 +75,13 @@
 		if( $get_tags != "" ){
 
 			$output .='
-			<h6 class="uppercase bold">'.esc_html__('Tags:', 'neat').'</h6>
+			<h6 class="uppercase bold">'.esc_html__('Tags:', 'sprout').'</h6>
 			';
 
 			foreach($get_tags as $tag){
 				$tag_id = $tag->term_taxonomy_id;
 				$tag_link = get_tag_link( $tag_id );
-				$output .= '<a class="tag-btn" href="'. esc_url($tag_link) .'">'. wp_kses($tag->name, 'neat') .'</a>';
+				$output .= '<a class="tag-btn" href="'. esc_url($tag_link) .'">'. wp_kses($tag->name, 'sprout') .'</a>';
 			}
 
 		} // end TAG if
@@ -107,11 +107,11 @@
 	$title_urlencode = rawurlencode($blog_title);
 	?>
 
-	<div class="neat-single-social">
+	<div class="sprout-single-social">
 		<div class="col-xs-12">
-			<div class="neat-single-social__container">
+			<div class="sprout-single-social__container">
 
-				<h6><?php echo esc_html__('Share', 'neat') ?></h6>
+				<h6><?php echo esc_html__('Share', 'sprout') ?></h6>
 
 				<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php esc_url(the_permalink()); ?>">
 					<i class="fa fa-facebook"></i>
@@ -135,6 +135,6 @@
 		
 	</div><!-- /.social -->
 
-</div><!-- /.neat-single__content -->
+</div><!-- /.sprout-single__content -->
 
 

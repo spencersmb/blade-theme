@@ -1,7 +1,7 @@
-Neat
+Sprout
 ===
 
-Neat is a starter theme built by Ahmad Awais [http://AhmadAwais.com/about/]
+Sprout is a starter theme built by Ahmad Awais [http://AhmadAwais.com/about/]
 
 Features
 --------
@@ -17,7 +17,7 @@ Getting and Installing the Theme
 --------
 
 
-1. Grab a copy of this theme or Clone this theme, E.g. go to the themes folder then run ` git clone https://github.com/ahmadawais/neat-Advanced-WordPress-Base-Theme`
+1. Grab a copy of this theme or Clone this theme, E.g. go to the themes folder then run ` git clone https://github.com/spencersmb/blade-theme`
 
 2. You need Node.js & Sass installed if you haven't installed it, go ahead and install it first. Once you have Node, Sass and the theme installed, the next step is simple enough.
 
@@ -37,4 +37,4 @@ Getting and Installing the Theme
 
 License
 --------
-Neat was released under GPL v2.
+Sprout was released under GPL v2.

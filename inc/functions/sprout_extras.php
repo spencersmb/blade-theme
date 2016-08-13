@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package neat
+ * @package Sprout
  */
 
 /**
@@ -13,7 +13,7 @@
  * @param array $classes Classes for the body element.
  * @return array
  */
-function neat_body_classes( $classes ) {
+function sprout_body_classes( $classes ) {
     // Adds a class of group-blog to blogs with more than 1 published author.
     if ( is_multi_author() ) {
         $classes[] = 'group-blog';
@@ -21,22 +21,22 @@ function neat_body_classes( $classes ) {
 
     return $classes;
 }
-add_filter( 'body_class', 'neat_body_classes' );
+add_filter( 'body_class', 'sprout_body_classes' );
 
 //Sanitize Text
-function neat_sanitize_text($text){
+function sprout_sanitize_text($text){
     return sanitize_text_field( $text );
 }
 
-function neat_sanitize_myEmail($email) {
+function sprout_sanitize_myEmail($email) {
     return sanitize_email( $email );
 }
 
-function neat_sanitize_boolean_value( $value ) {
+function sprout_sanitize_boolean_value( $value ) {
     return (bool) $value;
 }
 
-function neat_get_product_ids( $object, $name ){
+function sprout_get_product_ids( $object, $name ){
     $arr = array();
 
     //loop through each object and get the id
@@ -46,7 +46,7 @@ function neat_get_product_ids( $object, $name ){
     return $arr;
 }
 
-function neat_get_postTags_string($postId){
+function sprout_get_postTags_string($postId){
     //Get tags
     $get_tags = get_the_tags($postId); //$tag_name[0]->name
     $tags_arr = array();
@@ -67,7 +67,7 @@ function neat_get_postTags_string($postId){
 }
 
 //CSS tricks function
-function neat_get_the_content_by_id($post_id) {
+function sprout_get_the_content_by_id($post_id) {
     $page_data = get_post($post_id);
     if ($page_data) {
         return $page_data->post_content;
@@ -75,30 +75,29 @@ function neat_get_the_content_by_id($post_id) {
     else return false;
 }
 
-function neat_custom_excerpt_length( $length ) {
+function sprout_custom_excerpt_length( $length ) {
     return 20;
 }
-add_filter( 'excerpt_length', 'neat_custom_excerpt_length' );
+add_filter( 'excerpt_length', 'sprout_custom_excerpt_length' );
 
 //bootstrap embed video class
-function neat_custom_oembed_filter($html, $url, $attr, $post_ID) {
+function sprout_custom_oembed_filter($html, $url, $attr, $post_ID) {
     $html_embed = str_replace('frameborder="0"', "", $html);
-    $return = '<div class="neat-video embed-responsive embed-responsive-16by9">'.$html_embed.'</div>';
+    $return = '<div class="sprout-video embed-responsive embed-responsive-16by9">'.$html_embed.'</div>';
     return $return;
 }
-add_filter( 'embed_oembed_html', 'neat_custom_oembed_filter', 10, 4 ) ;
+add_filter( 'embed_oembed_html', 'sprout_custom_oembed_filter', 10, 4 ) ;
 
 // Return redux params
 function get_redux_options($param1, $param2 = null){
 
-    global $neat_theme_options;
+    global $sprout_theme_options;
 
     if( $param2 != null ){
-        return $neat_theme_options[$param1][$param2];
+        return $sprout_theme_options[$param1][$param2];
     }else{
-        return $neat_theme_options[$param1];
+        return $sprout_theme_options[$param1];
     }
-
 }
 
 /**
@@ -107,7 +106,7 @@ function get_redux_options($param1, $param2 = null){
  * @param array WP Query object.
  * @return new WP Query Object
  */
-function neat_add_custom_types( $query ) {
+function sprout_add_custom_types( $query ) {
     if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
         $query->set( 'post_type', array(
             'post', 'nav_menu_item', 'service', 'gallery'
@@ -115,4 +114,4 @@ function neat_add_custom_types( $query ) {
         return $query;
     }
 }
-add_filter( 'pre_get_posts', 'neat_add_custom_types' );
+add_filter( 'pre_get_posts', 'sprout_add_custom_types' );

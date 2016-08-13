@@ -1,6 +1,6 @@
 <?php
 
-class neat_Walker_Nav_Menu extends Walker_Nav_Menu{
+class sprout_Walker_Nav_Menu extends Walker_Nav_Menu{
     /**
      * @see Walker::start_lvl()
      * @since 3.0.0
@@ -245,7 +245,7 @@ class Sv_Walker_Nav_Menu extends Walker_Nav_Menu{
                         break;
 
                     default:
-                        $output .= "\n$indent<ul role=\"menu\" class=\"neat-secondary-dropdown is-hidden\">\n";
+                        $output .= "\n$indent<ul role=\"menu\" class=\"sprout-secondary-dropdown is-hidden\">\n";
                         $output .= '<li class="go-back"><a href="#0">Back</a></li>';
                         $output .= '<li class="sub-title"><a href="#0">Browse '. $this->curItem->title .'</a></li>';
                 }
@@ -287,7 +287,7 @@ class Sv_Walker_Nav_Menu extends Walker_Nav_Menu{
 
         //Setup for custom menu fields in front end
         //Get data from each object here and place it on the nav item for use later when building the html
-        $item->image = wp_get_attachment_image_src( get_post_thumbnail_id(get_post_meta( $item->ID, '_menu_item_field_image', true)), 'neat-nav-thumb', true);
+        $item->image = wp_get_attachment_image_src( get_post_thumbnail_id(get_post_meta( $item->ID, '_menu_item_field_image', true)), 'sprout-nav-thumb', true);
         // $item->view_all = get_post_meta( $item->ID, '_menu_item_field_viewall', true);
         $item->icon = get_post_meta( $item->ID, '_menu_item_field_icon', true);
         $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
@@ -318,7 +318,7 @@ class Sv_Walker_Nav_Menu extends Walker_Nav_Menu{
                             }
 
                         $output .= '</div>
-                        <h3>' . wp_kses( $item->title, 'neat' ) . '</h3>
+                        <h3>' . wp_kses( $item->title, 'sprout' ) . '</h3>
                     </a>';
         } else if ( strcasecmp( $item->attr_title, 'icon' ) == 0 && $depth === 1){
             $output .= $indent . '
@@ -327,8 +327,8 @@ class Sv_Walker_Nav_Menu extends Walker_Nav_Menu{
                         <div class="icon-wrapper sv-icon">
                             <i class="fa ' . esc_attr( $item->icon ) . '"></i>
                         </div>
-                        <h3>' . wp_kses( $item->title, 'neat' ) . '</h3>
-                        <p>' . wp_kses( $item->view_all, 'neat' ) . '</p>
+                        <h3>' . wp_kses( $item->title, 'sprout' ) . '</h3>
+                        <p>' . wp_kses( $item->view_all, 'sprout' ) . '</p>
                     </a>';
         } else {
 

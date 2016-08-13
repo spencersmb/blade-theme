@@ -21,7 +21,7 @@
  * Version:     2.5.2
  * Author:      Thomas Griffin, Gary Jones, Juliette Reinders Folmer
  * Author URI:  http://tgmpluginactivation.com/
- * Text Domain: neat
+ * Text Domain: Sprout
  * Domain Path: /languages/
  * Copyright:   2011, Thomas Griffin
  */
@@ -60,13 +60,13 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 	 */
 	class TGM_Plugin_Activation {
 		/**
-		 * neat version number.
+		 * Sprout version number.
 		 *
 		 * @since 2.5.0
 		 *
 		 * @const string Version number.
 		 */
-		const neat_VERSION = '2.5.2';
+		const sprout_VERSION = '2.5.2';
 
 		/**
 		 * Regular expression to test if a URL is a WP plugin repo URL.
@@ -140,7 +140,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 *
 		 * @var string
 		 */
-		public $id = 'neat';
+		public $id = 'sprout';
 
 		/**
 		 * Name of the query-string argument for the admin page.
@@ -149,7 +149,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 *
 		 * @var string
 		 */
-		protected $menu = 'neat-install-plugins';
+		protected $menu = 'sprout-install-plugins';
 
 		/**
 		 * Parent menu file slug.
@@ -254,9 +254,9 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 		/**
 		 * Adds a reference of this object to $instance, populates default strings,
-		 * does the neat_init action hook, and hooks in the interactions to init.
+		 * does the sprout_init action hook, and hooks in the interactions to init.
 		 *
-		 * @internal This method should be `protected`, but as too many neat implementations
+		 * @internal This method should be `protected`, but as too many sprout implementations
 		 * haven't upgraded beyond v2.3.6 yet, this gives backward compatibility issues.
 		 * Reverted back to public for the time being.
 		 *
@@ -269,7 +269,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			$this->wp_version = $GLOBALS['wp_version'];
 
 			// Announce that the class is ready, and pass the object (for advanced use).
-			do_action_ref_array( 'neat_init', array( $this ) );
+			do_action_ref_array( 'sprout_init', array( $this ) );
 
 			// When the rest of WP has loaded, kick-start the rest of the class.
 			add_action( 'init', array( $this, 'init' ) );
@@ -282,7 +282,6 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * is being assigned rather than tested in a conditional, effectively rendering it useless.
 		 * This 'hack' prevents this from happening.
 		 *
-		 * @see https://github.com/neat/TGM-Plugin-Activation/blob/2.3.6/tgm-plugin-activation/class-tgm-plugin-activation.php#L1593
 		 *
 		 * @param string $name  Name of an inaccessible property.
 		 * @param mixed  $value Value to assign to the property.
@@ -316,96 +315,96 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 */
 		public function init() {
 			/**
-			 * By default neat only loads on the WP back-end and not in an Ajax call. Using this filter
+			 * By default Sprout only loads on the WP back-end and not in an Ajax call. Using this filter
 			 * you can overrule that behaviour.
 			 *
 			 * @since 2.5.0
 			 *
-			 * @param bool $load Whether or not neat should load.
+			 * @param bool $load Whether or not Sprout should load.
 			 *                   Defaults to the return of `is_admin() && ! defined( 'DOING_AJAX' )`.
 			 */
-			if ( true !== apply_filters( 'neat_load', ( is_admin() && ! defined( 'DOING_AJAX' ) ) ) ) {
+			if ( true !== apply_filters( 'sprout_load', ( is_admin() && ! defined( 'DOING_AJAX' ) ) ) ) {
 				return;
 			}
 
 			// Load class strings.
 			$this->strings = array(
-				'page_title'                      => esc_html__( 'Install Required Plugins', 'neat' ),
-				'menu_title'                      => esc_html__( 'Install Plugins', 'neat' ),
-				'installing'                      => esc_html__( 'Installing Plugin: %s', 'neat' ),
-				'oops'                            => esc_html__( 'Something went wrong with the plugin API.', 'neat' ),
+				'page_title'                      => esc_html__( 'Install Required Plugins', 'sprout' ),
+				'menu_title'                      => esc_html__( 'Install Plugins', 'sprout' ),
+				'installing'                      => esc_html__( 'Installing Plugin: %s', 'sprout' ),
+				'oops'                            => esc_html__( 'Something went wrong with the plugin API.', 'sprout' ),
 				'notice_can_install_required'     => _n_noop(
 					'This theme requires the following plugin: %1$s.',
 					'This theme requires the following plugins: %1$s.',
-					'neat'
+					'sprout'
 				),
 				'notice_can_install_recommended'  => _n_noop(
 					'This theme recommends the following plugin: %1$s.',
 					'This theme recommends the following plugins: %1$s.',
-					'neat'
+					'sprout'
 				),
 				'notice_cannot_install'           => _n_noop(
 					'Sorry, but you do not have the correct permissions to install the %1$s plugin.',
 					'Sorry, but you do not have the correct permissions to install the %1$s plugins.',
-					'neat'
+					'sprout'
 				),
 				'notice_ask_to_update'            => _n_noop(
 					'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.',
 					'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.',
-					'neat'
+					'sprout'
 				),
 				'notice_ask_to_update_maybe'      => _n_noop(
 					'There is an update available for: %1$s.',
 					'There are updates available for the following plugins: %1$s.',
-					'neat'
+					'sprout'
 				),
 				'notice_cannot_update'            => _n_noop(
 					'Sorry, but you do not have the correct permissions to update the %1$s plugin.',
 					'Sorry, but you do not have the correct permissions to update the %1$s plugins.',
-					'neat'
+					'sprout'
 				),
 				'notice_can_activate_required'    => _n_noop(
 					'The following required plugin is currently inactive: %1$s.',
 					'The following required plugins are currently inactive: %1$s.',
-					'neat'
+					'sprout'
 				),
 				'notice_can_activate_recommended' => _n_noop(
 					'The following recommended plugin is currently inactive: %1$s.',
 					'The following recommended plugins are currently inactive: %1$s.',
-					'neat'
+					'sprout'
 				),
 				'notice_cannot_activate'          => _n_noop(
 					'Sorry, but you do not have the correct permissions to activate the %1$s plugin.',
 					'Sorry, but you do not have the correct permissions to activate the %1$s plugins.',
-					'neat'
+					'sprout'
 				),
 				'install_link'                    => _n_noop(
 					'Begin installing plugin',
 					'Begin installing plugins',
-					'neat'
+					'sprout'
 				),
 				'update_link'                     => _n_noop(
 					'Begin updating plugin',
 					'Begin updating plugins',
-					'neat'
+					'sprout'
 				),
 				'activate_link'                   => _n_noop(
 					'Begin activating plugin',
 					'Begin activating plugins',
-					'neat'
+					'sprout'
 				),
-				'return'                          => esc_html__( 'Return to Required Plugins Installer', 'neat' ),
-				'dashboard'                       => esc_html__( 'Return to the dashboard', 'neat' ),
-				'plugin_activated'                => esc_html__( 'Plugin activated successfully.', 'neat' ),
-				'activated_successfully'          => esc_html__( 'The following plugin was activated successfully:', 'neat' ),
-				'plugin_already_active'           => esc_html__( 'No action taken. Plugin %1$s was already active.', 'neat' ),
-				'plugin_needs_higher_version'     => esc_html__( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'neat' ),
-				'complete'                        => esc_html__( 'All plugins installed and activated successfully. %1$s', 'neat' ),
-				'dismiss'                         => esc_html__( 'Dismiss this notice', 'neat' ),
-				'contact_admin'                   => esc_html__( 'Please contact the administrator of this site for help.', 'neat' ),
+				'return'                          => esc_html__( 'Return to Required Plugins Installer', 'sprout' ),
+				'dashboard'                       => esc_html__( 'Return to the dashboard', 'sprout' ),
+				'plugin_activated'                => esc_html__( 'Plugin activated successfully.', 'sprout' ),
+				'activated_successfully'          => esc_html__( 'The following plugin was activated successfully:', 'sprout' ),
+				'plugin_already_active'           => esc_html__( 'No action taken. Plugin %1$s was already active.', 'sprout' ),
+				'plugin_needs_higher_version'     => esc_html__( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'sprout' ),
+				'complete'                        => esc_html__( 'All plugins installed and activated successfully. %1$s', 'sprout' ),
+				'dismiss'                         => esc_html__( 'Dismiss this notice', 'sprout' ),
+				'contact_admin'                   => esc_html__( 'Please contact the administrator of this site for help.', 'sprout' ),
 			);
 
-			do_action( 'neat_register' );
+			do_action( 'sprout_register' );
 
 			/* After this point, the plugins should be registered and the configuration set. */
 
@@ -415,14 +414,14 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			}
 
 			// Set up the menu and notices if we still have outstanding actions.
-			if ( true !== $this->is_neat_complete() ) {
+			if ( true !== $this->is_sprout_complete() ) {
 				// Sort the plugins.
 				array_multisort( $this->sort_order, SORT_ASC, $this->plugins );
 
 				add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 				add_action( 'admin_head', array( $this, 'dismiss' ) );
 
-				// Prevent the normal links from showing underneath a single install/update page.
+				// Prevent the normal links from showing under a single install/update page.
 				add_filter( 'install_plugin_complete_actions', array( $this, 'actions' ) );
 				add_filter( 'update_plugin_complete_actions', array( $this, 'actions' ) );
 
@@ -516,9 +515,9 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		public function filter_plugin_action_links_update( $actions ) {
 			$actions['update'] = sprintf(
 				'<a href="%1$s" title="%2$s" class="edit">%3$s</a>',
-				esc_url( $this->get_neat_status_url( 'update' ) ),
-				esc_attr__( 'This plugin needs to be updated to be compatible with your theme.', 'neat' ),
-				esc_html__( 'Update Required', 'neat' )
+				esc_url( $this->get_sprout_status_url( 'update' ) ),
+				esc_attr__( 'This plugin needs to be updated to be compatible with your theme.', 'sprout' ),
+				esc_html__( 'Update Required', 'sprout' )
 			);
 
 			return $actions;
@@ -527,7 +526,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		/**
 		 * Handles calls to show plugin information via links in the notices.
 		 *
-		 * We get the links in the admin notices to point to the neat page, rather
+		 * We get the links in the admin notices to point to the Sprout page, rather
 		 * than the typical plugin-install.php file, so we can prepare everything
 		 * beforehand.
 		 *
@@ -538,17 +537,17 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 *
 		 * Down right easy once you know how...
 		 *
-		 * Returns early if not the neat page.
+		 * Returns early if not the Sprout page.
 		 *
 		 * @since 2.1.0
 		 *
 		 * @global string $tab Used as iframe div class names, helps with styling
 		 * @global string $body_id Used as the iframe body ID, helps with styling
 		 *
-		 * @return null Returns early if not the neat page.
+		 * @return null Returns early if not the Sprout page.
 		 */
 		public function admin_init() {
-			if ( ! $this->is_neat_page() ) {
+			if ( ! $this->is_sprout_page() ) {
 				return;
 			}
 
@@ -582,7 +581,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @since 2.1.0
 		 */
 		public function thickbox() {
-			if ( ! get_user_meta( get_current_user_id(), 'neat_dismissed_notice_' . $this->id, true ) ) {
+			if ( ! get_user_meta( get_current_user_id(), 'sprout_dismissed_notice_' . $this->id, true ) ) {
 				add_thickbox();
 			}
 		}
@@ -609,7 +608,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			}
 
 			$args = apply_filters(
-				'neat_admin_menu_args',
+				'sprout_admin_menu_args',
 				array(
 					'parent_slug' => $this->parent_slug,                     // Parent Menu slug.
 					'page_title'  => $this->strings['page_title'],           // Page title.
@@ -631,8 +630,8 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @param array $args Menu item configuration.
 		 */
 		protected function add_admin_menu( array $args ) {
-			if ( has_filter( 'neat_admin_menu_use_add_theme_page' ) ) {
-				_deprecated_function( 'The "neat_admin_menu_use_add_theme_page" filter', '2.5.0', esc_html__( 'Set the parent_slug config variable instead.', 'neat' ) );
+			if ( has_filter( 'sprout_admin_menu_use_add_theme_page' ) ) {
+				_deprecated_function( 'The "sprout_admin_menu_use_add_theme_page" filter', '2.5.0', esc_html__( 'Set the parent_slug config variable instead.', 'sprout' ) );
 			}
 
 			if ( 'themes.php' === $this->parent_slug ) {
@@ -655,10 +654,10 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 */
 		public function install_plugins_page() {
 			// Store new instance of plugin table in object.
-			$plugin_table = new neat_List_Table;
+			$plugin_table = new sprout_List_Table;
 
 			// Return early if processing a plugin installation action.
-			if ( ( ( 'neat-bulk-install' === $plugin_table->current_action() || 'neat-bulk-update' === $plugin_table->current_action() ) && $plugin_table->process_bulk_actions() ) || $this->do_plugin_install() ) {
+			if ( ( ( 'sprout-bulk-install' === $plugin_table->current_action() || 'sprout-bulk-update' === $plugin_table->current_action() ) && $plugin_table->process_bulk_actions() ) || $this->do_plugin_install() ) {
 				return;
 			}
 
@@ -666,7 +665,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			wp_clean_plugins_cache( false );
 
 			?>
-			<div class="neat wrap">
+			<div class="sprout wrap">
 				<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 				<?php $plugin_table->prepare_items(); ?>
 
@@ -677,8 +676,8 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				?>
 				<?php $plugin_table->views(); ?>
 
-				<form id="neat-plugins" action="" method="post">
-					<input type="hidden" name="neat-page" value="<?php echo esc_attr( $this->menu ); ?>" />
+				<form id="sprout-plugins" action="" method="post">
+					<input type="hidden" name="sprout-page" value="<?php echo esc_attr( $this->menu ); ?>" />
 					<input type="hidden" name="plugin_status" value="<?php echo esc_attr( $plugin_table->view_context ); ?>" />
 					<?php $plugin_table->display(); ?>
 				</form>
@@ -719,26 +718,26 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			}
 
 			// Was an install or upgrade action link clicked?
-			if ( ( isset( $_GET['neat-install'] ) && 'install-plugin' === $_GET['neat-install'] ) || ( isset( $_GET['neat-update'] ) && 'update-plugin' === $_GET['neat-update'] ) ) {
+			if ( ( isset( $_GET['sprout-install'] ) && 'install-plugin' === $_GET['sprout-install'] ) || ( isset( $_GET['sprout-update'] ) && 'update-plugin' === $_GET['sprout-update'] ) ) {
 
 				$install_type = 'install';
-				if ( isset( $_GET['neat-update'] ) && 'update-plugin' === $_GET['neat-update'] ) {
+				if ( isset( $_GET['sprout-update'] ) && 'update-plugin' === $_GET['sprout-update'] ) {
 					$install_type = 'update';
 				}
 
-				check_admin_referer( 'neat-' . $install_type, 'neat-nonce' );
+				check_admin_referer( 'sprout-' . $install_type, 'sprout-nonce' );
 
 				// Pass necessary information via URL if WP_Filesystem is needed.
 				$url = wp_nonce_url(
 					add_query_arg(
 						array(
 							'plugin'                 => urlencode( $slug ),
-							'neat-' . $install_type => $install_type . '-plugin',
+							'sprout-' . $install_type => $install_type . '-plugin',
 						),
-						$this->get_neat_url()
+						$this->get_sprout_url()
 					),
-					'neat-' . $install_type,
-					'neat-nonce'
+					'sprout-' . $install_type,
+					'sprout-nonce'
 				);
 
 				$method = ''; // Leave blank so WP_Filesystem can populate it as necessary.
@@ -821,22 +820,22 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					}
 				}
 
-				$this->show_neat_version();
+				$this->show_sprout_version();
 
 				// Display message based on if all plugins are now active or not.
-				if ( $this->is_neat_complete() ) {
+				if ( $this->is_sprout_complete() ) {
 
-					echo '<p>', sprintf( esc_html( $this->strings['complete'] ), '<a href="' . esc_url( self_admin_url() ) . '">' . esc_html__( 'Return to the Dashboard', 'neat' ) . '</a>' ), '</p>';
+					echo '<p>', sprintf( esc_html( $this->strings['complete'] ), '<a href="' . esc_url( self_admin_url() ) . '">' . esc_html__( 'Return to the Dashboard', 'sprout' ) . '</a>' ), '</p>';
 
 					echo '<style type="text/css">#adminmenu .wp-submenu li.current { display: none !important; }</style>';
 				} else {
-					echo '<p><a href="', esc_url( $this->get_neat_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
+					echo '<p><a href="', esc_url( $this->get_sprout_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
 				}
 
 				return true;
-			} elseif ( isset( $this->plugins[ $slug ]['file_path'], $_GET['neat-activate'] ) && 'activate-plugin' === $_GET['neat-activate'] ) {
+			} elseif ( isset( $this->plugins[ $slug ]['file_path'], $_GET['sprout-activate'] ) && 'activate-plugin' === $_GET['sprout-activate'] ) {
 				// Activate action link was clicked.
-				check_admin_referer( 'neat-activate', 'neat-nonce' );
+				check_admin_referer( 'sprout-activate', 'sprout-nonce' );
 
 				if ( false === $this->activate_single_plugin( $this->plugins[ $slug ]['file_path'], $slug ) ) {
 					return true; // Finish execution of the function early as we encountered an error.
@@ -897,7 +896,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @return string $source
 		 */
 		public function maybe_adjust_source_dir( $source, $remote_source, $upgrader ) {
-			if ( ! $this->is_neat_page() || ! is_object( $GLOBALS['wp_filesystem'] ) ) {
+			if ( ! $this->is_sprout_page() || ! is_object( $GLOBALS['wp_filesystem'] ) ) {
 				return $source;
 			}
 
@@ -934,10 +933,10 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					if ( true === $GLOBALS['wp_filesystem']->move( $from, $to ) ) {
 						return trailingslashit( $to );
 					} else {
-						return new WP_Error( 'rename_failed', esc_html__( 'The remote plugin package does not contain a folder with the desired slug and renaming did not work.', 'neat' ) . ' ' . esc_html__( 'Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines.', 'neat' ), array( 'found' => $subdir_name, 'expected' => $desired_slug ) );
+						return new WP_Error( 'rename_failed', esc_html__( 'The remote plugin package does not contain a folder with the desired slug and renaming did not work.', 'sprout' ) . ' ' . esc_html__( 'Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines.', 'sprout' ), array( 'found' => $subdir_name, 'expected' => $desired_slug ) );
 					}
 				} elseif ( empty( $subdir_name ) ) {
-					return new WP_Error( 'packaged_wrong', esc_html__( 'The remote plugin package consists of more than one file, but the files are not packaged in a folder.', 'neat' ) . ' ' . esc_html__( 'Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines.', 'neat' ), array( 'found' => $subdir_name, 'expected' => $desired_slug ) );
+					return new WP_Error( 'packaged_wrong', esc_html__( 'The remote plugin package consists of more than one file, but the files are not packaged in a folder.', 'sprout' ) . ' ' . esc_html__( 'Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines.', 'sprout' ), array( 'found' => $subdir_name, 'expected' => $desired_slug ) );
 				}
 			}
 
@@ -961,7 +960,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 				if ( is_wp_error( $activate ) ) {
 					echo '<div id="message" class="error"><p>', wp_kses_post( $activate->get_error_message() ), '</p></div>',
-						'<p><a href="', esc_url( $this->get_neat_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
+						'<p><a href="', esc_url( $this->get_sprout_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
 
 					return false; // End it here if there is an error with activation.
 				} else {
@@ -1023,7 +1022,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 */
 		public function notices() {
 			// Remove nag on the install page / Return early if the nag message has been dismissed.
-			if ( $this->is_neat_page() || get_user_meta( get_current_user_id(), 'neat_dismissed_notice_' . $this->id, true ) ) {
+			if ( $this->is_sprout_page() || get_user_meta( get_current_user_id(), 'sprout_dismissed_notice_' . $this->id, true ) ) {
 				return;
 			}
 
@@ -1113,14 +1112,14 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					unset( $plugin_slug );
 
 					$count          = count( $plugin_group );
-					$linked_plugins = array_map( array( 'neat_Utils', 'wrap_in_em' ), $linked_plugins );
+					$linked_plugins = array_map( array( 'sprout_Utils', 'wrap_in_em' ), $linked_plugins );
 					$last_plugin    = array_pop( $linked_plugins ); // Pop off last name to prep for readability.
-					$imploded       = empty( $linked_plugins ) ? $last_plugin : ( implode( ', ', $linked_plugins ) . ' ' . esc_html_x( 'and', 'plugin A *and* plugin B', 'neat' ) . ' ' . $last_plugin );
+					$imploded       = empty( $linked_plugins ) ? $last_plugin : ( implode( ', ', $linked_plugins ) . ' ' . esc_html_x( 'and', 'plugin A *and* plugin B', 'sprout' ) . ' ' . $last_plugin );
 
 					$rendered .= sprintf(
 						$line_template,
 						sprintf(
-							translate_nooped_plural( $this->strings[ $type ], $count, 'neat' ),
+							translate_nooped_plural( $this->strings[ $type ], $count, 'sprout' ),
 							$imploded,
 							$count
 						)
@@ -1137,7 +1136,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					'install'  => '',
 					'update'   => '',
 					'activate' => '',
-					'dismiss'  => $this->dismissable ? '<a href="' . esc_url( add_query_arg( 'neat-dismiss', 'dismiss_admin_notices' ) ) . '" class="dismiss-notice" target="_parent">' . esc_html( $this->strings['dismiss'] ) . '</a>' : '',
+					'dismiss'  => $this->dismissable ? '<a href="' . esc_url( add_query_arg( 'sprout-dismiss', 'dismiss_admin_notices' ) ) . '" class="dismiss-notice" target="_parent">' . esc_html( $this->strings['dismiss'] ) . '</a>' : '',
 				);
 
 				$link_template = '<a href="%2$s">%1$s</a>';
@@ -1146,15 +1145,15 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					if ( $install_link_count > 0 ) {
 						$action_links['install'] = sprintf(
 							$link_template,
-							translate_nooped_plural( $this->strings['install_link'], $install_link_count, 'neat' ),
-							esc_url( $this->get_neat_status_url( 'install' ) )
+							translate_nooped_plural( $this->strings['install_link'], $install_link_count, 'sprout' ),
+							esc_url( $this->get_sprout_status_url( 'install' ) )
 						);
 					}
 					if ( $update_link_count > 0 ) {
 						$action_links['update'] = sprintf(
 							$link_template,
-							translate_nooped_plural( $this->strings['update_link'], $update_link_count, 'neat' ),
-							esc_url( $this->get_neat_status_url( 'update' ) )
+							translate_nooped_plural( $this->strings['update_link'], $update_link_count, 'sprout' ),
+							esc_url( $this->get_sprout_status_url( 'update' ) )
 						);
 					}
 				}
@@ -1162,26 +1161,26 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				if ( current_user_can( 'activate_plugins' ) && $activate_link_count > 0 ) {
 					$action_links['activate'] = sprintf(
 						$link_template,
-						translate_nooped_plural( $this->strings['activate_link'], $activate_link_count, 'neat' ),
-						esc_url( $this->get_neat_status_url( 'activate' ) )
+						translate_nooped_plural( $this->strings['activate_link'], $activate_link_count, 'sprout' ),
+						esc_url( $this->get_sprout_status_url( 'activate' ) )
 					);
 				}
 
-				$action_links = apply_filters( 'neat_notice_action_links', $action_links );
+				$action_links = apply_filters( 'sprout_notice_action_links', $action_links );
 
 				$action_links = array_filter( (array) $action_links ); // Remove any empty array items.
 
 				if ( ! empty( $action_links ) && is_array( $action_links ) ) {
 					$action_links = sprintf( $line_template, implode( ' | ', $action_links ) );
-					$rendered    .= apply_filters( 'neat_notice_rendered_action_links', $action_links );
+					$rendered    .= apply_filters( 'sprout_notice_rendered_action_links', $action_links );
 				}
 
 				// Register the nag messages and prepare them to be processed.
 				if ( ! empty( $this->strings['nag_type'] ) ) {
-					add_settings_error( 'neat', 'neat', $rendered, sanitize_html_class( strtolower( $this->strings['nag_type'] ) ) );
+					add_settings_error( 'sprout', 'sprout', $rendered, sanitize_html_class( strtolower( $this->strings['nag_type'] ) ) );
 				} else {
 					$nag_class = version_compare( $this->wp_version, '3.8', '<' ) ? 'updated' : 'update-nag';
-					add_settings_error( 'neat', 'neat', $rendered, $nag_class );
+					add_settings_error( 'sprout', 'sprout', $rendered, $nag_class );
 				}
 			}
 
@@ -1199,10 +1198,10 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		protected function display_settings_errors() {
 			global $wp_settings_errors;
 
-			settings_errors( 'neat' );
+			settings_errors( 'sprout' );
 
 			foreach ( (array) $wp_settings_errors as $key => $details ) {
-				if ( 'neat' === $details['setting'] ) {
+				if ( 'sprout' === $details['setting'] ) {
 					unset( $wp_settings_errors[ $key ] );
 					break;
 				}
@@ -1217,8 +1216,8 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @since 2.1.0
 		 */
 		public function dismiss() {
-			if ( isset( $_GET['neat-dismiss'] ) ) {
-				update_user_meta( get_current_user_id(), 'neat_dismissed_notice_' . $this->id, 1 );
+			if ( isset( $_GET['sprout-dismiss'] ) ) {
+				update_user_meta( get_current_user_id(), 'sprout_dismissed_notice_' . $this->id, 1 );
 			}
 		}
 
@@ -1263,9 +1262,9 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			// Forgive users for using string versions of booleans or floats for version number.
 			$plugin['version']            = (string) $plugin['version'];
 			$plugin['source']             = empty( $plugin['source'] ) ? 'repo' : $plugin['source'];
-			$plugin['required']           = neat_Utils::validate_bool( $plugin['required'] );
-			$plugin['force_activation']   = neat_Utils::validate_bool( $plugin['force_activation'] );
-			$plugin['force_deactivation'] = neat_Utils::validate_bool( $plugin['force_deactivation'] );
+			$plugin['required']           = sprout_Utils::validate_bool( $plugin['required'] );
+			$plugin['force_activation']   = sprout_Utils::validate_bool( $plugin['force_activation'] );
+			$plugin['force_deactivation'] = sprout_Utils::validate_bool( $plugin['force_deactivation'] );
 
 			// Enrich the received data.
 			$plugin['file_path']   = $this->_get_plugin_basename_from_slug( $plugin['slug'] );
@@ -1331,7 +1330,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			* @param string $key     Sanitized key.
 			* @param string $raw_key The key prior to sanitization.
 			*/
-			return apply_filters( 'neat_sanitize_key', $key, $raw_key );
+			return apply_filters( 'sprout_sanitize_key', $key, $raw_key );
 		}
 
 		/**
@@ -1376,8 +1375,8 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @return array Amended array of actions.
 		 */
 		public function actions( $install_actions ) {
-			// Remove action links on the neat install page.
-			if ( $this->is_neat_page() ) {
+			// Remove action links on the sprout install page.
+			if ( $this->is_sprout_page() ) {
 				return false;
 			}
 
@@ -1572,27 +1571,27 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		}
 
 		/**
-		 * Determine if we're on the neat Install page.
+		 * Determine if we're on the sprout Install page.
 		 *
 		 * @since 2.1.0
 		 *
-		 * @return boolean True when on the neat page, false otherwise.
+		 * @return boolean True when on the sprout page, false otherwise.
 		 */
-		protected function is_neat_page() {
+		protected function is_sprout_page() {
 			return isset( $_GET['page'] ) && $this->menu === $_GET['page'];
 		}
 
 		/**
-		 * Retrieve the URL to the neat Install page.
+		 * Retrieve the URL to the sprout Install page.
 		 *
 		 * I.e. depending on the config settings passed something along the lines of:
-		 * http://example.com/wp-admin/themes.php?page=neat-install-plugins
+		 * http://example.com/wp-admin/themes.php?page=sprout-install-plugins
 		 *
 		 * @since 2.5.0
 		 *
 		 * @return string Properly encoded URL (not escaped).
 		 */
-		public function get_neat_url() {
+		public function get_sprout_url() {
 			static $url;
 
 			if ( ! isset( $url ) ) {
@@ -1612,33 +1611,33 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		}
 
 		/**
-		 * Retrieve the URL to the neat Install page for a specific plugin status (view).
+		 * Retrieve the URL to the sprout Install page for a specific plugin status (view).
 		 *
 		 * I.e. depending on the config settings passed something along the lines of:
-		 * http://example.com/wp-admin/themes.php?page=neat-install-plugins&plugin_status=install
+		 * http://example.com/wp-admin/themes.php?page=sprout-install-plugins&plugin_status=install
 		 *
 		 * @since 2.5.0
 		 *
 		 * @param string $status Plugin status - either 'install', 'update' or 'activate'.
 		 * @return string Properly encoded URL (not escaped).
 		 */
-		public function get_neat_status_url( $status ) {
+		public function get_sprout_status_url( $status ) {
 			return add_query_arg(
 				array(
 					'plugin_status' => urlencode( $status ),
 				),
-				$this->get_neat_url()
+				$this->get_sprout_url()
 			);
 		}
 
 		/**
-		 * Determine whether there are open actions for plugins registered with neat.
+		 * Determine whether there are open actions for plugins registered with sprout.
 		 *
 		 * @since 2.5.0
 		 *
 		 * @return bool True if complete, i.e. no outstanding actions. False otherwise.
 		 */
-		public function is_neat_complete() {
+		public function is_sprout_complete() {
 			$complete = true;
 			foreach ( $this->plugins as $slug => $plugin ) {
 				if ( ! $this->is_plugin_active( $slug ) || false !== $this->does_plugin_have_update( $slug ) ) {
@@ -1703,7 +1702,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 		/**
 		 * Check if a plugin can be activated, i.e. is not currently active and meets the minimum
-		 * plugin version requirements set in neat (if any).
+		 * plugin version requirements set in sprout (if any).
 		 *
 		 * @since 2.5.0
 		 *
@@ -1823,7 +1822,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @since 2.1.1
 		 */
 		public function update_dismiss() {
-			delete_metadata( 'user', null, 'neat_dismissed_notice_' . $this->id, null, true );
+			delete_metadata( 'user', null, 'sprout_dismissed_notice_' . $this->id, null, true );
 		}
 
 		/**
@@ -1876,11 +1875,11 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		}
 
 		/**
-		 * Echo the current neat version number to the page.
+		 * Echo the current sprout version number to the page.
 		 */
-		public function show_neat_version() {
+		public function show_sprout_version() {
 			echo '<p style="float: right; padding: 0em 1.5em 0.5em 0;"><strong><small>',
-				esc_html( sprintf( _x( 'neat v%s', '%s = version number', 'neat' ), self::neat_VERSION ) ),
+				esc_html( sprintf( _x( 'sprout v%s', '%s = version number', 'sprout' ), self::sprout_VERSION ) ),
 				'</small></strong></p>';
 		}
 
@@ -1905,7 +1904,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * Ensure only one instance of the class is ever invoked.
 		 */
 		function load_tgm_plugin_activation() {
-			$GLOBALS['neat'] = TGM_Plugin_Activation::get_instance();
+			$GLOBALS['sprout'] = TGM_Plugin_Activation::get_instance();
 		}
 	}
 
@@ -1916,7 +1915,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 	}
 }
 
-if ( ! function_exists( 'neat' ) ) {
+if ( ! function_exists( 'sprout' ) ) {
 	/**
 	 * Helper function to register a collection of required plugins.
 	 *
@@ -1926,8 +1925,8 @@ if ( ! function_exists( 'neat' ) ) {
 	 * @param array $plugins An array of plugin arrays.
 	 * @param array $config  Optional. An array of configuration values.
 	 */
-	function neat( $plugins, $config = array() ) {
-		$instance = call_user_func( array( get_class( $GLOBALS['neat'] ), 'get_instance' ) );
+	function sprout( $plugins, $config = array() ) {
+		$instance = call_user_func( array( get_class( $GLOBALS['sprout'] ), 'get_instance' ) );
 
 		foreach ( $plugins as $plugin ) {
 			call_user_func( array( $instance, 'register' ), $plugin );
@@ -1936,17 +1935,17 @@ if ( ! function_exists( 'neat' ) ) {
 		if ( ! empty( $config ) && is_array( $config ) ) {
 			// Send out notices for deprecated arguments passed.
 			if ( isset( $config['notices'] ) ) {
-				_deprecated_argument( __FUNCTION__, '2.2.0', 'The `notices` config parameter was renamed to `has_notices` in neat 2.2.0. Please adjust your configuration.' );
+				_deprecated_argument( __FUNCTION__, '2.2.0', 'The `notices` config parameter was renamed to `has_notices` in sprout 2.2.0. Please adjust your configuration.' );
 				if ( ! isset( $config['has_notices'] ) ) {
 					$config['has_notices'] = $config['notices'];
 				}
 			}
 
 			if ( isset( $config['parent_menu_slug'] ) ) {
-				_deprecated_argument( __FUNCTION__, '2.4.0', 'The `parent_menu_slug` config parameter was removed in neat 2.4.0. In neat 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options.' );
+				_deprecated_argument( __FUNCTION__, '2.4.0', 'The `parent_menu_slug` config parameter was removed in sprout 2.4.0. In sprout 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options.' );
 			}
 			if ( isset( $config['parent_url_slug'] ) ) {
-				_deprecated_argument( __FUNCTION__, '2.4.0', 'The `parent_url_slug` config parameter was removed in neat 2.4.0. In neat 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options.' );
+				_deprecated_argument( __FUNCTION__, '2.4.0', 'The `parent_url_slug` config parameter was removed in sprout 2.4.0. In sprout 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options.' );
 			}
 
 			call_user_func( array( $instance, 'config' ), $config );
@@ -1964,7 +1963,7 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }
 
-if ( ! class_exists( 'neat_List_Table' ) ) {
+if ( ! class_exists( 'sprout_List_Table' ) ) {
 
 	/**
 	 * List table class for handling plugins.
@@ -1983,15 +1982,15 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 	 * @author  Thomas Griffin
 	 * @author  Gary Jones
 	 */
-	class neat_List_Table extends WP_List_Table {
+	class sprout_List_Table extends WP_List_Table {
 		/**
-		 * neat instance.
+		 * sprout instance.
 		 *
 		 * @since 2.5.0
 		 *
 		 * @var object
 		 */
-		protected $neat;
+		protected $sprout;
 
 		/**
 		 * The currently chosen view.
@@ -2022,7 +2021,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		 * @since 2.2.0
 		 */
 		public function __construct() {
-			$this->neat = call_user_func( array( get_class( $GLOBALS['neat'] ), 'get_instance' ) );
+			$this->sprout = call_user_func( array( get_class( $GLOBALS['sprout'] ), 'get_instance' ) );
 
 			parent::__construct(
 				array(
@@ -2036,7 +2035,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 				$this->view_context = sanitize_key( $_REQUEST['plugin_status'] );
 			}
 
-			add_filter( 'neat_table_data_items', array( $this, 'sort_table_items' ) );
+			add_filter( 'sprout_table_data_items', array( $this, 'sort_table_items' ) );
 		}
 
 		/**
@@ -2061,8 +2060,8 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		 */
 		protected function _gather_plugin_data() {
 			// Load thickbox for plugin links.
-			$this->neat->admin_init();
-			$this->neat->thickbox();
+			$this->sprout->admin_init();
+			$this->sprout->thickbox();
 
 			// Categorize the plugins which have open actions.
 			$plugins = $this->categorize_plugins_to_views();
@@ -2082,23 +2081,23 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 			foreach ( $plugins[ $this->view_context ] as $slug => $plugin ) {
 				$table_data[ $i ]['sanitized_plugin']  = $plugin['name'];
 				$table_data[ $i ]['slug']              = $slug;
-				$table_data[ $i ]['plugin']            = '<strong>' . $this->neat->get_info_link( $slug ) . '</strong>';
+				$table_data[ $i ]['plugin']            = '<strong>' . $this->sprout->get_info_link( $slug ) . '</strong>';
 				$table_data[ $i ]['source']            = $this->get_plugin_source_type_text( $plugin['source_type'] );
 				$table_data[ $i ]['type']              = $this->get_plugin_advise_type_text( $plugin['required'] );
 				$table_data[ $i ]['status']            = $this->get_plugin_status_text( $slug );
-				$table_data[ $i ]['installed_version'] = $this->neat->get_installed_version( $slug );
+				$table_data[ $i ]['installed_version'] = $this->sprout->get_installed_version( $slug );
 				$table_data[ $i ]['minimum_version']   = $plugin['version'];
-				$table_data[ $i ]['available_version'] = $this->neat->does_plugin_have_update( $slug );
+				$table_data[ $i ]['available_version'] = $this->sprout->does_plugin_have_update( $slug );
 
 				// Prep the upgrade notice info.
-				$upgrade_notice = $this->neat->get_upgrade_notice( $slug );
+				$upgrade_notice = $this->sprout->get_upgrade_notice( $slug );
 				if ( ! empty( $upgrade_notice ) ) {
 					$table_data[ $i ]['upgrade_notice'] = $upgrade_notice;
 
-					add_action( "neat_after_plugin_row_$slug", array( $this, 'wp_plugin_update_row' ), 10, 2 );
+					add_action( "sprout_after_plugin_row_$slug", array( $this, 'wp_plugin_update_row' ), 10, 2 );
 				}
 
-				$table_data[ $i ] = apply_filters( 'neat_table_data_item', $table_data[ $i ], $plugin );
+				$table_data[ $i ] = apply_filters( 'sprout_table_data_item', $table_data[ $i ], $plugin );
 
 				$i++;
 			}
@@ -2107,7 +2106,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		}
 
 		/**
-		 * Categorize the plugins which have open actions into views for the neat page.
+		 * Categorize the plugins which have open actions into views for the sprout page.
 		 *
 		 * @since 2.5.0
 		 */
@@ -2119,21 +2118,21 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 				'activate' => array(),
 			);
 
-			foreach ( $this->neat->plugins as $slug => $plugin ) {
-				if ( $this->neat->is_plugin_active( $slug ) && false === $this->neat->does_plugin_have_update( $slug ) ) {
+			foreach ( $this->sprout->plugins as $slug => $plugin ) {
+				if ( $this->sprout->is_plugin_active( $slug ) && false === $this->sprout->does_plugin_have_update( $slug ) ) {
 					// No need to display plugins if they are installed, up-to-date and active.
 					continue;
 				} else {
 					$plugins['all'][ $slug ] = $plugin;
 
-					if ( ! $this->neat->is_plugin_installed( $slug ) ) {
+					if ( ! $this->sprout->is_plugin_installed( $slug ) ) {
 						$plugins['install'][ $slug ] = $plugin;
 					} else {
-						if ( false !== $this->neat->does_plugin_have_update( $slug ) ) {
+						if ( false !== $this->sprout->does_plugin_have_update( $slug ) ) {
 							$plugins['update'][ $slug ] = $plugin;
 						}
 
-						if ( $this->neat->can_plugin_activate( $slug ) ) {
+						if ( $this->sprout->can_plugin_activate( $slug ) ) {
 							$plugins['activate'][ $slug ] = $plugin;
 						}
 					}
@@ -2166,10 +2165,10 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		 */
 		protected function get_plugin_advise_type_text( $required ) {
 			if ( true === $required ) {
-				return esc_html__( 'Required', 'neat' );
+				return esc_html__( 'Required', 'sprout' );
 			}
 
-			return esc_html__( 'Recommended', 'neat' );
+			return esc_html__( 'Recommended', 'sprout' );
 		}
 
 		/**
@@ -2185,13 +2184,13 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 
 			switch ( $type ) {
 				case 'repo':
-					$string = esc_html__( 'WordPress Repository', 'neat' );
+					$string = esc_html__( 'WordPress Repository', 'sprout' );
 					break;
 				case 'external':
-					$string = esc_html__( 'External Source', 'neat' );
+					$string = esc_html__( 'External Source', 'sprout' );
 					break;
 				case 'bundled':
-					$string = esc_html__( 'Pre-Packaged', 'neat' );
+					$string = esc_html__( 'Pre-Packaged', 'sprout' );
 					break;
 			}
 
@@ -2207,26 +2206,26 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		 * @return string
 		 */
 		protected function get_plugin_status_text( $slug ) {
-			if ( ! $this->neat->is_plugin_installed( $slug ) ) {
-				return esc_html__( 'Not Installed', 'neat' );
+			if ( ! $this->sprout->is_plugin_installed( $slug ) ) {
+				return esc_html__( 'Not Installed', 'sprout' );
 			}
 
-			if ( ! $this->neat->is_plugin_active( $slug ) ) {
-				$install_status = esc_html__( 'Installed But Not Activated', 'neat' );
+			if ( ! $this->sprout->is_plugin_active( $slug ) ) {
+				$install_status = esc_html__( 'Installed But Not Activated', 'sprout' );
 			} else {
-				$install_status = esc_html__( 'Active', 'neat' );
+				$install_status = esc_html__( 'Active', 'sprout' );
 			}
 
 			$update_status = '';
 
-			if ( $this->neat->does_plugin_require_update( $slug ) && false === $this->neat->does_plugin_have_update( $slug ) ) {
-				$update_status = esc_html__( 'Required Update not Available', 'neat' );
+			if ( $this->sprout->does_plugin_require_update( $slug ) && false === $this->sprout->does_plugin_have_update( $slug ) ) {
+				$update_status = esc_html__( 'Required Update not Available', 'sprout' );
 
-			} elseif ( $this->neat->does_plugin_require_update( $slug ) ) {
-				$update_status = esc_html__( 'Requires Update', 'neat' );
+			} elseif ( $this->sprout->does_plugin_require_update( $slug ) ) {
+				$update_status = esc_html__( 'Requires Update', 'sprout' );
 
-			} elseif ( false !== $this->neat->does_plugin_have_update( $slug ) ) {
-				$update_status = esc_html__( 'Update recommended', 'neat' );
+			} elseif ( false !== $this->sprout->does_plugin_have_update( $slug ) ) {
+				$update_status = esc_html__( 'Update recommended', 'sprout' );
 			}
 
 			if ( '' === $update_status ) {
@@ -2234,7 +2233,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 			}
 
 			return sprintf(
-				_x( '%1$s, %2$s', '%1$s = install status, %2$s = update status', 'neat' ),
+				_x( '%1$s, %2$s', '%1$s = install status, %2$s = update status', 'sprout' ),
 				$install_status,
 				$update_status
 			);
@@ -2279,16 +2278,16 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 
 				switch ( $type ) {
 					case 'all':
-						$text = _nx( 'All <span class="count">(%s)</span>', 'All <span class="count">(%s)</span>', $count, 'plugins', 'neat' );
+						$text = _nx( 'All <span class="count">(%s)</span>', 'All <span class="count">(%s)</span>', $count, 'plugins', 'sprout' );
 						break;
 					case 'install':
-						$text = _n( 'To Install <span class="count">(%s)</span>', 'To Install <span class="count">(%s)</span>', $count, 'neat' );
+						$text = _n( 'To Install <span class="count">(%s)</span>', 'To Install <span class="count">(%s)</span>', $count, 'sprout' );
 						break;
 					case 'update':
-						$text = _n( 'Update Available <span class="count">(%s)</span>', 'Update Available <span class="count">(%s)</span>', $count, 'neat' );
+						$text = _n( 'Update Available <span class="count">(%s)</span>', 'Update Available <span class="count">(%s)</span>', $count, 'sprout' );
 						break;
 					case 'activate':
-						$text = _n( 'To Activate <span class="count">(%s)</span>', 'To Activate <span class="count">(%s)</span>', $count, 'neat' );
+						$text = _n( 'To Activate <span class="count">(%s)</span>', 'To Activate <span class="count">(%s)</span>', $count, 'sprout' );
 						break;
 					default:
 						$text = '';
@@ -2299,7 +2298,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 
 					$status_links[ $type ] = sprintf(
 						'<a href="%s"%s>%s</a>',
-						esc_url( $this->neat->get_neat_status_url( $type ) ),
+						esc_url( $this->sprout->get_sprout_status_url( $type ) ),
 						( $type === $this->view_context ) ? ' class="current"' : '',
 						sprintf( $text, number_format_i18n( $count ) )
 					);
@@ -2369,16 +2368,16 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		public function column_version( $item ) {
 			$output = array();
 
-			if ( $this->neat->is_plugin_installed( $item['slug'] ) ) {
-				$installed = ! empty( $item['installed_version'] ) ? $item['installed_version'] : _x( 'unknown', 'as in: "version nr unknown"', 'neat' );
+			if ( $this->sprout->is_plugin_installed( $item['slug'] ) ) {
+				$installed = ! empty( $item['installed_version'] ) ? $item['installed_version'] : _x( 'unknown', 'as in: "version nr unknown"', 'sprout' );
 
 				$color = '';
-				if ( ! empty( $item['minimum_version'] ) && $this->neat->does_plugin_require_update( $item['slug'] ) ) {
+				if ( ! empty( $item['minimum_version'] ) && $this->sprout->does_plugin_require_update( $item['slug'] ) ) {
 					$color = ' color: #ff0000; font-weight: bold;';
 				}
 
 				$output[] = sprintf(
-					'<p><span style="min-width: 32px; text-align: right; float: right;%1$s">%2$s</span>' . esc_html__( 'Installed version:', 'neat' ) . '</p>',
+					'<p><span style="min-width: 32px; text-align: right; float: right;%1$s">%2$s</span>' . esc_html__( 'Installed version:', 'sprout' ) . '</p>',
 					$color,
 					$installed
 				);
@@ -2386,7 +2385,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 
 			if ( ! empty( $item['minimum_version'] ) ) {
 				$output[] = sprintf(
-					'<p><span style="min-width: 32px; text-align: right; float: right;">%1$s</span>' . esc_html__( 'Minimum required version:', 'neat' ) . '</p>',
+					'<p><span style="min-width: 32px; text-align: right; float: right;">%1$s</span>' . esc_html__( 'Minimum required version:', 'sprout' ) . '</p>',
 					$item['minimum_version']
 				);
 			}
@@ -2398,7 +2397,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 				}
 
 				$output[] = sprintf(
-					'<p><span style="min-width: 32px; text-align: right; float: right;%1$s">%2$s</span>' . esc_html__( 'Available version:', 'neat' ) . '</p>',
+					'<p><span style="min-width: 32px; text-align: right; float: right;%1$s">%2$s</span>' . esc_html__( 'Available version:', 'sprout' ) . '</p>',
 					$color,
 					$item['available_version']
 				);
@@ -2421,8 +2420,8 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		 * @since 2.2.0
 		 */
 		public function no_items() {
-			// printf( wp_kses_post( esc_html__( 'No plugins to install, update or activate. <a href="%1$s">Return to the Dashboard</a>', 'neat' ) ), esc_url( self_admin_url() ) );
-			echo '<p>'. esc_html__('No plugins to install, update or activate.', 'neat') .'</p> <a href="'. esc_url( self_admin_url() ) .'">'. esc_html__('Return to the Dashboard', 'neat') .'</a>';
+			// printf( wp_kses_post( esc_html__( 'No plugins to install, update or activate. <a href="%1$s">Return to the Dashboard</a>', 'sprout' ) ), esc_url( self_admin_url() ) );
+			echo '<p>'. esc_html__('No plugins to install, update or activate.', 'sprout') .'</p> <a href="'. esc_url( self_admin_url() ) .'">'. esc_html__('Return to the Dashboard', 'sprout') .'</a>';
 			echo '<style type="text/css">#adminmenu .wp-submenu li.current { display: none !important; }</style>';
 		}
 
@@ -2436,17 +2435,17 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		public function get_columns() {
 			$columns = array(
 				'cb'     => '<input type="checkbox" />',
-				'plugin' => esc_html__( 'Plugin', 'neat' ),
-				'source' => esc_html__( 'Source', 'neat' ),
-				'type'   => esc_html__( 'Type', 'neat' ),
+				'plugin' => esc_html__( 'Plugin', 'sprout' ),
+				'source' => esc_html__( 'Source', 'sprout' ),
+				'type'   => esc_html__( 'Type', 'sprout' ),
 			);
 
 			if ( 'all' === $this->view_context || 'update' === $this->view_context ) {
-				$columns['version'] = esc_html__( 'Version', 'neat' );
-				$columns['status']  = esc_html__( 'Status', 'neat' );
+				$columns['version'] = esc_html__( 'Version', 'sprout' );
+				$columns['status']  = esc_html__( 'Status', 'sprout' );
 			}
 
-			return apply_filters( 'neat_table_columns', $columns );
+			return apply_filters( 'sprout_table_columns', $columns );
 		}
 
 		/**
@@ -2490,17 +2489,17 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 			$action_links = array();
 
 			// Display the 'Install' action link if the plugin is not yet available.
-			if ( ! $this->neat->is_plugin_installed( $item['slug'] ) ) {
-				$actions['install'] = _x( 'Install %2$s', '%2$s = plugin name in screen reader markup', 'neat' );
+			if ( ! $this->sprout->is_plugin_installed( $item['slug'] ) ) {
+				$actions['install'] = _x( 'Install %2$s', '%2$s = plugin name in screen reader markup', 'sprout' );
 			} else {
 				// Display the 'Update' action link if an update is available and WP complies with plugin minimum.
-				if ( false !== $this->neat->does_plugin_have_update( $item['slug'] ) && $this->neat->can_plugin_update( $item['slug'] ) ) {
-					$actions['update'] = _x( 'Update %2$s', '%2$s = plugin name in screen reader markup', 'neat' );
+				if ( false !== $this->sprout->does_plugin_have_update( $item['slug'] ) && $this->sprout->can_plugin_update( $item['slug'] ) ) {
+					$actions['update'] = _x( 'Update %2$s', '%2$s = plugin name in screen reader markup', 'sprout' );
 				}
 
 				// Display the 'Activate' action link, but only if the plugin meets the minimum version.
-				if ( $this->neat->can_plugin_activate( $item['slug'] ) ) {
-					$actions['activate'] = _x( 'Activate %2$s', '%2$s = plugin name in screen reader markup', 'neat' );
+				if ( $this->sprout->can_plugin_activate( $item['slug'] ) ) {
+					$actions['activate'] = _x( 'Activate %2$s', '%2$s = plugin name in screen reader markup', 'sprout' );
 				}
 			}
 
@@ -2510,12 +2509,12 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 					add_query_arg(
 						array(
 							'plugin'           => urlencode( $item['slug'] ),
-							'neat-' . $action => $action . '-plugin',
+							'sprout-' . $action => $action . '-plugin',
 						),
-						$this->neat->get_neat_url()
+						$this->sprout->get_sprout_url()
 					),
-					'neat-' . $action,
-					'neat-nonce'
+					'sprout-' . $action,
+					'sprout-nonce'
 				);
 
 				$action_links[ $action ] = sprintf(
@@ -2526,7 +2525,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 			}
 
 			$prefix = ( defined( 'WP_NETWORK_ADMIN' ) && WP_NETWORK_ADMIN ) ? 'network_admin_' : '';
-			return apply_filters( "neat_{$prefix}plugin_action_links", array_filter( $action_links ), $item['slug'], $item, $this->view_context );
+			return apply_filters( "sprout_{$prefix}plugin_action_links", array_filter( $action_links ), $item['slug'], $item, $this->view_context );
 		}
 
 		/**
@@ -2540,14 +2539,14 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 			parent::single_row( $item );
 
 			/**
-			 * Fires after each specific row in the neat Plugins list table.
+			 * Fires after each specific row in the sprout Plugins list table.
 			 *
 			 * The dynamic portion of the hook name, `$item['slug']`, refers to the slug
 			 * for the plugin.
 			 *
 			 * @since 2.5.0
 			 */
-			do_action( "neat_after_plugin_row_{$item['slug']}", $item['slug'], $item, $this->view_context );
+			do_action( "sprout_after_plugin_row_{$item['slug']}", $item['slug'], $item, $this->view_context );
 		}
 
 		/**
@@ -2570,7 +2569,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 				<tr class="plugin-update-tr">
 					<td colspan="', absint( $this->get_column_count() ), '" class="plugin-update colspanchange">
 						<div class="update-message">',
-							esc_html__( 'Upgrade message from the plugin author:', 'neat' ),
+							esc_html__( 'Upgrade message from the plugin author:', 'sprout' ),
 							' <strong>', wp_kses_data( $item['upgrade_notice'] ), '</strong>
 						</div>
 					</td>
@@ -2586,7 +2585,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		 */
 		public function extra_tablenav( $which ) {
 			if ( 'bottom' === $which ) {
-				$this->neat->show_neat_version();
+				$this->sprout->show_sprout_version();
 			}
 		}
 
@@ -2603,16 +2602,16 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 
 			if ( 'update' !== $this->view_context && 'activate' !== $this->view_context ) {
 				if ( current_user_can( 'install_plugins' ) ) {
-					$actions['neat-bulk-install'] = esc_html__( 'Install', 'neat' );
+					$actions['sprout-bulk-install'] = esc_html__( 'Install', 'sprout' );
 				}
 			}
 
 			if ( 'install' !== $this->view_context ) {
 				if ( current_user_can( 'update_plugins' ) ) {
-					$actions['neat-bulk-update'] = esc_html__( 'Update', 'neat' );
+					$actions['sprout-bulk-update'] = esc_html__( 'Update', 'sprout' );
 				}
 				if ( current_user_can( 'activate_plugins' ) ) {
-					$actions['neat-bulk-activate'] = esc_html__( 'Activate', 'neat' );
+					$actions['sprout-bulk-activate'] = esc_html__( 'Activate', 'sprout' );
 				}
 			}
 
@@ -2629,12 +2628,12 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		 */
 		public function process_bulk_actions() {
 			// Bulk installation process.
-			if ( 'neat-bulk-install' === $this->current_action() || 'neat-bulk-update' === $this->current_action() ) {
+			if ( 'sprout-bulk-install' === $this->current_action() || 'sprout-bulk-update' === $this->current_action() ) {
 
 				check_admin_referer( 'bulk-' . $this->_args['plural'] );
 
 				$install_type = 'install';
-				if ( 'neat-bulk-update' === $this->current_action() ) {
+				if ( 'sprout-bulk-update' === $this->current_action() ) {
 					$install_type = 'update';
 				}
 
@@ -2643,9 +2642,9 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 				// Did user actually select any plugins to install/update ?
 				if ( empty( $_POST['plugin'] ) ) {
 					if ( 'install' === $install_type ) {
-						$message = esc_html__( 'No plugins were selected to be installed. No action taken.', 'neat' );
+						$message = esc_html__( 'No plugins were selected to be installed. No action taken.', 'sprout' );
 					} else {
-						$message = esc_html__( 'No plugins were selected to be updated. No action taken.', 'neat' );
+						$message = esc_html__( 'No plugins were selected to be updated. No action taken.', 'sprout' );
 					}
 
 					echo '<div id="message" class="error"><p>', esc_html( $message ), '</p></div>';
@@ -2662,18 +2661,18 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 
 				// Sanitize the received input.
 				$plugins_to_install = array_map( 'urldecode', $plugins_to_install );
-				$plugins_to_install = array_map( array( $this->neat, 'sanitize_key' ), $plugins_to_install );
+				$plugins_to_install = array_map( array( $this->sprout, 'sanitize_key' ), $plugins_to_install );
 
 				// Validate the received input.
 				foreach ( $plugins_to_install as $key => $slug ) {
-					// Check if the plugin was registered with neat and remove if not.
-					if ( ! isset( $this->neat->plugins[ $slug ] ) ) {
+					// Check if the plugin was registered with sprout and remove if not.
+					if ( ! isset( $this->sprout->plugins[ $slug ] ) ) {
 						unset( $plugins_to_install[ $key ] );
 						continue;
 					}
 
 					// For updates: make sure this is a plugin we *can* update (update available and WP version ok).
-					if ( 'update' === $install_type && ( $this->neat->is_plugin_installed( $slug ) && ( false === $this->neat->does_plugin_have_update( $slug ) || ! $this->neat->can_plugin_update( $slug ) ) ) ) {
+					if ( 'update' === $install_type && ( $this->sprout->is_plugin_installed( $slug ) && ( false === $this->sprout->does_plugin_have_update( $slug ) || ! $this->sprout->can_plugin_update( $slug ) ) ) ) {
 						unset( $plugins_to_install[ $key ] );
 					}
 				}
@@ -2681,9 +2680,9 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 				// No need to proceed further if we have no plugins to handle.
 				if ( empty( $plugins_to_install ) ) {
 					if ( 'install' === $install_type ) {
-						$message = esc_html__( 'No plugins are available to be installed at this time.', 'neat' );
+						$message = esc_html__( 'No plugins are available to be installed at this time.', 'sprout' );
 					} else {
-						$message = esc_html__( 'No plugins are available to be updated at this time.', 'neat' );
+						$message = esc_html__( 'No plugins are available to be updated at this time.', 'sprout' );
 					}
 
 					echo '<div id="message" class="error"><p>', esc_html( $message ), '</p></div>';
@@ -2693,7 +2692,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 
 				// Pass all necessary information if WP_Filesystem is needed.
 				$url = wp_nonce_url(
-					$this->neat->get_neat_url(),
+					$this->sprout->get_sprout_url(),
 					'bulk-' . $this->_args['plural']
 				);
 
@@ -2725,8 +2724,8 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 
 				// Prepare the data for validated plugins for the install/upgrade.
 				foreach ( $plugins_to_install as $slug ) {
-					$name   = $this->neat->plugins[ $slug ]['name'];
-					$source = $this->neat->get_download_url( $slug );
+					$name   = $this->sprout->plugins[ $slug ]['name'];
+					$source = $this->sprout->get_download_url( $slug );
 
 					if ( ! empty( $name ) && ! empty( $source ) ) {
 						$names[] = $name;
@@ -2738,8 +2737,8 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 								break;
 
 							case 'update':
-								$file_paths[]                 = $this->neat->plugins[ $slug ]['file_path'];
-								$to_inject[ $slug ]           = $this->neat->plugins[ $slug ];
+								$file_paths[]                 = $this->sprout->plugins[ $slug ]['file_path'];
+								$to_inject[ $slug ]           = $this->sprout->plugins[ $slug ];
 								$to_inject[ $slug ]['source'] = $source;
 								break;
 						}
@@ -2747,11 +2746,11 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 				}
 				unset( $slug, $name, $source );
 
-				// Create a new instance of neat_Bulk_Installer.
-				$installer = new neat_Bulk_Installer(
-					new neat_Bulk_Installer_Skin(
+				// Create a new instance of sprout_Bulk_Installer.
+				$installer = new sprout_Bulk_Installer(
+					new sprout_Bulk_Installer_Skin(
 						array(
-							'url'          => esc_url_raw( $this->neat->get_neat_url() ),
+							'url'          => esc_url_raw( $this->sprout->get_sprout_url() ),
 							'nonce'        => 'bulk-' . $this->_args['plural'],
 							'names'        => $names,
 							'install_type' => $install_type,
@@ -2760,22 +2759,22 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 				);
 
 				// Wrap the install process with the appropriate HTML.
-				echo '<div class="neat wrap">',
+				echo '<div class="sprout wrap">',
 					'<h2>', esc_html( get_admin_page_title() ), '</h2>';
 
 				// Process the bulk installation submissions.
-				add_filter( 'upgrader_source_selection', array( $this->neat, 'maybe_adjust_source_dir' ), 1, 3 );
+				add_filter( 'upgrader_source_selection', array( $this->sprout, 'maybe_adjust_source_dir' ), 1, 3 );
 
-				if ( 'neat-bulk-update' === $this->current_action() ) {
+				if ( 'sprout-bulk-update' === $this->current_action() ) {
 					// Inject our info into the update transient.
-					$this->neat->inject_update_info( $to_inject );
+					$this->sprout->inject_update_info( $to_inject );
 
 					$installer->bulk_upgrade( $file_paths );
 				} else {
 					$installer->bulk_install( $sources );
 				}
 
-				remove_filter( 'upgrader_source_selection', array( $this->neat, 'maybe_adjust_source_dir' ), 1, 3 );
+				remove_filter( 'upgrader_source_selection', array( $this->sprout, 'maybe_adjust_source_dir' ), 1, 3 );
 
 				echo '</div>';
 
@@ -2783,12 +2782,12 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 			}
 
 			// Bulk activation process.
-			if ( 'neat-bulk-activate' === $this->current_action() ) {
+			if ( 'sprout-bulk-activate' === $this->current_action() ) {
 				check_admin_referer( 'bulk-' . $this->_args['plural'] );
 
 				// Did user actually select any plugins to activate ?
 				if ( empty( $_POST['plugin'] ) ) {
-					echo '<div id="message" class="error"><p>', esc_html__( 'No plugins were selected to be activated. No action taken.', 'neat' ), '</p></div>';
+					echo '<div id="message" class="error"><p>', esc_html__( 'No plugins were selected to be activated. No action taken.', 'sprout' ), '</p></div>';
 
 					return false;
 				}
@@ -2797,7 +2796,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 				$plugins = array();
 				if ( isset( $_POST['plugin'] ) ) {
 					$plugins = array_map( 'urldecode', (array) $_POST['plugin'] );
-					$plugins = array_map( array( $this->neat, 'sanitize_key' ), $plugins );
+					$plugins = array_map( array( $this->sprout, 'sanitize_key' ), $plugins );
 				}
 
 				$plugins_to_activate = array();
@@ -2805,16 +2804,16 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 
 				// Grab the file paths for the selected & inactive plugins from the registration array.
 				foreach ( $plugins as $slug ) {
-					if ( $this->neat->can_plugin_activate( $slug ) ) {
-						$plugins_to_activate[] = $this->neat->plugins[ $slug ]['file_path'];
-						$plugin_names[]        = $this->neat->plugins[ $slug ]['name'];
+					if ( $this->sprout->can_plugin_activate( $slug ) ) {
+						$plugins_to_activate[] = $this->sprout->plugins[ $slug ]['file_path'];
+						$plugin_names[]        = $this->sprout->plugins[ $slug ]['name'];
 					}
 				}
 				unset( $slug );
 
 				// Return early if there are no plugins to activate.
 				if ( empty( $plugins_to_activate ) ) {
-					echo '<div id="message" class="error"><p>', esc_html__( 'No plugins are available to be activated at this time.', 'neat' ), '</p></div>';
+					echo '<div id="message" class="error"><p>', esc_html__( 'No plugins are available to be activated at this time.', 'sprout' ), '</p></div>';
 
 					return false;
 				}
@@ -2826,13 +2825,13 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 					echo '<div id="message" class="error"><p>', wp_kses_post( $activate->get_error_message() ), '</p></div>';
 				} else {
 					$count        = count( $plugin_names ); // Count so we can use _n function.
-					$plugin_names = array_map( array( 'neat_Utils', 'wrap_in_strong' ), $plugin_names );
+					$plugin_names = array_map( array( 'sprout_Utils', 'wrap_in_strong' ), $plugin_names );
 					$last_plugin  = array_pop( $plugin_names ); // Pop off last name to prep for readability.
-					$imploded     = empty( $plugin_names ) ? $last_plugin : ( implode( ', ', $plugin_names ) . ' ' . esc_html_x( 'and', 'plugin A *and* plugin B', 'neat' ) . ' ' . $last_plugin );
+					$imploded     = empty( $plugin_names ) ? $last_plugin : ( implode( ', ', $plugin_names ) . ' ' . esc_html_x( 'and', 'plugin A *and* plugin B', 'sprout' ) . ' ' . $last_plugin );
 
 					printf( // WPCS: xss ok.
 						'<div id="message" class="updated"><p>%1$s %2$s.</p></div>',
-						esc_html( _n( 'The following plugin was activated successfully:', 'The following plugins were activated successfully:', $count, 'neat' ) ),
+						esc_html( _n( 'The following plugin was activated successfully:', 'The following plugins were activated successfully:', $count, 'sprout' ) ),
 						$imploded
 					);
 
@@ -2867,12 +2866,12 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 			$this->_column_headers = array( $columns, $hidden, $sortable, $primary ); // Get all necessary column headers.
 
 			// Process our bulk activations here.
-			if ( 'neat-bulk-activate' === $this->current_action() ) {
+			if ( 'sprout-bulk-activate' === $this->current_action() ) {
 				$this->process_bulk_actions();
 			}
 
 			// Store all of our plugin data into $items array so WP_List_Table can use it.
-			$this->items = apply_filters( 'neat_table_data_items', $this->_gather_plugin_data() );
+			$this->items = apply_filters( 'sprout_table_data_items', $this->_gather_plugin_data() );
 		}
 
 		/* *********** DEPRECATED METHODS *********** */
@@ -2889,9 +2888,9 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 		 * @return string|boolean Plugin slug if found, false otherwise.
 		 */
 		protected function _get_plugin_data_from_name( $name, $data = 'slug' ) {
-			_deprecated_function( __FUNCTION__, 'neat 2.5.0', 'TGM_Plugin_Activation::_get_plugin_data_from_name()' );
+			_deprecated_function( __FUNCTION__, 'sprout 2.5.0', 'TGM_Plugin_Activation::_get_plugin_data_from_name()' );
 
-			return $this->neat->_get_plugin_data_from_name( $name, $data );
+			return $this->sprout->_get_plugin_data_from_name( $name, $data );
 		}
 	}
 }
@@ -2900,7 +2899,7 @@ if ( ! class_exists( 'neat_List_Table' ) ) {
 if ( ! class_exists( 'TGM_Bulk_Installer' ) ) {
 
 	/**
-	 * Hack: Prevent neat v2.4.1- bulk installer class from being loaded if 2.4.1- is loaded after 2.5+.
+	 * Hack: Prevent sprout v2.4.1- bulk installer class from being loaded if 2.4.1- is loaded after 2.5+.
 	 */
 	class TGM_Bulk_Installer {
 	}
@@ -2908,7 +2907,7 @@ if ( ! class_exists( 'TGM_Bulk_Installer' ) ) {
 if ( ! class_exists( 'TGM_Bulk_Installer_Skin' ) ) {
 
 	/**
-	 * Hack: Prevent neat v2.4.1- bulk installer skin class from being loaded if 2.4.1- is loaded after 2.5+.
+	 * Hack: Prevent sprout v2.4.1- bulk installer skin class from being loaded if 2.4.1- is loaded after 2.5+.
 	 */
 	class TGM_Bulk_Installer_Skin {
 	}
@@ -2924,26 +2923,26 @@ if ( ! class_exists( 'TGM_Bulk_Installer_Skin' ) ) {
  *
  * @since 2.2.0
  */
-add_action( 'admin_init', 'neat_load_bulk_installer' );
-if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
+add_action( 'admin_init', 'sprout_load_bulk_installer' );
+if ( ! function_exists( 'sprout_load_bulk_installer' ) ) {
 	/**
 	 * Load bulk installer
 	 */
-	function neat_load_bulk_installer() {
+	function sprout_load_bulk_installer() {
 		// Silently fail if 2.5+ is loaded *after* an older version.
-		if ( ! isset( $GLOBALS['neat'] ) ) {
+		if ( ! isset( $GLOBALS['sprout'] ) ) {
 			return;
 		}
 
-		// Get neat class instance.
-		$neat_instance = call_user_func( array( get_class( $GLOBALS['neat'] ), 'get_instance' ) );
+		// Get sprout class instance.
+		$sprout_instance = call_user_func( array( get_class( $GLOBALS['sprout'] ), 'get_instance' ) );
 
-		if ( isset( $_GET['page'] ) && $neat_instance->menu === $_GET['page'] ) {
+		if ( isset( $_GET['page'] ) && $sprout_instance->menu === $_GET['page'] ) {
 			if ( ! class_exists( 'Plugin_Upgrader', false ) ) {
 				require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 			}
 
-			if ( ! class_exists( 'neat_Bulk_Installer' ) ) {
+			if ( ! class_exists( 'sprout_Bulk_Installer' ) ) {
 
 				/**
 				 * Installer class to handle bulk plugin installations.
@@ -2954,14 +2953,14 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 				 * @since 2.2.0
 				 *
 				 * @internal Since 2.5.0 the class is an extension of Plugin_Upgrader rather than WP_Upgrader
-				 * @internal Since 2.5.2 the class has been renamed from TGM_Bulk_Installer to neat_Bulk_Installer.
+				 * @internal Since 2.5.2 the class has been renamed from TGM_Bulk_Installer to sprout_Bulk_Installer.
 				 *           This was done to prevent backward compatibility issues with v2.3.6.
 				 *
 				 * @package TGM-Plugin-Activation
 				 * @author  Thomas Griffin
 				 * @author  Gary Jones
 				 */
-				class neat_Bulk_Installer extends Plugin_Upgrader {
+				class sprout_Bulk_Installer extends Plugin_Upgrader {
 					/**
 					 * Holds result of bulk plugin installation.
 					 *
@@ -2981,13 +2980,13 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 					public $bulk = false;
 
 					/**
-					 * neat instance
+					 * sprout instance
 					 *
 					 * @since 2.5.0
 					 *
 					 * @var object
 					 */
-					protected $neat;
+					protected $sprout;
 
 					/**
 					 * Whether or not the destination directory needs to be cleared ( = on update).
@@ -3006,8 +3005,8 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 					 * @param \Bulk_Upgrader_Skin|null $skin Installer skin.
 					 */
 					public function __construct( $skin = null ) {
-						// Get neat class instance.
-						$this->neat = call_user_func( array( get_class( $GLOBALS['neat'] ), 'get_instance' ) );
+						// Get sprout class instance.
+						$this->sprout = call_user_func( array( get_class( $GLOBALS['sprout'] ), 'get_instance' ) );
 
 						parent::__construct( $skin );
 
@@ -3015,11 +3014,11 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 							$this->clear_destination = true;
 						}
 
-						if ( $this->neat->is_automatic ) {
+						if ( $this->sprout->is_automatic ) {
 							$this->activate_strings();
 						}
 
-						add_action( 'upgrader_process_complete', array( $this->neat, 'populate_file_path' ) );
+						add_action( 'upgrader_process_complete', array( $this->sprout, 'populate_file_path' ) );
 					}
 
 					/**
@@ -3028,8 +3027,8 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 					 * @since 2.2.0
 					 */
 					public function activate_strings() {
-						$this->strings['activation_failed']  = esc_html__( 'Plugin activation failed.', 'neat' );
-						$this->strings['activation_success'] = esc_html__( 'Plugin activated successfully.', 'neat' );
+						$this->strings['activation_failed']  = esc_html__( 'Plugin activation failed.', 'sprout' );
+						$this->strings['activation_success'] = esc_html__( 'Plugin activated successfully.', 'sprout' );
 					}
 
 					/**
@@ -3046,7 +3045,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 						$result = parent::run( $options );
 
 						// Reset the strings in case we changed one during automatic activation.
-						if ( $this->neat->is_automatic ) {
+						if ( $this->sprout->is_automatic ) {
 							if ( 'update' === $this->skin->options['install_type'] ) {
 								$this->upgrade_strings();
 							} else {
@@ -3075,7 +3074,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 					 * @return string|bool Install confirmation messages on success, false on failure.
 					 */
 					public function bulk_install( $plugins, $args = array() ) {
-						// [neat + ] Hook auto-activation in.
+						// [sprout + ] Hook auto-activation in.
 						add_filter( 'upgrader_post_install', array( $this, 'auto_activate' ), 10 );
 
 						$defaults    = array(
@@ -3086,11 +3085,11 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 						$this->init();
 						$this->bulk = true;
 
-						$this->install_strings(); // [neat + ] adjusted.
+						$this->install_strings(); // [sprout + ] adjusted.
 
-						/* [neat - ] $current = get_site_transient( 'update_plugins' ); */
+						/* [sprout - ] $current = get_site_transient( 'update_plugins' ); */
 
-						/* [neat - ] add_filter('upgrader_clear_destination', array($this, 'delete_old_plugin'), 10, 4); */
+						/* [sprout - ] add_filter('upgrader_clear_destination', array($this, 'delete_old_plugin'), 10, 4); */
 
 						$this->skin->header();
 
@@ -3111,7 +3110,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 						$maintenance = ( is_multisite() && ! empty( $plugins ) );
 
 						/*
-						[neat - ]
+						[sprout - ]
 						foreach ( $plugins as $plugin )
 							$maintenance = $maintenance || ( is_plugin_active( $plugin ) && isset( $current->response[ $plugin] ) );
 						*/
@@ -3127,7 +3126,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 							$this->update_current++;
 
 							/*
-							[neat - ]
+							[sprout - ]
 							$this->skin->plugin_info = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin, false, true);
 
 							if ( !isset( $current->response[ $plugin ] ) ) {
@@ -3146,9 +3145,9 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 							*/
 
 							$result = $this->run( array(
-								'package'           => $plugin, // [neat + ] adjusted.
+								'package'           => $plugin, // [sprout + ] adjusted.
 								'destination'       => WP_PLUGIN_DIR,
-								'clear_destination' => false, // [neat + ] adjusted.
+								'clear_destination' => false, // [sprout + ] adjusted.
 								'clear_working'     => true,
 								'is_multi'          => true,
 								'hook_extra'        => array(
@@ -3169,7 +3168,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 						/**
 						 * Fires when the bulk upgrader process is complete.
 						 *
-						 * @since WP 3.6.0 / neat 2.5.0
+						 * @since WP 3.6.0 / sprout 2.5.0
 						 *
 						 * @param Plugin_Upgrader $this Plugin_Upgrader instance. In other contexts, $this, might
 						 *                              be a Theme_Upgrader or Core_Upgrade instance.
@@ -3183,7 +3182,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 						 * }
 						 */
 						do_action( 'upgrader_process_complete', $this, array(
-							'action'  => 'install', // [neat + ] adjusted.
+							'action'  => 'install', // [sprout + ] adjusted.
 							'type'    => 'plugin',
 							'bulk'    => true,
 							'plugins' => $plugins,
@@ -3194,9 +3193,9 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 						$this->skin->footer();
 
 						// Cleanup our hooks, in case something else does a upgrade on this connection.
-						/* [neat - ] remove_filter('upgrader_clear_destination', array($this, 'delete_old_plugin')); */
+						/* [sprout - ] remove_filter('upgrader_clear_destination', array($this, 'delete_old_plugin')); */
 
-						// [neat + ] Remove our auto-activation hook.
+						// [sprout + ] Remove our auto-activation hook.
 						remove_filter( 'upgrader_post_install', array( $this, 'auto_activate' ), 10 );
 
 						// Force refresh of plugin update information.
@@ -3239,7 +3238,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 					 */
 					public function auto_activate( $bool ) {
 						// Only process the activation of installed plugins if the automatic flag is set to true.
-						if ( $this->neat->is_automatic ) {
+						if ( $this->sprout->is_automatic ) {
 							// Flush plugins cache so the headers of the newly installed plugins will be read correctly.
 							wp_clean_plugins_cache();
 
@@ -3267,7 +3266,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 				}
 			}
 
-			if ( ! class_exists( 'neat_Bulk_Installer_Skin' ) ) {
+			if ( ! class_exists( 'sprout_Bulk_Installer_Skin' ) ) {
 
 				/**
 				 * Installer skin to set strings for the bulk plugin installations..
@@ -3278,7 +3277,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 				 * @since 2.2.0
 				 *
 				 * @internal Since 2.5.2 the class has been renamed from TGM_Bulk_Installer_Skin to
-				 *           neat_Bulk_Installer_Skin.
+				 *           sprout_Bulk_Installer_Skin.
 				 *           This was done to prevent backward compatibility issues with v2.3.6.
 				 *
 				 * @see https://core.trac.WordPress.org/browser/trunk/src/wp-admin/includes/class-wp-upgrader-skins.php
@@ -3287,7 +3286,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 				 * @author  Thomas Griffin
 				 * @author  Gary Jones
 				 */
-				class neat_Bulk_Installer_Skin extends Bulk_Upgrader_Skin {
+				class sprout_Bulk_Installer_Skin extends Bulk_Upgrader_Skin {
 					/**
 					 * Holds plugin info for each individual plugin installation.
 					 *
@@ -3316,13 +3315,13 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 					public $i = 0;
 
 					/**
-					 * neat instance
+					 * sprout instance
 					 *
 					 * @since 2.5.0
 					 *
 					 * @var object
 					 */
-					protected $neat;
+					protected $sprout;
 
 					/**
 					 * Constructor. Parses default args with new ones and extracts them for use.
@@ -3332,8 +3331,8 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 					 * @param array $args Arguments to pass for use within the class.
 					 */
 					public function __construct( $args = array() ) {
-						// Get neat class instance.
-						$this->neat = call_user_func( array( get_class( $GLOBALS['neat'] ), 'get_instance' ) );
+						// Get sprout class instance.
+						$this->sprout = call_user_func( array( get_class( $GLOBALS['sprout'] ), 'get_instance' ) );
 
 						// Parse default and new args.
 						$defaults = array(
@@ -3362,23 +3361,23 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 					public function add_strings() {
 						if ( 'update' === $this->options['install_type'] ) {
 							parent::add_strings();
-							$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Updating Plugin %1$s (%2$d/%3$d)', 'neat' );
+							$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Updating Plugin %1$s (%2$d/%3$d)', 'sprout' );
 						} else {
-							$this->upgrader->strings['skin_update_failed_error'] = esc_html__( 'An error occurred while installing %1$s: <strong>%2$s</strong>.', 'neat' );
-							$this->upgrader->strings['skin_update_failed']       = esc_html__( 'The installation of %1$s failed.', 'neat' );
+							$this->upgrader->strings['skin_update_failed_error'] = esc_html__( 'An error occurred while installing %1$s: <strong>%2$s</strong>.', 'sprout' );
+							$this->upgrader->strings['skin_update_failed']       = esc_html__( 'The installation of %1$s failed.', 'sprout' );
 
-							if ( $this->neat->is_automatic ) {
+							if ( $this->sprout->is_automatic ) {
 								// Automatic activation strings.
-								$this->upgrader->strings['skin_upgrade_start']        = esc_html__( 'The installation and activation process is starting. This process may take a while on some hosts, so please be patient.', 'neat' );
-								$this->upgrader->strings['skin_update_successful']    = esc_html__( '%1$s installed and activated successfully.', 'neat' ) . ' <a href="#" class="hide-if-no-js" onclick="%2$s"><span>' . esc_html__( 'Show Details', 'neat' ) . '</span><span class="hidden">' . esc_html__( 'Hide Details', 'neat' ) . '</span>.</a>';
-								$this->upgrader->strings['skin_upgrade_end']          = esc_html__( 'All installations and activations have been completed.', 'neat' );
-								$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Installing and Activating Plugin %1$s (%2$d/%3$d)', 'neat' );
+								$this->upgrader->strings['skin_upgrade_start']        = esc_html__( 'The installation and activation process is starting. This process may take a while on some hosts, so please be patient.', 'sprout' );
+								$this->upgrader->strings['skin_update_successful']    = esc_html__( '%1$s installed and activated successfully.', 'sprout' ) . ' <a href="#" class="hide-if-no-js" onclick="%2$s"><span>' . esc_html__( 'Show Details', 'sprout' ) . '</span><span class="hidden">' . esc_html__( 'Hide Details', 'sprout' ) . '</span>.</a>';
+								$this->upgrader->strings['skin_upgrade_end']          = esc_html__( 'All installations and activations have been completed.', 'sprout' );
+								$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Installing and Activating Plugin %1$s (%2$d/%3$d)', 'sprout' );
 							} else {
 								// Default installation strings.
-								$this->upgrader->strings['skin_upgrade_start']        = esc_html__( 'The installation process is starting. This process may take a while on some hosts, so please be patient.', 'neat' );
-								$this->upgrader->strings['skin_update_successful']    = esc_html__( '%1$s installed successfully.', 'neat' ) . ' <a href="#" class="hide-if-no-js" onclick="%2$s"><span>' . esc_html__( 'Show Details', 'neat' ) . '</span><span class="hidden">' . esc_html__( 'Hide Details', 'neat' ) . '</span>.</a>';
-								$this->upgrader->strings['skin_upgrade_end']          = esc_html__( 'All installations have been completed.', 'neat' );
-								$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Installing Plugin %1$s (%2$d/%3$d)', 'neat' );
+								$this->upgrader->strings['skin_upgrade_start']        = esc_html__( 'The installation process is starting. This process may take a while on some hosts, so please be patient.', 'sprout' );
+								$this->upgrader->strings['skin_update_successful']    = esc_html__( '%1$s installed successfully.', 'sprout' ) . ' <a href="#" class="hide-if-no-js" onclick="%2$s"><span>' . esc_html__( 'Show Details', 'sprout' ) . '</span><span class="hidden">' . esc_html__( 'Hide Details', 'sprout' ) . '</span>.</a>';
+								$this->upgrader->strings['skin_upgrade_end']          = esc_html__( 'All installations have been completed.', 'sprout' );
+								$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Installing Plugin %1$s (%2$d/%3$d)', 'sprout' );
 							}
 						}
 					}
@@ -3428,20 +3427,20 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 						// Flush plugins cache so we can make sure that the installed plugins list is always up to date.
 						wp_clean_plugins_cache();
 
-						$this->neat->show_neat_version();
+						$this->sprout->show_sprout_version();
 
 						// Display message based on if all plugins are now active or not.
 						$update_actions = array();
 
-						if ( $this->neat->is_neat_complete() ) {
+						if ( $this->sprout->is_sprout_complete() ) {
 							// All plugins are active, so we display the complete string and hide the menu to protect users.
 							echo '<style type="text/css">#adminmenu .wp-submenu li.current { display: none !important; }</style>';
 							$update_actions['dashboard'] = sprintf(
-								esc_html( $this->neat->strings['complete'] ),
-								'<a href="' . esc_url( self_admin_url() ) . '">' . esc_html__( 'Return to the Dashboard', 'neat' ) . '</a>'
+								esc_html( $this->sprout->strings['complete'] ),
+								'<a href="' . esc_url( self_admin_url() ) . '">' . esc_html__( 'Return to the Dashboard', 'sprout' ) . '</a>'
 							);
 						} else {
-							$update_actions['neat_page'] = '<a href="' . esc_url( $this->neat->get_neat_url() ) . '" target="_parent">' . esc_html( $this->neat->strings['return'] ) . '</a>';
+							$update_actions['sprout_page'] = '<a href="' . esc_url( $this->sprout->get_sprout_url() ) . '" target="_parent">' . esc_html( $this->sprout->strings['return'] ) . '</a>';
 						}
 
 						/**
@@ -3452,7 +3451,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 						 * @param array $update_actions Array of plugin action links.
 						 * @param array $plugin_info    Array of information for the last-handled plugin.
 						 */
-						$update_actions = apply_filters( 'neat_update_bulk_plugins_complete_actions', $update_actions, $this->plugin_info );
+						$update_actions = apply_filters( 'sprout_update_bulk_plugins_complete_actions', $update_actions, $this->plugin_info );
 
 						if ( ! empty( $update_actions ) ) {
 							$this->feedback( implode( ' | ', (array) $update_actions ) );
@@ -3469,7 +3468,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 					 * @see        Bulk_Upgrader_Skin::flush_output()
 					 */
 					public function before_flush_output() {
-						_deprecated_function( __FUNCTION__, 'neat 2.5.0', 'Bulk_Upgrader_Skin::flush_output()' );
+						_deprecated_function( __FUNCTION__, 'sprout 2.5.0', 'Bulk_Upgrader_Skin::flush_output()' );
 						$this->flush_output();
 					}
 
@@ -3482,7 +3481,7 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 					 * @see        Bulk_Upgrader_Skin::flush_output()
 					 */
 					public function after_flush_output() {
-						_deprecated_function( __FUNCTION__, 'neat 2.5.0', 'Bulk_Upgrader_Skin::flush_output()' );
+						_deprecated_function( __FUNCTION__, 'sprout 2.5.0', 'Bulk_Upgrader_Skin::flush_output()' );
 						$this->flush_output();
 						$this->i++;
 					}
@@ -3492,21 +3491,21 @@ if ( ! function_exists( 'neat_load_bulk_installer' ) ) {
 	}
 }
 
-if ( ! class_exists( 'neat_Utils' ) ) {
+if ( ! class_exists( 'sprout_Utils' ) ) {
 
 	/**
-	 * Generic utilities for neat.
+	 * Generic utilities for sprout.
 	 *
 	 * All methods are static, poor-dev name-spacing class wrapper.
 	 *
-	 * Class was called TGM_Utils in 2.5.0 but renamed neat_Utils in 2.5.1 as this was conflicting with Soliloquy.
+	 * Class was called TGM_Utils in 2.5.0 but renamed sprout_Utils in 2.5.1 as this was conflicting with Soliloquy.
 	 *
 	 * @since 2.5.0
 	 *
 	 * @package TGM-Plugin-Activation
 	 * @author  Juliette Reinders Folmer
 	 */
-	class neat_Utils {
+	class sprout_Utils {
 		/**
 		 * Whether the PHP filter extension is enabled.
 		 *
@@ -3617,5 +3616,5 @@ if ( ! class_exists( 'neat_Utils' ) ) {
 
 			return false;
 		}
-	} // End of class neat_Utils
+	} // End of class sprout_Utils
 } // End of class_exists wrapper

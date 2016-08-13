@@ -58,12 +58,12 @@ $header_phone = get_redux_options('header_phone');
 
 <div id="content" class="m-scene">
 
-	<header id="header" class="m-mobile-nav m-header scene_element scene_element--fadein<?php echo esc_attr( neat_admin_class_checks() ); ?>">
+	<header id="header" class="m-mobile-nav m-header scene_element scene_element--fadein<?php echo esc_attr( sprout_admin_class_checks() ); ?>">
 
 		<!-- Main Nav -->
 			<div class="uppercontainer">
 
-				<div class="neat-nav-meta">
+				<div class="sprout-nav-meta">
 
 					<div class="meta-wrapper">
 
@@ -158,7 +158,7 @@ $header_phone = get_redux_options('header_phone');
 								|
 							</div>
 							<div class="meta-phone meta-top <?php if($topbar_show_social === "0"): echo esc_attr( 'no-social' ); endif; ?>">
-								<a href="tel:<?php echo esc_attr($header_phone) ?>"><i class="fa fa-phone fa-h-icon" aria-hidden="true"></i><?php echo wp_kses($header_phone, 'neat') ?></a>
+								<a href="tel:<?php echo esc_attr($header_phone) ?>"><i class="fa fa-phone fa-h-icon" aria-hidden="true"></i><?php echo wp_kses($header_phone, 'sprout') ?></a>
 							</div>
 						<?php endif; ?>
 
@@ -169,7 +169,7 @@ $header_phone = get_redux_options('header_phone');
 
 			</div>
 
-			<div class="neat-dropdown-wrapper shadow-medium">
+			<div class="sprout-dropdown-wrapper shadow-medium">
 				<a class="navbar-brand visible-xs visible-sm" href="<?php echo esc_url(get_home_url('/')); ?>">
 					<?php if ( (isset($header_logo)) ) : ?>
 						<img src="<?php echo esc_url($header_logo)?>" alt="<?php echo get_bloginfo('description') ?>">
@@ -177,10 +177,10 @@ $header_phone = get_redux_options('header_phone');
 						<?php bloginfo( 'name' ); ?>
 					<?php endif; ?>
 				</a>
-				<a href="#" id="nav-trigger" class="neat-nav-trigger"><?php echo esc_html__('Menu', 'neat') ?></a>
+				<a href="#" id="nav-trigger" class="sprout-nav-trigger"><?php echo esc_html__('Menu', 'sprout') ?></a>
 			</div>
 
-			<nav id="neat-dropdown-trigger" class="neat-dropdown scene_element scene_element--fadeInUpNav">
+			<nav id="sprout-dropdown-trigger" class="sprout-dropdown scene_element scene_element--fadeInUpNav">
 				<a class="navbar-brand navbar-dropdown visible-xs visible-sm" href="<?php echo esc_url(get_home_url('/')); ?>">
 					<?php if ( (isset($header_logo_alt)) ) : ?>
 						<img src="<?php echo esc_url($header_logo_alt)?>" alt="<?php echo get_bloginfo('description') ?>">
@@ -188,7 +188,7 @@ $header_phone = get_redux_options('header_phone');
 						<?php bloginfo( 'name' ); ?>
 					<?php endif; ?>
 				</a>
-				<a id="nav-close" href="#" class="neat-close"><?php echo esc_html__('Close', 'neat') ?></a>
+				<a id="nav-close" href="#" class="sprout-close"><?php echo esc_html__('Close', 'sprout') ?></a>
 				
 				<div id="nav-xfer">
 
@@ -207,7 +207,7 @@ $header_phone = get_redux_options('header_phone');
 						$args = array(
 							'menu' => 'primary-menu',
 							'theme_location' => 'primary',
-							'menu_class' => 'neat-dropdown-content',
+							'menu_class' => 'sprout-dropdown-content',
 							'container' => 'false',
 							'items_wrap'      => '
 					<ul id="%1$s" class="%2$s">%3$s</ul>',
@@ -227,7 +227,7 @@ $header_phone = get_redux_options('header_phone');
 	</header>
 	<div class="super-search">
 		<div class="super-search-close">
-			<a href="#"><?php echo esc_html__('Close', 'neat') ?></a>
+			<a href="#"><?php echo esc_html__('Close', 'sprout') ?></a>
 		</div>
 		<?php echo get_search_form(false); ?>
 	</div>

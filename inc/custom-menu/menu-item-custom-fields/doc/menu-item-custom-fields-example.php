@@ -16,7 +16,7 @@
  * Author: Dzikri Aziz
  * Author URI: http://kucrut.org/
  * License: GPL v2
- * Text Domain: neat
+ * Text Domain: sprout
  */
 
 
@@ -48,8 +48,8 @@ class Menu_Item_Custom_Fields_Example {
 		add_filter( 'manage_nav-menus_columns', array( __CLASS__, '_columns' ), 99 );
 
 		self::$fields = array(
-			'field-01' => esc_html__( 'Custom Field #1', 'neat' ),
-			'field-02' => esc_html__( 'Custom Field #2', 'neat' ),
+			'field-01' => esc_html__( 'Custom Field #1', 'sprout' ),
+			'field-02' => esc_html__( 'Custom Field #2', 'sprout' ),
 		);
 	}
 

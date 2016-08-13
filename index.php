@@ -2,7 +2,7 @@
 /**
  * The blog index page.
  *
- * @package Neat
+ * @package Sprout
  */
 
 get_header();
@@ -13,8 +13,8 @@ get_header();
 	$current_page = max(1, get_query_var('paged'));
 	?>
 
-	<main class="neat-blocked-container">
-		<div class="neat-container-primary">
+	<main class="sprout-blocked-container">
+		<div class="sprout-container-primary">
 			<div class="row">
 				<div class="col-xs-12 <?php if($blog_layout === "1"): echo esc_attr('col-md-9'); ?><?php endif; ?>">
 
@@ -29,7 +29,7 @@ get_header();
 							 *
 							 * @link https://codex.WordPress.org/Template_Hierarchy
 							 *
-							 * @package Neat
+							 * @package Sprout
 							 */
 
 							$featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
@@ -75,8 +75,8 @@ get_header();
 									<div class="article-image">
 										<?php
 										$postId = get_post_thumbnail_id();
-										$img_src = wp_get_attachment_image_url( $postId, 'neat-blog-thumb' );
-										$img_srcset = wp_get_attachment_image_srcset( $postId, 'neat-blog-thumb' );
+										$img_src = wp_get_attachment_image_url( $postId, 'sprout-blog-thumb' );
+										$img_srcset = wp_get_attachment_image_srcset( $postId, 'sprout-blog-thumb' );
 										$img_alt = get_post_meta( $postId, '_wp_attachment_image_alt', 'true');
 										?>
 										<?php if(strlen($img_src) > 0): ?>
@@ -92,7 +92,7 @@ get_header();
 									</div>
 									<div class="article">
 										<?php if($count === 1 && $current_page === 1): ?>
-											<span class="article-latest"><?php echo esc_html__('LATEST NEWS', 'neat') ?></span>
+											<span class="article-latest"><?php echo esc_html__('LATEST NEWS', 'sprout') ?></span>
 										<?php endif; ?>
 										<h2 class="article-title">
 											<a href="<?php esc_url(the_permalink()); ?>">
@@ -110,9 +110,9 @@ get_header();
 												$excerpt = get_the_excerpt();
 												$excerpt_trim = wp_trim_words( $excerpt , '25' );?>
 												<p>
-													<?php echo wp_kses($excerpt_trim, 'neat'); ?>
+													<?php echo wp_kses($excerpt_trim, 'sprout'); ?>
 													<a class="moretag rounded-btn" href="<?php echo esc_url(the_permalink()) ?>">
-														<?php echo esc_html__('Read More', 'neat') ?>
+														<?php echo esc_html__('Read More', 'sprout') ?>
 													</a>
 												</p>
 											<?php else: ?>
@@ -122,7 +122,7 @@ get_header();
 											<?php
 											//paginated links inside post
 											wp_link_pages( array(
-												'before' => '<div class="neat_pagelinks">' . esc_html__( 'Pages:', 'neat' ),
+												'before' => '<div class="sprout_pagelinks">' . esc_html__( 'Pages:', 'sprout' ),
 												'after'  => '</div>',
 											) );
 											?>

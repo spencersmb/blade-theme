@@ -1,12 +1,12 @@
 <?php
-if ( !function_exists ('neat_custom_styles') ) {
+if ( !function_exists ('sprout_custom_styles') ) {
 
-function neat_custom_styles() {
+function sprout_custom_styles() {
 
-    global $post, $neat_theme_options;
+    global $post, $sprout_theme_options;
 
     //convert hex to rgb
-    function neat_hex2rgb($hex) {
+    function sprout_hex2rgb($hex) {
         $hex = str_replace("#", "", $hex);
 
         if(strlen($hex) == 3) {
@@ -34,23 +34,23 @@ function neat_custom_styles() {
     /***************************************************************/
 
     .content{
-    <?php if ( (isset($neat_theme_options['main_background']['background-color'])) ) : ?>
-        background-color:<?php echo esc_html($neat_theme_options['main_background']['background-color']); ?>;
+    <?php if ( (isset($sprout_theme_options['main_background']['background-color'])) ) : ?>
+        background-color:<?php echo esc_html($sprout_theme_options['main_background']['background-color']); ?>;
     <?php endif; ?>
-    <?php if ( (isset($neat_theme_options['main_background']['background-image']) ) && ($neat_theme_options['main_background']['background-image'] != "") ) : ?>
-        background-image:url(<?php echo esc_url($neat_theme_options['main_background']['background-image']); ?>);
+    <?php if ( (isset($sprout_theme_options['main_background']['background-image']) ) && ($sprout_theme_options['main_background']['background-image'] != "") ) : ?>
+        background-image:url(<?php echo esc_url($sprout_theme_options['main_background']['background-image']); ?>);
     <?php endif; ?>
-    <?php if ( (isset($neat_theme_options['main_background']['background-repeat'])) && ($neat_theme_options['main_background']['background-repeat'] != "") ) : ?>
-        background-repeat:<?php echo esc_html($neat_theme_options['main_background']['background-repeat']); ?>;
+    <?php if ( (isset($sprout_theme_options['main_background']['background-repeat'])) && ($sprout_theme_options['main_background']['background-repeat'] != "") ) : ?>
+        background-repeat:<?php echo esc_html($sprout_theme_options['main_background']['background-repeat']); ?>;
     <?php endif; ?>
-    <?php if ( (isset($neat_theme_options['main_background']['background-position'])) && ($neat_theme_options['main_background']['background-position'] != "") ) : ?>
-        background-position:<?php echo esc_html($neat_theme_options['main_background']['background-position']); ?>;
+    <?php if ( (isset($sprout_theme_options['main_background']['background-position'])) && ($sprout_theme_options['main_background']['background-position'] != "") ) : ?>
+        background-position:<?php echo esc_html($sprout_theme_options['main_background']['background-position']); ?>;
     <?php endif; ?>
-    <?php if ( (isset($neat_theme_options['main_background']['background-size'])) && ($neat_theme_options['main_background']['background-size'] != "") ) : ?>
-        background-size:<?php echo esc_html($neat_theme_options['main_background']['background-size']); ?>;
+    <?php if ( (isset($sprout_theme_options['main_background']['background-size'])) && ($sprout_theme_options['main_background']['background-size'] != "") ) : ?>
+        background-size:<?php echo esc_html($sprout_theme_options['main_background']['background-size']); ?>;
     <?php endif; ?>
-    <?php if ( (isset($neat_theme_options['main_background']['background-attachment'])) && ($neat_theme_options['main_background']['background-attachment'] != "") ) : ?>
-        background-attachment:<?php echo esc_html($neat_theme_options['main_background']['background-attachment']); ?>;
+    <?php if ( (isset($sprout_theme_options['main_background']['background-attachment'])) && ($sprout_theme_options['main_background']['background-attachment'] != "") ) : ?>
+        background-attachment:<?php echo esc_html($sprout_theme_options['main_background']['background-attachment']); ?>;
     <?php endif; ?>
     }
 
@@ -101,9 +101,9 @@ function neat_custom_styles() {
     .vc_btn3
     {
         font-family:
-        <?php if ($neat_theme_options['font_source'] == "3") echo '\'' . $neat_theme_options['main_typekit_font_face'] . '\','; ?>
-        <?php if ($neat_theme_options['font_source'] == "2") echo '\'' . $neat_theme_options['main_google_font_face'] . '\','; ?>
-        <?php if ($neat_theme_options['font_source'] == "1") echo '\'' . $neat_theme_options['main_font']['font-family'] . '\','; ?>
+        <?php if ($sprout_theme_options['font_source'] == "3") echo '\'' . $sprout_theme_options['main_typekit_font_face'] . '\','; ?>
+        <?php if ($sprout_theme_options['font_source'] == "2") echo '\'' . $sprout_theme_options['main_google_font_face'] . '\','; ?>
+        <?php if ($sprout_theme_options['font_source'] == "1") echo '\'' . $sprout_theme_options['main_font']['font-family'] . '\','; ?>
             sans-serif;
     }
     <?php //endif; ?>
@@ -121,9 +121,9 @@ function neat_custom_styles() {
     .wp-caption-text
     {
         font-family:
-        <?php if ($neat_theme_options['font_source'] == "3") echo '\'' . $neat_theme_options['secondary_typekit_font_face'] . '\','; ?>
-        <?php if ($neat_theme_options['font_source'] == "2") echo '\'' . $neat_theme_options['secondary_google_font_face'] . '\','; ?>
-        <?php if ($neat_theme_options['font_source'] == "1") echo '\'' . $neat_theme_options['secondary_font']['font-family'] . '\','; ?>
+        <?php if ($sprout_theme_options['font_source'] == "3") echo '\'' . $sprout_theme_options['secondary_typekit_font_face'] . '\','; ?>
+        <?php if ($sprout_theme_options['font_source'] == "2") echo '\'' . $sprout_theme_options['secondary_google_font_face'] . '\','; ?>
+        <?php if ($sprout_theme_options['font_source'] == "1") echo '\'' . $sprout_theme_options['secondary_font']['font-family'] . '\','; ?>
             sans-serif;
     }
     <?php //endif; ?>
@@ -135,8 +135,8 @@ function neat_custom_styles() {
 
     <?php
     if (
-        (isset($neat_theme_options['body_color'])) &&
-        (trim($neat_theme_options['body_color']) != "" )
+        (isset($sprout_theme_options['body_color'])) &&
+        (trim($sprout_theme_options['body_color']) != "" )
         ) : ?>
     body,
     table tr th,
@@ -150,12 +150,12 @@ function neat_custom_styles() {
     .nav-previous a,
     .blog-single h6,
     {
-        color: <?php echo esc_html($neat_theme_options['body_color']); ?>;
+        color: <?php echo esc_html($sprout_theme_options['body_color']); ?>;
     }
 
     .post_tags a
     {
-        color: rgba(<?php echo neat_hex2rgb($neat_theme_options['body_color']); ?>,0.4);
+        color: rgba(<?php echo sprout_hex2rgb($sprout_theme_options['body_color']); ?>,0.4);
     }
 
     input[type="text"],
@@ -170,7 +170,7 @@ function neat_custom_styles() {
     textarea,
     select
     {
-        border-color: rgba(<?php echo neat_hex2rgb($neat_theme_options['body_color']); ?>,0.1);
+        border-color: rgba(<?php echo sprout_hex2rgb($sprout_theme_options['body_color']); ?>,0.1);
     }
 
     input[type="text"]:focus, input[type="password"]:focus,
@@ -181,16 +181,16 @@ function neat_custom_styles() {
     input[type="tel"]:focus, input[type="time"]:focus,
     input[type="url"]:focus, textarea:focus,
     select:focus{
-        border-color: rgba(<?php echo neat_hex2rgb($neat_theme_options['body_color']); ?>,0.15);
+        border-color: rgba(<?php echo sprout_hex2rgb($sprout_theme_options['body_color']); ?>,0.15);
     }
 
     table tr td{
-        border-top-color: rgba(<?php echo neat_hex2rgb($neat_theme_options['body_color']); ?>,0.15);
+        border-top-color: rgba(<?php echo sprout_hex2rgb($sprout_theme_options['body_color']); ?>,0.15);
     }
 
     .comments_section
     {
-        background-color: rgba(<?php echo neat_hex2rgb($neat_theme_options['body_color']); ?>,0.01) !important;
+        background-color: rgba(<?php echo sprout_hex2rgb($sprout_theme_options['body_color']); ?>,0.01) !important;
     }
 
     .vc_row {
@@ -208,12 +208,12 @@ function neat_custom_styles() {
     /***************************************************************/
 
     <?php if (
-        (isset($neat_theme_options['headings_color'])) &&
-        (trim($neat_theme_options['headings_color']) != "" ) ) :
+        (isset($sprout_theme_options['headings_color'])) &&
+        (trim($sprout_theme_options['headings_color']) != "" ) ) :
     ?>
     h1, h2, h3, h4, h5, h6,
     .entry-title-archive a{
-        color: <?php echo esc_html($neat_theme_options['headings_color']); ?>;
+        color: <?php echo esc_html($sprout_theme_options['headings_color']); ?>;
     }
     <?php endif; ?>
 
@@ -222,8 +222,8 @@ function neat_custom_styles() {
     /***************************************************************/
 
     <?php if (
-        (isset($neat_theme_options['main_color'])) &&
-        (trim($neat_theme_options['main_color']) != "" ) ) :
+        (isset($sprout_theme_options['main_color'])) &&
+        (trim($sprout_theme_options['main_color']) != "" ) ) :
     ?>
     a,
     .comments-area a,
@@ -235,7 +235,7 @@ function neat_custom_styles() {
     .comment-edit-link,
     .rounded-btn
     {
-        color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+        color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
     }
 
     a:hover,
@@ -245,7 +245,7 @@ function neat_custom_styles() {
     .entry-title-archive a:hover,
     .list-centered a:hover,
     .edit-link:hover{
-        color: rgba(<?php echo neat_hex2rgb($neat_theme_options['main_color']); ?>,0.8);
+        color: rgba(<?php echo sprout_hex2rgb($sprout_theme_options['main_color']); ?>,0.8);
     }
 
     a:focus,
@@ -255,7 +255,7 @@ function neat_custom_styles() {
     .entry-title-archive a:focus,
     .list-centered a:focus,
     .edit-link:focus{
-        color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+        color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
     }
 
     .button,
@@ -269,10 +269,10 @@ function neat_custom_styles() {
     .hero,
     .faq-trigger::before, .faq-trigger::after
     {
-        background-color: <?php echo esc_html($neat_theme_options['main_color']) ?>;
+        background-color: <?php echo esc_html($sprout_theme_options['main_color']) ?>;
     }
     .rounded-btn:focus{
-        color:<?php echo esc_html($neat_theme_options['main_color']) ?>;
+        color:<?php echo esc_html($sprout_theme_options['main_color']) ?>;
     }
 
     .filled{
@@ -286,7 +286,7 @@ function neat_custom_styles() {
     input[type="button"]:hover,
     input[type="reset"]:hover,
     input[type="submit"]:hover{
-        background: rgba(<?php echo neat_hex2rgb($neat_theme_options['main_color']); ?>,0.8) !important;
+        background: rgba(<?php echo sprout_hex2rgb($sprout_theme_options['main_color']); ?>,0.8) !important;
     }
 
     .post_tags a:hover,
@@ -307,12 +307,12 @@ function neat_custom_styles() {
     .dhvc-form-flat .dhvc-form-textarea textarea:focus,
     .dhvc-form-flat .dhvc-form-radio input:checked + i
     {
-        border-color: <?php echo esc_attr($neat_theme_options['main_color']) ?>;
+        border-color: <?php echo esc_attr($sprout_theme_options['main_color']) ?>;
     }
 
     .dhvc-form-flat .dhvc-form-checkbox input:checked + i
     {
-        border-color: <?php echo esc_attr($neat_theme_options['main_color'])?> !important;
+        border-color: <?php echo esc_attr($sprout_theme_options['main_color'])?> !important;
     }
 
     /* Override for dhvc-plugin *****/
@@ -326,7 +326,7 @@ function neat_custom_styles() {
 
     /* Override breadcrumbs function output *****/
     .breadcrumb-trail .item-current span {
-        color: <?php echo esc_html($neat_theme_options['main_color']); ?> !important;
+        color: <?php echo esc_html($sprout_theme_options['main_color']); ?> !important;
     }
 
     /* Override breadcrumbs function output *****/
@@ -341,17 +341,17 @@ function neat_custom_styles() {
     }
 
     @media only screen and (min-width: 62em) {
-        #header .neat-dropdown-content > li:not(.service-dropdown) > a:hover{
-            color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+        #header .sprout-dropdown-content > li:not(.service-dropdown) > a:hover{
+            color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
         }
-        #header .neat-dropdown-content > li:not(.service-dropdown) > a:hover::after,
-        #header .neat-dropdown-content > li:not(.service-dropdown) > a:hover::before,
-        #header .neat-dropdown-content ul a{
-            background: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+        #header .sprout-dropdown-content > li:not(.service-dropdown) > a:hover::after,
+        #header .sprout-dropdown-content > li:not(.service-dropdown) > a:hover::before,
+        #header .sprout-dropdown-content ul a{
+            background: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
         }
 
-        #header .neat-dropdown-content ul a:hover{
-            background: <?php echo esc_attr($neat_theme_options['nav_hover_color']); ?>;
+        #header .sprout-dropdown-content ul a:hover{
+            background: <?php echo esc_attr($sprout_theme_options['nav_hover_color']); ?>;
         }
     }
 
@@ -361,10 +361,10 @@ function neat_custom_styles() {
     /* 	Header/Navigation *****************************************************/
     /***************************************************************/
 
-    <?php if ( (isset($neat_theme_options['main_header_background_color'])) ) : ?>
+    <?php if ( (isset($sprout_theme_options['main_header_background_color'])) ) : ?>
 
     #header{
-        background-color:<?php echo esc_attr($neat_theme_options['main_header_background_color']); ?>;
+        background-color:<?php echo esc_attr($sprout_theme_options['main_header_background_color']); ?>;
     }
     <?php endif; ?>
 
@@ -372,36 +372,36 @@ function neat_custom_styles() {
     /* 	Header Logo *****************************************************/
     /***************************************************************/
 
-    <?php if ( (isset($neat_theme_options['spacing_above_logo'])) ) :
-                $spacing_above_logo = $neat_theme_options['spacing_above_logo'];
+    <?php if ( (isset($sprout_theme_options['spacing_above_logo'])) ) :
+                $spacing_above_logo = $sprout_theme_options['spacing_above_logo'];
             else:
                 $spacing_above_logo = 0;
             endif;
     ?>
 
-    <?php if ( (isset($neat_theme_options['spacing_below_logo'])) ) :
-                $spacing_below_logo = $neat_theme_options['spacing_below_logo'];
+    <?php if ( (isset($sprout_theme_options['spacing_below_logo'])) ) :
+                $spacing_below_logo = $sprout_theme_options['spacing_below_logo'];
             else:
                 $spacing_below_logo = 0;
             endif;
     ?>
 
-    <?php if ( (isset($neat_theme_options['logo_height'])) ) :
+    <?php if ( (isset($sprout_theme_options['logo_height'])) ) :
 
-            $logo_height = $neat_theme_options['logo_height'] + 15;
-            $logo_height__laptop = $neat_theme_options['logo_height'];
+            $logo_height = $sprout_theme_options['logo_height'] + 15;
+            $logo_height__laptop = $sprout_theme_options['logo_height'];
             $logo_height__mobile = $logo_height - ($spacing_above_logo + $spacing_below_logo);
 
             ?>
 
             .navbar-dropdown,
-            .neat-dropdown-wrapper,
+            .sprout-dropdown-wrapper,
             .footer-logo,
             .footer-logo .navbar-brand
             {
                 height: <?php echo esc_attr($logo_height)?>px;
             }
-            .neat-dropdown-content {
+            .sprout-dropdown-content {
                 padding-top: <?php echo esc_attr($logo_height)?>px;
             }
 
@@ -413,11 +413,11 @@ function neat_custom_styles() {
                 ?>
 
             .navbar-dropdown,
-            .neat-dropdown-wrapper {
+            .sprout-dropdown-wrapper {
                 height: <?php echo esc_attr($logo_height)?>px;
             }
 
-            .neat-dropdown-content {
+            .sprout-dropdown-content {
                 padding-top: <?php echo esc_attr($logo_height)?>px;
             }
 
@@ -440,15 +440,15 @@ function neat_custom_styles() {
 
     <?php endif; ?>
 
-    <?php if ( (isset($neat_theme_options['spacing_left_logo'])) ) :
-                $spacing_left_logo = $neat_theme_options['spacing_left_logo'];
+    <?php if ( (isset($sprout_theme_options['spacing_left_logo'])) ) :
+                $spacing_left_logo = $sprout_theme_options['spacing_left_logo'];
             else:
                 $spacing_left_logo = 15;
             endif;
     ?>
 
-    <?php if ( (isset($neat_theme_options['main_header_font_color'])) ) :
-            $navFontColor = $neat_theme_options['main_header_font_color'];
+    <?php if ( (isset($sprout_theme_options['main_header_font_color'])) ) :
+            $navFontColor = $sprout_theme_options['main_header_font_color'];
         else:
             $navFontColor = "#000";
         endif;
@@ -498,9 +498,9 @@ function neat_custom_styles() {
             height: <?php echo esc_attr($logo_height)?>px;
         }
 
-        <?php if ( (isset($neat_theme_options['main_header_font_size'])) ) :
+        <?php if ( (isset($sprout_theme_options['main_header_font_size'])) ) :
         
-            $fontSize = $neat_theme_options['main_header_font_size'];
+            $fontSize = $sprout_theme_options['main_header_font_size'];
 
             else:
 
@@ -528,33 +528,33 @@ function neat_custom_styles() {
             $implodeRem = implode(".", $remDec);
         ?>
 
-        .neat-dropdown-content a{
+        .sprout-dropdown-content a{
             text-transform: uppercase;
             font-weight: 600;
-            color: rgba(<?php echo neat_hex2rgb($navFontColor); ?>,1);
+            color: rgba(<?php echo sprout_hex2rgb($navFontColor); ?>,1);
         }
-        .neat-dropdown-content .menu-item-has-children > a,
-        .neat-dropdown-content ul .menu-item-has-children > a {
+        .sprout-dropdown-content .menu-item-has-children > a,
+        .sprout-dropdown-content ul .menu-item-has-children > a {
             padding-top: <?php echo esc_attr($li_padding)?>px;
             padding-bottom: <?php echo esc_attr($li_padding)?>px;
         }
-        .neat-dropdown-content .menu-item-has-children > a::after,
-        .neat-dropdown-content .menu-item-has-children > a::before,
-        .neat-dropdown-content ul .menu-item-has-children > a::after,
-        .neat-dropdown-content ul .menu-item-has-children > a::before {
+        .sprout-dropdown-content .menu-item-has-children > a::after,
+        .sprout-dropdown-content .menu-item-has-children > a::before,
+        .sprout-dropdown-content ul .menu-item-has-children > a::after,
+        .sprout-dropdown-content ul .menu-item-has-children > a::before {
             top: <?php echo esc_attr($li_caret_top)?>px;
         }
 
-        .neat-dropdown-content .menu-item-has-children > a::after,
-        .neat-dropdown-content .menu-item-has-children > a::before{
-            background: rgba(<?php echo neat_hex2rgb($navFontColor); ?>,1);
+        .sprout-dropdown-content .menu-item-has-children > a::after,
+        .sprout-dropdown-content .menu-item-has-children > a::before{
+            background: rgba(<?php echo sprout_hex2rgb($navFontColor); ?>,1);
         }
 
-        #header .neat-dropdown-content ul a{
-            background: <?php echo esc_attr($neat_theme_options['nav_item_color']);?>;
+        #header .sprout-dropdown-content ul a{
+            background: <?php echo esc_attr($sprout_theme_options['nav_item_color']);?>;
         }
-        #header .neat-dropdown-content ul a:hover {
-            background: <?php echo esc_attr($neat_theme_options['nav_hover_color']);?>;
+        #header .sprout-dropdown-content ul a:hover {
+            background: <?php echo esc_attr($sprout_theme_options['nav_hover_color']);?>;
         }
     }
 
@@ -570,17 +570,17 @@ function neat_custom_styles() {
     footer .widget h6,
     footer .hours-widget h6:before
     {
-        color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+        color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
     }
     .input-mail .icon {
-        background: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+        background: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
     }
     .tagcloud a{
-        border-color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+        border-color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
     }
 
     .tagcloud a:hover {
-        background-color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+        background-color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
     }
 
     /***************************************************************/
@@ -588,8 +588,8 @@ function neat_custom_styles() {
     /***************************************************************/
 
     <?php if (
-        (isset($neat_theme_options['footer_texts_color'])) &&
-        (trim($neat_theme_options['footer_texts_color']) != "" ) ) :
+        (isset($sprout_theme_options['footer_texts_color'])) &&
+        (trim($sprout_theme_options['footer_texts_color']) != "" ) ) :
     ?>
     footer h1,
     footer h2,
@@ -599,42 +599,42 @@ function neat_custom_styles() {
     footer h6,
     footer p
     {
-        color: <?php echo esc_html($neat_theme_options['footer_texts_color']); ?>;
+        color: <?php echo esc_html($sprout_theme_options['footer_texts_color']); ?>;
     }
     <?php endif; ?>
 
     <?php if (
-        (isset($neat_theme_options['footer_background_color'])) &&
-        (trim($neat_theme_options['footer_background_color']) != "" ) ) :
+        (isset($sprout_theme_options['footer_background_color'])) &&
+        (trim($sprout_theme_options['footer_background_color']) != "" ) ) :
     ?>
     footer
     {
-        background-color: <?php echo esc_html($neat_theme_options['footer_background_color']); ?>;
+        background-color: <?php echo esc_html($sprout_theme_options['footer_background_color']); ?>;
     }
     <?php endif; ?>
 
     <?php if (
-        (isset($neat_theme_options['footer_links_color'])) &&
-        (trim($neat_theme_options['footer_links_color']) != "" ) ) :
+        (isset($sprout_theme_options['footer_links_color'])) &&
+        (trim($sprout_theme_options['footer_links_color']) != "" ) ) :
     ?>
     footer a
     {
-        color: <?php echo esc_html($neat_theme_options['footer_links_color']); ?>;
+        color: <?php echo esc_html($sprout_theme_options['footer_links_color']); ?>;
     }
 
     .footer-bottom{
-        border-color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+        border-color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
     }
     .copyright a{
-        color: <?php echo esc_html($neat_theme_options['main_color']); ?>;
+        color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
     }
     <?php endif; ?>
 
-    <?php if ( (isset($neat_theme_options['custom_css'])) && (trim($neat_theme_options['custom_css']) != "" ) ) : ?>
+    <?php if ( (isset($sprout_theme_options['custom_css'])) && (trim($sprout_theme_options['custom_css']) != "" ) ) : ?>
 /********************************************************************/
     /* Custom CSS *******************************************************/
     /********************************************************************/
-        <?php echo esc_attr($neat_theme_options['custom_css']) ?>
+        <?php echo esc_attr($sprout_theme_options['custom_css']) ?>
     <?php endif; ?>
 
 </style>
@@ -646,6 +646,6 @@ function neat_custom_styles() {
 //foreach ($lines as $i => $line) { if(!empty($line)) $new_lines[] = trim($line); }
 //echo implode($new_lines);
 
-} //neat_custom_styles
+} //sprout_custom_styles
 } //if
-?><?php add_action( 'wp_head', 'neat_custom_styles', 99 ); ?>
+?><?php add_action( 'wp_head', 'sprout_custom_styles', 99 ); ?>

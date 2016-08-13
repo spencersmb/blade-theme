@@ -59,7 +59,7 @@ if($thisindex - 1 === -1){
                     }else{
                         $get_image = get_field_object( 'gallery_square_image', $previd);
                     }
-                    $featured_image_prev = $get_image['value']['sizes']['neat-gallery-thumb-sm'];
+                    $featured_image_prev = $get_image['value']['sizes']['sprout-gallery-thumb-sm'];
 
 
                     $title = get_the_title($previd);
@@ -72,8 +72,8 @@ if($thisindex - 1 === -1){
         style="background-image: url('. esc_url($featured_image_prev) .')"></div>
     <div class="post-nav-overlay"></div>
     <div class="post-nav-content">
-        <div class="post-nav-subtitle">'. esc_html__('Prev Project', 'neat') .'</div>
-        <h2 class="post-nav-title"><span>'. wp_kses($title, 'neat') .'</span></h2>
+        <div class="post-nav-subtitle">'. esc_html__('Prev Project', 'sprout') .'</div>
+        <h2 class="post-nav-title"><span>'. wp_kses($title, 'sprout') .'</span></h2>
     </div>
     <a href="'. esc_url($link) .'"></a>';
 
@@ -88,7 +88,7 @@ if($thisindex - 1 === -1){
                     $last = new WP_Query($args); $last->the_post();
                     $title = get_the_title();
                     $get_image = get_field_object( 'gallery_square_image', $post->ID);
-                    $featured_image_prev = $get_image['value']['sizes']['neat-gallery-thumb-sm'];
+                    $featured_image_prev = $get_image['value']['sizes']['sprout-gallery-thumb-sm'];
                     $link = get_permalink($post->ID);
 
                     echo '
@@ -97,8 +97,8 @@ if($thisindex - 1 === -1){
         style="background-image: url('. esc_url($featured_image_prev) .')"></div>
     <div class="post-nav-overlay"></div>
     <div class="post-nav-content">
-        <div class="post-nav-subtitle">'. esc_html__('Prev Project', 'neat') .'</div>
-        <h2 class="post-nav-title"><span>'. wp_kses($title, 'neat') .'</span></h2>
+        <div class="post-nav-subtitle">'. esc_html__('Prev Project', 'sprout') .'</div>
+        <h2 class="post-nav-title"><span>'. wp_kses($title, 'sprout') .'</span></h2>
     </div>
     <a href="'. esc_url($link) .'"></a>';
 
@@ -117,7 +117,7 @@ if($thisindex - 1 === -1){
                     }else{
                         $get_image = get_field_object( 'gallery_square_image', $nextid);
                     }
-                    $featured_image_next = $get_image['value']['sizes']['neat-gallery-thumb-sm'];
+                    $featured_image_next = $get_image['value']['sizes']['sprout-gallery-thumb-sm'];
                     $title = get_the_title($nextid);
                     $link = get_permalink($nextid);
 
@@ -127,8 +127,8 @@ if($thisindex - 1 === -1){
         style="background-image: url('.  esc_url($featured_image_next) .')"></div>
     <div class="post-nav-overlay"></div>
     <div class="post-nav-content">
-        <div class="post-nav-subtitle">'. esc_html__('Next Project', 'neat') .'</div>
-        <h2 class="post-nav-title"><span>'. wp_kses($title, 'neat') .'</span></h2>
+        <div class="post-nav-subtitle">'. esc_html__('Next Project', 'sprout') .'</div>
+        <h2 class="post-nav-title"><span>'. wp_kses($title, 'sprout') .'</span></h2>
     </div>
     <a href="'. esc_url($link) .'"></a>';
 
@@ -144,7 +144,7 @@ if($thisindex - 1 === -1){
                     $first = new WP_Query($args); $first->the_post();
                     $title = get_the_title();
                     $get_image = get_field_object( 'gallery_square_image', $post->ID);
-                    $featured_image_prev = $get_image['value']['sizes']['neat-gallery-thumb-sm'];
+                    $featured_image_prev = $get_image['value']['sizes']['sprout-gallery-thumb-sm'];
                     $link = get_permalink($post->ID);
 
                     echo '
@@ -153,8 +153,8 @@ if($thisindex - 1 === -1){
         style="background-image: url('. esc_url($featured_image_prev) .')"></div>
     <div class="post-nav-overlay"></div>
     <div class="post-nav-content">
-        <div class="post-nav-subtitle">'. esc_html__('Next Project', 'neat') .'</div>
-        <h2 class="post-nav-title"><span>'.  wp_kses($title, 'neat') .'</span></h2>
+        <div class="post-nav-subtitle">'. esc_html__('Next Project', 'sprout') .'</div>
+        <h2 class="post-nav-title"><span>'.  wp_kses($title, 'sprout') .'</span></h2>
     </div>
     <a href="'. esc_url($link) .'"></a>';
 

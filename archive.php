@@ -4,7 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Neat
+ * @package Sprout
  */
 $blog_layout = get_redux_options('main_blog_layout');
 get_header(); ?>
@@ -46,7 +46,7 @@ get_header(); ?>
 			</section>
 			<!-- /header block -->
 
-			<section class="container neat-container-single">
+			<section class="container sprout-container-single">
 
 				<div class="col-xs-12 m-page scene_element scene_element--fadeinup">
 

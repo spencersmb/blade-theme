@@ -2,7 +2,7 @@
 /**
  * The template for displaying 404 pages (not found).
  *
- * @package Neat
+ * @package Sprout
  */
 
 get_header(); ?>
@@ -27,8 +27,8 @@ get_header(); ?>
 							<img class="img-responsive"
 								src="<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/assets/images/error_404.png"
 								alt="error">
-							<h2 class="hero-title"><?php echo esc_html__( 'Cut it out!', 'neat' ); ?></h2>
-							<h3 class="hero-subtitle"><?php echo esc_html__( 'You&rsquo;ve reached a 404 page.', 'neat' ); ?></h3>
+							<h2 class="hero-title"><?php echo esc_html__( 'Cut it out!', 'sprout' ); ?></h2>
+							<h3 class="hero-subtitle"><?php echo esc_html__( 'You&rsquo;ve reached a 404 page.', 'sprout' ); ?></h3>
 
 						</div>
 						<!-- end hero-content-inner -->
@@ -43,11 +43,11 @@ get_header(); ?>
 		</section>
 		<!-- /header block -->
 
-		<section class="container neat-container-single">
+		<section class="container sprout-container-single">
 
 			<div class="col-xs-12 m-page scene_element scene_element--fadeinup">
 				<div class="search-page">
-					<h4><?php echo esc_html__( 'It looks like nothing was found at this location. Maybe try search...', 'neat' ); ?></h4>
+					<h4><?php echo esc_html__( 'It looks like nothing was found at this location. Maybe try search...', 'sprout' ); ?></h4>
 					<?php get_search_form(); ?>
 				</div>
 

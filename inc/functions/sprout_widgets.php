@@ -17,10 +17,10 @@ if ( ! defined( 'WPINC' ) ) { die; }
  *
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
-function neat_widgets_init() {
+function sprout_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'neat' ),
-		'id'            => 'neat_sidebar_1',
+		'name'          => esc_html__( 'Sidebar', 'sprout' ),
+		'id'            => 'sprout_sidebar_1',
 		'description'   => 'General sidebar used in the blog',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
@@ -28,8 +28,8 @@ function neat_widgets_init() {
 		'after_title'   => '</h6>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer', 'neat' ),
-		'id'            => 'neat_footer',
+		'name'          => esc_html__( 'Footer', 'sprout' ),
+		'id'            => 'sprout_footer',
 		'description'   => 'Sidebar used in the footer',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
@@ -37,8 +37,8 @@ function neat_widgets_init() {
 		'after_title'   => '</h6>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Service Sidebar', 'neat' ),
-		'id'            => 'neat_service_bar',
+		'name'          => esc_html__( 'Service Sidebar', 'sprout' ),
+		'id'            => 'sprout_service_bar',
 		'description'   => 'Sidebar designed specifically for service pages',
 		'before_widget' => '<aside id="%1$s" class="service-widget widget %2$s">',
 		'after_widget'  => '</aside>',
@@ -46,8 +46,8 @@ function neat_widgets_init() {
 		'after_title'   => '</h6>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Page Sidebar', 'neat' ),
-		'id'            => 'neat_page_sidebar',
+		'name'          => esc_html__( 'Page Sidebar', 'sprout' ),
+		'id'            => 'sprout_page_sidebar',
 		'description'   => 'Small sidebar used inside static pages',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
@@ -55,13 +55,13 @@ function neat_widgets_init() {
 		'after_title'   => '</h6>',
 	) );
 }
-add_action( 'widgets_init', 'neat_widgets_init' );
+add_action( 'widgets_init', 'sprout_widgets_init' );
 
-function neat_footer_col_count($params) {
+function sprout_footer_col_count($params) {
 
 	$sidebar_id = $params[0]['id'];
 
-	if ( $sidebar_id == 'neat_footer' ) {
+	if ( $sidebar_id == 'sprout_footer' ) {
 
 		$total_widgets = wp_get_sidebars_widgets();
 		$sidebar_widgets = count($total_widgets[$sidebar_id]);
@@ -86,4 +86,4 @@ function neat_footer_col_count($params) {
 
 	return $params;
 }
-add_filter('dynamic_sidebar_params','neat_footer_col_count');
+add_filter('dynamic_sidebar_params','sprout_footer_col_count');

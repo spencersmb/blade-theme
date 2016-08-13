@@ -2,7 +2,7 @@
 /**
  * The template for displaying all single posts.
  *
- * @package Neat
+ * @package Sprout
  */
 $blog_layout = get_redux_options('main_blog_layout');
 get_header(); ?>
@@ -14,7 +14,7 @@ get_header(); ?>
 				<?php
 
 				$css_array = array(
-					'neat-single'
+					'sprout-single'
 				);
 
 				// Setup Images
@@ -59,9 +59,9 @@ get_header(); ?>
 										$comments_count = wp_count_comments( $post->ID );
 										$total_comments = $comments_count->total_comments;
 									?>
-									<span class="post-time"><i class="fa fa-clock-o fa-lg"></i><?php echo wp_kses($date, 'neat') ?></span>
+									<span class="post-time"><i class="fa fa-clock-o fa-lg"></i><?php echo wp_kses($date, 'sprout') ?></span>
 									<?php if($total_comments > 0 ): ?>
-										<span class="post-comments-count"><i class="fa fa-comments-o fa-lg"></i><?php echo wp_kses($total_comments, 'neat'); ?> Comments</span>
+										<span class="post-comments-count"><i class="fa fa-comments-o fa-lg"></i><?php echo wp_kses($total_comments, 'sprout'); ?> Comments</span>
 									<?php endif; ?>
 								</div>
 
@@ -72,7 +72,7 @@ get_header(); ?>
 				</div>
 				<!-- end hero section -->
 
-				<div class="container neat-container-single">
+				<div class="container sprout-container-single">
 
 					<?php if($blog_layout === "1"): ?>
 						<div class="col-xs-12 col-md-8 col-lg-9 m-page scene_element scene_element--fadeinup">
@@ -84,7 +84,7 @@ get_header(); ?>
 						<article id="post-<?php the_ID(); ?>" <?php post_class($css_array); ?> >
 						<?php get_template_part( 'assets/views/content', 'single' ); ?>
 
-						<?php neat_the_post_navigation(); ?>
+						<?php sprout_the_post_navigation(); ?>
 
 						<?php
 						// If comments are open or we have at least one comment, load up the comment template
@@ -101,7 +101,7 @@ get_header(); ?>
 						</div><!-- /sidebar - container -->
 					<?php endif; ?>
 
-				</div><!-- /.neat-container-single -->
+				</div><!-- /.sprout-container-single -->
 
 				<?php endwhile; // end of the loop. ?>
 

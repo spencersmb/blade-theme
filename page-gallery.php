@@ -54,7 +54,7 @@ get_header();
 
                             <li class="filter-item"
                                 data-filter=".<?php echo strtolower(esc_attr($filter)); ?>">
-                                <?php echo wp_kses($filter, 'neat') ?><span></span></li>
+                                <?php echo wp_kses($filter, 'sprout') ?><span></span></li>
 
                         <?php endforeach; ?>
                     </ul>
@@ -133,7 +133,7 @@ get_header();
                     $image_wide_preview = get_field('gallery_wide_image');
 
                     // Set image sizes
-                    $image_small = $image['sizes']['neat-square'];
+                    $image_small = $image['sizes']['sprout-square'];
                     $image_wide = $image_wide_preview['url'];
                     $image_large = $image['url'];
 
@@ -153,7 +153,7 @@ get_header();
                     $css_filter_names = join(' ', $filter_arr ) ;
 
                     //Get tags
-                    $tags = neat_get_postTags_string($post->ID);
+                    $tags = sprout_get_postTags_string($post->ID);
 
                     //Add css names for gallery sizing
                     switch ($gallery_type) {
@@ -227,19 +227,19 @@ get_header();
                             switch ($masonry_size) {
 
                                 case 'wide':
-                                    $img_wide_preview = $image_wide_preview['sizes']['neat-square'];
+                                    $img_wide_preview = $image_wide_preview['sizes']['sprout-square'];
                                     echo'
                                 <img
                                     class="img-responsive"
                                     src="'. esc_url($img_wide_preview) .'"
-                                    alt="'. wp_kses($image_alt, 'neat') .'" />
+                                    alt="'. wp_kses($image_alt, 'sprout') .'" />
                                 ';
 
                                     break;
 
                                 default:
                                     echo'
-                                    <img class="img-responsive" src="'. esc_url($image_small) .'" alt="'. wp_kses($image_alt, 'neat') .'" />
+                                    <img class="img-responsive" src="'. esc_url($image_small) .'" alt="'. wp_kses($image_alt, 'sprout') .'" />
                                     ';
 
                             }

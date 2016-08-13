@@ -24,10 +24,6 @@ Development of this plugin is done on [GitHub](https://github.com/kucrut/wp-menu
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 
-= Usage =
-Copy (and customize) and include the `neat.php` file found in the `doc/` directory of this plugin into your plugin/theme.
-
-
 == Changelog ==
 = 0.3.0 =
 * Use `wp_nav_menu_item_custom_fields` as walker hook. See this [blog post](http://shazdeh.me/2014/06/25/custom-fields-nav-menu-items/).

@@ -7,7 +7,7 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @package Neat
+ * @package Sprout
  */
 
 get_header();
@@ -23,7 +23,7 @@ $page_layout = get_redux_options('main_page_layout'); ?>
 		<div class="row">
 
 			<!-- page.php -->
-			<div class="neat-page-wrapper">
+			<div class="sprout-page-wrapper">
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
@@ -39,7 +39,7 @@ $page_layout = get_redux_options('main_page_layout'); ?>
 
 				<?php endwhile; // end of the loop. ?>
 
-			</div><!-- /.neat-page-wrapper -->
+			</div><!-- /.sprout-page-wrapper -->
 
 		</div><!-- /.row -->
 		

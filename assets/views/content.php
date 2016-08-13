@@ -4,7 +4,7 @@
  *
  * @link https://codex.WordPress.org/Template_Hierarchy
  *
- * @package Neat
+ * @package Sprout
  */
 $post_classes = array(
 	'col-xs-12',
@@ -53,7 +53,7 @@ $has_excerpt = has_excerpt();
 
 				<a class="post-thumb-link" href="<?php esc_url(the_permalink()); ?>"></a>
 				<h2 class="post-thumb-title"><a href="<?php esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h2>
-				<button class="read-more rounded-btn white-btn btn-sm"><?php echo esc_html__('View Service', 'neat') ?></button>
+				<button class="read-more rounded-btn white-btn btn-sm"><?php echo esc_html__('View Service', 'sprout') ?></button>
 
 					<?php if($has_excerpt): ?>
 						<div class="post-thumb-excerpt">

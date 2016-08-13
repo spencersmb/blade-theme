@@ -49,6 +49,3 @@ if ( ! class_exists( 'Menu_Item_Custom_Fields' ) ) :
 	}
 	add_action( 'wp_loaded', array( 'Menu_Item_Custom_Fields', 'load' ), 9 );
 endif; // class_exists( 'Menu_Item_Custom_Fields' )
-
-// Uncomment the following line to test this plugin
-#require_once get_template_directory() . 'inc/custom-menu/menu-item-custom-fields/doc/neat.php';

@@ -2,7 +2,7 @@
 /**
  * The template for displaying search results pages.
  *
- * @package Neat
+ * @package Sprout
  */
 
 get_header();
@@ -23,7 +23,7 @@ $blog_layout = get_redux_options('main_blog_layout');
 		<div class="hero-wrapper">
 			<div class="hero-content">
 				<div class="hero-content-inner">
-					<h2 class="page-title"><?php printf( __( 'Search Results for: %s', 'neat' ), '<span>' . esc_html( get_search_query() ) . '</span>' ); ?></h2>
+					<h2 class="page-title"><?php printf( __( 'Search Results for: %s', 'sprout' ), '<span>' . esc_html( get_search_query() ) . '</span>' ); ?></h2>
 
 				</div><!-- /.hero-content-inner -->
 				
@@ -33,7 +33,7 @@ $blog_layout = get_redux_options('main_blog_layout');
 		
 	</div><!-- /.hero section -->
 	
-	<div class="container neat-container-primary">
+	<div class="container sprout-container-primary">
 		<div class="row">
 			<div class="col-xs-12">
 
@@ -60,8 +60,8 @@ $blog_layout = get_redux_options('main_blog_layout');
 			
 		</div><!-- /.row -->
 		
-	</div><!-- /.neat-primary-container -->
+	</div><!-- /.sprout-primary-container -->
 	
-</section><!-- /.neat-search -->
+</section><!-- /.sprout-search -->
 
 <?php get_footer(); ?>

@@ -2,16 +2,16 @@
 /**
  * The sidebar containing the main widget area.
  *
- * @package Neat
+ * @package Sprout
  */
 
-if ( ! is_active_sidebar( 'neat_sidebar_1' ) ) {
+if ( ! is_active_sidebar( 'sprout_sidebar_1' ) ) {
 	return;
 }
 ?>
 
-<aside class="neat-sidebar m-right-panel m-page scene_element scene_element--fadeinright">
+<aside class="sprout-sidebar m-right-panel m-page scene_element scene_element--fadeinright">
 
-	<?php dynamic_sidebar( 'neat_sidebar_1' ); ?>
+	<?php dynamic_sidebar( 'sprout_sidebar_1' ); ?>
 
-</aside><!-- /.neat-sidebar -->
+</aside><!-- /.sprout-sidebar -->

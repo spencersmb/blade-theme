@@ -120,15 +120,15 @@ a.rounded-btn {
 }
 
 .tag-btn{
-    border: 1px solid $primary-color;
+    border: 2px solid $primary-color;
     font-size: 11px !important;
     font-size: 1.1rem !important;
     border-radius: 25px;
-    padding: .65rem 1.5rem .6rem;
+    padding: 0.65rem 1.5rem 0.8rem;
     line-height: 12px;
     line-height: 1.2rem;
     display: inline-block;
-    color:$grey;
+    color:$grey !important;
     margin-right:.5rem;
     margin-bottom: .75rem;
     font-weight: 400;
@@ -140,7 +140,7 @@ a.rounded-btn {
 }
 
 // Is this class being used?
-.neat-vc-button {
+.sprout-vc-button {
   font-weight: 600 !important;
   button {
     text-transform: uppercase !important;

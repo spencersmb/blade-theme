@@ -1,8 +1,8 @@
 <?php
 /**
- * Neat functions and definitions
+ * Sprout functions and definitions
  *
- * @package Neat
+ * @package Sprout
  */
 
 
@@ -13,7 +13,7 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 1000; /* pixels */
 }
 
-if ( ! function_exists( 'neat_setup' ) ) :
+if ( ! function_exists( 'sprout_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -21,15 +21,15 @@ if ( ! function_exists( 'neat_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function neat_setup() {
+function sprout_setup() {
 
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on neat, use a find and replace
-	 * to change 'neat' to the name of your theme in all the template files.
+	 * If you're building a theme based on sprout, use a find and replace
+	 * to change 'sprout' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( 'neat', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'sprout', get_template_directory() . '/languages' );
 
 
 	// Add default posts and comments RSS feed links to head.
@@ -52,23 +52,23 @@ function neat_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary Menu', 'neat' ),
-		'service' => esc_html__( 'Services Menu', 'neat' ),
+		'primary' => esc_html__( 'Primary Menu', 'sprout' ),
+		'service' => esc_html__( 'Services Menu', 'sprout' ),
 	) );
 
 	/*
 	 * Custom image sizes
 	 */
 	// blog thumb gets used on Index page - replace with gallery thumb?
-	add_image_size( 'neat-blog-thumb', 858, 572, true );
+	add_image_size( 'sprout-blog-thumb', 858, 572, true );
 
 	// Square for Isotop gallery
-	add_image_size( 'neat-square', 1024, 1024, true );
+	add_image_size( 'sprout-square', 1024, 1024, true );
 
-	add_image_size( 'neat-gallery-slider', 1920, 1280, true );
+	add_image_size( 'sprout-gallery-slider', 1920, 1280, true );
 
 	//basic image dimension - horizontal - based off of a 2560x1600 ratio
-	add_image_size( 'neat-gallery-thumb-sm', 1024, 640, true );
+	add_image_size( 'sprout-gallery-thumb-sm', 1024, 640, true );
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
@@ -96,7 +96,7 @@ function neat_setup() {
 
 
 	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'neat_custom_background_args', array(
+	add_theme_support( 'custom-background', apply_filters( 'sprout_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
@@ -106,8 +106,8 @@ function neat_setup() {
 	 */
 	add_editor_style( 'css/wp-core/custom-editor-style.css' );
 }
-endif; // neat_setup
-add_action( 'after_setup_theme', 'neat_setup' );
+endif; // sprout_setup
+add_action( 'after_setup_theme', 'sprout_setup' );
 
 
 
@@ -116,8 +116,8 @@ add_action( 'after_setup_theme', 'neat_setup' );
  *
  * @since 1.0.0
  */
-if ( file_exists(get_template_directory() . '/inc/functions/neat_scripts_styles.php') ) {
-	require_once( get_template_directory() . '/inc/functions/neat_scripts_styles.php' );
+if ( file_exists(get_template_directory() . '/inc/functions/sprout_scripts_styles.php') ) {
+	require_once( get_template_directory() . '/inc/functions/sprout_scripts_styles.php' );
 }
 
 //detect if is login page and dont load this
@@ -129,8 +129,8 @@ include_once('inc/custom-styles/custom-styles.php'); // Load Custom Styles
  *
  * @since 1.0.0
  */
-if ( file_exists(get_template_directory() . '/inc/functions/neat_acf.php') ) {
-	require_once( get_template_directory() . '/inc/functions/neat_acf.php' );
+if ( file_exists(get_template_directory() . '/inc/functions/sprout_acf.php') ) {
+	require_once( get_template_directory() . '/inc/functions/sprout_acf.php' );
 }
 
 /**
@@ -138,8 +138,8 @@ if ( file_exists(get_template_directory() . '/inc/functions/neat_acf.php') ) {
  *
  * @since 1.0.0
  */
-if ( file_exists(get_template_directory() . '/inc/functions/neat_theme_init.php') ) {
-	require_once( get_template_directory() . '/inc/functions/neat_theme_init.php' );
+if ( file_exists(get_template_directory() . '/inc/functions/sprout_theme_init.php') ) {
+	require_once( get_template_directory() . '/inc/functions/sprout_theme_init.php' );
 }
 
 
@@ -148,8 +148,8 @@ if ( file_exists(get_template_directory() . '/inc/functions/neat_theme_init.php'
  *
  * @since 1.0.0
  */
-if ( file_exists(get_template_directory() . '/inc/functions/neat_widgets.php') ) {
-	require_once( get_template_directory() . '/inc/functions/neat_widgets.php' );
+if ( file_exists(get_template_directory() . '/inc/functions/sprout_widgets.php') ) {
+	require_once( get_template_directory() . '/inc/functions/sprout_widgets.php' );
 }
 
 
@@ -158,9 +158,9 @@ if ( file_exists(get_template_directory() . '/inc/functions/neat_widgets.php') )
  *
  * @since 1.0.0
  */
-if ( file_exists(get_template_directory() . '/inc/functions/neat_extras.php') ) {
-	require_once( get_template_directory() . '/inc/functions/neat_extras.php' );
-	require_once( get_template_directory() . '/inc/functions/neat_breadcrumbs.php' );
+if ( file_exists(get_template_directory() . '/inc/functions/sprout_extras.php') ) {
+	require_once( get_template_directory() . '/inc/functions/sprout_extras.php' );
+	require_once( get_template_directory() . '/inc/functions/sprout_breadcrumbs.php' );
 }
 
 
@@ -169,8 +169,8 @@ if ( file_exists(get_template_directory() . '/inc/functions/neat_extras.php') ) 
  *
  * @since 1.0.0
  */
-if ( file_exists(get_template_directory() . '/inc/functions/neat_template_functions.php') ) {
-	require_once( get_template_directory() . '/inc/functions/neat_template_functions.php' );
+if ( file_exists(get_template_directory() . '/inc/functions/sprout_template_functions.php') ) {
+	require_once( get_template_directory() . '/inc/functions/sprout_template_functions.php' );
 }
 
 

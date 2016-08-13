@@ -2,7 +2,7 @@
     SINGLE-POST LAYOUT
 \*------------------------------------*/
 
-.neat-single {
+.sprout-single {
   padding: 0 2.4rem;
 
   @include breakpoint(tablet){
@@ -111,11 +111,11 @@
 
 }
 
-.neat-single__meta {
+.sprout-single__meta {
   margin-bottom: 2.4rem;
 }
 
-.neat-single__tags {
+.sprout-single__tags {
   border-top: 1px solid $lightest-grey;
   margin-top: 3rem;
   padding-top: 2.4rem;
@@ -128,7 +128,7 @@
   }
 }
 
-.neat-single-social {
+.sprout-single-social {
   border: 1px solid $grey;
   border-radius: 100px;
   background: $white;
@@ -159,11 +159,11 @@
   }
 }
 
-.neat-single-social__container{
+.sprout-single-social__container{
   padding:.75rem 0;
 }
 
-.neat-video {
+.sprout-video {
   margin-bottom: 24px;
   margin-bottom: 2.4rem;
 }

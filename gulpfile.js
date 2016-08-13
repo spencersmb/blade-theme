@@ -107,7 +107,7 @@ gulp.task('compile-js', function() {
 			console.log(err.toString());
 			this.emit("end");
 		})
-		.pipe(source('neat-custom.js'))
+		.pipe(source('sprout-custom.js'))
 		.pipe(buffer())
 		.pipe(gulp.dest('./assets/js/'))
 		.pipe(notify({
@@ -220,10 +220,10 @@ gulp.task('styles', function() {
  */
 gulp.task('vendorsJs', function() {
 	return gulp.src(['./assets/js/vendor/*.js', bower + '**/*.js'])
-		.pipe(concat('neat-vendors.js'))
+		.pipe(concat('sprout-vendors.js'))
 		.pipe(gulp.dest('./assets/js'))
 		.pipe(rename({
-			basename: "neat-vendors",
+			basename: "sprout-vendors",
 			suffix: '.min'
 		}))
 		.pipe(uglify())
@@ -243,10 +243,10 @@ gulp.task('vendorsJs', function() {
 
 gulp.task('scriptsJs', function() {
 	return gulp.src('./assets/js/custom/*.js')
-		// .pipe(concat('neat-custom.js'))
+		// .pipe(concat('sprout-custom.js'))
 		.pipe(gulp.dest('./assets/js'))
 		.pipe(rename({
-			basename: "neat-custom",
+			basename: "sprout-custom",
 			suffix: '.min'
 		}))
 		.pipe(uglify())

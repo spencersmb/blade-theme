@@ -5,8 +5,8 @@
  * @package WordPress
  */
 ?>
-<form role="search" method="get" class="neat-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-    <label ><?php echo esc_html__( 'Search:', 'neat' ); ?></label>
+<form role="search" method="get" class="sprout-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+    <label ><?php echo esc_html__( 'Search:', 'sprout' ); ?></label>
     <input
         type="search"
         class="search-field"

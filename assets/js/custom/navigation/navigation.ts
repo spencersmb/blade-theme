@@ -26,9 +26,9 @@ class NavComponent {
   constructor() {
 
     this.$navTrigger = document.getElementById("nav-trigger");
-    this.$navDropdown = document.getElementById("neat-dropdown-trigger");
-    this.$dropDownWrapper = $(".neat-dropdown-wrapper");
-    this.$dropDownContent = $(".neat-dropdown-content");
+    this.$navDropdown = document.getElementById("sprout-dropdown-trigger");
+    this.$dropDownWrapper = $(".sprout-dropdown-wrapper");
+    this.$dropDownContent = $(".sprout-dropdown-content");
 
     /*
      Nav State Object
@@ -134,7 +134,7 @@ class NavComponent {
       $(".go-back > a").on("click", function ( event ) {
         event.preventDefault();
         let selected = $(this);
-        selected.parent("li").parent(".neat-secondary-dropdown").addClass("is-hidden").parent(".menu-item-has-children").parent("ul").removeClass("move-out");
+        selected.parent("li").parent(".sprout-secondary-dropdown").addClass("is-hidden").parent(".menu-item-has-children").parent("ul").removeClass("move-out");
       });
     } else {
       $(".go-back > a").off();
@@ -158,7 +158,7 @@ class NavComponent {
      */
     this.$navDropdown.setAttribute("style", "");
     this.$dropDownContent.removeClass("move-out");
-    let dropdown = this.$dropDownContent.find(".neat-secondary-dropdown");
+    let dropdown = this.$dropDownContent.find(".sprout-secondary-dropdown");
 
     dropdown.each(( index, elem ) => {
       if ( !$(elem).hasClass("is-hidden") ) {

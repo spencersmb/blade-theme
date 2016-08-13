@@ -3,7 +3,7 @@
  * The template for displaying service detail pages.
  *
  *
- * @package Neat
+ * @package Sprout
  */
 get_header();
 $page_layout = get_redux_options('main_page_layout');
@@ -14,7 +14,7 @@ $page_layout = get_redux_options('main_page_layout');
 
             <div class="row">
 
-                <div class="neat-page-wrapper">
+                <div class="sprout-page-wrapper">
 
                     <?php while ( have_posts() ) : the_post(); ?>
 
@@ -22,7 +22,7 @@ $page_layout = get_redux_options('main_page_layout');
 
                     <?php endwhile; // end of the loop. ?>
 
-                </div><!-- /.neat-page-wrapper -->
+                </div><!-- /.sprout-page-wrapper -->
                 
                 <?php
 

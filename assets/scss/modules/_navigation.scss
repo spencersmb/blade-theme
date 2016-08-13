@@ -81,7 +81,7 @@
   }
 }
 
-.neat-dropdown-wrapper {
+.sprout-dropdown-wrapper {
   display: block;
   position: relative;
   right: 0;
@@ -89,7 +89,7 @@
   height: 77px;
   background: $white;
 
-  .neat-nav-trigger {
+  .sprout-nav-trigger {
     border: 2px solid $primary-color;
     border-radius: 50px;
     background: transparent;
@@ -140,7 +140,7 @@
 }
 
 // Mobile Nav dropdown
-.neat-dropdown {
+.sprout-dropdown {
   top:-100%;
   background: $black;
   height: 100%;
@@ -202,7 +202,7 @@
 
 }
 
-.neat-dropdown-content, .neat-dropdown-content ul {
+.sprout-dropdown-content, .sprout-dropdown-content ul {
   @include transition(all .3);
   margin: 0;
   padding: 15px 0 0;
@@ -409,7 +409,7 @@
 
 }
 
-.neat-dropdown-content {
+.sprout-dropdown-content {
 
   & > li{
     // nav check for last items with no children
@@ -565,7 +565,7 @@
     }
   }
 
-  #header .neat-dropdown & {
+  #header .sprout-dropdown & {
     position: relative;
     top: 0;
     @include transform(translateY(0));
@@ -573,7 +573,7 @@
   }
 }
 
-.neat-nav-meta{
+.sprout-nav-meta{
   top:0;
   padding: 0 20px;
   width: 100%;

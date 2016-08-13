@@ -1,7 +1,7 @@
 <?php
 // https://github.com/BenSibley/ignite/blob/master/inc/breadcrumbs.php
-if ( ! function_exists( 'neat_breadcrumbs' ) ) {
-    function neat_breadcrumbs( $args = array() ) {
+if ( ! function_exists( 'sprout_breadcrumbs' ) ) {
+    function sprout_breadcrumbs( $args = array() ) {
 
         if ( is_front_page() ) {
             return;
@@ -14,7 +14,7 @@ if ( ! function_exists( 'neat_breadcrumbs' ) ) {
             'breadcrumbs_classes' => 'breadcrumb-trail breadcrumbs',
             'home_title'          => get_bloginfo('title')
         );
-        $args      = apply_filters( 'neat_breadcrumbs_args', wp_parse_args( $args, $defaults ) );
+        $args      = apply_filters( 'sprout_breadcrumbs_args', wp_parse_args( $args, $defaults ) );
 
         // check if color exists
         if(array_key_exists('color', $args)){
@@ -119,13 +119,13 @@ if ( ! function_exists( 'neat_breadcrumbs' ) ) {
         } elseif ( is_search() ) {
             $html .= '<span class="item-current item-search"><span class="bread-current bread-search">Search results for: ' . get_search_query() . '</span></span>';
         } elseif ( is_404() ) {
-            $html .= '<span>' . __( 'Error 404', 'neat' ) . '</span>';
+            $html .= '<span>' . __( 'Error 404', 'sprout' ) . '</span>';
         } elseif ( is_home() ) {
             $html .= '<span>' . get_the_title( get_option( 'page_for_posts' ) ) . '</span>';
         }
 
         $html .= '</div>';
-        $html = apply_filters( 'neat_breadcrumbs_filter', $html );
+        $html = apply_filters( 'sprout_breadcrumbs_filter', $html );
 
         return $html;
     }

@@ -19,8 +19,8 @@ if ( ! defined( 'WPINC' ) ) { die; }
  * @since  1.0.0
  *
  */
-add_action('wp_enqueue_scripts', 'neat_scripts');
-function neat_scripts()
+add_action('wp_enqueue_scripts', 'sprout_scripts');
+function sprout_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
@@ -54,11 +54,11 @@ function neat_scripts()
          *     Order is important
          *
          */
-        wp_register_script('neat_vendorsJs', get_template_directory_uri() . '/assets/js/neat-vendors.min.js', array('jquery'), '1.1', true); // Custom scripts
-        wp_enqueue_script('neat_vendorsJs'); // Enqueue it!
+        wp_register_script('sprout_vendorsJs', get_template_directory_uri() . '/assets/js/sprout-vendors.min.js', array('jquery'), '1.1', true); // Custom scripts
+        wp_enqueue_script('sprout_vendorsJs'); // Enqueue it!
 
-        wp_register_script('neat_customJs', get_template_directory_uri() . '/assets/js/neat-custom.js', array('jquery', 'gsap'), '1.1', true); // Custom scripts
-        wp_enqueue_script('neat_customJs'); // Enqueue it!
+        wp_register_script('sprout_customJs', get_template_directory_uri() . '/assets/js/sprout-custom.js', array('jquery', 'gsap'), '1.1', true); // Custom scripts
+        wp_enqueue_script('sprout_customJs'); // Enqueue it!
 
         /**
          *
@@ -92,8 +92,8 @@ function neat_scripts()
  * @since  1.0
  *
  */
-add_action('wp_enqueue_scripts', 'neat_styles', 20, 1); // Add Theme Stylesheet
-function neat_styles()
+add_action('wp_enqueue_scripts', 'sprout_styles', 20, 1); // Add Theme Stylesheet
+function sprout_styles()
 {
 
     /**
@@ -109,8 +109,8 @@ function neat_styles()
      * Minified and Concatenated styles
      *
      */
-    wp_register_style('neat_style', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
-    wp_enqueue_style('neat_style'); // Enqueue it!
+    wp_register_style('sprout_style', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
+    wp_enqueue_style('sprout_style'); // Enqueue it!
 
 
     /**
@@ -138,12 +138,12 @@ function neat_styles()
  *
  */
 
-function neat_load_custom_wp_admin_style() {
-    wp_register_style( 'neat_admin_css', get_template_directory_uri() . '/assets/css/wp-core/neat-admin-style.css', false, '1.0.0' );
-    wp_enqueue_style( 'neat_admin_css' );
+function sprout_load_custom_wp_admin_style() {
+    wp_register_style( 'sprout_admin_css', get_template_directory_uri() . '/assets/css/wp-core/sprout-admin-style.css', false, '1.0.0' );
+    wp_enqueue_style( 'sprout_admin_css' );
 
 }
-add_action( 'admin_enqueue_scripts', 'neat_load_custom_wp_admin_style' );
+add_action( 'admin_enqueue_scripts', 'sprout_load_custom_wp_admin_style' );
 
 /**
  *
@@ -152,20 +152,20 @@ add_action( 'admin_enqueue_scripts', 'neat_load_custom_wp_admin_style' );
  * @since  1.0.0
  *
  */
-function neat_enqueue_comments_reply() {
+function sprout_enqueue_comments_reply() {
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
 }
-add_action( 'wp_enqueue_scripts', 'neat_enqueue_comments_reply' );
+add_action( 'wp_enqueue_scripts', 'sprout_enqueue_comments_reply' );
 
 
 /**
  * Register and enqueue FontAwesome in the WordPress admin.
  */
-function neat_enqueue_custom_admin_scripts() {
+function sprout_enqueue_custom_admin_scripts() {
     wp_register_script('fontawesome', 'https://use.fontawesome.com/c1013b11d0.js', '', '4', true);
     wp_enqueue_script('fontawesome'); // Enqueue it!
 
 }
-add_action( 'admin_enqueue_scripts', 'neat_enqueue_custom_admin_scripts' );
+add_action( 'admin_enqueue_scripts', 'sprout_enqueue_custom_admin_scripts' );

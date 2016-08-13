@@ -2,7 +2,7 @@
     GENERAL LAYOUT CLASSES
 \*------------------------------------*/
 
-.neat-blocked-container{
+.sprout-blocked-container{
   max-width: 1200px;
   padding: 0 15px;
   display: table;
@@ -17,7 +17,7 @@
   }
 }
 
-.neat-container-primary {
+.sprout-container-primary {
   margin: 35px auto;
   margin: 3.5rem auto;
   @include breakpoint(tablet){
@@ -43,12 +43,12 @@
   }
 }
 
-.neat-container-single {
+.sprout-container-single {
   margin-top: 5px;
   margin-top: 5rem;
 }
 
-.neat_sidebar {
+.sprout_sidebar {
   max-width: 262px;
   margin:0 auto;
   position: relative;
@@ -79,7 +79,7 @@
   }
 }
 
-.neat-contain{
+.sprout-contain{
   margin: 0 auto;
   @include breakpoint(tablet){
       max-width: 750px;
@@ -92,7 +92,7 @@
   }
 }
 
-.neat-container-tablet {
+.sprout-container-tablet {
   max-width: 768px;
   margin: 0 auto;
   float: none !important;

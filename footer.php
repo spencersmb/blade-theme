@@ -4,17 +4,17 @@
  *
  * Contains the closing of the #content div and all content after
  *
- * @package Neat
+ * @package Sprout
  */
 ?>
 
-<footer class="neat_footer m-page scene_element scene_element--fadein">
+<footer class="sprout_footer m-page scene_element scene_element--fadein">
 
 		<?php
-		if(is_active_sidebar('neat_footer')): ?>
+		if(is_active_sidebar('sprout_footer')): ?>
 		<div class="footer-top">
 			<div class="container no-padding">
-				<?php dynamic_sidebar('neat_footer'); ?>
+				<?php dynamic_sidebar('sprout_footer'); ?>
 			</div>
 		</div>
 		<?php endif; ?>
@@ -135,7 +135,7 @@
 	<?php if( isset($redux_footer_copywrite)  && $redux_footer_copywrite !== ''): ?>
 	<div class="footer-copyright">
 		<div class="copyright">
-			<p><?php echo wp_kses_post($redux_footer_copywrite, 'neat')?></p>
+			<p><?php echo wp_kses_post($redux_footer_copywrite, 'sprout')?></p>
 		</div>
 	</div>
 	<?php endif; ?>

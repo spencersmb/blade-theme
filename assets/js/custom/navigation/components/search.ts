@@ -20,7 +20,7 @@ class SearchComponent {
     this.$searchForm = $(".super-search");
     this.$searchButtonArea = $(".meta-search");
     this.$icon = this.$searchTrigger.children("i");
-    this.$form = this.$searchForm.find(".neat-search");
+    this.$form = this.$searchForm.find(".sprout-search");
     this.$input = this.$form.first();
     this.$width = this.$searchButtonArea.width();
     this.$height = this.$searchButtonArea.height();
@@ -33,7 +33,7 @@ class SearchComponent {
     this.$searchForm = $(".super-search");
     this.$searchButtonArea = $(".meta-search");
     this.$icon = this.$searchTrigger.children("i");
-    this.$form = $(".neat-search");
+    this.$form = $(".sprout-search");
     this.$width = this.$searchButtonArea.width();
     this.$height = this.$searchButtonArea.height();
 

@@ -4,7 +4,7 @@
  *
  * Copy this file into your wp-content/mu-plugins directory.
  *
- * @package neat_Menu_Item_Custom_Fields_Example
+ * @package sprout_Menu_Item_Custom_Fields_Example
  * @version 0.2.0
  * @author Dzikri Aziz <kvcrvt@gmail.com>
  *
@@ -16,20 +16,20 @@
  * Author: Dzikri Aziz
  * Author URI: http://kucrut.org/
  * License: GPL v2
- * Text Domain: neat
+ * Text Domain: sprout
  */
 
 require_once get_template_directory() . '/inc/custom-menu/menu-item-custom-fields/menu-item-custom-fields.php';
 require_once get_template_directory() . '/inc/custom-menu/custom-walker.php';
 
-class neat_Menu_Item_Custom_Fields_Example {
+class sprout_Menu_Item_Custom_Fields_Example {
 
     /**
      * Holds our custom fields
      *
      * @var    array
      * @access protected
-     * @since  neat_Menu_Item_Custom_Fields_Example 0.2.0
+     * @since  sprout_Menu_Item_Custom_Fields_Example 0.2.0
      */
     protected static $fields = array();
 
@@ -43,9 +43,9 @@ class neat_Menu_Item_Custom_Fields_Example {
         add_filter( 'manage_nav-menus_columns', array( __CLASS__, '_columns' ), 99 );
 
         self::$fields = array(
-//            'field_image' => esc_html__( 'Image Link', 'neat' ),
-//            'field_icon' => esc_html__( 'Icon CSS Name', 'neat' ),
-//            'field_viewall' => esc_html__( 'Text', 'neat' ),
+//            'field_image' => esc_html__( 'Image Link', 'sprout' ),
+//            'field_icon' => esc_html__( 'Icon CSS Name', 'sprout' ),
+//            'field_viewall' => esc_html__( 'Text', 'sprout' ),
         );
     }
 
@@ -133,4 +133,4 @@ class neat_Menu_Item_Custom_Fields_Example {
         return $columns;
     }
 }
-neat_Menu_Item_Custom_Fields_Example::init();
+sprout_Menu_Item_Custom_Fields_Example::init();
