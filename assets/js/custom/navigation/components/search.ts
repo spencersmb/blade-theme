@@ -139,7 +139,7 @@ class SearchComponent {
           width: "100%",
           overflowY: "scroll"
         });
-        console.log("complete");
+        console.log("complete form animate in");
       }
     });
 

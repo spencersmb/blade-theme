@@ -214,3 +214,6 @@ function remove_acf(){
 	remove_menu_page( 'edit.php?post_type=acf' );
 }
 add_action( 'admin_menu', 'remove_acf',100 );
+
+// 3. Hide ACF field group menu item
+add_filter('acf/settings/show_admin', '__return_false');

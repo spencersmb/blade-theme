@@ -19,10 +19,38 @@ get_header();
 				<div class="col-xs-12 <?php if($blog_layout === "1"): echo esc_attr('col-md-9'); ?><?php endif; ?>">
 
 					<div class="content m-page scene_element scene_element--fadeinup">
-						<?php $count = 0; ?>
-						<?php if ( have_posts() ) :  while ( have_posts() ) : the_post(); ?>
-							<?php $count++ ?>
+						<?php
+						// setup to determine 10 or 9 + sticky
+						$sticky_posts = get_option( 'sticky_posts' );
+						$stick_post_count = count($sticky_posts);
+						$post_count = 11;
 
+
+						if($stick_post_count > 0){
+
+							$post_count = 12 - $stick_post_count;
+
+							if( $post_count <= 0 ){
+								$post_count = 0;
+							}
+
+							$args = array(
+								'posts_per_page' => $post_count,
+								'paged' => $current_page
+							);
+						} else {
+							$args = array(
+								'posts_per_page' => $post_count,
+								'paged' => $current_page
+							);
+						}
+
+						$the_query = new WP_Query( $args );
+
+						?>
+						<?php $count = 0; ?>
+						<?php if( have_posts()): while( $the_query->have_posts() ): $the_query->the_post();?>
+							<?php $count++ ?>
 							<?php
 							/**
 							 * Template part for displaying posts on index pages.
@@ -105,6 +133,16 @@ get_header();
 										<div class="article-content">
 											<?php
 											// Check to do custom excerpt length
+											$more_html = '<span class="moretag rounded-btn">'.esc_html__('Read More', 'sprout').'</span>';
+											$more_array_html = array(
+												'a' => array(
+													'href' => array(),
+													'class' => array()
+												),
+												'span' => array(
+													'class' => array()
+												)
+											);
 
 											if(has_excerpt()):
 												$excerpt = get_the_excerpt();
@@ -116,7 +154,7 @@ get_header();
 													</a>
 												</p>
 											<?php else: ?>
-												<p><?php the_excerpt(); ?></p>
+												<?php the_content( wp_kses( __( $more_html, 'sprout' ), $more_array_html) ); ?>
 											<?php endif; ?>
 
 											<?php
@@ -138,7 +176,28 @@ get_header();
 						<?php endwhile; ?>
 
 							<div class="col-xs-12">
-								<?php the_posts_navigation(); ?>
+								<?php
+								// make sure post count is greater than 11 for no sticky & & greater than 10 if there are sticky posts
+								$published_posts = wp_count_posts();
+								$published_posts_count = $published_posts->publish;
+								$post_html = array(
+									'i' => array(
+										'class' => array()
+									)
+								);
+
+								$post_array = array(
+									'prev_text' => wp_kses( __( '<i class="fa fa-angle-double-left"></i> Older posts', 'sprout' ), $post_html),
+									'next_text' => wp_kses( __( 'Newer posts <i class="fa fa-angle-double-right"></i>', 'sprout' ), $post_html),
+
+								);
+
+								?>
+								<?php if( $published_posts_count > 11 && $stick_post_count == 0): ?>
+									<?php the_posts_navigation($post_array); ?>
+								<?php elseif ( $stick_post_count > 0 && $published_posts_count > 10): ?>
+									<?php the_posts_navigation($post_array); ?>
+								<?php endif; ?>
 							</div>
 
 						<?php else : ?>

@@ -84,8 +84,13 @@ class AnimationComponent {
 
   }
 
-  loadUrl( url ) {
-    document.location.href = url;
+  loadUrl( url, newWindow? ) {
+    // if url is to open in new window open it, else open in same window
+    if ( newWindow ) {
+      window.open(url, newWindow);
+    } else {
+      document.location.href = url;
+    }
   }
 
   mainContentAnimationOut( callback ) {
@@ -121,6 +126,7 @@ class AnimationComponent {
 
     // Get url from the a tag
     let newUrl = $(event.currentTarget).attr("href");
+    let target = $(event.currentTarget).attr("target");
     let hasChildren = $(event.currentTarget).parent("li").hasClass("menu-item-has-children");
 
     /*
@@ -135,26 +141,28 @@ class AnimationComponent {
      * If first validation fails, the url is real and continue validating
      */
     /*
-     * Check if its horizontal tablet
+     * Check if its horizontal tablet and user is tapping on menu
      */
     if ( Utils.breakpoint > Utils.bps.tablet &&
       this.checkUrl(newUrl) &&
       Utils.browser === "ipad" && hasChildren ) {
 
       event.preventDefault();
-      // console.log('Tablet Nav click');
       return;
 
     } else if ( Utils.breakpoint > Utils.bps.tablet && this.checkUrl(newUrl) ) {
 
       /*
-       * Check if its larger than tablet but not an ipad
+       * Check if its larger than tablet but not an ipad and if it needs to open in new window
        */
 
-      // console.log("laptop or larger");
-      this.mainContentAnimationOut(() => {
-        this.loadUrl(newUrl);
-      });
+      if ( target === "_blank" || newUrl.match(/^tel/) ) {
+        this.loadUrl(newUrl, target);
+      } else {
+        this.mainContentAnimationOut(() => {
+          this.loadUrl(newUrl, target);
+        });
+      }
 
     } else if ( this.checkUrl(newUrl) && hasChildren ) {
 
@@ -169,7 +177,7 @@ class AnimationComponent {
        * Passed the checks Load it!
        */
 
-      this.loadUrl(newUrl);
+      this.loadUrl(newUrl, target);
     }
 
   }

@@ -25,6 +25,7 @@ $page_layout = get_redux_options('main_page_layout'); ?>
 			<!-- page.php -->
 			<div class="sprout-page-wrapper">
 
+
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<?php get_template_part( 'assets/views/content', 'page' ); ?>

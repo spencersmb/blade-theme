@@ -42,10 +42,7 @@
   //opacity: .7;
 
   @include breakpoint(tablet){
-    min-height: 350px;
-  }
-  @include breakpoint(laptop){
-    min-height: 350px;
+    min-height: 450px;
   }
 
   .single-post & {
@@ -74,6 +71,10 @@
   top: 50%;
   @include transform(translateY(-50%));
   width: 100%;
+
+  @include breakpoint(tablet){
+      top: 55%;
+  }
 }
 
 .hero-content {

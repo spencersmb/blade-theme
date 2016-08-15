@@ -58,7 +58,7 @@ $header_phone = get_redux_options('header_phone');
 
 <div id="content" class="m-scene">
 
-	<header id="header" class="m-mobile-nav m-header scene_element scene_element--fadein<?php echo esc_attr( sprout_admin_class_checks() ); ?>">
+	<header id="header" class="m-mobile-nav m-header scene_element scene_element--fadein <?php echo esc_attr( sprout_admin_class_checks() ); ?>">
 
 		<!-- Main Nav -->
 			<div class="uppercontainer">

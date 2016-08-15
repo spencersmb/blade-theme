@@ -9,10 +9,10 @@
 
 
 // Project configuration
-var project = 'neat', // Project name, used for build zip.
+var project = 'sprout', // Project name, used for build zip.
 	url = 'http://www.lyndascore.dev/', // Local Development URL for BrowserSync. Change as-needed.
-	bower = './assets/bower_components/'; // Not truly using this yet, more or less playing right now. TO-DO Place in Dev branch
-build = './buildtheme/', // Files that you want to package into a zip go here
+	bower = './assets/bower_components/', // Not truly using this yet, more or less playing right now. TO-DO Place in Dev branch
+	build = './buildtheme/', // Files that you want to package into a zip go here
 	buildInclude = [
 		// include common file types
 		'**/*.php',

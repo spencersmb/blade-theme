@@ -67,28 +67,39 @@ function sprout_update_blog_info()
 }
 add_action('init', 'sprout_update_blog_info');
 
-add_action( 'init', 'visual_composer_cpt' );
-function visual_composer_cpt()
-{
 
-    if (class_exists('WPBakeryVisualComposerAbstract')) {
+/**
+ * Visial Composer initialization functions
+ *
+ *
+ *
+ * @package Sprout
+ */
+add_action( 'vc_before_init', 'sprout_setup_before_vc' );
+function sprout_setup_before_vc() {
 
-        add_action( 'vc_before_init', 'sprout_setup_vc' );
-        function sprout_setup_vc() {
+    // Setup VC to be part of a theme
+    if( function_exists('vc_set_as_theme') ){
 
-            //update cpt to init before visual composer ( fixes meta cap issue too )
-            remove_action( 'init', 'sprout_ext_theme_register_my_cpts', 10 );
-            add_action( 'init', 'sprout_ext_theme_register_my_cpts', 1 );
+        vc_set_as_theme( true );
 
-            if(function_exists('vc_set_default_editor_post_types')) {
+    }
 
-                $list = array('post','page','gallery');
+}
 
-                vc_set_default_editor_post_types( $list );
+add_action( 'vc_after_init', 'sprout_setup_after_vc' );
+function sprout_setup_after_vc() {
 
-            }
+    // Enable VC by default on a list of Post Types
+    if( function_exists('vc_set_default_editor_post_types') ){
 
-        }
+        $list = array(
+            'page',
+            'post',
+            'gallery', // add here your custom post types slug
+        );
+
+        vc_set_default_editor_post_types( $list );
 
     }
 

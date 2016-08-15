@@ -248,7 +248,7 @@ function sprout_custom_styles() {
         color: rgba(<?php echo sprout_hex2rgb($sprout_theme_options['main_color']); ?>,0.8);
     }
 
-    a:focus,
+    
     .comments-area a:focus,
     .post_meta_archive a:focus,
     .post_meta a:focus,

@@ -333,7 +333,7 @@
                 'subtitle' => wp_kses('<em>Drag the slider to set the logo height <br/>(ignored if there\'s no uploaded logo).</em>', 'sprout'),
                 'id' => 'logo_height',
                 'type' => 'slider',
-                "default" => 70,
+                "default" => 85,
                 "min" => 0,
                 "step" => 1,
                 "max" => 300,
@@ -408,7 +408,7 @@
                 'subtitle' => wp_kses('<em>Drag the slider to set the Spacing Above the Logo.</em>', 'sprout'),
                 'id' => 'spacing_above_logo',
                 'type' => 'slider',
-                "default" => 20,
+                "default" => 0,
                 "min" => 0,
                 "step" => 1,
                 "max" => 200,
@@ -420,7 +420,7 @@
                 'subtitle' => wp_kses('<em>Drag the slider to set the Spacing Below the Logo.</em>', 'sprout'),
                 'id' => 'spacing_below_logo',
                 'type' => 'slider',
-                "default" => 20,
+                "default" => 0,
                 "min" => 0,
                 "step" => 1,
                 "max" => 200,
@@ -992,7 +992,7 @@
                 'subtitle' => wp_kses('<em>Type your Facebook profile URL here.</em>', 'sprout'),
                 'id' => 'facebook_link',
                 'type' => 'text',
-                'default' => 'https://www.facebook.com/GetBowtied',
+                'default' => 'https://www.facebook.com/everytues',
             ),
 
             array (
@@ -1002,7 +1002,7 @@
                 'subtitle' => wp_kses('<em>Type your Twitter profile URL here.</em>', 'sprout'),
                 'id' => 'twitter_link',
                 'type' => 'text',
-                'default' => 'http://twitter.com/GetBowtied',
+                'default' => 'http://twitter.com/teelacunningham',
             ),
 
             array (
@@ -1012,7 +1012,7 @@
                 'subtitle' => wp_kses('<em>Type your Pinterest profile URL here.</em>', 'sprout'),
                 'id' => 'pinterest_link',
                 'type' => 'text',
-                'default' => 'http://www.pinterest.com/',
+                'default' => 'http://www.pinterest.com/teelac',
             ),
 
             array (
@@ -1058,7 +1058,7 @@
                 'subtitle' => wp_kses('<em>Type your Instagram profile URL here.</em>', 'sprout'),
                 'id' => 'instagram_link',
                 'type' => 'text',
-                'default' => 'http://instagram.com/getbowtied',
+                'default' => 'http://instagram.com/everytuesday',
             ),
 
             array (
@@ -1068,7 +1068,7 @@
                 'subtitle' => wp_kses('<em>Type your Youtube profile URL here.</em>', 'sprout'),
                 'id' => 'youtube_link',
                 'type' => 'text',
-                'default' => 'https://www.youtube.com/channel/UC88KP4HSF-TnVhPCJLe9P-g',
+                'default' => 'https://www.youtube.com/user/everytues',
             ),
 
             array (
