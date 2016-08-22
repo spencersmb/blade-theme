@@ -128,7 +128,7 @@
 }
 
 .img-loader-bg{
-  opacity: 0;
+  opacity: 1;
   @include transform(translateZ(0));
   @include transition(opacity .3s);
 

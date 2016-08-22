@@ -69,7 +69,16 @@ function sprout_setup() {
 	add_image_size( 'sprout-gallery-slider', 1920, 1280, true );
 
 	//basic image dimension - horizontal - based off of a 2560x1600 ratio
-	add_image_size( 'sprout-gallery-thumb-sm', 640, 480, true );
+	add_image_size( 'sprout-medium-sm', 300, 225, true );
+
+	update_option( 'medium_size_w', 640 );
+	update_option( 'medium_size_h', 480 );
+
+	if(!get_option("medium_crop")) {
+		add_option("medium_crop", "1");
+	} else {
+		update_option("medium_crop", "1");
+	}
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments

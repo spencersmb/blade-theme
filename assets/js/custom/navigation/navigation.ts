@@ -364,7 +364,12 @@ class NavComponent {
     let isHome = ($("body").hasClass("home") ? 0.9 : 0.6);
 
     // Image one placement
-    if ( Utils.breakpoint === Utils.bps.tablet ) {
+    if ( Utils.breakpoint < Utils.bps.tablet ) {
+
+      $(this.$navDropdown).addClass('nav-anim-done');
+      $(this.$dropDownWrapper).addClass('nav-anim-done');
+
+    } else if ( Utils.breakpoint === Utils.bps.tablet ) {
       timeline.add([
         TweenMax.fromTo(this.$dropDownWrapper, 0.25, {
           opacity: 0,
@@ -377,6 +382,7 @@ class NavComponent {
           ease: Power1.easeInOut,
           onComplete: () => {
             $(this.$navDropdown).addClass('nav-anim-done');
+            $(this.$dropDownWrapper).addClass('nav-anim-done');
           }
         })
       ]);
@@ -395,6 +401,7 @@ class NavComponent {
           ease: Power1.easeInOut,
           onComplete: () => {
             $(this.$navDropdown).addClass('nav-anim-done');
+            $(this.$dropDownWrapper).addClass('nav-anim-done');
           }
         })
       ]);

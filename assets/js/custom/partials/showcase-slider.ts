@@ -192,7 +192,6 @@ class ShowcaseComponent {
     let currentSlide = this.getCurrentNavElement();
     let nextSlide = this.thumbsContainer.find("li[data-index=" + this.statePosition.indexSelected + "]");
 
-
     if ( Utils.breakpoint < Utils.bps.laptop ) {
 
       /*
@@ -223,6 +222,12 @@ class ShowcaseComponent {
         currentSlide.removeClass("selected");
         nextSlide.addClass("selected");
 
+        // dont move group just yet if you are on 2nd to last slide moving back up
+        if ( this.statePosition.currentSlide === (this.getTotalSlides() - 1 ) ) {
+          // console.log(" 2nd to last item");
+          return;
+        }
+
 
         if ( this.statePosition.tabletPos !== 0 && this.statePosition.currentSlide !== 1 ) {
 
@@ -248,7 +253,7 @@ class ShowcaseComponent {
        * DESKTOP THUMB SELECT
        */
       if ( direction === "right" ) {
-
+        console.log("down");
         currentSlide.removeClass("selected");
         nextSlide.addClass("selected");
 
@@ -272,6 +277,11 @@ class ShowcaseComponent {
 
         currentSlide.removeClass("selected");
         nextSlide.addClass("selected");
+
+        // dont move group just yet if you are on 2nd to last slide moving back up
+        if ( this.statePosition.currentSlide === (this.getTotalSlides() - 1 ) ) {
+          return;
+        }
 
         if ( this.statePosition.desktopPos !== 0 && this.statePosition.currentSlide !== 1 ) {
 
