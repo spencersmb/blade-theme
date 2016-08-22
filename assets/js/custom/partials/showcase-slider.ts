@@ -219,7 +219,7 @@ class ShowcaseComponent {
 
 
       } else {
-        console.log("left");
+        // Move left
         currentSlide.removeClass("selected");
         nextSlide.addClass("selected");
 
@@ -534,7 +534,7 @@ class ShowCaseSLider {
   }
 
   init() {
-    console.log("Showcase Slider init");
+    // console.log("Showcase Slider init");
 
     this.itemInfoWrapper.each(( index: number, el: Object ) => {
 

@@ -37,29 +37,6 @@ class ImageLoaderComponent {
     }
   }
 
-  // Remove
-  // animateHeroHeader(): void {
-  //   let b = this.hero.find(".hero-background").css("background-image");
-  //
-  //   if ( b !== "none" ) {
-  //     setTimeout(() => {
-  //
-  //       this.hero.addClass("loaded");
-  //
-  //       TweenLite
-  //         .to(this.hero, .4,
-  //           {
-  //             opacity: 1,
-  //           }
-  //         );
-  //     }, 300);
-  //   } else {
-  //
-  //     this.hero.addClass("loaded");
-  //
-  //   }
-  // }
-
   animateBlogArticles(): void {
     let animate = new TimelineMax();
 
@@ -82,10 +59,10 @@ class ImageLoaderComponent {
 
       })
       .always(function ( instance ) {
-        console.log("all images loaded");
+        // console.log("all images loaded");
       })
       .done(( instance ) => {
-        console.log("all images successfully loaded");
+        // console.log("all images successfully loaded");
 
         // Animation for Blog index homepage
         this.animateBlogArticles();
@@ -112,8 +89,7 @@ class ImageLoaderComponent {
   }
 
   init(): void {
-
-    console.log("Image Preloader Module");
+    // console.log("Image Preloader Module");
 
     this.preloadImages();
   }

@@ -69,8 +69,6 @@ class QuoteComponent {
         name = title.toLocaleLowerCase(),
         uniqueId = name + "-" + index;
 
-      console.log("Title: ", title);
-
       // Add matching ID's to each Card
       $this.attr("id", uniqueId);
 
@@ -205,7 +203,7 @@ class QuoteComponent {
 
     // set state to the newly selected input
     this.state.selected = $this.attr("id");
-    console.log("Current State is: ", this.state.selected);
+    // console.log("Current State is: ", this.state.selected);
 
     this.toggleCards();
 
@@ -248,10 +246,6 @@ class QuoteComponent {
     // cloned element
     let modifiedElement = selectedCard.clone();
 
-    // remove form from cloned item.
-    // modifiedElement.find(".quote__form--item.temp").remove();
-    // formRef.remove();
-
     // add form to the VC content area
     let quoteFormContainer = $(".quote__form--vc");
     quoteFormContainer.append(form);
@@ -273,6 +267,7 @@ class QuoteComponent {
 
   putFormBack( form: JQuery ) {
     let id = this.state.selected;
+    
     // find element id that matches the current state
     let selectedCard = this.quoteItemsArray.filter(( item ) => {
       return $(this.quoteItemsArray[ item ]).attr("id") === id;
@@ -442,7 +437,7 @@ class QuoteComponent {
   }
 
   init() {
-    console.log("Quote Builder");
+    // console.log("Quote Builder");
 
     // build select box button inputs
     this.buildSelectBox();

@@ -47,7 +47,17 @@ $blog_layout = get_redux_options('main_blog_layout');
 
 						<?php endwhile; ?>
 
-						<?php the_posts_navigation(); ?>
+						<?php
+						$post_html = array(
+							'i' => array(
+								'class' => array()
+							)
+						);
+						$post_array = array(
+							'prev_text' => wp_kses( __( '<i class="fa fa-angle-double-left"></i> Older posts', 'sprout' ), $post_html),
+							'next_text' => wp_kses( __( 'Newer posts <i class="fa fa-angle-double-right"></i>', 'sprout' ), $post_html),
+						);
+						the_posts_navigation($post_array); ?>
 
 					<?php else : ?>
 

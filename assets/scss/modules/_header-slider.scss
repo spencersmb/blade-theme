@@ -346,7 +346,7 @@
   }
 
   p{
-    @include font-size(1.8);
+    @include font-size(1.6);
   }
 
   @include breakpoint(tablet){
@@ -355,6 +355,9 @@
     padding: 2rem;
   }
   @include breakpoint(laptop){
+    p{
+      @include font-size(1.8);
+    }
     position: absolute;
     padding: 2rem 2rem;
     max-width: 529px;

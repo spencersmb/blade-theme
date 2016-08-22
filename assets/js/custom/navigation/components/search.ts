@@ -164,8 +164,8 @@ class SearchComponent {
   }
 
   init() {
-    console.log("Search loaded");
-    // this.openSearch();
+    // console.log("Search loaded");
+    
     this.$input.keyup((event) => {
       // if key is enter - animate out
       if ( event.which === 13) {

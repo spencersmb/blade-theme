@@ -49,7 +49,6 @@
 $header_search_show = get_redux_options('search_button');
 $header_logo = get_redux_options('site_logo', 'url');
 $header_logo_alt = get_redux_options('alt_header_logo', 'url');
-$header_main_button_show = get_redux_options('has_free_quote');
 $topbar_show_social = get_redux_options('top_bar_social_icons');
 $header_phone_display = get_redux_options('header_phone_display');
 $header_phone = get_redux_options('header_phone');
@@ -180,7 +179,13 @@ $header_phone = get_redux_options('header_phone');
 				<a href="#" id="nav-trigger" class="sprout-nav-trigger"><?php echo esc_html__('Menu', 'sprout') ?></a>
 			</div>
 
-			<nav id="sprout-dropdown-trigger" class="sprout-dropdown scene_element scene_element--fadeInUpNav">
+		<?php
+		// Check for sticky nav
+		$is_nav_sticky = get_redux_options('navigation_sticky');
+		?>
+
+			<nav id="sprout-dropdown-trigger" class="sprout-dropdown" data-sticky="<?php echo esc_attr($is_nav_sticky) ?>">
+
 				<a class="navbar-brand navbar-dropdown visible-xs visible-sm" href="<?php echo esc_url(get_home_url('/')); ?>">
 					<?php if ( (isset($header_logo_alt)) ) : ?>
 						<img src="<?php echo esc_url($header_logo_alt)?>" alt="<?php echo get_bloginfo('description') ?>">
@@ -188,11 +193,8 @@ $header_phone = get_redux_options('header_phone');
 						<?php bloginfo( 'name' ); ?>
 					<?php endif; ?>
 				</a>
-				<a id="nav-close" href="#" class="sprout-close"><?php echo esc_html__('Close', 'sprout') ?></a>
-				
-				<div id="nav-xfer">
 
-				</div><!-- end nav-->
+				<a id="nav-close" href="#" class="sprout-close"><?php echo esc_html__('Close', 'sprout') ?></a>
 
 				<div class="nav-main__container">
 					<a class="navbar-brand hidden-xs hidden-sm" href="<?php echo esc_url(get_home_url('/')); ?>">

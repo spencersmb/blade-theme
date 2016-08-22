@@ -149,6 +149,8 @@ function sprout_custom_styles() {
     .nav-next a,
     .nav-previous a,
     .blog-single h6,
+    .service-wrapper .widget li,
+    .widget .icon-list li
     {
         color: <?php echo esc_html($sprout_theme_options['body_color']); ?>;
     }
@@ -212,9 +214,12 @@ function sprout_custom_styles() {
         (trim($sprout_theme_options['headings_color']) != "" ) ) :
     ?>
     h1, h2, h3, h4, h5, h6,
-    .entry-title-archive a{
+    .entry-title-archive a,
+    .tablepress thead th
+    {
         color: <?php echo esc_html($sprout_theme_options['headings_color']); ?>;
     }
+
     <?php endif; ?>
 
     /***************************************************************/
@@ -233,9 +238,31 @@ function sprout_custom_styles() {
     .comment-reply i,
     .comment-edit-link i,
     .comment-edit-link,
-    .rounded-btn
+    .rounded-btn,
+    .blog-feature-meta,
+    .blog-feature-meta i,
+    .single__item .card__item--content.premium h2,
+    .service-sidebar-wrapper h2, .service-sidebar-nostick h2,
+    .process-item-header i,
+    .service-wrapper .widget h6,
+    .widget i,
+    .filter-group .filter-item:hover,
+    .post-thumb-content:hover .post-thumb-header button
     {
         color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
+    }
+
+    .post-thumb-content:hover .post-thumb-title a{
+        color: <?php echo esc_html($sprout_theme_options['main_color']); ?> !important;
+    }
+
+    .blade-feature-tabs .vc_tta-color-grey.vc_tta-style-classic .vc_tta-tab.vc_active > a,
+    .tablepress thead th,
+    .filter-group .filter-item span,
+    .gallery-isotope .gallery-item .overlay2,
+    .hero.no-image
+    {
+        background-color: <?php echo esc_html($sprout_theme_options['main_color']); ?> !important;
     }
 
     a:hover,
@@ -254,7 +281,9 @@ function sprout_custom_styles() {
     .post_meta a:focus,
     .entry-title-archive a:focus,
     .list-centered a:focus,
-    .edit-link:focus{
+    .edit-link:focus,
+    .blog-feature-article:hover .article-title
+    {
         color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
     }
 
@@ -267,12 +296,11 @@ function sprout_custom_styles() {
     .rounded-btn:hover,
     .down-arrow::after, .down-arrow::before,
     .hero,
-    .faq-trigger::before, .faq-trigger::after
+    .faq-trigger::before, .faq-trigger::after,
+    .blog-feature-cap,
+    .tag-btn:hover
     {
         background-color: <?php echo esc_html($sprout_theme_options['main_color']) ?>;
-    }
-    .rounded-btn:focus{
-        color:<?php echo esc_html($sprout_theme_options['main_color']) ?>;
     }
 
     .filled{
@@ -305,7 +333,12 @@ function sprout_custom_styles() {
     .dhvc-form-flat .dhvc-form-file:hover input[type=text]:focus,
     .dhvc-form-flat .dhvc-form-select select:focus,
     .dhvc-form-flat .dhvc-form-textarea textarea:focus,
-    .dhvc-form-flat .dhvc-form-radio input:checked + i
+    .dhvc-form-flat .dhvc-form-radio input:checked + i,
+    .showcase__thumbs .showcase__thumbs--images li.selected a,
+    .super-search .sprout-search .search-field:focus,
+    .single__item .card__item--content.premium,
+    .tag-btn,
+    .post-thumb-content:hover .post-thumb-header button
     {
         border-color: <?php echo esc_attr($sprout_theme_options['main_color']) ?>;
     }
@@ -368,6 +401,7 @@ function sprout_custom_styles() {
     }
     <?php endif; ?>
 
+
     /***************************************************************/
     /* 	Header Logo *****************************************************/
     /***************************************************************/
@@ -388,21 +422,17 @@ function sprout_custom_styles() {
 
     <?php if ( (isset($sprout_theme_options['logo_height'])) ) :
 
-            $logo_height = $sprout_theme_options['logo_height'] + 15;
+            $logo_height = $sprout_theme_options['logo_height'];
             $logo_height__laptop = $sprout_theme_options['logo_height'];
             $logo_height__mobile = $logo_height - ($spacing_above_logo + $spacing_below_logo);
 
             ?>
 
             .navbar-dropdown,
-            .sprout-dropdown-wrapper,
             .footer-logo,
             .footer-logo .navbar-brand
             {
                 height: <?php echo esc_attr($logo_height)?>px;
-            }
-            .sprout-dropdown-content {
-                padding-top: <?php echo esc_attr($logo_height)?>px;
             }
 
 
@@ -412,8 +442,7 @@ function sprout_custom_styles() {
                 $logo_height__mobile = $logo_height - ($spacing_above_logo + $spacing_below_logo);
                 ?>
 
-            .navbar-dropdown,
-            .sprout-dropdown-wrapper {
+            .navbar-dropdown {
                 height: <?php echo esc_attr($logo_height)?>px;
             }
 
@@ -427,14 +456,12 @@ function sprout_custom_styles() {
     <?php if( $spacing_above_logo == 0 && $spacing_below_logo == 0 ): ?>
 
         #header .navbar-brand > img{
-            height: auto;
             max-height: <?php echo esc_attr($logo_height)?>px;
         }
 
     <?php else: ?>
 
         #header .navbar-brand > img{
-            height: <?php echo esc_attr($logo_height__mobile)?>px;
             max-height: <?php echo esc_attr($logo_height)?>px;
         }
 
@@ -460,6 +487,9 @@ function sprout_custom_styles() {
         padding-bottom: <?php echo esc_attr($spacing_below_logo)?>px;
         padding-left: <?php echo esc_attr($spacing_left_logo)?>px
     }
+    .sprout-dropdown-wrapper {
+        height: 55px;
+    }
 
     <?php
         // Conversions
@@ -483,16 +513,46 @@ function sprout_custom_styles() {
     ?>
 
     @media only screen and (min-width: 768px) {
+
+        <?php if ( (isset($sprout_theme_options['navigation_sticky'])) && $sprout_theme_options['navigation_sticky'] == "0" ) : ?>
+
+            .sprout-dropdown-wrapper {
+                position: absolute;
+                top: 55px;
+                left: 35px;
+                right: 35px;
+                width: auto;
+            }
+        
+        <?php endif; ?>
+
         #header .navbar-brand {
             height: <?php echo esc_attr($logo_height)?>px;
         }
         #header .navbar-brand > img{
             height: 100%;
         }
+        .sprout-dropdown-wrapper {
+            height: <?php echo esc_attr($logo_height)?>px;
+        }
     }
 
 
     @media only screen and (min-width: 992px) {
+
+
+        <?php if ( (isset($sprout_theme_options['navigation_sticky'])) && $sprout_theme_options['navigation_sticky'] == "0" ) : ?>
+            .sprout-dropdown {
+                position: absolute;
+                top: 45px;
+            }
+        <?php endif; ?>
+
+    <?php if ( (isset($sprout_theme_options['navigation_sticky'])) && $sprout_theme_options['navigation_sticky'] == "1" ) : ?>
+        .logged-in .sprout-dropdown {
+            top: 75px;
+        }
+    <?php endif; ?>
 
         .nav-main__container {
             height: <?php echo esc_attr($logo_height)?>px;
@@ -583,6 +643,18 @@ function sprout_custom_styles() {
         background-color: <?php echo esc_html($sprout_theme_options['main_color']); ?>;
     }
 
+    /* Sticky nav + sticky side bar account for nav height */
+
+    <?php if ( (isset($sprout_theme_options['navigation_sticky']) ) ):?>
+        .service-sidebar-wrapper.sticky.fixed-nav {
+            top: <?php echo esc_attr($logo_height)?>px;
+        }
+        .service-sidebar-wrapper.sticky.fixed-nav.logged-in {
+            top: <?php echo esc_attr($logo_height + 32)?>px;
+        }
+    <?php endif; ?>
+
+
     /***************************************************************/
     /* 	Footer *****************************************************/
     /***************************************************************/
@@ -631,7 +703,7 @@ function sprout_custom_styles() {
     <?php endif; ?>
 
     <?php if ( (isset($sprout_theme_options['custom_css'])) && (trim($sprout_theme_options['custom_css']) != "" ) ) : ?>
-/********************************************************************/
+    /********************************************************************/
     /* Custom CSS *******************************************************/
     /********************************************************************/
         <?php echo esc_attr($sprout_theme_options['custom_css']) ?>
@@ -639,12 +711,13 @@ function sprout_custom_styles() {
 
 </style>
 <?php
-//$content = ob_get_clean();
-//$content = str_replace(array("\r\n", "\r"), "\n", $content);
-//$lines = explode("\n", $content);
-//$new_lines = array();
-//foreach ($lines as $i => $line) { if(!empty($line)) $new_lines[] = trim($line); }
-//echo implode($new_lines);
+    // minify header CSS
+$content = ob_get_clean();
+$content = str_replace(array("\r\n", "\r"), "\n", $content);
+$lines = explode("\n", $content);
+$new_lines = array();
+foreach ($lines as $i => $line) { if(!empty($line)) $new_lines[] = trim($line); }
+echo implode($new_lines);
 
 } //sprout_custom_styles
 } //if

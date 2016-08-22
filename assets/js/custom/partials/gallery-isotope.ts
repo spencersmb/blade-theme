@@ -153,8 +153,6 @@ class GalleryComponent {
     // check if the container has items inside it
     if ( this.$galleryContainer.length > 0 ) {
 
-      console.log("resize event");
-      
       // set grid dimension
       this.galleryIsotopeWrapper();
 
@@ -187,7 +185,7 @@ class GalleryComponent {
   }
 
   init() {
-    console.log("Isotope Init");
+    // console.log("Isotope Init");
 
     // Add transition to animate image in gracefully
     this.addImageTransition();

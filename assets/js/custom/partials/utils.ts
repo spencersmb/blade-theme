@@ -1,17 +1,31 @@
 import {BpsInterface} from "../interfaces/bps.interface";
 const $ = jQuery;
 
-// Add interface JQuerySmooth {
-// smoothState():void;
-// }
-// smoothState(arg: Object): JQuery;
-
 class UtilityComponent {
   windowWidth: number;
   breakpoint: number;
   breakpoints: number[];
   bps: BpsInterface;
   browser: string;
+  stickyNav: number;
+  isLoggedIn: boolean;
+
+  constructor() {
+    this.windowWidth = 0;
+    this.breakpoint = 320;
+    this.breakpoints = [];
+    this.bps = {
+      mobile: 544,
+      tablet: 768,
+      laptop: 992,
+      desktop: 1200,
+      desktop_xl: 1600
+    };
+    this.browser = this.whichBrowser();
+    this.stickyNav = $("#sprout-dropdown-trigger").data("sticky");
+    this.isLoggedIn = ($("body").hasClass("admin-bar")) ? true : false;
+  }
+
 
   private _setBreakpoints = ( bps: BpsInterface ) => {
     let arr = [];
@@ -37,7 +51,7 @@ class UtilityComponent {
   };
   private _setBreakpoint = () => {
     // get breakpoint from css
-    console.log($('body').css("z-index"));
+    // console.log($('body').css("z-index"));
 
     let body = getComputedStyle(document.body),
       zindex = getComputedStyle(document.body)[ "z-index" ];
@@ -69,9 +83,9 @@ class UtilityComponent {
   }
 
   buildHtml( type: string, attrs?: Object, html?: string ) {
-    
+
     // http://marcgrabanski.com/building-html-in-jquery-and-javascript/
-    
+
     let h = '<' + type;
 
     for ( let attr in attrs ) {
@@ -82,27 +96,14 @@ class UtilityComponent {
     return h += html ? ">" + html + "</" + type + ">" : "/>";
   }
 
-  constructor() {
-    this.windowWidth = 0;
-    this.breakpoint = 320;
-    this.breakpoints = [];
-    this.bps = {
-      mobile: 544,
-      tablet: 768,
-      laptop: 992,
-      desktop: 1200,
-      desktop_xl: 1600
-    };
-    this.browser = this.whichBrowser();
-  }
-
   init(): void {
-    console.log("Utilities loaded");
+    // console.log("Utilities loaded");
 
     // set breakpoint on window load
     this._setBreakpoint();
     this._setWindowWidth();
-    console.log("Current Breakpoint is:", this.breakpoint);
+
+    // console.log("Current Breakpoint is:", this.breakpoint);
 
     // create full array for image compression ref
     this.breakpoints = this._setBreakpoints(this.bps);

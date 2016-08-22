@@ -11,6 +11,7 @@ class StickySidebarComponent {
   scrollTop: number;
   aside: JQuery;
   sidebarWrapper: JQuery;
+  nav: JQuery;
   windowHeight: number;
   sidebarHeight: number;
   footerHeight: number;
@@ -24,9 +25,11 @@ class StickySidebarComponent {
     this.windowHeight = $(window).height();
     this.sidebarHeight = this.aside.height();
     this.sidebarWrapper = $(".service-sidebar");
+    this.nav = $("#sprout-dropdown-trigger");
   }
 
   checkSidebar(): void {
+
     // Check if the sidebar is fixed or not
     if ( !this.isAnimating && Utils.breakpoint >= Utils.bps.laptop ) {
       this.isAnimating = true;
@@ -36,6 +39,7 @@ class StickySidebarComponent {
     } else if ( Utils.breakpoint < Utils.bps.laptop ) {
       this.resetSideBar();
     }
+
   }
 
   checkSidebarVisibility() {
@@ -70,6 +74,13 @@ class StickySidebarComponent {
     // get distance from top of content 10 + 40 = 50 padding top
     // this.contentOffsetTop = this.contentWrapper.offset().top - 10;
     this.contentOffsetTop = this.contentWrapper.offset().top + 25;
+
+    // if sticky nav change where the sidebar sticks
+    if ( this.isNavSticky() ) {
+      let navHeight = this.nav.height();
+      this.contentOffsetTop = this.contentOffsetTop - navHeight;
+    }
+
     this.sidebarHeight = this.aside.height();
     this.contentWrapperHeight = this.contentWrapper.outerHeight(); // include padding and margin
 
@@ -81,7 +92,6 @@ class StickySidebarComponent {
     // console.log("Sidebar Height", this.sidebarHeight);
     // console.log("Window Height", this.windowHeight);
     // console.log("offset Top", this.contentOffsetTop);
-    // console.log("ScrollTop", this.scrollTop);
     // console.log("Sidebaroffset", this.scrollTop);
 
     // If the window V position is less than the content V position make sidebar normal
@@ -157,10 +167,19 @@ class StickySidebarComponent {
 
   }
 
-  init() {
-    console.log("Sticky sidebar loaded");
+  isNavSticky(): boolean {
+    return (this.nav.data("sticky")) ? true : false;
+  }
 
-    this.lastScrollTop = 0;
+  init() {
+    // console.log("Sticky sidebar loaded");
+    if ( this.isNavSticky() ) {
+      this.aside.addClass("fixed-nav");
+    }
+
+    if ( Utils.isLoggedIn ) {
+      this.aside.addClass("logged-in");
+    }
 
     if ( this.aside.length > 0 ) {
       this.checkSidebar();

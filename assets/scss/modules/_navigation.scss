@@ -34,17 +34,27 @@
   position: relative;
   padding: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
   overflow: visible;
-  background: $white;
-  -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-  -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
-  box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
+  display: table;
+
+  .menu-is-active & {
+    height: 100%;
+  }
 
   @include breakpoint(laptop){
     margin-left:15px;
     margin-right:15px;
     width: auto;
+    background: $white;
+    display: block;
+    -webkit-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
+    -moz-box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
+    box-shadow: 0px 18px 94px -16px rgba(0,0,0,0.38);
+  }
+
+  .sticky & {
+    margin:0;
   }
 
 }
@@ -57,6 +67,10 @@
   @include breakpoint(tablet) {
     height: 100%;
     padding: 0 0 25px;
+  }
+
+  &.sticky{
+    padding-bottom: 55px;
   }
 }
 
@@ -80,9 +94,7 @@
     color: $white;
 
   }
-  @include breakpoint(laptop){
 
-  }
 }
 
 .sprout-dropdown-wrapper {
@@ -120,26 +132,37 @@
     }
   }
 
-  @include breakpoint(tabletmax){
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
-
   @include breakpoint(tablet){
-    position: absolute;
+    position: fixed;
     margin:0;
-    right:35px;
+    //right:35px;
     left:35px;
-    top:70%;
+    top:45px;
     z-index: $above-content;
     height: 70px;
-    width: auto;
-
+    width: calc(100% - 70px);
+    @include transform(translatez(0));
+    @include transition(all .3s);
   }
 
   @include breakpoint(laptop){
     display: none;
+  }
+
+  &.sticky{
+    right: 0;
+    left: 0;
+    width: 100%;
+    top: 0;
+    max-width: 100%;
+  }
+  &.admin{
+    top: 46px;
+
+    @include breakpoint(tablet){
+      top: 32px;
+    }
+
   }
 }
 
@@ -151,8 +174,9 @@
   left: 0;
   position: fixed;
   width: 100%;
-  padding:0;
+  padding: 0;
   z-index: $above-content;
+  opacity: 0;
 
   // Fix for animation class added ontop of nav bar element
   animation-fill-mode: none !important;
@@ -172,16 +196,17 @@
     @include transform(translateX(-50%)translateZ(0));
     max-width: 1200px;
     margin: 0 auto;
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 70px;
     display: block;
     z-index: $content;
     background: transparent;
+    //@include transition(all .3s);
 
     // Fix for animation class added ontop of nav bar element
-    animation-fill-mode: both !important;
-    -webkit-animation-fill-mode: both !important;
+    //animation-fill-mode: both !important;
+    //-webkit-animation-fill-mode: both !important;
 
     h2 {
       display: none;
@@ -204,17 +229,36 @@
     }
   }
 
+
+  // Set important to over-ride custom-styles.php if statement check for logged in users.
+  &.sticky{
+    top: 0 !important;
+    max-width: 100%;
+  }
+
+  &.admin{
+    top: 32px !important;
+  }
+
+  &.nav-anim-done{
+    opacity: 1;
+   @include breakpoint(laptop){
+     @include transition(top .3s, max-width .3s);
+
+   }
+  }
+
 }
 
 .sprout-dropdown-content, .sprout-dropdown-content ul {
-  @include transition(all .3);
+  @include transition(all .3s);
   margin: 0;
-  padding: 15px 0 0;
+  padding: 0;
   position:absolute;
   top:0;
   left:0;
   width:100%;
-  height:100%;
+  height:auto;
   overflow-x: hidden;
   overflow-y: hidden;
 
@@ -415,6 +459,10 @@
 
 .sprout-dropdown-content {
 
+  .menu-is-active & {
+    height: 100%;
+  }
+
   & > li{
     // nav check for last items with no children
     @include last(1){
@@ -535,14 +583,13 @@
 
 
 .navbar-brand {
-  //Todo: get height from customizer for all device sizes?
   position: relative;
   display:block;
   //width:auto;
   //height: auto;
   > img {
     //width: auto;
-    //height: 100%;
+    height: 100%;
   }
 
   &:hover, &:focus{
@@ -557,8 +604,8 @@
   }
 
   #header & {
-    height: auto;
-    width: 70%;
+    height: 55px;
+    //width: 50%;
     position: absolute;
     top: 50%;
     padding: 0;
@@ -574,6 +621,11 @@
     top: 0;
     @include transform(translateY(0));
     width: auto;
+    height: 75px;
+    
+    @include breakpoint(laptop){
+        height: 100%;
+    }
   }
 }
 

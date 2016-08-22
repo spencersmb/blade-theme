@@ -192,6 +192,14 @@ a.rounded-btn {
 
   }
 }
+.vc_btn3.vc_btn3-color-green.vc_btn3-style-outline.active,
+.vc_btn3.vc_btn3-color-green.vc_btn3-style-outline:active,
+.vc_btn3.vc_btn3-color-green.vc_btn3-style-outline:focus,
+.vc_btn3.vc_btn3-color-green.vc_btn3-style-outline:hover{
+  color: $white !important;
+  background-color: $green !important;
+  border-color: $green !important;
+}
 
 .vc_btn3-color-green {
   color: $green !important;

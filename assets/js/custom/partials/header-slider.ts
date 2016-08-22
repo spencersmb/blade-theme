@@ -220,7 +220,7 @@ class HeaderSliderComponent {
   }
 
   init() {
-    console.log("Header Slider init");
+    // console.log("Header Slider init");
 
     this.itemInfoWrapper.each(( index, el ) => {
 

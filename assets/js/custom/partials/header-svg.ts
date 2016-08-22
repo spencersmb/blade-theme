@@ -33,7 +33,6 @@ class SvgHeaderComponent {
     this.height = this._setSvgHeight();
 
     // set width of item
-    // this.svg.attr("width", this.winWidth);
     this.svg.css("width", this.winWidth);
 
     // set height proportion of 28
@@ -81,10 +80,7 @@ class SvgHeaderComponent {
   }
 
   init(): void {
-    console.log("Svg header loaded");
-
-    // this.svg.height(this._setSvgHeight());
-    // this.svg.attr("height", this._setSvgHeight());
+    // console.log("Svg header loaded");
 
     this.loadDivider();
 

@@ -27,9 +27,9 @@
       border-left-width: 0;
       border-right-width: 0;
       width: 100%;
-      @include font-size(8.4);
-      line-height: 84px;
-      line-height: 8.4rem;
+      @include font-size(3.4);
+      line-height: 34px;
+      line-height: 3.4rem;
       @include transition(all .3s);
       color: $black;
       padding: 0;
@@ -47,6 +47,17 @@
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
+      }
+      
+      @include breakpoint(tablet){
+        @include font-size(5.4);
+        line-height: 54px;
+        line-height: 5.4rem;
+      }
+      @include breakpoint(laptop){
+        @include font-size(8.4);
+        line-height: 84px;
+        line-height: 8.4rem;
       }
     }
   }

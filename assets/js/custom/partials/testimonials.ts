@@ -57,7 +57,7 @@ class TestimonailComponent {
 
   init() {
 
-    console.log("Testimonials Init");
+    // console.log("Testimonials Init");
 
     // Make items dynamic
     this.testimonails.each(( index, el ) => {

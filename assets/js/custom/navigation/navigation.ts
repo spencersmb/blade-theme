@@ -8,17 +8,19 @@ interface NavState {
   tablet: boolean;
   laptop: boolean;
   desktop: boolean;
+  stickyNav: number;
 }
 
 class NavComponent {
   $navTrigger: HTMLElement;
   $navDropdown: HTMLElement;
-  $lowerContainer: JQuery;
-  $upperContainer: JQuery;
-  $navMeta: JQuery;
   $dropDownWrapper: JQuery;
-  $search: JQuery;
   $dropDownContent: JQuery;
+  isSticky: number;
+  wrapperOffsetTop: number;
+  navOffsetTop: number;
+  resizeTimeOut: number;
+  currentBreakPoint: number;
 
   state: NavState;
   reIsoTimeOut: number;
@@ -29,6 +31,10 @@ class NavComponent {
     this.$navDropdown = document.getElementById("sprout-dropdown-trigger");
     this.$dropDownWrapper = $(".sprout-dropdown-wrapper");
     this.$dropDownContent = $(".sprout-dropdown-content");
+    this.isSticky = Utils.stickyNav;
+    this.wrapperOffsetTop = this.$dropDownWrapper.offset().top;
+    this.navOffsetTop = $(this.$navDropdown).offset().top;
+    this.currentBreakPoint = Utils.breakpoint;
 
     /*
      Nav State Object
@@ -38,8 +44,11 @@ class NavComponent {
       mobile: false,
       tablet: false,
       laptop: false,
-      desktop: false
+      desktop: false,
+      stickyNav: this.isSticky
     };
+
+
   }
 
   /*
@@ -86,8 +95,11 @@ class NavComponent {
   }
 
   closeNav( event: Event ): void {
+
     event.preventDefault();
+
     $(this.$navDropdown).removeClass("menu-is-active");
+
     TweenMax.to(this.$navDropdown, .3, {
         top: "-100%",
         ease: Cubic.easeIn
@@ -145,7 +157,6 @@ class NavComponent {
 
   disableMobileNav() {
 
-    // console.log("Nav turned off");
     this.navOpenInit(false);
     this.navClose(false);
     this.navItemClick(false);
@@ -180,7 +191,7 @@ class NavComponent {
   }
 
   breakPointMobile() {
-    console.log("Breakpoint Mobile");
+    // console.log("Breakpoint Mobile");
 
     if ( !this.state.navEnabled ) {
       this.enableMobileNav();
@@ -197,7 +208,7 @@ class NavComponent {
   }
 
   breakPointTablet( prevState ) {
-    console.log("Breakpoint Tablet");
+    // console.log("Breakpoint Tablet");
     if ( !this.state.navEnabled ) {
       this.enableMobileNav();
     }
@@ -205,7 +216,7 @@ class NavComponent {
   }
 
   breakPointLaptop( prevState ) {
-    console.log("Breakpoint Laptop");
+    // console.log("Breakpoint Laptop");
 
     if ( this.state.navEnabled ) {
       this.disableMobileNav();
@@ -214,7 +225,7 @@ class NavComponent {
   }
 
   breakPointDesktop( prevState ) {
-    console.log("Breakpoint Desktop");
+    // console.log("Breakpoint Desktop");
   }
 
   safariResizeFix() {
@@ -223,7 +234,6 @@ class NavComponent {
 
     // check if the container has items inside it
     if ( Utils.browser === "safari" && Utils.breakpoint >= Utils.bps.laptop ) {
-      console.log("safari");
 
       // remove animation classes temporarily
       $(this.$navDropdown).removeClass("scene_element--fadeInUpNav");
@@ -247,6 +257,7 @@ class NavComponent {
       // if its true then skip cus its already mobile
       if ( !this.state.mobile ) {
         this.breakPointMobile();
+        this.checkNavPosition();
       }
       // Turn mobile on
 
@@ -255,7 +266,8 @@ class NavComponent {
         mobile: true,
         tablet: false,
         laptop: false,
-        desktop: false
+        desktop: false,
+        stickyNav: this.isSticky
       };
     }
 
@@ -268,15 +280,17 @@ class NavComponent {
       // do once
       if ( !this.state.tablet ) {
         this.breakPointTablet(prevState);
+        this.checkNavPosition();
       }
-      // Turn mobile on
 
+      // Turn mobile on
       this.state = {
         navEnabled: true,
         mobile: false,
         tablet: true,
         laptop: false,
-        desktop: false
+        desktop: false,
+        stickyNav: this.isSticky
       };
     }
 
@@ -287,6 +301,7 @@ class NavComponent {
       let prevState = this.state;
       if ( !this.state.laptop ) {
         this.breakPointLaptop(prevState);
+        this.checkNavPosition();
       }
 
       this.state = {
@@ -294,7 +309,8 @@ class NavComponent {
         mobile: false,
         tablet: false,
         laptop: true,
-        desktop: false
+        desktop: false,
+        stickyNav: this.isSticky
       };
 
     }
@@ -308,6 +324,7 @@ class NavComponent {
 
       if ( !this.state.desktop ) {
         this.breakPointDesktop(prevState);
+        this.checkNavPosition();
       }
 
       this.state = {
@@ -315,7 +332,8 @@ class NavComponent {
         mobile: false,
         tablet: false,
         laptop: false,
-        desktop: true
+        desktop: true,
+        stickyNav: this.isSticky
       };
     }
 
@@ -323,9 +341,71 @@ class NavComponent {
      safari Nav resize event fix
      */
     this.safariResizeFix();
+
+    this.checkOffset();
+  }
+
+  checkOffset() {
+    clearTimeout(this.resizeTimeOut);
+    // check if a new break point has been reached
+    if ( this.currentBreakPoint !== Utils.breakpoint ) {
+
+      // on resize complete, change current breakpoint to new breakpoint
+      this.resizeTimeOut = setTimeout(() => {
+        this.currentBreakPoint = Utils.breakpoint;
+      }, 500);
+
+    }
+  }
+
+  animateNavIn(): void {
+    let nav = $(this.$navDropdown);
+    let timeline = new TimelineMax();
+    let isHome = ($("body").hasClass("home") ? 0.9 : 0.6);
+
+    // Image one placement
+    if ( Utils.breakpoint === Utils.bps.tablet ) {
+      timeline.add([
+        TweenMax.fromTo(this.$dropDownWrapper, 0.25, {
+          opacity: 0,
+          y: -10,
+          ease: Power1.easeInOut
+        }, {
+          delay: isHome,
+          opacity: 1,
+          y: 0,
+          ease: Power1.easeInOut,
+          onComplete: () => {
+            $(this.$navDropdown).addClass('nav-anim-done');
+          }
+        })
+      ]);
+    } else if ( Utils.breakpoint >= Utils.bps.laptop ) {
+      timeline.add([
+        TweenMax.fromTo(nav, 0.25, {
+          opacity: 0,
+          y: -10,
+          ease: Power1.easeInOut
+        }, {
+          delay: isHome,
+          opacity: 1,
+          y: 0,
+          x: 0,
+          xPercent: -50,
+          ease: Power1.easeInOut,
+          onComplete: () => {
+            $(this.$navDropdown).addClass('nav-anim-done');
+          }
+        })
+      ]);
+    }
+
   }
 
   navLoad() {
+
+    this.animateNavIn();
+
     /*
      Set state on load
      */
@@ -337,7 +417,8 @@ class NavComponent {
         mobile: true,
         tablet: false,
         laptop: false,
-        desktop: false
+        desktop: false,
+        stickyNav: this.isSticky
       };
 
     }
@@ -350,7 +431,8 @@ class NavComponent {
         mobile: false,
         tablet: true,
         laptop: false,
-        desktop: false
+        desktop: false,
+        stickyNav: this.isSticky
       };
     }
 
@@ -362,7 +444,8 @@ class NavComponent {
         mobile: false,
         tablet: false,
         laptop: true,
-        desktop: false
+        desktop: false,
+        stickyNav: this.isSticky
       };
     }
 
@@ -375,16 +458,90 @@ class NavComponent {
         mobile: false,
         tablet: false,
         laptop: false,
-        desktop: true
+        desktop: true,
+        stickyNav: this.isSticky
       };
 
     }
+
+  }
+
+  stickyCheck(): void {
+    if ( this.state.stickyNav ) {
+      this.stickyInit();
+    }
+  }
+
+  stickyInit(): void {
+
+    // Get current window position on load
+    this.checkNavPosition();
+
+    $(window).on('scroll', () => {
+      (!window.requestAnimationFrame)
+        ? this.checkNavPosition.bind(this)
+        : window.requestAnimationFrame(this.checkNavPosition.bind(this));
+    });
+
+  }
+
+  checkNavPosition(): void {
+
+    let newCurrentPosition = $(window).scrollTop();
+    // console.log(newCurrentPosition);
+
+    let nav = $(this.$navDropdown);
+    let stickyClassNames = (Utils.isLoggedIn) ? "sticky admin" : "sticky";
+
+    /*
+     check for admin login
+     */
+    if ( Utils.breakpoint < Utils.bps.tablet ) {
+
+      if ( newCurrentPosition > 45 ) {
+        $(".uppercontainer").addClass(stickyClassNames);
+        this.$dropDownWrapper.addClass(stickyClassNames);
+      } else if ( newCurrentPosition < 45 ) {
+        $(".uppercontainer").removeClass(stickyClassNames);
+        this.$dropDownWrapper.removeClass(stickyClassNames);
+      }
+
+      return;
+
+    } else if ( Utils.breakpoint === Utils.bps.tablet ) {
+
+      // remove as precaution to not show mobile nav when resizing
+      nav.removeClass(stickyClassNames);
+      $(".uppercontainer").removeClass(stickyClassNames);
+
+      if ( newCurrentPosition > 49 ) {
+
+        this.$dropDownWrapper.addClass(stickyClassNames);
+      } else if ( newCurrentPosition < 49 ) {
+        this.$dropDownWrapper.removeClass(stickyClassNames);
+      }
+
+      return;
+
+    } else if ( Utils.breakpoint >= Utils.bps.laptop ) {
+
+      if ( newCurrentPosition > 45 ) {
+        nav.addClass(stickyClassNames);
+      } else if ( newCurrentPosition < 45 ) {
+        nav.removeClass(stickyClassNames);
+      }
+
+      return;
+
+    }
+
   }
 
   init(): void {
-    console.log("Nav loaded");
+    // console.log("Nav loaded");
 
     this.navLoad();
+    this.stickyCheck();
 
     /****************
      NAV RESIZE EVENT

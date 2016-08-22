@@ -176,19 +176,19 @@ gulp.task('styles', function() {
 			console.log(err.toString());
 			this.emit('end');
 		}))
-		.pipe(sourcemaps.init())
+		// .pipe(sourcemaps.init())
 		.pipe(sass({
 
 		}))
-		.pipe(sourcemaps.write({
-			includeContent: false
-		}))
-		.pipe(sourcemaps.init({
-			loadMaps: true
-		}))
+		// .pipe(sourcemaps.write({
+		// 	includeContent: false
+		// }))
+		// .pipe(sourcemaps.init({
+		// 	loadMaps: true
+		// }))
 		.pipe(autoprefixer('last 2 version', '> 1%', 'safari 5', 'ie 8', 'ie 9',
 			'opera 12.1', 'ios 6', 'android 4'))
-		.pipe(sourcemaps.write('.'))
+		// .pipe(sourcemaps.write('.'))
 		.pipe(plumber.stop())
 		.pipe(gulp.dest('./'))
 		.pipe(filter('**/*.css')) // Filtering stream to only css files

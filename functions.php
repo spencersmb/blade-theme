@@ -62,13 +62,14 @@ function sprout_setup() {
 	// blog thumb gets used on Index page - replace with gallery thumb?
 	add_image_size( 'sprout-blog-thumb', 858, 572, true );
 
-	// Square for Isotop gallery
+	// Square for Isotope gallery
 	add_image_size( 'sprout-square', 1024, 1024, true );
 
+	// header-slider image size
 	add_image_size( 'sprout-gallery-slider', 1920, 1280, true );
 
 	//basic image dimension - horizontal - based off of a 2560x1600 ratio
-	add_image_size( 'sprout-gallery-thumb-sm', 1024, 640, true );
+	add_image_size( 'sprout-gallery-thumb-sm', 640, 480, true );
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
@@ -120,8 +121,14 @@ if ( file_exists(get_template_directory() . '/inc/functions/sprout_scripts_style
 	require_once( get_template_directory() . '/inc/functions/sprout_scripts_styles.php' );
 }
 
-//detect if is login page and dont load this
-include_once('inc/custom-styles/custom-styles.php'); // Load Custom Styles
+/**
+ * Custom Styles for Redux
+ *
+ * @since 1.0.0
+ */
+if ( file_exists(get_template_directory() . '/inc/custom-styles/custom-styles.php') ) {
+	require_once( get_template_directory() . '/inc/custom-styles/custom-styles.php' );
+}
 
 
 /**

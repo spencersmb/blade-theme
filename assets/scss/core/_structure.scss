@@ -181,13 +181,11 @@ blockquote {
 }
 
 a {
-  color: $primary-color;
   text-decoration: none;
   @include transition(color .3s, background .3s, border .3s);
 }
 
 a:hover {
-  color: $primary-color;
   text-decoration: none;
 }
 

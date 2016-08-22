@@ -189,7 +189,6 @@ get_header();
 								$post_array = array(
 									'prev_text' => wp_kses( __( '<i class="fa fa-angle-double-left"></i> Older posts', 'sprout' ), $post_html),
 									'next_text' => wp_kses( __( 'Newer posts <i class="fa fa-angle-double-right"></i>', 'sprout' ), $post_html),
-
 								);
 
 								?>

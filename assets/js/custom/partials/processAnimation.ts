@@ -84,6 +84,27 @@ class AnimationComponent {
 
   }
 
+  navAnimateOut() {
+    let nav = document.getElementById("sprout-dropdown-trigger");
+    let timeline = new TimelineMax();
+
+    // Image one placement
+    timeline.add([
+      TweenMax.fromTo(nav, .2, {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        xPercent: -50,
+      }, {
+        opacity: 0,
+        y: -10,
+        x: 0,
+        xPercent: -50,
+        ease: Power0.easeInOut
+      })
+    ]);
+  }
+
   loadUrl( url, newWindow? ) {
     // if url is to open in new window open it, else open in same window
     if ( newWindow ) {
@@ -97,6 +118,7 @@ class AnimationComponent {
 
     // Load in animations here
     this.animateServiceSidebarOut();
+    this.navAnimateOut();
 
 
     this.mScene.addClass("is-exiting")
@@ -199,7 +221,6 @@ class AnimationComponent {
 
   init() {
     this.processAnimateIn();
-    // this.desc_o_animate();
 
     // Click event to control window Loading
     $("a").on("click", ( e ) => {
@@ -234,9 +255,7 @@ class AnimationComponent {
 
     }
 
-    // $(window).on("resize", this.checkSize.bind(this));
-
-    // Custom event example
+    // EVENT Example - event emitter happens in imageLoader
     // $(document).on("test", {}, ( event, arg1, arg2 ) => {
     //
     //   if ( Utils.breakpoint > Utils.bps.tablet ) {

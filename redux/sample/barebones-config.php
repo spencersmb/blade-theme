@@ -55,7 +55,7 @@
         // Show the time the page took to load, etc
         'update_notice'        => true,
         // If dev_mode is enabled, will notify developer of updated versions available in the GitHub Repo
-        'customizer'           => false,
+        'customizer'           => true,
         // Enable basic customizer support
         //'open_expanded'     => true,                    // Allow you to start the panel in an expanded way initially.
         //'disable_save_warn' => true,                    // Disable the save warning when a user changes a field
@@ -367,14 +367,30 @@
         'subsection' => true,
         'fields' => array(
 
+            /*
+             * ---> Sticky Nav
+             */
+            array (
+                'id' => 'main_nav_sticky',
+                'icon' => true,
+                'type' => 'info',
+                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-bars"></i> Sticky Navigation</h3>', 'sprout'),
+            ),
+            array (
+                'title' => esc_html__('Sticky Nav', 'sprout'),
+                'subtitle' => wp_kses('<em>Enable / Disable the Navigation to be sticky</em>', 'sprout'),
+                'id' => 'navigation_sticky',
+                'on' => esc_html__('Enabled', 'sprout'),
+                'off' => esc_html__('Disabled', 'sprout'),
+                'type' => 'switch',
+                'default' => 0,
+            ),
             array (
                 'id' => 'main_nav_font_options',
                 'icon' => true,
                 'type' => 'info',
                 'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-font"></i> Font Settings</h3>', 'sprout'),
             ),
-
-
             array(
                 'title' => esc_html__('Main Header Font Size', 'sprout'),
                 'subtitle' => wp_kses('<em>Drag the slider to set the Main Header Font Size.</em>', 'sprout'),
@@ -519,48 +535,6 @@
                 'id' => 'header_email',
                 'type' => 'text',
                 'default' => esc_html__('johndoe@gmail.com', 'sprout'),
-            ),
-            /*
-             * ---> Free Quote Button
-             */
-            array (
-                'id' => 'free_quote_btn',
-                'icon' => true,
-                'type' => 'info',
-                'raw' => wp_kses_post('<h3 style="margin: 0;"><i class="fa fa-bars"></i> Free Quote Button</h3>', 'sprout'),
-            ),
-            array (
-                'title' => esc_html__('Header Free Quote Button', 'sprout'),
-                'subtitle' => wp_kses('<em>Enable / Disable the Free Quote Button.</em>', 'sprout'),
-                'id' => 'has_free_quote',
-                'on' => esc_html__('Enabled', 'sprout'),
-                'off' => esc_html__('Disabled', 'sprout'),
-                'type' => 'switch',
-                'default' => 1,
-            ),
-            array (
-                'title' => esc_html__('Button Text', 'sprout'),
-                'subtitle' => wp_kses('<em>Enter the button text here.</em>', 'sprout'),
-                'id' => 'main_header_button_text',
-                'type' => 'text',
-                'required' => array( 'has_free_quote', 'equals', array( 1 ) ),
-                'default' => 'Free Quote',
-            ),
-            array (
-                'title' => esc_html__('Button Color', 'sprout'),
-                'subtitle' => wp_kses('<em>The color of the free quote button.</em>', 'sprout'),
-                'id' => 'freeQuote_btn_color',
-                'type' => 'color',
-                'transparent' => false,
-                'default' => '#53950C',
-            ),
-            array (
-                'title' => esc_html__('Background Color', 'sprout'),
-                'subtitle' => wp_kses('<em>Choose a background color on laptop or larger screens.</em>', 'sprout'),
-                'id' => 'freeQuote_background_color',
-                'type' => 'color',
-                'transparent' => false,
-                'default' => '#E0E0E0',
             ),
 
             /*
@@ -843,8 +817,7 @@
             'type'     => 'radio',
             'options'  => array(
                 '1' => 'Standard + Google Webfonts',
-                '2' => 'Google Custom',
-                '3' => 'Adobe Typekit'
+                '2' => 'Google Custom'
             ),
             'default' => '1'
         ),
